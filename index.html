@@ -412,6 +412,7 @@ var aspect1 = [
  shadowAffinity = new Aspect("Shadow Affinity","Titanspawn","3"), 
  fullMoon = new Aspect("Full Moon","Titanspawn","2"),
  divineWhiteness = new Aspect("Divine Whiteness","Titanspawn","4"),
+ drowningSacred = new Aspect("Drowning is Sacred","Titanspawn","7"),
    
     
     
@@ -630,6 +631,17 @@ alert(""+ varname +" = new Aspect(\""+  name +"\",\""+ type +"\",\""+ originChoi
 }
 </script>
 
+<script>
+function originAspect () {
+ name = prompt("What do you want to call your Origin Aspect ?")
+ type = prompt("Is your NPC a Mythborn, Titanspawn or Human ?");
+ varname = prompt("What is your Aspect's variable name ?")
+ originChoice = prompt("Which Titan is your Titanspawn from ? (Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 -  Soku no Kumi \n4 - Aether \n5 -  Amaunet \n6 -  Terra \n7 -  Nun \n8 - Death ");
+ 
+alert(""+ varname +" = new Aspect(\""+  name +"\",\""+ type +"\",\""+ originChoice +"\"),");      }
+originAspect ();
+</script>
+
   </head>
 
   <body>
@@ -650,6 +662,9 @@ alert(""+ varname +" = new Aspect(\""+  name +"\",\""+ type +"\",\""+ originChoi
 <button type="button" onclick="npcChoice()">Generate an NPC !</button>
 
 <button type="button" onclick="highConcept()">Generate a High Concept !</button>
+
+<button type="button" onclick="originAspect()">Generate an Origin Aspect !</button>
+
 
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
