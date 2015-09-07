@@ -603,7 +603,7 @@ alert ("High Concept: " + rand  + "\nFirst Aspect: " + rand2 + "\nSecond Aspect:
 
 <script>
 function highConcept () {
-var name = prompt("What is your NPC's Name ?")
+var name = prompt("What is your High Concept's Name ?")
 var varname = prompt("What is your NPC's variable name ?")
 var type = prompt("Is your NPC a Titanspawn, Mythborn, or Human ?")
  originChoice = prompt("Which Titan is your Titanspawn from ? (Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 -  Soku no Kumi \n4 - Aether \n5 -  Amaunet \n6 -  Terra \n7 -  Nun, \n8 - Death ");
@@ -627,19 +627,33 @@ var type = prompt("Is your NPC a Titanspawn, Mythborn, or Human ?")
  intelligenceChoice = prompt("What is your " + type + "'s Intelligence Level ? \n1 - Feral \n2 - Human");
  legendChoice = prompt("Is your " + type + "'s Legend Level: \n1 - Godborn \n2 - Demigod  \n3 - God ");
 
-alert(""+ varname +" = new Aspect(\""+  name +"\",\""+ type +"\",\""+ originChoice +"\",\""+ subOriginChoice +"\",\""+ legendChoice +"\",\""+ intelligenceChoice +"\")");
+alert(""+ varname +" = new Aspect(\""+  name +"\",\""+ type +"\",\""+ originChoice +"\",\""+ subOriginChoice +"\",\""+ legendChoice +"\",\""+ intelligenceChoice +"\,")");
 }
 </script>
 
 <script>
 function originAspect () {
  name = prompt("What do you want to call your Origin Aspect ?")
+varname = prompt("What is your Aspect's variable name ?")
  type = prompt("Is your NPC a Mythborn, Titanspawn or Human ?");
- varname = prompt("What is your Aspect's variable name ?")
  originChoice = prompt("Which Titan is your Titanspawn from ? (Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 -  Soku no Kumi \n4 - Aether \n5 -  Amaunet \n6 -  Terra \n7 -  Nun \n8 - Death ");
  
 alert(""+ varname +" = new Aspect(\""+  name +"\",\""+ type +"\",\""+ originChoice +"\"),");      }
 </script>
+
+<script>
+
+function personalityAspect () {
+ name = prompt("What do you want to call your Personality Aspect ?")
+ varname = prompt("What is your Aspect's variable name ?")
+ intelligenceChoice = prompt("What is your NPC's Intelligence Level ? \n1 - Feral \n2 - Human");
+ behaviorChoice = prompt("What is your NPC's behavior like ? \n 1 - Aggressive \n 2 - Diplomatic \n 3 - Friendly ");  
+
+
+alert("\""+ varname +"\" = new Aspect(\""+  name +"\",\"type\",\"originChoice\",\"subOriginChoice\",\"legendChoice\",\""+ intelligenceChoice +"\",\""+ behaviorChoice +"\"),");
+}
+</script>
+
 
   </head>
 
@@ -664,7 +678,7 @@ alert(""+ varname +" = new Aspect(\""+  name +"\",\""+ type +"\",\""+ originChoi
 
 <button type="button" onclick="originAspect()">Generate an Origin Aspect !</button>
 
-<button type="button" onclick="originAspect()">Generate an Origin Aspect !</button>
+<button type="button" onclick="personalityAspect()">Generate a Personality Aspect !</button>
 
 
 
