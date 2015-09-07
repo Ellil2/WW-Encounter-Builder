@@ -599,6 +599,37 @@ alert ("High Concept: " + rand  + "\nFirst Aspect: " + rand2 + "\nSecond Aspect:
 
 
 </script>
+
+<script>
+function highConcept () {
+var name = prompt("What is your NPC's Name ?")
+var varname = prompt("What is your NPC's variable name ?")
+var type = prompt("Is your NPC a Titanspawn, Mythborn, or Human ?")
+ originChoice = prompt("Which Titan is your Titanspawn from ? (Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 -  Soku no Kumi \n4 - Aether \n5 -  Amaunet \n6 -  Terra \n7 -  Nun, \n8 - Death ");
+  if (originChoice === "1") {
+       subOriginChoice = prompt("What Avatar of Muspelheim is your Titanspawn linked to ?  \n1.1 - Vrtra  \n1.2 - Surtr \n1.3 - Prometheus \n1.4 - Any");  }
+  else if (originChoice === "2") {
+       subOriginChoice = prompt("What Avatar of Nyx is your Titanspawn linked to ?  \n2.1 - Nott \n2.2 - Fenrir \n2.3 - Apep \n2.4 - Any)"); }
+  else if (originChoice === "3") {
+       subOriginChoice = prompt("What Avatar of Soku no Kumi is your Titanspawn linked to ? \n3.1 - Huehueteotl \n3.2 - Mikaboshi \n3.3 - Erebus \n3.4 Any)");  }
+  else if (originChoice === "4") {
+       subOriginChoice = prompt("What Avatar of Aether is your Titanspawn linked to ? \n4.1 - Aten\n4.2 -  Hyperion\n4.3 -  Any"); }
+  else if (originChoice === "5") {
+       subOriginChoice = prompt("What Avatar of Amaunet is your Titanspawn linked to ? \n5.1 -  Huracan\n5.2 -  Typhon\n5.3 -  Ouranos\n5.4 -  Any");  }
+  else if (originChoice === "6") {
+       subOriginChoice = prompt("What Avatar of Terra is your Titanspawn linked to ? Possibilities:\n6.1 -  Gaia\n6.2 -  Kur\n6.3 -  Dis Pater\n6.4 - Ourea \n6.5 - Crom Cruach \n6.6 -  Any");  }
+  else if (originChoice === "7") {
+       subOriginChoice = prompt("What Avatar of Nun is your Titanspawn linked to ? Possibilities: \n7.1 Yam \n7.2 -  Tiamat \n7.3 -  Abzu \n7.4 -  Cipactli \n7.5 -  Any");  }
+  else if (originChoice === "8") {
+       subOriginChoice = prompt("What Avatar of Death is your Titanspawn linked to ? Possibilities: \n8.1 - Styx\n8.2 -  Grim Reaper\n8.3 -  Any");  }
+
+ intelligenceChoice = prompt("What is your " + type + "'s Intelligence Level ? \n1 - Feral \n2 - Human");
+ legendChoice = prompt("Is your " + type + "'s Legend Level: \n1 - Godborn \n2 - Demigod  \n3 - God ");
+
+alert(""+ varname +" = new Aspect(\""+  name +"\",\""+ type +"\",\""+ originChoice +"\",\""+ subOriginChoice +"\",\""+ legendChoice +"\",\""+ intelligenceChoice +"\")");
+}
+</script>
+
   </head>
 
   <body>
@@ -615,12 +646,10 @@ alert ("High Concept: " + rand  + "\nFirst Aspect: " + rand2 + "\nSecond Aspect:
         <section id="main-content">
           <h3>
 
-<a href="https://github.com/Ellil1/Scion/tarball/master" class="button">
-<small>Generate a Titanspawn ! </small>
-</a>
 
 <button type="button" onclick="npcChoice()">Generate an NPC !</button>
 
+<button type="button" onclick="highConcept()">Generate a High Concept !</button>
 
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
