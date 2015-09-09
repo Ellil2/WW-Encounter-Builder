@@ -378,13 +378,10 @@ var rand = highConceptOptions[Math.floor(Math.random() * highConceptOptions.leng
 
 
 var aspect1 = [
- nightHunger = new Aspect("Hunger of Night", "Titanspawn", "2"),
+ nightAspects = new Aspect(["Stellar Light","Full Moon","Night Stalker","Born of the Darkness","Hunger of Night","Fear of the Light"], "Titanspawn", "2"),
  walkingVolcano = new Aspect("Walking Volcano", "Titanspawn", "1"),
- lightFear = new Aspect("Fear of the Light", "Titanspawn", "2"),
  waterHatred = new Aspect("Hatred of Water", "Titanspawn", "1"),
  brightPresence = new Aspect("Bright Presence", "Titanspawn", "4"),
- darknessBorn = new Aspect("Born of the Darkness","Titanspawn","2"),
- nightStalker = new Aspect("Night Stalker","Titanspawn","2"),
  lightBringer = new Aspect("Light Bringer","Titanspawn","4"),
  ashMaker = new Aspect("Ash Maker","Titanspawn","1"),
  walkingBlaze = new Aspect("Walking Blaze","Titanspawn","1"),   
@@ -408,9 +405,7 @@ var aspect1 = [
  cannotStopLight = new Aspect("Light Cannot be Stopped","Titanspawn","4"),
  horridStench = new Aspect("Horrid Stench","Titanspawn","6"),
  rottingPresence  = new Aspect("Rotting Presence","Titanspawn","6"),
- stellarLight = new Aspect("Stellar Light","Titanspawn","2"),
  shadowAffinity = new Aspect("Shadow Affinity","Titanspawn","3"), 
- fullMoon = new Aspect("Full Moon","Titanspawn","2"),
  divineWhiteness = new Aspect("Divine Whiteness","Titanspawn","4"),
  drowningSacred = new Aspect("Drowning is Sacred","Titanspawn","7"),
    
@@ -424,6 +419,8 @@ var aspect1Options = [];
 for(i=0; i < aspect1.length; i++) {
   if (typeChoice === aspect1[i].type && 
       originChoice === aspect1[i].origin) {
+  var chosenAspect = aspect[i].name[Math.floor(Math.random() * aspect[i].type.length)];
+  
   aspect1Options.push(aspect1[i].name)
 };
 };
@@ -629,16 +626,6 @@ var type = prompt("Is your NPC a Titanspawn, Mythborn, or Human ?")
 
 alert(""+ varname +" = new Aspect(\""+  name +"\",\""+ type +"\",\""+ originChoice +"\",\""+ subOriginChoice +"\",\""+ legendChoice +"\",\""+ intelligenceChoice +"\"),");
 }
-</script>
-
-<script>
-function originAspect () {
- name = prompt("What do you want to call your Origin Aspect ?")
-varname = prompt("What is your Aspect's variable name ?")
- type = prompt("Is your NPC a Mythborn, Titanspawn or Human ?");
- originChoice = prompt("Which Titan is your Titanspawn from ? (Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 -  Soku no Kumi \n4 - Aether \n5 -  Amaunet \n6 -  Terra \n7 -  Nun \n8 - Death ");
- 
-alert(""+ varname +" = new Aspect(\""+  name +"\",\""+ type +"\",\""+ originChoice +"\"),");      }
 </script>
 
 <script>
