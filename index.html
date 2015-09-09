@@ -266,6 +266,13 @@ var highConcept = [
  steelcladGiant = new Aspect("Steelclad Giant","Titanspawn","6","63","3","2","behavior","1"),
  twistedSoulcursed = new Aspect("Twisted Soulcursed","Titanspawn","8","Camatotz","3","1","behavior","2"), 
  stoneDragon = new Aspect("Stone Dragon","Titanspawn","6","62","3","2"), 
+ancientWitch = new Aspect("Ancient Witch","Titanspawn","6","65","2","2"),
+blightsteelColossus = new Aspect("Blightsteel Colossus","Titanspawn","6","65","3","1"),
+gemstoneGolem = new Aspect("Gemstone Golem","Titanspawn","6","64","3","1"),
+festerhideBoar = new Aspect("Festerhide Boar","Titanspawn","6","65","1","1"),
+stormbornMyrmidon = new Aspect("Stormborn Myrmidon","Titanspawn","5","52","2","2"),
+  
+
     
     /* name = new Aspect("name","Titanspawn","origin","subOrigin","legend","intelligence","behavior","combat1"),*/
 
@@ -396,6 +403,7 @@ var aspect1 = [
  nightAspects = new Aspect([
      "Stellar Light",
      "Full Moon",
+     "Blind",
      "Night Stalker",
      "Born of the Darkness",
      "Hunger of Night",
@@ -433,6 +441,7 @@ var aspect1 = [
      "Born in the Jungle",
      "One With Nature",
      "Nature Lover",
+     "Walking Factory",
      "We are Legion",
      "Horrid Stench"],"Titanspawn","6"),
  deathAspects = new Aspect([
@@ -494,7 +503,9 @@ var aspect2 = [
  bully = new Aspect("Bully","type","origin","subOrigin","legend","2","1"),
  neverSurrender = new Aspect("Never Surrender","type","originChoice","subOriginChoice","legendChoice","2","1"),
  carefuLBeast = new Aspect("Careful Beast","type","origin","subOrigin","legend","1","2"),
- 
+ outForMyself = new Aspect("Out for Myself","type","originChoice","subOriginChoice","legendChoice","2","1"),
+ bestThereIs = new Aspect("The Best There Is","type","originChoice","subOriginChoice","legendChoice","2","2"),
+ alwaysAngry = new Aspect("I'm Always Angry","type","originChoice","subOriginChoice","legendChoice","2","1"),
 
 
   
@@ -543,22 +554,43 @@ else if (legendChoice === "1") {
 var abilities = [ 
 
     //Light
- sunWarden = new Aspect("Sun Warden","type","4","subOrigin","Invokation: Light - Sun (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","2"),
- sunPriest = new Aspect("Sun Priest","type","4","subOrigin","Invokation: Light - Sun (" + abilityOne + ")","Heku - Riot (" + abilityTwo + ")","behavior","2","3"),
- crowdDazzler = new Aspect("Crowd Dazzler","type","4","subOrigin","Heku - Riot (" + abilityOne + ")","Invokation: Light - Illumination (" + abilityTwo + ")","behavior","2","3"),
- lightShepard = new Aspect("Light Shepard","type","4","subOrigin","Heku - Soothe (" + abilityOne + ")","Invokation: Light - Blind (" + abilityTwo + ")","behavior","2","3"),
- desertWarden = new Aspect("Desert Warden","type","4","subOrigin","Invokation: Light - Sand (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","3"),
- sunRay = new Aspect("Rays of the Sun","type","4","subOrigin","Invokation: Light - Energy (" + abilityOne + ")","Epic Dexterity (" + abilityTwo + ")","behavior","3","2"),
+sunWarden = new Aspect("Sun Warden","type","4","subOrigin","Invokation: Light - Sun (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","2"),
+sunPriest = new Aspect("Sun Priest","type","4","subOrigin","Invokation: Light - Sun (" + abilityOne + ")","Heku - Riot (" + abilityTwo + ")","behavior","2","3"),
+crowdDazzler = new Aspect("Crowd Dazzler","type","4","subOrigin","Heku - Riot (" + abilityOne + ")","Invokation: Light - Illumination (" + abilityTwo + ")","behavior","2","3"),
+lightShepard = new Aspect("Light Shepard","type","4","subOrigin","Heku - Soothe (" + abilityOne + ")","Invokation: Light - Blind (" + abilityTwo + ")","behavior","2","3"),
+desertWarden = new Aspect("Desert Warden","type","4","subOrigin","Invokation: Light - Sand (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","3"),
+sunRay = new Aspect("Rays of the Sun","type","4","subOrigin","Invokation: Light - Energy (" + abilityOne + ")","Epic Dexterity (" + abilityTwo + ")","behavior","3","2"),
     // Night
- veilMaker = new Aspect("Veil Maker","type","2","21","Invokation: Night - Obscurity  (" + abilityOne + ")","Illusion (" + abilityTwo + ")","behavior","2","3"),
- fearMongerer = new Aspect("Fear Mongerer","type","2","22","Invokation: Night - Fear (" + abilityOne + ")","Ability i (" + abilityTwo + ")","behavior","2","3"),
- nightProwler = new Aspect("Night Prowler","type","2","22","Epic Strength (" + abilityOne + ")","Invokation: Night - Obscurity (" + abilityTwo + ")","behavior","3","2"),
- fenrisCaller = new Aspect("Fenris Wildcaller","type","2","22","Zoothropy: Wolf (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","2","2"),
- nightMaker = new Aspect("Night Maker","type","2","23","Invokation: Night - Darkness (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","2","3"),
- apophisAnnihilator = new Aspect("Apophis Annihilator","type","2","23","Zoothropy: Snake (" + abilityOne + ")","Invokation: Night - Fear (" + abilityTwo + ")","behavior","1","2"),
+distantStar = new Aspect("Distant Star","type","2","21","Invokation: Night - Veil(" + abilityOne + ")","Epic Dexterity(" + abilityTwo + ")","behavior","3","1"),
+veilMaker = new Aspect("Veil Maker","type","2","21","Invokation: Night - Obscurity  (" + abilityOne + ")","Illusion (" + abilityTwo + ")","behavior","2","3"),
+fearMongerer = new Aspect("Fear Mongerer","type","2","22","Invokation: Night - Fear (" + abilityOne + ")","Ability i (" + abilityTwo + ")","behavior","2","3"),
+nightProwler = new Aspect("Night Prowler","type","2","22","Epic Strength (" + abilityOne + ")","Invokation: Night - Obscurity (" + abilityTwo + ")","behavior","3","2"),
+fenrisCaller = new Aspect("Fenris Wildcaller","type","2","22","Zoothropy: Wolf (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","2","2"),
+nightMaker = new Aspect("Night Maker","type","2","23","Invokation: Night - Darkness (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","2","3"),
+apophisAnnihilator = new Aspect("Apophis Annihilator","type","2","23","Zoothropy: Snake (" + abilityOne + ")","Invokation: Night - Fear (" + abilityTwo + ")","behavior","1","2"),
     // Earth
- earthBreaker = new Aspect("Earth Breaker","type","6","62","Invokation: Earth - Stone (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","2"),
-   
+blightsoilDruid = new Aspect("Blightsoil Druid","type","6","65","Druidism: Green(" + abilityOne + ")","Invokation: Earth - Decay(" + abilityTwo + ")","behavior","2","1"),
+earthblighter = new Aspect("Earthblighter","type","6","65","Invokation: Earth - Decay(" + abilityOne + ")","Epic Physique(" + abilityTwo + ")","behavior","1","2"),
+geolord = new Aspect("Geolord","type","6","62","Invokation: Earth - Land(" + abilityOne + ")","Epic Strength(" + abilityTwo + ")","behavior","1","2")
+earthBreaker = new Aspect("Earth Breaker","type","6","62","Invokation: Earth - Stone (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","2"),
+earthWarden = new Aspect("Earth Warden","type","6","61","Invokation: Earth - Nature(" + abilityOne + ")","Epic Physique(" + abilityTwo + ")","behavior","1","1"),
+druidClaw = new Aspect("Druid of the Claw","type","6","61","Zoothropy: Bear(" + abilityOne + ")","Epic Physique(" + abilityTwo + ")","behavior","1","1"),
+   // Water
+waterCrafter = new Aspect("Water Crafter","type","7","72","Invokation: Water - Life(" + abilityOne + ")","Hematurgy: Itztli(" + abilityTwo + ")","behavior","2","1"),
+  //Death
+lordDead = new Aspect("Lord of the Dead","type","8","82","Invokation: Death - Necromancy(" + abilityOne + ")","Epic Physique: Strength(" + abilityTwo + ")","behavior","1","1"),
+necromancer = new Aspect("Necromancer","type","8","81","Invokation: Death - Necromancy(" + abilityOne + ")","Voodoo - Mind Control(" + abilityTwo + ")","behavior","2","3"),
+plagueBringer = new Aspect("Plaguebringer","type","8","82","Invokation: Death - Reaper(" + abilityOne + ")","Invokation: Earth - Decay(" + abilityTwo + ")","behavior","2","3"),
+  //Light
+ancientOracle = new Aspect("Ancient Oracle","type","4","41","Wyrdseeing: Prophecy(" + abilityOne + ")","Invokation: Light - Illumination(" + abilityTwo + ")","behavior","2","1"),
+sunChaser = new Aspect("Sun Chaser","type","4","42","Epic Speed(" + abilityOne + ")","Invokation: Light - Sun(" + abilityTwo + ")","behavior","3","2"),
+gifterBlindness = new Aspect("Gifter of Blindness","type","4","41","Invokation: Light - Brightness(" + abilityOne + ")","Epic Speed(" + abilityTwo + ")","behavior","3","3"),
+dawnbreakAssassin = new Aspect("Dawnbreak Assassin","type","4","42","Invokation: Light - Brightness(" + abilityOne + ")","Epic Speed(" + abilityTwo + ")","behavior","3","2"),
+discipleDeceit = new Aspect("Disciple of Deceit","type","4","41","Epic Appearance: Illusion(" + abilityOne + ")","Invokation: Light - Brightness(" + abilityTwo + ")","behavior","3","1"),
+// Darkness
+voidMage = new Aspect("Voidmage","type","3","32","Invokation: Darkness - Void(" + abilityOne + ")","Wyrdseeing: Mystery(" + abilityTwo + ")","behavior","2","3"),
+// Wind
+stormBinder = new Aspect("Stormbinder","type","5","51","Invokation: Sky - Storm(" + abilityOne + ")","Voodoo: Mind Control(" + abilityTwo + ")","behavior","2","3"),
     
 ]
 // name = new Aspect("name","type","origin","subOrigin","Ability j (" + abilityOne + ")","Ability i (" + abilityTwo + ")","behavior","combat1","combat2"),
