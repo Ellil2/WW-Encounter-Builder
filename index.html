@@ -44,6 +44,9 @@ Combat2: 1. Support, 2. Fighter, 3. Controllers */
 
 
 
+
+
+
 function npcChoice() {
 
 //____________________________________________________________________________________________________
@@ -324,8 +327,8 @@ if (originChoice === "4") {
 else if (originChoice === "2") {
     var originDefault = ["Night", "Midnight", "Moonlit", "Nightmare"]
 }
-else if (originChoice === "8") {
-    var originDefault = ["8", "Soul Eating", "Light"]
+else if (originChoice === "Death") {
+    var originDefault = ["Death", "Soul Eating"]
 }
 else if (originChoice === "3") {
     var originDefault = ["Darkness", "Faceless", "Silent"]
@@ -344,6 +347,7 @@ else if (originChoice === "6") {
 }
 
 // Combat 1 Options
+    if (intelligenceChoice === "2") {
 if (combatChoice1 === "1") {
     var combat1Default = ["Soldier","Legionnaire","Footsoldier","Cultist"]
 }
@@ -353,7 +357,18 @@ else if (combatChoice1 === "2") {
 else if (combatChoice1 === "3") {
     var combat1Default = ["Scout", "Archer", "Assassin"]
 }
-
+    }
+    
+else {
+if (combatChoice1 === "1") {
+    var combat1Default = ["Beast","Monster","Creature","Colossus"]
+}
+else if (combatChoice1 === "2") {
+    var combat1Default = ["Invoker", "Primordial", "Servant"]
+}
+else if (combatChoice1 === "3") {
+    var combat1Default = ["Lurker", "Creeper", "Hunter"]    
+}
     
 var originDefaultRandom = originDefault[Math.floor(Math.random() * originDefault.length)];
 var combat1DefaultRandom = combat1Default[Math.floor(Math.random() * combat1Default.length)];
@@ -362,7 +377,7 @@ highConceptOptions.push(originDefaultRandom + " " + combat1DefaultRandom)
 
 
 }
-      
+};   
 
  
 
@@ -378,36 +393,51 @@ var rand = highConceptOptions[Math.floor(Math.random() * highConceptOptions.leng
 
 
 var aspect1 = [
- nightAspects = new Aspect(["Stellar Light","Full Moon","Night Stalker","Born of the Darkness","Hunger of Night","Fear of the Light"], "Titanspawn", "2"),
- walkingVolcano = new Aspect("Walking Volcano", "Titanspawn", "1"),
- waterHatred = new Aspect("Hatred of Water", "Titanspawn", "1"),
- brightPresence = new Aspect("Bright Presence", "Titanspawn", "4"),
- lightBringer = new Aspect("Light Bringer","Titanspawn","4"),
- ashMaker = new Aspect("Ash Maker","Titanspawn","1"),
- walkingBlaze = new Aspect("Walking Blaze","Titanspawn","1"),   
- drownThemAll = new Aspect("Drown Them All","Titanspawn","7"),  
- toTheDepths = new Aspect("To The Depths","Titanspawn","7"),
- fervorousFaith = new Aspect("Fervorous Faith","Titanspawn","4"),
- shadowOnTheLand = new Aspect("Shadow on the Land","Titanspawn","3"),
- jungleBorn = new Aspect("Born in the Jungle","Titanspawn","6"),
- searTheirEyes = new Aspect("Sear Their Eyes","Titanspawn","41"),
- unworthyofmySight = new Aspect("Unworthy of My Sight","Titanspawn","41"),
- selfCombustion = new Aspect("Self Combustion","Titanspawn","1"),
- oneWithNature = new Aspect("One With Nature","Titanspawn","6"),
- oneWiththeSky = new Aspect("One With the Sky","Titanspawn","5"),
- natureLove = new Aspect("Nature Lover","Titanspawn","6"),
- pyreFanatic  = new Aspect("Pyre Fanatic","Titanspawn","1"),
- graveyardDweller = new Aspect("Graveyard Dweller","Titanspawn","8"),
- extinguishLight = new Aspect("Extinguish the Light","Titanspawn","3"),
- lightIntoDarkness = new Aspect("A Light Into the Darkness","Titanspawn","4"),
- weAreLegion = new Aspect("We are Legion","Titanspawn","6"),
- asNumerous = new Aspect("As M99 of Us as Stars in the Sky","Titanspawn","2"),
- cannotStopLight = new Aspect("Light Cannot be Stopped","Titanspawn","4"),
- horridStench = new Aspect("Horrid Stench","Titanspawn","6"),
- rottingPresence  = new Aspect("Rotting Presence","Titanspawn","6"),
- shadowAffinity = new Aspect("Shadow Affinity","Titanspawn","3"), 
- divineWhiteness = new Aspect("Divine Whiteness","Titanspawn","4"),
- drowningSacred = new Aspect("Drowning is Sacred","Titanspawn","7"),
+ nightAspects = new Aspect([
+     "Stellar Light",
+     "Full Moon",
+     "Night Stalker",
+     "Born of the Darkness",
+     "Hunger of Night",
+     "Fear of the Light"
+ ], "Titanspawn", "2"),
+ fireAspects = new Aspect([
+     "Pyre Fanatic",
+     "Walking Blaze",
+     "Ash Maker",
+     "Self Combustion",
+     "Hatred of Water",
+     "Walking Volcano"
+ ], "Titanspawn", "1"),
+ lightAspects = new Aspect([
+     "Divine Whiteness",
+     "Light Cannot be Stopped",
+     "A Light Into the Darkness",
+     "Unworthy of My Sight",
+     "Sear Their Eyes",
+     "Fervorous Faith",
+     "Light Bringer",
+     "Bright Presence"], "Titanspawn", "4"),
+ waterAspects = new Aspect([
+     "Drowning is Sacred",
+     "To The Depths",
+     "Drown Them All"],"Titanspawn","7"),  
+ shadowAspects = new Aspect([
+     "Extinguish the Light",
+     "Shadow on the Land",
+     "Shadow Affinity"],"Titanspawn","3"),
+ skyAspects = new Aspect([
+     "One With the Sky"],"Titanspawn","5"),
+ earthAspects = new Aspect([
+     "Rotting Presence",
+     "Born in the Jungle",
+     "One With Nature",
+     "Nature Lover",
+     "We are Legion",
+     "Horrid Stench"],"Titanspawn","6"),
+ deathAspects = new Aspect([
+     
+ ]),
    
     
     
@@ -419,9 +449,8 @@ var aspect1Options = [];
 for(i=0; i < aspect1.length; i++) {
   if (typeChoice === aspect1[i].type && 
       originChoice === aspect1[i].origin) {
-  var chosenAspect = aspect[i].name[Math.floor(Math.random() * aspect[i].type.length)];
-  
-  aspect1Options.push(aspect1[i].name)
+  var chosenAspect = aspect1[i].name[Math.floor(Math.random() * aspect1[i].name.length)];
+  aspect1Options.push(chosenAspect)
 };
 };
 
@@ -464,6 +493,7 @@ var aspect2 = [
  gentleBeast = new Aspect("Gentle Beast","type","origin","subOrigin","legend","1","2"),
  bully = new Aspect("Bully","type","origin","subOrigin","legend","2","1"),
  neverSurrender = new Aspect("Never Surrender","type","originChoice","subOriginChoice","legendChoice","2","1"),
+ carefuLBeast = new Aspect("Careful Beast","type","origin","subOrigin","legend","1","2"),
  
 
 
@@ -512,22 +542,22 @@ else if (legendChoice === "1") {
 
 var abilities = [ 
 
-    //4
+    //Light
  sunWarden = new Aspect("Sun Warden","type","4","subOrigin","Invokation: Light - Sun (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","2"),
  sunPriest = new Aspect("Sun Priest","type","4","subOrigin","Invokation: Light - Sun (" + abilityOne + ")","Heku - Riot (" + abilityTwo + ")","behavior","2","3"),
  crowdDazzler = new Aspect("Crowd Dazzler","type","4","subOrigin","Heku - Riot (" + abilityOne + ")","Invokation: Light - Illumination (" + abilityTwo + ")","behavior","2","3"),
  lightShepard = new Aspect("Light Shepard","type","4","subOrigin","Heku - Soothe (" + abilityOne + ")","Invokation: Light - Blind (" + abilityTwo + ")","behavior","2","3"),
  desertWarden = new Aspect("Desert Warden","type","4","subOrigin","Invokation: Light - Sand (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","3"),
  sunRay = new Aspect("Rays of the Sun","type","4","subOrigin","Invokation: Light - Energy (" + abilityOne + ")","Epic Dexterity (" + abilityTwo + ")","behavior","3","2"),
-    // 2
+    // Night
  veilMaker = new Aspect("Veil Maker","type","2","21","Invokation: Night - Obscurity  (" + abilityOne + ")","Illusion (" + abilityTwo + ")","behavior","2","3"),
  fearMongerer = new Aspect("Fear Mongerer","type","2","22","Invokation: Night - Fear (" + abilityOne + ")","Ability i (" + abilityTwo + ")","behavior","2","3"),
  nightProwler = new Aspect("Night Prowler","type","2","22","Epic Strength (" + abilityOne + ")","Invokation: Night - Obscurity (" + abilityTwo + ")","behavior","3","2"),
  fenrisCaller = new Aspect("Fenris Wildcaller","type","2","22","Zoothropy: Wolf (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","2","2"),
  nightMaker = new Aspect("Night Maker","type","2","23","Invokation: Night - Darkness (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","2","3"),
  apophisAnnihilator = new Aspect("Apophis Annihilator","type","2","23","Zoothropy: Snake (" + abilityOne + ")","Invokation: Night - Fear (" + abilityTwo + ")","behavior","1","2"),
-    // 6
- earthBreaker = new Aspect("Earth Breaker","type","6","62","Ability j (" + abilityOne + ")","Ability i (" + abilityTwo + ")","behavior","combat1","combat2"),
+    // Earth
+ earthBreaker = new Aspect("Earth Breaker","type","6","62","Invokation: Earth - Stone (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","2"),
    
     
 ]
