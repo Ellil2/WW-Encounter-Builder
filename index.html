@@ -43,7 +43,7 @@ Combat2: 1. Support, 2. Fighter, 3. Controllers */
 
 
 
-function npcChoice() {
+function npcChoice() function npcChoice() {
 
 //____________________________________________________________________________________________________
 
@@ -56,27 +56,27 @@ function npcChoice() {
 function typeChoiceFunction() {
    originChoice = prompt("Which Titan is your Titanspawn from ? (Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 -  Soku no Kumi \n4 - Aether \n5 -  Amaunet \n6 -  Terra \n7 -  Nun, \n8 - Death ");
   if (originChoice === "1") {
-       subOriginChoice = prompt("What Avatar of Muspelheim is your Titanspawn linked to ?  \n1.1 - Vrtra  \n1.2 - Surtr \n1.3 - Prometheus \n1.4 - Any");
+       subOriginChoice = prompt("What Avatar of Muspelheim is your Titanspawn linked to ?  \n1.1 - Vrtra  \n1.2 - Surtr \n1.3 - Prometheus \n99 - Any");
   }
   else if (originChoice === "2") {
-       subOriginChoice = prompt("What Avatar of Nyx is your Titanspawn linked to ?  \n2.1 - Nott \n2.2 - Fenrir \n2.3 - Apep \n2.4 - Any)");
+       subOriginChoice = prompt("What Avatar of Nyx is your Titanspawn linked to ?  \n2.1 - Nott \n2.2 - Fenrir \n2.3 - Apep \n99 - Any)");
   }
   else if (originChoice === "3") {
-       subOriginChoice = prompt("What Avatar of Soku no Kumi is your Titanspawn linked to ? \n3.1 - Huehueteotl \n3.2 - Mikaboshi \n3.3 - Erebus \n3.4 Any)");
+       subOriginChoice = prompt("What Avatar of Soku no Kumi is your Titanspawn linked to ? \n3.1 - Huehueteotl \n3.2 - Mikaboshi \n3.3 - Erebus \n99 Any)");
   }
   else if (originChoice === "4") {
-       subOriginChoice = prompt("What Avatar of Aether is your Titanspawn linked to ? \n4.1 - Aten\n4.2 -  Hyperion\n4.3 -  Any");
+       subOriginChoice = prompt("What Avatar of Aether is your Titanspawn linked to ? \n4.1 - Aten\n4.2 -  Hyperion\n99 -  Any");
   }
   else if (originChoice === "5") {
-       subOriginChoice = prompt("What Avatar of Amaunet is your Titanspawn linked to ? \n5.1 -  Huracan\n5.2 -  Typhon\n5.3 -  Ouranos\n5.4 -  Any");
+       subOriginChoice = prompt("What Avatar of Amaunet is your Titanspawn linked to ? \n5.1 -  Huracan\n5.2 -  Typhon\n5.3 -  Ouranos\n9 -  Any");
   }
   else if (originChoice === "6") {
-       subOriginChoice = prompt("What Avatar of Terra is your Titanspawn linked to ? Possibilities:\n6.1 -  Gaia\n6.2 -  Kur\n6.3 -  Dis Pater\n6.4 - Ourea \n6.5 - Crom Cruach \n6.6 -  Any");  }
+       subOriginChoice = prompt("What Avatar of Terra is your Titanspawn linked to ? Possibilities:\n6.1 -  Gaia\n6.2 -  Kur\n6.3 -  Dis Pater\n6.4 - Ourea \n6.5 - Crom Cruach \n99 -  Any");  }
   else if (originChoice === "7") {
-       subOriginChoice = prompt("What Avatar of Nun is your Titanspawn linked to ? Possibilities: \n7.1 Yam \n7.2 -  Tiamat \n7.3 -  Abzu \n7.4 -  Cipactli \n7.5 -  Any");  }
+       subOriginChoice = prompt("What Avatar of Nun is your Titanspawn linked to ? Possibilities: \n7.1 Yam \n7.2 -  Tiamat \n7.3 -  Abzu \n7.4 -  Cipactli \n99 -  Any");  }
 
   else if (originChoice === "8") {
-       subOriginChoice = prompt("What Avatar of Death is your Titanspawn linked to ? Possibilities: \n8.1 - Styx\n8.2 -  Grim Reaper\n8.3 -  Any");
+       subOriginChoice = prompt("What Avatar of Death is your Titanspawn linked to ? Possibilities: \n8.1 - Styx\n8.2 -  Grim Reaper\n99 -  Any");
   }
  
   else {
@@ -171,6 +171,16 @@ var Aspect = function(name,type,origin,subOrigin,legend,intelligence,behavior,co
   this.behavior = behavior;
   this.combat1 = combat1;
   this.combat2 = combat2;
+   
+    
+};
+    
+var Stunt = function(name,description,dangerlevel,combat2) {
+  this.name = name;
+  this.description = description;
+  this.dangerlevel = dangerlevel;
+  this.combat2 = combat2;
+  
   
 };
 //____________________________________________________________________________________________________
@@ -181,92 +191,92 @@ var Aspect = function(name,type,origin,subOrigin,legend,intelligence,behavior,co
 //____________________________________________________________________________________________________
 
 var highConcept = [
- fenrisAlpha = new Aspect("Fenris Alpha", "Titanspawn", "2", "22", "3","2","behavior","1"),
- fireWyrm = new Aspect("Fire Wyrm", "Titanspawn", "1", "12","3","1","behavior","1"),
- nightTroll = new Aspect("Night Troll", "Titanspawn", "2", "21", "1","2","behavior","1"),
- fireGiant = new Aspect("Fire Giant", "Titanspawn", "1", "12","3","2","behavior","1"),
- cherubAngel = new Aspect("Cherub", "Titanspawn", "4", "41", "1","2","behavior","2"),
- sunDrake = new Aspect("Sun Drake","Titanspawn","4","41","3","2","behavior","behavior","2"),
- archAngel = new Aspect("Archangel", "Titanspawn", "4", "41", "3","2","behavior","1"),
- seerAngel = new Aspect("Harbinger of Aten", "Titanspawn", "4", "41", "3","2","behavior","2"),
- sandDjinn = new Aspect("Sand Djinn","Titanspawn","4","42","2", "2","behavior","1"),
- sandWyrm = new Aspect("Sand Wyrm","Titanspawn","4","42","1","1","behavior","1"),
- lightPhoenix = new Aspect("Light Phoenix","Titanspawn","4","41","3","1","behavior","2"),
- fireAnt = new Aspect("Fire Ant","Titanspawn","1","13","1","1","behavior","3"),
- burntElf = new Aspect("Burnt Elf","Titanspawn","1","12","1","2","behavior","3"),
- fenrisWolf = new Aspect("Fenris Wolf","Titanspawn","2","22","1","1","behavior","3"),
- fenrisGiant = new Aspect("Fenris Giant","Titanspawn","2","22","3","1","behavior","1"),
- nightDragon = new Aspect("Night Dragon","Titanspawn","2","23","2","2","behavior","2"),
- nightWyrm = new Aspect("Night Wyrm","Titanspawn","2","23","3","1","behavior","1"),
- volcanoCyclops = new Aspect("Volcano Cyclops","Titanspawn","1","13","2","2","behavior","1"),
- nightGiant = new Aspect("Night Giant","Titanspawn","2","21","3","2","behavior","1"),
- midnightHorror = new Aspect("Midnight Horror","Titanspawn","2","21","2","1","behavior","2"),
- lesserPhoenix = new Aspect ("Lesser Phoenix","Titanspawn","4","41","1","1","behavior","2"),
- angel = new Aspect("Knight Angel","Titanspawn","4","41","2","2","behavior","1"),
- angelSeer = new Aspect("Angel Seer","Titanspawn","4","41","2","2","behavior","2"),  
- armoredWight = new Aspect("Armored Wight","Titanspawn","8","82","2","1","behavior","1"),
- ashGiant = new Aspect("Ash Giant","Titanspawn","1","11","3","1","behavior","1"),
- blightScarab = new Aspect("Blight Scarab","Titanspawn","6","65","1","1","behavior","3"),
- blightWyrm = new Aspect("Blight Wyrm","Titanspawn","6","65","3","1","behavior","1"),
- bringerDepths = new Aspect("Bringer of the Depths","Titanspawn","7","71","3","2","behavior","2"),
- chainedSoul = new Aspect("Chained Soul","Titanspawn","8","81","1","1","behavior","2"),
- cloudBreaker = new Aspect("Cloud Breaker","Titanspawn","5","52","3","2","behavior","1"),
- darkSilencer = new Aspect("Dark Silencer","Titanspawn","3","31","2","2","behavior","2"),
- dryadAshes = new Aspect("Dryad of Ashes","Titanspawn","1","12","1","2","behavior","2"),
- facelessLegionnaire = new Aspect("Faceless Legionnaire","Titanspawn","3","31","1","2","behavior","1"),
- fireColossus = new Aspect("Fire Colossus","Titanspawn","1","13","3","1","behavior","1"),
- fireLord = new Aspect("Fire Lord","Titanspawn","1","12","3","2","behavior","2"),
- frogElder = new Aspect("Frog Elder","Titanspawn","6","61","1","2","behavior","2"),
- giantCentipede = new Aspect("Giant Centipede","Titanspawn","6","65","2","1","behavior","1"),
- graniteGolem = new Aspect("Granite Golem","Titanspawn","6","64","1","2","behavior","1"),
- lampDjinn = new Aspect("Lamp Djinn","Titanspawn","4","42","1","2","behavior","2"),
- lavaLegionnaire = new Aspect("Lava Legionnaire","Titanspawn","1","11","2","1","behavior","1"),
- lightningCoatl = new Aspect("Lightning Coatl","Titanspawn","5","51","3","2","behavior","2"),
- steelCoatl = new Aspect("Steel Coatl","Titanspawn","5","51","2","2","behavior","1"),
- steelSerpent = new Aspect("Steel Serpent","Titanspawn","6","63","1","1","behavior","3"),
- orthosSpawn = new Aspect("Orthos Spawn","Titanspawn","6","61","1","1","behavior","1"),
- depthsPriest = new Aspect("Priest of the Depths","Titanspawn","7","71","2","2","behavior","2"),
- shadeWidow = new Aspect("Shade Widow","Titanspawn","3","32","3","1","behavior","3"),
- soulReaper = new Aspect("Soul Reaper","Titanspawn","8","82","2","2","behavior","1"),
- soulSearer = new Aspect("Soul Searer","Titanspawn","8","82","3","1","behavior","2"),
- stitchedHorror = new Aspect("Stitched Horror","Titanspawn","3","31","2","1","behavior","1"),
- swampHulk = new Aspect("Swamp Hulk","Titanspawn","6","61","2","1","behavior","1"),
- undeadKing = new Aspect("Undead King","Titanspawn","8","81","2","2","behavior","1"),
- worldBurner = new Aspect("World Burner","Titanspawn","1","11","3","2","behavior","2"),
- arachnidBroodmother = new Aspect("Arachnid Broodmother","Titanspawn","6","65","2","2","behavior","3"), 
- batKing = new Aspect("Bat King","Titanspawn","8","Camatotz","3","2","behavior","3"),
- deepOne = new Aspect("Deep One","Titanspawn","7","73","2","1","behavior","1"),    
- forestSoulstealer = new Aspect("Forest Soulstealer","Titanspawn","8","81","2","1","behavior","2"),    
- hopeEater = new Aspect("Hope Eater","Titanspawn","2","21","2","1","behavior","2"),    
- drownedKeeper = new Aspect("Keeper of the Drowned","Titanspawn","7","73","1","2","behavior","1"),    
- livingAvalanche = new Aspect("Living Avalanche","Titanspawn","6","64","3","1","behavior","2"),
- lurkingNightmare = new Aspect("Lurking Nightmare","Titanspawn","2","22","2","1","behavior","2"),    
- magmaCentaur = new Aspect("Magma Centaur","Titanspawn","1","13","1","2","behavior","3"),    
- magmaSpewer = new Aspect("Magma Spewer","Titanspawn","1","12","1","1","behavior","2"),    
- nightbringer = new Aspect("Nightbringer","Titanspawn","2","21","3","2","behavior","2"),    
- salamander = new Aspect("Salamander","Titanspawn","1","11","1","2","behavior","2"), 
- savageChimera = new Aspect("Savage Chimera","Titanspawn","6","61","2","1","behavior","1"),
- seaSerpent = new Aspect("Sea Serpent","Titanspawn","7","71","2","1","behavior","1"),    
- stoneColossus = new Aspect("Stone Colossus","Titanspawn","6","64","2","","behavior","1"),    
- SurtrJuggernaut = new Aspect("Surtr Juggernaut","Titanspawn","1","12","3","2","behavior","1"),
- fomorian = new Aspect("Fomorian","Titanspawn","6","65","1","2","behavior","1"),
- fomorianChieftain = new Aspect("Fomorian Chieftain","Titanspawn","6","65","2","2","behavior","1"),
- fomorianOgre = new Aspect("Fomorian Ogre","Titanspawn","6","65","3","2","behavior","1"),    
- valkyrie = new Aspect("Valkyrie","Titanspawn","8","81","2","2","behavior","1"),
- bringerEclipse = new Aspect("Bringer of Eclipse","Titanspawn","2","21","3","2","behavior","2"), 
- fireRevenant = new Aspect("Fire Revenant","Titanspawn","1","12","2","2","behavior","2"),    
- fomorianHound = new Aspect("Fomorian Hound","Titanspawn","6","65","1","1","behavior","3"),    
- forestGiant = new Aspect("Forest Giant","Titanspawn","6","61","3","2","behavior","1"),
- garmSpawn = new Aspect("Garm Spawn","Titanspawn","1","12","1","1","behavior","1"),    
- shadowFiend = new Aspect("Shadow Fiend","Titanspawn","Suki no Kumi","32","3","2","behavior","3"),    
- steelcladGiant = new Aspect("Steelclad Giant","Titanspawn","6","63","3","2","behavior","1"),
- twistedSoulcursed = new Aspect("Twisted Soulcursed","Titanspawn","8","Camatotz","3","1","behavior","2"), 
- stoneDragon = new Aspect("Stone Dragon","Titanspawn","6","62","3","2"), 
-ancientWitch = new Aspect("Ancient Witch","Titanspawn","6","65","2","2"),
-blightsteelColossus = new Aspect("Blightsteel Colossus","Titanspawn","6","65","3","1"),
-gemstoneGolem = new Aspect("Gemstone Golem","Titanspawn","6","64","3","1"),
-festerhideBoar = new Aspect("Festerhide Boar","Titanspawn","6","65","1","1"),
-stormbornMyrmidon = new Aspect("Stormborn Myrmidon","Titanspawn","5","52","2","2"),
+ fenrisAlpha = new Aspect("Fenris Alpha", "Titanspawn", "2", ["22"], ["3","2"],"2","behavior","1"),
+ fireWyrm = new Aspect("Fire Wyrm", "Titanspawn", "1", ["12"],["2","3"],"1","behavior","1"),
+ nightTroll = new Aspect("Night Troll", "Titanspawn", "2", ["21"], ["1","2"],"2","behavior","1"),
+ fireGiant = new Aspect("Fire Giant", "Titanspawn", "1", ["12"],["3","2"],"2","behavior","1"),
+ cherubAngel = new Aspect("Cherub", "Titanspawn", "4", ["41"], ["1"],"2","behavior","2"),
+ sunDrake = new Aspect("Sun Drake","Titanspawn","4",["41"],["3","2"],"2","behavior","behavior","2"),
+ archAngel = new Aspect("Archangel", "Titanspawn", "4",[ "41"], ["3"],"2","behavior","1"),
+ seerAngel = new Aspect("Harbinger of Aten", "Titanspawn", "4", ["41"], ["3","2"],"2","behavior","2"),
+ sandDjinn = new Aspect("Sand Djinn","Titanspawn","4",["42"],["2","3"], "2","behavior","1"),
+ sandWyrm = new Aspect("Sand Wyrm","Titanspawn","4",["42"],["1","2"],"1","behavior","1"),
+ lightPhoenix = new Aspect("Light Phoenix","Titanspawn","4",["41"],["3"],"1","behavior","2"),
+ fireAnt = new Aspect("Fire Ant","Titanspawn","1",["13"],["1"],"1","behavior","3"),
+ burntElf = new Aspect("Burnt Elf","Titanspawn","1",["12"],["1","2"],"2","behavior","3"),
+ fenrisWolf = new Aspect("Fenris Wolf","Titanspawn","2",["22"],["1","2"],"1","behavior","3"),
+ fenrisGiant = new Aspect("Fenris Giant","Titanspawn","2",["22"],["3","2"],"1","behavior","1"),
+ nightDragon = new Aspect("Night Dragon","Titanspawn","2",["23"],["2","3"],"2","behavior","2"),
+ nightWyrm = new Aspect("Night Wyrm","Titanspawn","2",["23"],["3","2"],"1","behavior","1"),
+ volcanoCyclops = new Aspect("Volcano Cyclops","Titanspawn","1",["13"],["2","1"],"2","behavior","1"),
+ nightGiant = new Aspect("Night Giant","Titanspawn","2",["21"],["3"],"2","behavior","1"),
+ midnightHorror = new Aspect("Midnight Horror","Titanspawn","2",["21"],["2","1"],"1","behavior","2"),
+ lesserPhoenix = new Aspect ("Lesser Phoenix","Titanspawn","4",["41"],["1","2"],"1","behavior","2"),
+ angel = new Aspect("Knight Angel","Titanspawn","4",["41"],["2","1"],"2","behavior","1"),
+ angelSeer = new Aspect("Angel Seer","Titanspawn","4",["41"],["2","1"],"2","behavior","2"),  
+ armoredWight = new Aspect("Armored Wight","Titanspawn","8",["82"],["2"],"1","behavior","1"),
+ ashGiant = new Aspect("Ash Giant","Titanspawn","1",["11"],["3"],"1","behavior","1"),
+ blightScarab = new Aspect("Blight Scarab","Titanspawn","6",["65"],["1","2"],"1","behavior","3"),
+ blightWyrm = new Aspect("Blight Wyrm","Titanspawn","6",["65"],["3","2"],"1","behavior","1"),
+ bringerDepths = new Aspect("Bringer of the Depths","Titanspawn","7",["71"],["3","2"],"2","behavior","2"),
+ chainedSoul = new Aspect("Chained Soul","Titanspawn","8",["81"],["1","2"],"1","behavior","2"),
+ cloudBreaker = new Aspect("Cloud Breaker","Titanspawn","5",["52"],["3"],"2","behavior","1"),
+ darkSilencer = new Aspect("Dark Silencer","Titanspawn","3",["31"],["2"],"2","behavior","2"),
+ dryadAshes = new Aspect("Dryad of Ashes","Titanspawn","1",["12"],["1"],"2","behavior","2"),
+ facelessLegionnaire = new Aspect("Faceless Legionnaire","Titanspawn","3",["31"],["1"],"2","behavior","1"),
+ fireColossus = new Aspect("Fire Colossus","Titanspawn","1",["13"],["3"],"1","behavior","1"),
+ fireLord = new Aspect("Fire Lord","Titanspawn","1",["12"],["3"],"2","behavior","2"),
+ frogElder = new Aspect("Frog Elder","Titanspawn","6",["61"],["1","2"],"2","behavior","2"),
+ giantCentipede = new Aspect("Giant Centipede","Titanspawn","6",["65"],["2"],"1","behavior","1"),
+ graniteGolem = new Aspect("Granite Golem","Titanspawn","6",["64"],["1"],"2","behavior","1"),
+ lampDjinn = new Aspect("Lamp Djinn","Titanspawn","4",["42"],["1"],"2","behavior","2"),
+ lavaLegionnaire = new Aspect("Lava Legionnaire","Titanspawn","1",["11"],["2"],"1","behavior","1"),
+ lightningCoatl = new Aspect("Lightning Coatl","Titanspawn","5",["51"],["3"],"2","behavior","2"),
+ steelCoatl = new Aspect("Steel Coatl","Titanspawn","5",["51"],["2"],"2","behavior","1"),
+ steelSerpent = new Aspect("Steel Serpent","Titanspawn","6",["63"],["1"],"1","behavior","3"),
+ orthosSpawn = new Aspect("Orthos Spawn","Titanspawn","6",["61"],["1"],"1","behavior","1"),
+ depthsPriest = new Aspect("Priest of the Depths","Titanspawn","7",["71"],["2"],"2","behavior","2"),
+ shadeWidow = new Aspect("Shade Widow","Titanspawn","3",["32"],["3"],"1","behavior","3"),
+ soulReaper = new Aspect("Soul Reaper","Titanspawn","8",["82"],["2"],"2","behavior","1"),
+ soulSearer = new Aspect("Soul Searer","Titanspawn","8",["82"],["3"],"1","behavior","2"),
+ stitchedHorror = new Aspect("Stitched Horror","Titanspawn","3",["31"],["2"],"1","behavior","1"),
+ swampHulk = new Aspect("Swamp Hulk","Titanspawn","6",["61"],["2"],"1","behavior","1"),
+ undeadKing = new Aspect("Undead King","Titanspawn","8",["81"],["2"],"2","behavior","1"),
+ worldBurner = new Aspect("World Burner","Titanspawn","1",["11"],["3"],"2","behavior","2"),
+ arachnidBroodmother = new Aspect("Arachnid Broodmother","Titanspawn","6",["65"],["2"],"2","behavior","3"), 
+ batKing = new Aspect("Bat King","Titanspawn","8",["Camatotz"],["3"],"2","behavior","3"),
+ deepOne = new Aspect("Deep One","Titanspawn","7",["73"],["2"],"1","behavior","1"),    
+ forestSoulstealer = new Aspect("Forest Soulstealer","Titanspawn","8",["81"],["2"],"1","behavior","2"),    
+ hopeEater = new Aspect("Hope Eater","Titanspawn","2","21",["2"],"1","behavior","2"),    
+ drownedKeeper = new Aspect("Keeper of the Drowned","Titanspawn","7",["73"],["1"],"2","behavior","1"),    
+ livingAvalanche = new Aspect("Living Avalanche","Titanspawn","6",["64"],["3"],"1","behavior","2"),
+ lurkingNightmare = new Aspect("Lurking Nightmare","Titanspawn","2",["22"],["2"],"1","behavior","2"),    
+ magmaCentaur = new Aspect("Magma Centaur","Titanspawn","1",["13"],["1"],"2","behavior","3"),    
+ magmaSpewer = new Aspect("Magma Spewer","Titanspawn","1",["12"],["1"],"1","behavior","2"),    
+ nightbringer = new Aspect("Nightbringer","Titanspawn","2",["21"],["3"],"2","behavior","2"),    
+ salamander = new Aspect("Salamander","Titanspawn","1",["11"],["1"],"2","behavior","2"), 
+ savageChimera = new Aspect("Savage Chimera","Titanspawn","6",["61"],["2"],"1","behavior","1"),
+ seaSerpent = new Aspect("Sea Serpent","Titanspawn","7",["71"],["2"],"1","behavior","1"),    
+ stoneColossus = new Aspect("Stone Colossus","Titanspawn","6",["64"],["2"],"","behavior","1"),    
+ SurtrJuggernaut = new Aspect("Surtr Juggernaut","Titanspawn","1",["12"],["3"],"2","behavior","1"),
+ fomorian = new Aspect("Fomorian","Titanspawn","6",["65"],["1"],"2","behavior","1"),
+ fomorianChieftain = new Aspect("Fomorian Chieftain","Titanspawn","6",["65"],["2"],"2","behavior","1"),
+ fomorianOgre = new Aspect("Fomorian Ogre","Titanspawn","6",["65"],["3"],"2","behavior","1"),    
+ valkyrie = new Aspect("Valkyrie","Titanspawn","8",["81"],["2"],"2","behavior","1"),
+ bringerEclipse = new Aspect("Bringer of Eclipse","Titanspawn","2",["21"],["3"],"2","behavior","2"), 
+ fireRevenant = new Aspect("Fire Revenant","Titanspawn","1",["12"],["2"],"2","behavior","2"),    
+ fomorianHound = new Aspect("Fomorian Hound","Titanspawn","6",["65"],["1"],"1","behavior","3"),    
+ forestGiant = new Aspect("Forest Giant","Titanspawn","6",["61"],["3"],"2","behavior","1"),
+ garmSpawn = new Aspect("Garm Spawn","Titanspawn","1",["12"],["1"],"1","behavior","1"),    
+ shadowFiend = new Aspect("Shadow Fiend","Titanspawn","Suki no Kumi",["32"],["3"],"2","behavior","3"),    
+ steelcladGiant = new Aspect("Steelclad Giant","Titanspawn","6",["63"],["3"],"2","behavior","1"),
+ twistedSoulcursed = new Aspect("Twisted Soulcursed","Titanspawn","8",["Camatotz"],["3"],"1","behavior","2"), 
+ stoneDragon = new Aspect("Stone Dragon","Titanspawn","6",["62"],["3"],"2"), 
+ ancientWitch = new Aspect("Ancient Witch","Titanspawn","6",["65"],["2"],"2"),
+ blightsteelColossus = new Aspect("Blightsteel Colossus","Titanspawn","6",["65"],["3"],"1"),
+ gemstoneGolem = new Aspect("Gemstone Golem","Titanspawn","6",["64"],["3"],"1"),
+ festerhideBoar = new Aspect("Festerhide Boar","Titanspawn","6",["65"],["1"],"1"),
+ stormbornMyrmidon = new Aspect("Stormborn Myrmidon","Titanspawn","5",["52"],["2"],"2"),
   
 
     
@@ -278,21 +288,22 @@ stormbornMyrmidon = new Aspect("Stormborn Myrmidon","Titanspawn","5","52","2","2
 
 var highConceptOptions = [];
 
+var highConceptOptions = [];
+
 for(i=0; i < highConcept.length; i++) {
-  if (
-    typeChoice === highConcept[i].type && 
+   if(
+    (legendChoice === highConcept[i].legend[0] || legendChoice === highConcept[i].legend[1] || legendChoice === highConcept[i].legend[2]) &&
     originChoice === highConcept[i].origin &&
-    subOriginChoice === highConcept[i].subOrigin && 
-    legendChoice === highConcept[i].legend &&
-    intelligenceChoice === highConcept[i].intelligence) 
+    (subOriginChoice === highConcept[i].subOrigin[0] || subOriginChoice === highConcept[i].subOrigin[1] || subOriginChoice === highConcept[i].subOrigin[2])  &&
+    intelligenceChoice === highConcept[i].intelligence)
   {
       highConceptOptions.push(highConcept[i].name)
   }
   else if (typeChoice === highConcept[i].type && 
    originChoice === highConcept[i].origin &&
    subOriginChoice === "99" && 
-   legendChoice === highConcept[i].legend &&
-   intelligenceChoice === highConcept[i].intelligence)
+   (legendChoice === highConcept[i].legend[0] || legendChoice === highConcept[i].legend[1] || legendChoice === highConcept[i].legend[2]) &&
+   (intelligenceChoice === highConcept[i].intelligence))
   {
    highConceptOptions.push(highConcept[i].name)
   }
@@ -303,7 +314,7 @@ for(i=0; i < highConcept.length; i++) {
   if (
     typeChoice === highConcept[i].type && 
     originChoice === highConcept[i].origin &&
-    legendChoice === highConcept[i].legend &&
+   (legendChoice === highConcept[i].legend[0] || legendChoice === highConcept[i].legend[1] || legendChoice === highConcept[i].legend[2]) &&
     intelligenceChoice === highConcept[i].intelligence) 
   {
       highConceptOptions.push(highConcept[i].name)
@@ -580,6 +591,9 @@ fenrisCaller = new Aspect("Fenris Wildcaller","type","2","22","Zoothropy: Wolf (
 nightMaker = new Aspect("Night Maker","type","2","23","Invokation: Night - Darkness (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","2","3"),
 apophisAnnihilator = new Aspect("Apophis Annihilator","type","2","23","Zoothropy: Snake (" + abilityOne + ")","Invokation: Night - Fear (" + abilityTwo + ")","behavior","1","2"),
     // Earth
+earthcaller = new Aspect("Earthcaller","type","6","61","Invokation: Earth - Summoning(" + abilityOne + ")","Invokation: Earth - Nature(" + abilityTwo + ")","behavior","2","1"),
+jungleShaman = new Aspect("Jungle Shaman","type","6","61","Invokation: Earth - Nature(" + abilityOne + ")","Invokation: Death - Shamanism(" + abilityTwo + ")","behavior","2","3"),
+groundShaker = new Aspect("Ground Shaker","type","6","64","Invokation: Earth - Stone(" + abilityOne + ")","Epic Strength(" + abilityTwo + ")","behavior","2","3"),
 blightsoilDruid = new Aspect("Blightsoil Druid","type","6","65","Druidism: Green(" + abilityOne + ")","Invokation: Earth - Decay(" + abilityTwo + ")","behavior","2","1"),
 earthblighter = new Aspect("Earthblighter","type","6","65","Invokation: Earth - Decay(" + abilityOne + ")","Epic Physique(" + abilityTwo + ")","behavior","1","2"),
 geolord = new Aspect("Geolord","type","6","62","Invokation: Earth - Land(" + abilityOne + ")","Epic Strength(" + abilityTwo + ")","behavior","1","2"),
@@ -587,8 +601,10 @@ earthBreaker = new Aspect("Earth Breaker","type","6","62","Invokation: Earth - S
 earthWarden = new Aspect("Earth Warden","type","6","61","Invokation: Earth - Nature(" + abilityOne + ")","Epic Physique(" + abilityTwo + ")","behavior","1","1"),
 druidClaw = new Aspect("Druid of the Claw","type","6","61","Zoothropy: Bear(" + abilityOne + ")","Epic Physique(" + abilityTwo + ")","behavior","1","1"),
    // Water
+keeperDrowned = new Aspect("Keeper of the Drowned","type","7","74","Invokation: Death - Necromancy(" + abilityOne + ")","Invokation: Water - Terror(" + abilityTwo + ")","behavior","2","2"),
 waterCrafter = new Aspect("Water Crafter","type","7","72","Invokation: Water - Life(" + abilityOne + ")","Hematurgy: Itztli(" + abilityTwo + ")","behavior","2","1"),
   //Death
+ghostWhisperer = new Aspect("Ghost Whisperer","type","8","81","Invokation: Death - Shamanism(" + abilityOne + ")","Epic Will(" + abilityTwo + ")","behavior","2","1"),
 lordDead = new Aspect("Lord of the Dead","type","8","82","Invokation: Death - Necromancy(" + abilityOne + ")","Epic Physique: Strength(" + abilityTwo + ")","behavior","1","1"),
 necromancer = new Aspect("Necromancer","type","8","81","Invokation: Death - Necromancy(" + abilityOne + ")","Voodoo - Mind Control(" + abilityTwo + ")","behavior","2","3"),
 plagueBringer = new Aspect("Plaguebringer","type","8","82","Invokation: Death - Reaper(" + abilityOne + ")","Invokation: Earth - Decay(" + abilityTwo + ")","behavior","2","3"),
@@ -602,7 +618,12 @@ discipleDeceit = new Aspect("Disciple of Deceit","type","4","41","Epic Appearanc
 voidMage = new Aspect("Voidmage","type","3","32","Invokation: Darkness - Void(" + abilityOne + ")","Wyrdseeing: Mystery(" + abilityTwo + ")","behavior","2","3"),
 // Wind
 stormBinder = new Aspect("Stormbinder","type","5","51","Invokation: Sky - Storm(" + abilityOne + ")","Voodoo: Mind Control(" + abilityTwo + ")","behavior","2","3"),
-    
+// Fire
+forgeMaster = new Aspect("Forgemaster","type","1","13","Invokation: Fire - Creation(" + abilityOne + ")","Invokation: Earth - Shaping(" + abilityTwo + ")","behavior","1","1"),
+flameWaker = new Aspect("Flame Waker","type","1","12","Invokation: Fire - Summoning(" + abilityOne + ")","Epic Will(" + abilityTwo + ")","behavior","2","1"),
+landScorcher = new Aspect("Land Scorcher","type","1","11","Invokation: Fire - Destruction(" + abilityOne + ")","Epic Strength(" + abilityTwo + ")","behavior","1","2"),
+
+  
 ]
 // name = new Aspect("name","type","origin","subOrigin","Ability j (" + abilityOne + ")","Ability i (" + abilityTwo + ")","behavior","combat1","combat2"),
 
@@ -611,7 +632,7 @@ var abilitiesOptions = [];
 
 for(g=0; g < abilities.length; g++) {
   if (originChoice === abilities[g].origin  &&
-      subOriginChoice === abilities[g].subOrigin &&
+    (subOriginChoice === highConcept[i].subOrigin[0] || subOriginChoice === highConcept[i].subOrigin[1] || subOriginChoice === highConcept[i].subOrigin[2])  &&
       combatChoice1 === abilities[g].combat1 && 
       combatChoice2 === abilities[g].combat2) {
       if (legendChoice === "1") {
@@ -628,7 +649,7 @@ for(g=0; g < abilities.length; g++) {
 if (typeof thirdAspectOptions[i] === 'undefined') {
 for(g=0; g < abilities.length; g++) {
   if (originChoice === abilities[g].origin  &&
-      subOriginChoice === abilities[g].subOrigin &&
+    (subOriginChoice === highConcept[i].subOrigin[0] || subOriginChoice === highConcept[i].subOrigin[1] || subOriginChoice === highConcept[i].subOrigin[2])  &&
       combatChoice1 === abilities[g].combat1) {
       if (legendChoice === "1") {
   abilitiesOptions.push(" \n" + abilities[g].legend) 
@@ -658,17 +679,39 @@ for(g=0; g < abilities.length; g++) {
   }
 }
 }
-
+    
+    
 var rand4 = thirdAspectOptions[Math.floor(Math.random() * thirdAspectOptions.length)];
 var rand5 = abilitiesOptions[Math.floor(Math.random() * abilitiesOptions.length)];
 
+    
+//____________________________________________________________________________________________________
+
+
+//Stunts Maker ------------------------------------------------------------------
+
+
+//____________________________________________________________________________________________________
+// name = new Aspect("name","descrption","combat2",dangerlevel),
+    //Here only varname, Name, combat1 and combat2 matter, and the Effect part is under "type"
+    
+   var stuntEffect = [
+
+       // Lvl 2
+energyBlast = new Stunt("Energy Blast","use a Legendary Ability for free as an Attack action","2"),
+mysticPower = new Stunt("Mystic Power","use a Legendary Ability for free to Create a Personal Advantage","2"),
+innerPower = new Stunt("Inner Power","invoke a Personal Aspect for free as an Attack action","2"),
+       
+       
+   ]
+    
+    
 
 alert ("High Concept: " + rand  + "\nFirst Aspect: " + rand2 + "\nSecond Aspect: " + rand3 + "\nThird Aspect: " + rand4 +  "\nLegendary Abilities: " + rand5)
 
 
 }
-
-
+       
 </script>
 
 <script>
