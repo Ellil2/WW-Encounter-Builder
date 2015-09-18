@@ -732,9 +732,11 @@ painGain = new Stunt("Whenever you receive a Consequence, ",1),
 fatePoint = new Stunt("For 1 Fate Point, ",2),     
        // Lvl 3
 newAspect = new Stunt("You gain the Aspect: 'Vulnerable', and ",3),     
-recklessAttack3 = new Stunt("Once per Scene, gain -3 to your next Defense Roll, and ",3),       
+recklessAttack3 = new Stunt("Once per Scene, gain -3 to your next Defense Roll, and ",3),
+focus = new Stunt("Lose your Action this turn, and ",3),      
        // Lvl 4
-extreme = new Stunt("You take a Medium Physical Consequence, and ",4),       
+extreme = new Stunt("You take a Medium Physical Consequence, and ",4),
+transform = new Stunt("Remove an Aspect you created, and ",4),             
        // Lvl 5
 brutal = new Stunt("You take a Major Physical Consequence, and ",5), 
 recklessAttack5 = new Stunt("Once per Scene, gain -5 to your next Defense Roll, and ",5),              
@@ -763,7 +765,7 @@ for(j=0; j < stuntCost.length; j++) {
 
 var randEffect = stuntEffectOptions[Math.floor(Math.random() * stuntEffectOptions.length)];
 var randCost = stuntCostOptions[Math.floor(Math.random() * stuntCostOptions.length)];
-var rand6 = ("\nStunt: \n- " + randCost + randEffect)    
+var rand6 = ("\nStunts: \n- " + randCost + randEffect)    
                
 //____________________________________________________________________________________________________
 
@@ -804,6 +806,7 @@ alert ("High Concept: " + rand  + "\nFirst Aspect: " + rand2 + "\nSecond Aspect:
 
 
 }
+       
        
 </script>
 
