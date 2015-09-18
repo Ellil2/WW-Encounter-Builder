@@ -16,34 +16,7 @@
     <title>Scion by Ellil1</title>
     
     <script>
-//____________________________________________________________________________________________________
-
-
-//User Input
-
-
-//____________________________________________________________________________________________________
-
-
-/*Muspelheim 1 - Vrtra   2 - Surtr  3 -  Prometheus  4 - Any");
-Nyx  1 - Nott  2 - Fenrir  3 - Apep  4 - Any)");
-Soku no Kumi Huehueteotl, Mikaboshi, Erebus, Any)");
-Aether :  1 - Aten 2 -  Hyperion 3 -  Any");
-       Amaunet: 1 -  Huracan 2 -  Typhon 3 -  Ouranos 4 -  Any");
-Terra: 1 -  Gaia 2 -  Kur 3 -  Dis Pater 4 - Ourea  5 - Crom Cruach  6 -  Any");  }
-      Nun  1 Yam  2 -  Tiamat  3 -  Abzu  4 -  Cipactli  5 -  Any");  }
-Death :  1 - Styx 2 -  Grim Reaper 3 -  Any");
-Legend: 1. Godborn, 2. Demigod, 3. God
-Behavior: 1. Aggressive, 2. Diplomatic, 3. Friendly
-Intelligence: 1. Feral, 2. Human
-Combat1: 1. Warrior, 2. Mage, 3. Rogue
-Combat2: 1. Support, 2. Fighter, 3. Controllers */
-
-
-
-
-
-function npcChoice(){
+function npcChoice() {
 
 //____________________________________________________________________________________________________
 
@@ -54,32 +27,33 @@ function npcChoice(){
 //____________________________________________________________________________________________________
 
 function typeChoiceFunction() {
-   originChoice = prompt("Which Titan is your Titanspawn from ? (Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 -  Soku no Kumi \n4 - Aether \n5 -  Amaunet \n6 -  Terra \n7 -  Nun, \n8 - Death ");
+   originChoice = prompt("Which Titan is your Titanspawn from ? (Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 - Soku no Kumi \n4 - Aether \n5 - Amaunet \n6 - Terra \n7 - Nun \n8 - Death ");
   if (originChoice === "1") {
-       subOriginChoice = prompt("What Avatar of Muspelheim is your Titanspawn linked to ?  \n1.1 - Vrtra  \n1.2 - Surtr \n1.3 - Prometheus \n99 - Any");
+       subOriginChoice = prompt("What Avatar of Muspelheim is your Titanspawn linked to ?  \n11 - Vrtra  \n12 - Surtr \n13 - Prometheus \n99 - Any");
   }
   else if (originChoice === "2") {
-       subOriginChoice = prompt("What Avatar of Nyx is your Titanspawn linked to ?  \n2.1 - Nott \n2.2 - Fenrir \n2.3 - Apep \n99 - Any)");
+       subOriginChoice = prompt("What Avatar of Nyx is your Titanspawn linked to ?  \n21 - Nott \n22 - Fenrir \n23 - Apep \n99 - Any");
   }
   else if (originChoice === "3") {
-       subOriginChoice = prompt("What Avatar of Soku no Kumi is your Titanspawn linked to ? \n3.1 - Huehueteotl \n3.2 - Mikaboshi \n3.3 - Erebus \n99 Any)");
+       subOriginChoice = prompt("What Avatar of Soku no Kumi is your Titanspawn linked to ? \n31 - Huehueteotl \n32 - Mikaboshi \n33 - Erebus \n99 Any");
   }
   else if (originChoice === "4") {
-       subOriginChoice = prompt("What Avatar of Aether is your Titanspawn linked to ? \n4.1 - Aten\n4.2 -  Hyperion\n99 -  Any");
+       subOriginChoice = prompt("What Avatar of Aether is your Titanspawn linked to ? \n41 - Aten\n42 -  Hyperion\n99 -  Any");
   }
   else if (originChoice === "5") {
-       subOriginChoice = prompt("What Avatar of Amaunet is your Titanspawn linked to ? \n5.1 -  Huracan\n5.2 -  Typhon\n5.3 -  Ouranos\n9 -  Any");
+       subOriginChoice = prompt("What Avatar of Amaunet is your Titanspawn linked to ? \n51 -  Huracan\n52 -  Typhon\n53 -  Ouranos\n99 -  Any");
   }
   else if (originChoice === "6") {
-       subOriginChoice = prompt("What Avatar of Terra is your Titanspawn linked to ? Possibilities:\n6.1 -  Gaia\n6.2 -  Kur\n6.3 -  Dis Pater\n6.4 - Ourea \n6.5 - Crom Cruach \n99 -  Any");  }
+       subOriginChoice = prompt("What Avatar of Terra is your Titanspawn linked to ? Possibilities:\n61 -  Gaia\n62 -  Kur\n63 -  Dis Pater\n64 - Ourea \n65 - Crom Cruach \n99 -  Any");  }
   else if (originChoice === "7") {
-       subOriginChoice = prompt("What Avatar of Nun is your Titanspawn linked to ? Possibilities: \n7.1 Yam \n7.2 -  Tiamat \n7.3 -  Abzu \n7.4 -  Cipactli \n99 -  Any");  }
+       subOriginChoice = prompt("What Avatar of Nun is your Titanspawn linked to ? Possibilities: \n71 Yam \n72 -  Tiamat \n73 -  Abzu \n74 -  Cipactli \n99 -  Any");  }
 
   else if (originChoice === "8") {
-       subOriginChoice = prompt("What Avatar of Death is your Titanspawn linked to ? Possibilities: \n8.1 - Styx\n8.2 -  Grim Reaper\n99 -  Any");
+       subOriginChoice = prompt("What Avatar of Death is your Titanspawn linked to ? Possibilities: \n81 - Styx\n82 -  Grim Reaper\n99 -  Any");
   }
  
   else {
+    alert("This is not a valid input !")
     typeChoiceFunction();
     return;
 }
@@ -95,7 +69,7 @@ if (typeChoice === "Titanspawn") {
 else if (typeChoice === "Mythborn") {
    var originChoice = prompt("Which Otherworld is your Mythborn from ? (Possibilities: Jade Sea, Fairie, Dark Forest");
 }
-else if (typeChoice === "2") { 
+else if (typeChoice === "Human") { 
    var originChoice = prompt("What organization is your character from ? (Possibilities: Illuminati, Cabal, Necromancer)");}
   
 
@@ -175,8 +149,7 @@ var Aspect = function(name,type,origin,subOrigin,legend,intelligence,behavior,co
     
 };
     
-var Stunt = function(name,description,dangerlevel,combat2) {
-  this.name = name;
+var Stunt = function(description,dangerlevel,combat2) {
   this.description = description;
   this.dangerlevel = dangerlevel;
   this.combat2 = combat2;
@@ -244,7 +217,7 @@ var highConcept = [
  undeadKing = new Aspect("Undead King","Titanspawn","8",["81"],["2"],"2","behavior","1"),
  worldBurner = new Aspect("World Burner","Titanspawn","1",["11"],["3"],"2","behavior","2"),
  arachnidBroodmother = new Aspect("Arachnid Broodmother","Titanspawn","6",["65"],["2"],"2","behavior","3"), 
- batKing = new Aspect("Bat King","Titanspawn","8",["Camatotz"],["3"],"2","behavior","3"),
+ batKing = new Aspect("Bat King","Titanspawn","8",["82"],["3"],"2","behavior","3"),
  deepOne = new Aspect("Deep One","Titanspawn","7",["73"],["2"],"1","behavior","1"),    
  forestSoulstealer = new Aspect("Forest Soulstealer","Titanspawn","8",["81"],["2"],"1","behavior","2"),    
  hopeEater = new Aspect("Hope Eater","Titanspawn","2","21",["2"],"1","behavior","2"),    
@@ -270,7 +243,7 @@ var highConcept = [
  garmSpawn = new Aspect("Garm Spawn","Titanspawn","1",["12"],["1"],"1","behavior","1"),    
  shadowFiend = new Aspect("Shadow Fiend","Titanspawn","Suki no Kumi",["32"],["3"],"2","behavior","3"),    
  steelcladGiant = new Aspect("Steelclad Giant","Titanspawn","6",["63"],["3"],"2","behavior","1"),
- twistedSoulcursed = new Aspect("Twisted Soulcursed","Titanspawn","8",["Camatotz"],["3"],"1","behavior","2"), 
+ twistedSoulcursed = new Aspect("Twisted Soulcursed","Titanspawn","8",["82"],["3"],"1","behavior","2"), 
  stoneDragon = new Aspect("Stone Dragon","Titanspawn","6",["62"],["3"],"2"), 
  ancientWitch = new Aspect("Ancient Witch","Titanspawn","6",["65"],["2"],"2"),
  blightsteelColossus = new Aspect("Blightsteel Colossus","Titanspawn","6",["65"],["3"],"1"),
@@ -341,7 +314,7 @@ if (originChoice === "4") {
 else if (originChoice === "2") {
     var originDefault = ["Night", "Midnight", "Moonlit", "Nightmare"]
 }
-else if (originChoice === "Death") {
+else if (originChoice === "8") {
     var originDefault = ["Death", "Soul Eating"]
 }
 else if (originChoice === "3") {
@@ -468,7 +441,7 @@ var aspect1 = [
      "Horrid Stench"],"Titanspawn","6"),
  deathAspects = new Aspect([
      "Cold Embrace",
-     "Feat of Souls"],"Titanspawn","8"),
+     "Feast of Souls"],"Titanspawn","8"),
    
     
     
@@ -498,7 +471,7 @@ var rand2 = aspect1Options[Math.floor(Math.random() * aspect1Options.length)];
 var aspect2 = [
  sadisticGenius = new Aspect("Sadistic Genius","type","origin","subOrigin","legend","2","1"),
  berserkerBrute = new Aspect("Berserker Brute","type","origin","subOrigin","legend","1","1"),
- honorable1 = new Aspect("Honorable 1","type","origin","subOrigin","legend","2","2"),
+ honorable1 = new Aspect("Honorable Beast","type","origin","subOrigin","legend","2","2"),
  wiseBeast = new Aspect("Wise Beast","type","origin","subOrigin","legend","1","2"),
  sadisticBrute = new Aspect("Sadistic Brute","type","origin","subOrigin","legend","1","1"),
  patientPolitician = new Aspect("Patient Politician","type","origin","subOrigin","legend","2","2"),
@@ -627,7 +600,6 @@ landScorcher = new Aspect("Land Scorcher","type","1","11","Invokation: Fire - De
 ]
 // name = new Aspect("name","type","origin","subOrigin","Ability j (" + abilityOne + ")","Ability i (" + abilityTwo + ")","behavior","combat1","combat2"),
 
-var thirdAspectOptions = [];
 var abilitiesOptions = [];
 
 for(g=0; g < abilities.length; g++) {
@@ -636,52 +608,46 @@ for(g=0; g < abilities.length; g++) {
       combatChoice1 === abilities[g].combat1 && 
       combatChoice2 === abilities[g].combat2) {
       if (legendChoice === "1") {
-  abilitiesOptions.push(" \n" + abilities[g].legend) 
+  abilitiesOptions.push(abilities[g].name + " \n" + abilities[g].legend) 
       }
       else {
-  abilitiesOptions.push(" \n" + abilities[g].legend + " \n" + abilities[g].intelligence) 
+  abilitiesOptions.push(abilities[g].name + " \n" + abilities[g].legend + " \n" + abilities[g].intelligence) 
       }
   //Legend here is the first Legendary Ability, Intelligence is the second Legendary Ability
-  thirdAspectOptions.push(abilities[g].name) //Name here is the Third Aspect Name
   }
 }
 
-if (typeof thirdAspectOptions[i] === 'undefined') {
+if (typeof abilitiesOptions[i] === 'undefined') {
 for(g=0; g < abilities.length; g++) {
   if (originChoice === abilities[g].origin  &&
     (subOriginChoice === highConcept[i].subOrigin[0] || subOriginChoice === highConcept[i].subOrigin[1] || subOriginChoice === highConcept[i].subOrigin[2])  &&
       combatChoice1 === abilities[g].combat1) {
       if (legendChoice === "1") {
-  abilitiesOptions.push(" \n" + abilities[g].legend) 
+  abilitiesOptions.push(abilities[g].name + " \n" + abilities[g].legend) 
       }
       else {
-  abilitiesOptions.push(" \n" + abilities[g].legend + " \n" + abilities[g].intelligence) 
+  abilitiesOptions.push(abilities[g].name + " \n" + abilities[g].legend + " \n" + abilities[g].intelligence) 
       }
   //Legend here is the first Legendary Ability, Intelligence is the second Legendary Ability
-  thirdAspectOptions.push(abilities[g].name) //Name here is the Third Aspect Name
   }
 }
 }
 
-if (typeof thirdAspectOptions[i] === 'undefined') {
+if (typeof abilitiesOptions[i] === 'undefined') {
 for(g=0; g < abilities.length; g++) {
-  if (originChoice === abilities[g].origin  &&
-      combatChoice1 === abilities[g].combat1 && 
-      combatChoice2 === abilities[g].combat2) {
+  if (originChoice === abilities[g].origin) {
       if (legendChoice === "1") {
-  abilitiesOptions.push(" \n" + abilities[g].legend) 
+  abilitiesOptions.push(abilities[g].name + " \n" + abilities[g].legend) 
       }
       else {
-  abilitiesOptions.push(" \n" + abilities[g].legend + " \n" + abilities[g].intelligence) 
+  abilitiesOptions.push(abilities[g].name + " \n" + abilities[g].legend + " \n" + abilities[g].intelligence) 
       }
   //Legend here is the first Legendary Ability, Intelligence is the second Legendary Ability
-  thirdAspectOptions.push(abilities[g].name) //Name here is the Third Aspect Name
   }
 }
 }
     
     
-var rand4 = thirdAspectOptions[Math.floor(Math.random() * thirdAspectOptions.length)];
 var rand5 = abilitiesOptions[Math.floor(Math.random() * abilitiesOptions.length)];
 
     
@@ -692,56 +658,153 @@ var rand5 = abilitiesOptions[Math.floor(Math.random() * abilitiesOptions.length)
 
 
 //____________________________________________________________________________________________________
-// name = new Aspect("name","descrption","combat2",dangerlevel),
+// name = new Stunt("description","dangerlevel"),
     //Here only varname, Name, combat1 and combat2 matter, and the Effect part is under "type"
+
+    
     
    var stuntEffect = [
 
        // Lvl 2
-energyBlast = new Stunt("Energy Blast","use a Legendary Ability for free as an Attack action","2"),
-mysticPower = new Stunt("Mystic Power","use a Legendary Ability for free to Create a Personal Advantage","2"),
-innerPower = new Stunt("Inner Power","invoke a Personal Aspect for free as an Attack action","2"),
-       
-       
-   ]
-    
-    
+energyBlast = new Stunt("use a Legendary Ability for free as an Attack action",2),
+mysticPower = new Stunt("use a Legendary Ability for free to Create a Personal Advantage",2),
+innerPower = new Stunt("invoke a Personal Aspect for free as an Attack action","2"),
+outerPower = new Stunt("invoke a Personal Aspect for free as a Create an Advantage action",2),
+mysticConstruct = new Stunt("use a Legendary Ability for free to Create a Situational Advantage",2),
+affectOther = new Stunt("use a Legendary Ability for free to Create a Character Advantage",2),
+uniqueNature = new Stunt("use a Personal Aspect for free to Create a Character Advantage",2),
+theElite = new Stunt("gain +2 to a Skill to Create an Advantage for one Action",2),
+theReckless = new Stunt("gain +2 to a Skill to Attack for one Action",2),
+allyHelp = new Stunt("give an ally a Free Invocation on an Aspect",2),
+fog2 = new Stunt("an enemy has -2 on their next Attack roll",2),
+mindFog2 = new Stunt("an enemy has -2 on their next Create an Advantage roll",2),
+weaken2 = new Stunt("an enemy has -2 on their next Defense roll",2),  
+       // Lvl 3
+skilled3 = new Stunt("have +1 to a Skill",3),
+theElite3 = new Stunt("gain +3 to a Skill to Create an Advantage",3),
+theReckless3 = new Stunt("gain +3 to a Skill for an Attack Action",3),
+aspectBonus = new Stunt("when you invoke a Personal Aspect or an Aspect you created, gain +3 instead",3), 
+aspectBonusAlly = new Stunt("when an ally invokes an Aspect you created, gain +3 instead",3), 
+createAspect3 = new Stunt("automatically create an Aspect that requires a +2 opposition to remove",3),
+fog3 = new Stunt("an enemy has -3 on their next Attack roll",3),
+mindFog3 = new Stunt("an enemy has -3 on their next Create an Advantage roll",3),
+weaken3 = new Stunt("an enemy has -3 on their next Defense roll",3),       
+massfog3 = new Stunt("all enemies have -1 on their next Attack roll",3),
+massmindFog3 = new Stunt("all enemies have -1 on their next Create an Advantage roll",3),
+massweaken3 = new Stunt("all enemies have -1 on their next Defense roll",3),               
+      // Lvl 4
+flight = new Stunt("you have the Aspect: Flight until the end of the Scene",4),
+advantageMaker = new Stunt("have +1 to two Skills",4),    
+legendNature = new Stunt("you can use your Legendary Ability for free using non-Legendary Rolls until the end of the Scene",4),
+createAspect4 = new Stunt("automatically create an Aspect that requires a +3 opposition to remove",4),
+energyBlast4 = new Stunt("use a Legendary Ability for free as an Attack action twice",4),
+mysticPower4 = new Stunt("use a Legendary Ability for free to Create a Personal Advantage twice",4),
+innerPower4 = new Stunt("invoke a Personal Aspect for free as an Attack action twice",4),
+outerPower4 = new Stunt("invoke a Personal Aspect for free as a Create an Advantage action twice",4),
+      // Lvl 5
+createAspect5 = new Stunt("automatically create an Aspect that requires a +4 opposition to remove",5),
+aspectBonus5 = new Stunt("until the end of the Scene, when you invoke a Personal Aspect or an Aspect you created, gain +4 instead",5),
+aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, gain +4 instead",5),  
+skilled5 = new Stunt("have +3 to a Skill for the rest of the Scene",5),
+massfog5 = new Stunt("all enemies have -2 on their next Attack roll",5),
+massmindfog5 = new Stunt("all enemies have -2 to their next Create an Advantage Rolls",5),        
+      // Lvl 6
+createAspect6 = new Stunt("automatically create an Aspect that requires a +6 opposition to remove",6),
 
-alert ("High Concept: " + rand  + "\nFirst Aspect: " + rand2 + "\nSecond Aspect: " + rand3 + "\nThird Aspect: " + rand4 +  "\nLegendary Abilities: " + rand5)
+       
+       
+   ]     
+       
+       
+var stuntCost = [    
+
+       // Lvl -2
+thatMuchWow =  new Stunt("Twice per Scene, ",-2),
+       // Lvl -1
+soMuch =  new Stunt("Once per Scene, ",-1),
+invokeBonus =  new Stunt("When you invoke an Aspect, ",-1),       
+       // Lvl 0
+free = new Stunt("Once per Scene, ",0),
+       // Lvl 1
+recklessAttack = new Stunt("Once per Scene, gain -1 to your next Defense Roll, and ",1), 
+painGain = new Stunt("Whenever you receive a Consequence, ",1),       
+       // Lvl 2  
+fatePoint = new Stunt("For 1 Fate Point, ",2),     
+       // Lvl 3
+newAspect = new Stunt("You gain the Aspect: 'Vulnerable', and ",3),     
+recklessAttack3 = new Stunt("Once per Scene, gain -3 to your next Defense Roll, and ",3),       
+       // Lvl 4
+extreme = new Stunt("You take a Medium Physical Consequence, and ",4),       
+       // Lvl 5
+brutal = new Stunt("You take a Major Physical Consequence, and ",5), 
+recklessAttack5 = new Stunt("Once per Scene, gain -5 to your next Defense Roll, and ",5),              
+       // Lvl 6
+       
+   ]       
+       
+var randomEffect = Math.floor(Math.random() * 4) + 3
+
+var randomEffect2 = randomEffect - abilityOne
+
+
+
+var stuntEffectOptions = [];
+var stuntCostOptions = [];
+    
+for(h=0; h < stuntEffect.length; h++) {
+  if (randomEffect === stuntEffect[h].dangerlevel)
+{ stuntEffectOptions.push(stuntEffect[h].description) }}
+
+    
+for(j=0; j < stuntCost.length; j++) {
+  if (randomEffect2 === stuntCost[j].dangerlevel){
+  stuntCostOptions.push(stuntCost[j].description)   
+  }} 
+
+var randEffect = stuntEffectOptions[Math.floor(Math.random() * stuntEffectOptions.length)];
+var randCost = stuntCostOptions[Math.floor(Math.random() * stuntCostOptions.length)];
+var rand6 = ("\nStunt: \n- " + randCost + randEffect)    
+               
+//____________________________________________________________________________________________________
+
+
+//Stunts Maker 2 ------------------------------------------------------------------
+
+
+//____________________________________________________________________________________________________
+function StuntmakerRoll () {
+    randomEffect3 = Math.floor(Math.random() * 4) + 3
+    if (randomEffect3 === randomEffect){
+        StuntmakerRoll();
+    }}
+    
+StuntmakerRoll();
+    
+var randomEffect4 = randomEffect3 - abilityOne
+
+var stuntEffectOptions2 = [];
+var stuntCostOptions2 = [];
+    
+for(a=0; a < stuntEffect.length; a++) {
+  if (randomEffect3 === stuntEffect[a].dangerlevel)
+{ stuntEffectOptions2.push(stuntEffect[a].description) }}
+
+    
+for(b=0; b < stuntCost.length; b++) {
+  if (randomEffect4 === stuntCost[b].dangerlevel){
+  stuntCostOptions2.push(stuntCost[b].description)   
+  }} 
+
+var randEffect2 = stuntEffectOptions2[Math.floor(Math.random() * stuntEffectOptions2.length)];
+var randCost2 = stuntCostOptions2[Math.floor(Math.random() * stuntCostOptions2.length)];
+var rand7 = ("\n- " + randCost2 + randEffect2)     
+    
+       
+alert ("High Concept: " + rand  + "\nFirst Aspect: " + rand2 + "\nSecond Aspect: " + rand3 + "\nThird Aspect: "   + rand5 + rand6 + rand7)
 
 
 }
        
-</script>
-
-<script>
-function highConcept () {
-var name = prompt("What is your High Concept's Name ?")
-var varname = prompt("What is your NPC's variable name ?")
-var type = prompt("Is your NPC a Titanspawn, Mythborn, or Human ?")
- originChoice = prompt("Which Titan is your Titanspawn from ? (Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 -  Soku no Kumi \n4 - Aether \n5 -  Amaunet \n6 -  Terra \n7 -  Nun, \n8 - Death ");
-  if (originChoice === "1") {
-       subOriginChoice = prompt("What Avatar of Muspelheim is your Titanspawn linked to ?  \n1.1 - Vrtra  \n1.2 - Surtr \n1.3 - Prometheus \n1.4 - Any");  }
-  else if (originChoice === "2") {
-       subOriginChoice = prompt("What Avatar of Nyx is your Titanspawn linked to ?  \n2.1 - Nott \n2.2 - Fenrir \n2.3 - Apep \n2.4 - Any)"); }
-  else if (originChoice === "3") {
-       subOriginChoice = prompt("What Avatar of Soku no Kumi is your Titanspawn linked to ? \n3.1 - Huehueteotl \n3.2 - Mikaboshi \n3.3 - Erebus \n3.4 Any)");  }
-  else if (originChoice === "4") {
-       subOriginChoice = prompt("What Avatar of Aether is your Titanspawn linked to ? \n4.1 - Aten\n4.2 -  Hyperion\n4.3 -  Any"); }
-  else if (originChoice === "5") {
-       subOriginChoice = prompt("What Avatar of Amaunet is your Titanspawn linked to ? \n5.1 -  Huracan\n5.2 -  Typhon\n5.3 -  Ouranos\n5.4 -  Any");  }
-  else if (originChoice === "6") {
-       subOriginChoice = prompt("What Avatar of Terra is your Titanspawn linked to ? Possibilities:\n6.1 -  Gaia\n6.2 -  Kur\n6.3 -  Dis Pater\n6.4 - Ourea \n6.5 - Crom Cruach \n6.6 -  Any");  }
-  else if (originChoice === "7") {
-       subOriginChoice = prompt("What Avatar of Nun is your Titanspawn linked to ? Possibilities: \n7.1 Yam \n7.2 -  Tiamat \n7.3 -  Abzu \n7.4 -  Cipactli \n7.5 -  Any");  }
-  else if (originChoice === "8") {
-       subOriginChoice = prompt("What Avatar of Death is your Titanspawn linked to ? Possibilities: \n8.1 - Styx\n8.2 -  Grim Reaper\n8.3 -  Any");  }
-
- intelligenceChoice = prompt("What is your " + type + "'s Intelligence Level ? \n1 - Feral \n2 - Human");
- legendChoice = prompt("Is your " + type + "'s Legend Level: \n1 - Godborn \n2 - Demigod  \n3 - God ");
-
-alert(""+ varname +" = new Aspect(\""+  name +"\",\""+ type +"\",\""+ originChoice +"\",\""+ subOriginChoice +"\",\""+ legendChoice +"\",\""+ intelligenceChoice +"\"),");
-}
 </script>
 
 <script>
