@@ -829,7 +829,7 @@ function legendaryAttribute () {
 var typeChoice = prompt("Is your NPC a Titanspawn or a Mythborn ?")
 var name = prompt("What is your Third Aspect's Name ?")
 var varname = prompt("What is your Aspect's variable name ?")
-if (typeChoice = "Titanspawn"){
+if (typeChoice === "Titanspawn"){
  originChoice = prompt("Which Titan is your Titanspawn from ? (Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 - Soku no Kumi \n4 - Aether \n5 - Amaunet \n6 -  Terra \n7 -  Nun \n8 - Death ");
   if (originChoice === "1") {
        subOriginChoice = prompt("What Avatar of Muspelheim is your Titanspawn linked to ?  \n1.1 - Vrtra  \n1.2 - Surtr \n1.3 - Prometheus \n1.4 - Any");  }
@@ -848,7 +848,7 @@ if (typeChoice = "Titanspawn"){
   else if (originChoice === "8") {
        subOriginChoice = prompt("What Avatar of Death is your Titanspawn linked to ? Possibilities: \n8.1 - Styx\n8.2 -  Grim Reaper\n8.3 -  Any");  }
 }
-else if (typeChoice = "Mythborn") {
+else if (typeChoice === "Mythborn") {
    originChoice = prompt("Which Race is your Mythborn  ? Possibilities: \n1 - Summer Court of Fairie \n2 - Winter Court of Fairie \n3 - Jade Sea \n4 - Dark Forest \n5 - Shambhala");
   if (originChoice === "1") {
        subOriginChoice = prompt("What type of Summer Court Fairie Mythborn is your NPC ?  \n11 - Fey  \n12 - Elf \n13 - Small Folk \n14 - Pixie \n15 - Nymph \n98 - Any");
