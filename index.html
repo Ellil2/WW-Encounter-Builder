@@ -410,6 +410,7 @@ if (typeChoice === "Mythborn" && originChoice === "2") {
     else if (subOriginChoice === "23") { originDefault = ["Leprechaun", "Ice Korrigan", "Korrigan","Gnome"]}
     else if (subOriginChoice === "24") { originDefault = ["Pixie"]}
     else if (subOriginChoice === "25") { originDefault = ["Stream Nymph", "Pine Dryad", "Frozen Dryad"]}
+    else if (subOriginChoice === "98") { originDefault = ["Svartalfheim", "Dark Elf","Leprechaun", "Ice Korrigan", "Korrigan","Gnome","Pixie","Stream Nymph", "Pine Dryad", "Frozen Dryad"]}
 }
 else if (typeChoice === "Mythborn" && originChoice === "1") {
     if (subOriginChoice === "11") { originDefault = ["Summer Fey"]}
@@ -417,6 +418,7 @@ else if (typeChoice === "Mythborn" && originChoice === "1") {
     else if (subOriginChoice === "13") { originDefault = ["Leprechaun", "Summer Korrigan", "Korrigan","Gnome"]}
     else if (subOriginChoice === "14") { originDefault = ["Pixie"]}
     else if (subOriginChoice === "15") { originDefault = ["Vine Nymph", "Jungle Dryad", "Spring Dryad"]}
+    else if (subOriginChoice === "98") { originDefault = ["Alfheim", "Light Elf","Leprechaun", "Summer Korrigan", "Korrigan","Gnome","Pixie","Vine Nymph", "Jungle Dryad", "Spring Dryad"]}
 }
     
 else if (typeChoice === "Mythborn" && originChoice === "3") {
@@ -425,19 +427,25 @@ else if (typeChoice === "Mythborn" && originChoice === "3") {
     else if (subOriginChoice === "33") { originDefault = ["Wyvern"]}
     else if (subOriginChoice === "34") { originDefault = ["Coatl"]}
     else if (subOriginChoice === "35") { originDefault = ["Naga"]}
+    else if (subOriginChoice === "98") { originDefault = ["Moutain Dragon","Forest Dragon","Cave Dragon","River Dragon", "Chinese Dragon","Wyvern","Coatl"]}
+ 
 }
 else if (typeChoice === "Mythborn" && originChoice === "4") {
     if (subOriginChoice === "41") { originDefault = ["Ent"]}
     else if (subOriginChoice === "42") { originDefault = ["Leprechaun", "Korrigan","Gnome"]}
     else if (subOriginChoice === "43") { originDefault = ["Loup-Garou","Were-Boar","Were-Spider","Were-Eagle","Were-Snake","Were-Bear"]}
     else if (subOriginChoice === "44") { originDefault = ["Hag"]}
+    else if (subOriginChoice === "98") { originDefault = ["Leprechaun", "Korrigan","Gnome","Loup-Garou","Were-Boar","Were-Spider","Were-Eagle","Were-Snake","Were-Bear","Hag"]}
+ 
 }
 else if (typeChoice === "Mythborn" && originChoice === "5") {
     if (subOriginChoice === "51") { originDefault = ["Raksasha"]}
     else if (subOriginChoice === "52") { originDefault = ["Asura"]}
     else if (subOriginChoice === "53") { originDefault = ["Dryad","Nymph"]}
     else if (subOriginChoice === "54") { originDefault = ["Naga"]}
+    else if (subOriginChoice === "98") { originDefault = ["Naga","Raksasha","Asura","Dryad","Nymph"]}
 }
+     
 // Combat 1 Options
     if (intelligenceChoice === "2") {
 if (typeChoice === "Mythborn" && combatChoice1 === "1") {
@@ -972,62 +980,6 @@ var rand7 = ("\n- " + randCost2 + randEffect2)
 alert ("High Concept: " + rand  + "\nFirst Aspect: " + rand2 + "\nSecond Aspect: " + rand3 + "\nThird Aspect: "   + rand5 + rand6 + rand7)
 
 
-}
-
-</script>
-
-<script>
-function highConcept () {
-var name = prompt("What is your High Concept's Name ?")
-var varname = prompt("What is your NPC's variable name ?")
-var typeChoice = prompt("Is your NPC a Titanspawn, Mythborn, or Human ?")
-
-if (typeChoice === "Titanspawn"){
-originChoice = prompt("Which Titan is your Titanspawn from ? (Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 -  Soku no Kumi \n4 - Aether \n5 -  Amaunet \n6 -  Terra \n7 -  Nun, \n8 - Death ");
-  if (originChoice === "1") {
-       subOriginChoice = prompt("What Avatar of Muspelheim is your Titanspawn linked to ?  \n1.1 - Vrtra  \n1.2 - Surtr \n1.3 - Prometheus \n1.4 - Any");  }
-  else if (originChoice === "2") {
-       subOriginChoice = prompt("What Avatar of Nyx is your Titanspawn linked to ?  \n2.1 - Nott \n2.2 - Fenrir \n2.3 - Apep \n2.4 - Any)"); }
-  else if (originChoice === "3") {
-       subOriginChoice = prompt("What Avatar of Soku no Kumi is your Titanspawn linked to ? \n3.1 - Huehueteotl \n3.2 - Mikaboshi \n3.3 - Erebus \n3.4 Any)");  }
-  else if (originChoice === "4") {
-       subOriginChoice = prompt("What Avatar of Aether is your Titanspawn linked to ? \n4.1 - Aten\n4.2 -  Hyperion\n4.3 -  Any"); }
-  else if (originChoice === "5") {
-       subOriginChoice = prompt("What Avatar of Amaunet is your Titanspawn linked to ? \n5.1 -  Huracan\n5.2 -  Typhon\n5.3 -  Ouranos\n5.4 -  Any");  }
-  else if (originChoice === "6") {
-       subOriginChoice = prompt("What Avatar of Terra is your Titanspawn linked to ? Possibilities:\n6.1 -  Gaia\n6.2 -  Kur\n6.3 -  Dis Pater\n6.4 - Ourea \n6.5 - Crom Cruach \n6.6 -  Any");  }
-  else if (originChoice === "7") {
-       subOriginChoice = prompt("What Avatar of Nun is your Titanspawn linked to ? Possibilities: \n7.1 Yam \n7.2 -  Tiamat \n7.3 -  Abzu \n7.4 -  Cipactli \n7.5 -  Any");  }
-  else if (originChoice === "8") {
-       subOriginChoice = prompt("What Avatar of Death is your Titanspawn linked to ? Possibilities: \n8.1 - Styx\n8.2 -  Grim Reaper\n8.3 -  Any");  }
-}
-     
-else if (typeChoice === "Mythborn") {
-   originChoice = prompt("Which Race is your Mythborn  ? Possibilities: \n1 - Summer Court of Fairie \n2 - Winter Court of Fairie \n3 - Jade Sea \n4 - Dark Forest \n5 - Shambhala");
-  if (originChoice === "1") {
-       subOriginChoice = prompt("What type of Summer Court Fairie Mythborn is your NPC ?  \n11 - Fey  \n12 - Elf \n13 - Small Folk \n14 - Pixie \n15 - Nymph \n98 - Any");
-  }
-  else if (originChoice === "2") {
-       subOriginChoice = prompt("What type of Winter Court Fairie Mythborn is your NPC ?  \n21 - Fey  \n22 - Elf \n23 - Small Folk \n24 - Pixie \n25 - Nymph \n98 - Any");
-  }
-  else if (originChoice === "3") {
-       subOriginChoice = prompt("What type of Jade Sea Mythborn is your NPC ?  \n31 - Western Dragon  \n32 - Eastern Dragon \n33 - Wyvern \n34 - Coatl \n35 - Naga \n98 - Any");
-  }
-  else if (originChoice === "4") {
-       subOriginChoice = prompt("What type of Dark Forest Mythborn is your NPC ?  \n41 - Ent  \n42 - Small Folk \n43 - Garou \n44 - Witch  \n98 - Any");
-  }
-  else if (originChoice === "5") {
-       subOriginChoice = prompt("What type of Shambhala Mythborn is your NPC ?  \n51 - Raksasha  \n52 - Asura \n53 - Nymph \n54 - Naga \n98 - Any");
-  }
-}     
-     
- intelligenceChoice = prompt("What s your " + typeChoice + "'s Intelligence Level ? \n1 - Feral \n2 - Human");
- legendChoice = prompt("Is your " + typeChoice + "'s Legend Level: \n1 - Godborn \n2 - Demigod  \n3 - God ");
-
-     
-     
-     
-alert(""+ varname +" = new Aspect(\""+  name +"\",\""+ typeChoice +"\",\""+ originChoice +"\",[\""+ subOriginChoice +"\"],[\""+ legendChoice +"\"],\""+ intelligenceChoice +"\"),");
 }
 
 </script>
