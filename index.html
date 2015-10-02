@@ -16,7 +16,7 @@
     <title>Scion by Ellil1</title>
     
     <script>
- function npcChoice() {
+  function npcChoice() {
 
 //____________________________________________________________________________________________________
 
@@ -59,7 +59,6 @@ function typeChoiceFunction() {
 }
 }
 
-
 typeChoice = prompt("Is your NPC a Mythborn, Titanspawn or Human ?");
 if (typeChoice === "Titanspawn") {
     typeChoiceFunction();
@@ -83,11 +82,14 @@ else if (typeChoice === "Mythborn") {
   else if (originChoice === "5") {
        subOriginChoice = prompt("What type of Shambhala Mythborn is your NPC ?  \n51 - Raksasha  \n52 - Asura \n53 - Nymph \n54 - Naga \n98 - Any");
   }
+  else if (originChoice === "6") {
+       subOriginChoice = prompt("What type of Atlantis Mythborn is your NPC ?  \n61 - Triton  \n62 - Nymph \n98 - Any");
+  }        
 }
 else if (typeChoice === "Human") { 
    originChoice = prompt("What organization is your character from ? Possibilities: \n21 - Illuminati, \n22 - Cabal, \n23 - Order of the Jade Fist, \n24 - Circle of Merlin, \n25 - Other)");}
   
-
+else if (typeChoice !== "Titanspawn" && typeChoice !== "Mythborn" &&typeChoice !== "Human"  ){}
 
 function legendChoiceFunction() {
   legendChoice = prompt("Is your " + typeChoice + "'s Legend Level: \n1 - Godborn \n2 - Demigod  \n3 - God ");
@@ -329,7 +331,7 @@ for(i=0; i < highConcept.length; i++) {
   else if (typeChoice === highConcept[i].type && 
    typeChoice === highConcept[i].type &&
    originChoice === highConcept[i].origin &&
-   subOriginChoice === "98" && 
+   subOriginChoice === "99" && 
    (legendChoice === highConcept[i].legend[0] || legendChoice === highConcept[i].legend[1] || legendChoice === highConcept[i].legend[2]) &&
    (intelligenceChoice === highConcept[i].intelligence))
   {
@@ -426,7 +428,7 @@ if (typeChoice === "Mythborn" && originChoice === "2") {
     else if (subOriginChoice === "23") { originDefault = ["Leprechaun", "Ice Korrigan", "Korrigan","Gnome"]}
     else if (subOriginChoice === "24") { originDefault = ["Pixie"]}
     else if (subOriginChoice === "25") { originDefault = ["Stream Nymph", "Pine Dryad", "Frozen Dryad"]}
-    else if (subOriginChoice === "98") { originDefault = ["Svartalfheim", "Dark Elf","Leprechaun", "Ice Korrigan", "Korrigan","Gnome","Pixie","Stream Nymph", "Pine Dryad", "Frozen Dryad"]}
+    else if (subOriginChoice === "99") { originDefault = ["Svartalfheim", "Dark Elf","Leprechaun", "Ice Korrigan", "Korrigan","Gnome","Pixie","Stream Nymph", "Pine Dryad", "Frozen Dryad"]}
 }
 else if (typeChoice === "Mythborn" && originChoice === "1") {
     if (subOriginChoice === "11") { originDefault = ["Summer Fey"]}
@@ -443,7 +445,7 @@ else if (typeChoice === "Mythborn" && originChoice === "3") {
     else if (subOriginChoice === "33") { originDefault = ["Wyvern"]}
     else if (subOriginChoice === "34") { originDefault = ["Coatl"]}
     else if (subOriginChoice === "35") { originDefault = ["Naga"]}
-    else if (subOriginChoice === "98") { originDefault = ["Moutain Dragon","Forest Dragon","Cave Dragon","River Dragon", "Chinese Dragon","Wyvern","Coatl"]}
+    else if (subOriginChoice === "99") { originDefault = ["Moutain Dragon","Forest Dragon","Cave Dragon","River Dragon", "Chinese Dragon","Wyvern","Coatl"]}
  
 }
 else if (typeChoice === "Mythborn" && originChoice === "4") {
@@ -451,7 +453,7 @@ else if (typeChoice === "Mythborn" && originChoice === "4") {
     else if (subOriginChoice === "42") { originDefault = ["Leprechaun", "Korrigan","Gnome"]}
     else if (subOriginChoice === "43") { originDefault = ["Loup-Garou","Were-Boar","Were-Spider","Were-Eagle","Were-Snake","Were-Bear"]}
     else if (subOriginChoice === "44") { originDefault = ["Hag"]}
-    else if (subOriginChoice === "98") { originDefault = ["Leprechaun", "Korrigan","Gnome","Loup-Garou","Were-Boar","Were-Spider","Were-Eagle","Were-Snake","Were-Bear","Hag"]}
+    else if (subOriginChoice === "99") { originDefault = ["Leprechaun", "Korrigan","Gnome","Loup-Garou","Were-Boar","Were-Spider","Were-Eagle","Were-Snake","Were-Bear","Hag"]}
  
 }
 else if (typeChoice === "Mythborn" && originChoice === "5") {
@@ -459,9 +461,14 @@ else if (typeChoice === "Mythborn" && originChoice === "5") {
     else if (subOriginChoice === "52") { originDefault = ["Asura"]}
     else if (subOriginChoice === "53") { originDefault = ["Dryad","Nymph"]}
     else if (subOriginChoice === "54") { originDefault = ["Naga"]}
-    else if (subOriginChoice === "98") { originDefault = ["Naga","Raksasha","Asura","Dryad","Nymph"]}
+    else if (subOriginChoice === "99") { originDefault = ["Naga","Raksasha","Asura","Dryad","Nymph"]}
 }
-     
+else if (typeChoice === "Mythborn" && originChoice === "6") {
+    if (subOriginChoice === "61") { originDefault = ["Triton"]}
+    else if (subOriginChoice === "52") { originDefault = ["Sea Nymph"]}
+    else if (subOriginChoice === "99") { originDefault = ["Naga","Raksasha","Asura","Dryad","Nymph"]}
+}     
+          
 // Combat 1 Options
     if (intelligenceChoice === "2") {
 if (typeChoice === "Mythborn" && combatChoice1 === "1") {
@@ -724,7 +731,7 @@ else if (legendChoice === "1") {
 var abilities = [ 
 
      
-     //________________________________________________________________________________
+     //_______________________________________________________________________________
      //Titanspawn
      //________________________________________________________________________________
     //Light
@@ -780,11 +787,45 @@ landScorcher = new Aspect("Land Scorcher","Titanspawn","1",["11","12"],"Invokati
      //Mythborn
      //________________________________________________________________________________
 
+fireDancer = new Aspect("Fire Dancer","Mythborn","1","15","Invokation: Fire - Destruction(" + abilityOne + ")","Epic Physique: Speed(" + abilityTwo + ")","behavior","1","2"),     
 monsoonMaker = new Aspect("Monsoon Maker"," + Mythborn + ","1","11","Fey Sorcerer: Summer(" + abilityOne + ")","Invokation: Sky - Storm(" + abilityTwo + ")","behavior","2","3"),     
 cruelTrickster = new Aspect("Cruel Trickster","Mythborn","2",["21","22","23","24"],"Epic Appearance: Glamour(" + abilityOne + ")","Invokation: Frost(" + abilityTwo + ")","behavior","2","3"),
-windDancer = new Aspect("Wind Dancer"," + typeChoice + ","2",["24","22","21"],"Invokation: Sky - Wind(" + abilityOne + ")","Epic Speed(" + abilityTwo + ")","behavior","3","2"),
-banisher = new Aspect("Banisher"," + typeChoice + ","4","44","Invokation: Death - Void(" + abilityOne + ")","Epic Will(" + abilityTwo + ")","behavior","2","3")]
-     
+windDancer = new Aspect("Wind Dancer","Mythborn","2",["24","22","21"],"Invokation: Sky - Wind(" + abilityOne + ")","Epic Speed(" + abilityTwo + ")","behavior","3","2"),
+banisher = new Aspect("Banisher","Mythborn","4","44","Invokation: Death - Void(" + abilityOne + ")","Epic Will(" + abilityTwo + ")","behavior","2","3"),
+ancientDruid = new Aspect("Ancient Druid","Mythborn","4",["44"],"Druidism: Green Druid(" + abilityOne + ")","Invokation: Death - Shamanism(" + abilityTwo + ")","behavior","2","3"),
+sunWarden = new Aspect("Sun Warden","Mythborn","1","12","Invokation: Light - Sun (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","2"),
+sunPriest = new Aspect("Sun Priest","Mythborn","1","12","Invokation: Light - Sun (" + abilityOne + ")","Heku - Riot (" + abilityTwo + ")","behavior","2","3"),
+crowdDazzler = new Aspect("Crowd Dazzler","Mythborn","1","11","Heku - Riot (" + abilityOne + ")","Invokation: Light - Illumination (" + abilityTwo + ")","behavior","2","3"),
+lightShepard = new Aspect("Light Shepard","Mythborn","1","13","Heku - Soothe (" + abilityOne + ")","Invokation: Light - Blind (" + abilityTwo + ")","behavior","2","3"),
+desertWarden = new Aspect("Desert Warden","Mythborn","3",["31","33"],"Invokation: Light - Sand (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","3"),
+sunRay = new Aspect("Rays of the Sun","Mythborn","3",["31","32","33"],"Invokation: Light - Energy (" + abilityOne + ")","Epic Dexterity (" + abilityTwo + ")","behavior","3","2"),
+distantStar = new Aspect("Distant Star","Mythborn","2",["21","24"],"Invokation: Night - Veil(" + abilityOne + ")","Epic Dexterity(" + abilityTwo + ")","behavior","3","1"),
+veilMaker = new Aspect("Veil Maker","Mythborn","2",["21"],"Invokation: Night - Obscurity  (" + abilityOne + ")","Illusion (" + abilityTwo + ")","behavior","2","3"),
+fearMongerer = new Aspect("Fear Mongerer","Mythborn","4",["44"],"Invokation: Night - Fear (" + abilityOne + ")","Ability i (" + abilityTwo + ")","behavior","2","3"),
+nightProwler = new Aspect("Night Prowler","Mythborn","4",["43"],"Epic Strength (" + abilityOne + ")","Invokation: Night - Obscurity (" + abilityTwo + ")","behavior","3","2"),
+fenrisCaller = new Aspect("Fenris Wildcaller","Mythborn","4",["43"],"Zoothropy: Wolf (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","2","2"),
+nightMaker = new Aspect("Night Maker","Mythborn","4",["44","43"],"Invokation: Night - Darkness (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","2","3"),
+apophisAnnihilator = new Aspect("Apophis Annihilator","Mythborn","4",["43"],"Zoothropy: Snake (" + abilityOne + ")","Invokation: Night - Fear (" + abilityTwo + ")","behavior","1","2"),
+earthcaller = new Aspect("Earthcaller","Mythborn","4",["41","44","42"],"Invokation: Earth - Summoning(" + abilityOne + ")","Invokation: Earth - Nature(" + abilityTwo + ")","behavior","2","1"),
+jungleShaman = new Aspect("Jungle Shaman","Mythborn","4",["41","42","44"],"Invokation: Earth - Nature(" + abilityOne + ")","Invokation: Death - Shamanism(" + abilityTwo + ")","behavior","2","3"),
+groundShaker = new Aspect("Ground Shaker","Mythborn","3",["32","31","33"],"Invokation: Earth - Stone(" + abilityOne + ")","Epic Strength(" + abilityTwo + ")","behavior","2","3"),
+blightsoilDruid = new Aspect("Blightsoil Druid","Mythborn","4",["44","41","43","42"],"Druidism: Green(" + abilityOne + ")","Invokation: Earth - Decay(" + abilityTwo + ")","behavior","2","1"),
+earthblighter = new Aspect("Earthblighter","Mythborn","4",["44","41","43","42"],"Invokation: Earth - Decay(" + abilityOne + ")","Epic Physique(" + abilityTwo + ")","behavior","1","2"),
+geolord = new Aspect("Geolord","Mythborn","4",["44","41","43","42"],"Invokation: Earth - Land(" + abilityOne + ")","Epic Strength(" + abilityTwo + ")","behavior","1","2"),
+earthBreaker = new Aspect("Earth Breaker","Mythborn","4",["44","41","43"],"Invokation: Earth - Stone (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","2"),
+earthWarden = new Aspect("Earth Warden","Mythborn","4",["44","41","43","42"],"Invokation: Earth - Nature(" + abilityOne + ")","Epic Physique(" + abilityTwo + ")","behavior","1","1"),
+druidClaw = new Aspect("Druid of the Claw","Mythborn","4",["44","43"],"Zoothropy: Bear(" + abilityOne + ")","Epic Physique(" + abilityTwo + ")","behavior","1","1"),
+keeperDrowned = new Aspect("Keeper of the Drowned","Mythborn","6",["61"],"Invokation: Death - Necromancy(" + abilityOne + ")","Invokation: Water - Terror(" + abilityTwo + ")","behavior","2","2"),
+waterCrafter = new Aspect("Water Crafter","Mythborn","6",["62","61"],"Invokation: Water - Life(" + abilityOne + ")","Hematurgy: Itztli(" + abilityTwo + ")","behavior","2","1"),
+seaSinger = new Aspect("Sea Singer","Mythborn","6",["61","62"],"Invokation: Water - Sea(" + abilityOne + ")","Epic Appearance - Hypnosis(" + abilityTwo + ")","behavior","2","3"),  
+necromancer = new Aspect("Necromancer","Mythborn","4",["44"],"Invokation: Death - Necromancy(" + abilityOne + ")","Voodoo - Mind Control(" + abilityTwo + ")","behavior","2","3"),
+plagueBringer = new Aspect("Plaguebringer","Mythborn","4",["44","43"],"Invokation: Death - Reaper(" + abilityOne + ")","Invokation: Earth - Decay(" + abilityTwo + ")","behavior","2","3"),
+ancientOracle = new Aspect("Ancient Oracle","Mythborn","3",["31","32","33","34","35"],"Wyrdseeing: Prophecy(" + abilityOne + ")","Invokation: Light - Illumination(" + abilityTwo + ")","behavior","2","1"),
+sunChaser = new Aspect("Sun Chaser","Mythborn","1",["42"],"Epic Speed(" + abilityOne + ")","Invokation: Light - Sun(" + abilityTwo + ")","behavior","3","2"),
+dawnbreakAssassin = new Aspect("Dawnbreak Assassin","Mythborn","2",["22","21"],"Invokation: Light - Brightness(" + abilityOne + ")","Epic Speed(" + abilityTwo + ")","behavior","3","2"),
+discipleDeceit = new Aspect("Disciple of Deceit","Mythborn","2",["21","24","25","22"],"Epic Appearance: Illusion(" + abilityOne + ")","Invokation: Light - Brightness(" + abilityTwo + ")","behavior","3","1"),
+stormBinder = new Aspect("Stormbinder","Mythborn","3",["31","32","33","34","35"],"Invokation: Sky - Storm(" + abilityOne + ")","Voodoo: Mind Control(" + abilityTwo + ")","behavior","2","3"),
+]     
      
      
      
@@ -794,8 +835,8 @@ var abilitiesOptions = [];
 
 for(g=0; g < abilities.length; g++) {
   if (typeChoice === abilities[g].type &&
-      originChoice === abilities[g].origin  &&
-    (subOriginChoice === highConcept[i].subOrigin[0] || subOriginChoice === highConcept[i].subOrigin[1] || subOriginChoice === highConcept[i].subOrigin[2])  &&
+    (originChoice === abilities[i].origin[0] || originChoice === abilities[i].origin[1] || originChoice === abilities[i].origin[2])  &&
+    (subOriginChoice === abilities[i].subOrigin[0] || subOriginChoice === abilities[i].subOrigin[1] || subOriginChoice === abilities[i].subOrigin[2])  &&
       combatChoice1 === abilities[g].combat1 && 
       combatChoice2 === abilities[g].combat2) {
       if (legendChoice === "1") {
@@ -812,7 +853,7 @@ if (typeof abilitiesOptions[i] === 'undefined') {
 for(g=0; g < abilities.length; g++) {
   if (typeChoice === abilities[g].type &&
       originChoice === abilities[g].origin  &&
-    (subOriginChoice === highConcept[i].subOrigin[0] || subOriginChoice === highConcept[i].subOrigin[1] || subOriginChoice === highConcept[i].subOrigin[2])  &&
+    (subOriginChoice === abilities[i].subOrigin[0] || subOriginChoice === abilities[i].subOrigin[1] || subOriginChoice === abilities[i].subOrigin[2])  &&
       combatChoice1 === abilities[g].combat1) {
       if (legendChoice === "1") {
   abilitiesOptions.push(abilities[g].name + " \n" + abilities[g].legend) 
@@ -870,7 +911,8 @@ theReckless = new Stunt("gain +2 to a Skill to Attack for one Action",2,"Skill",
 allyHelp = new Stunt("give an ally a Free Invocation on an Aspect",2,"Any",[1,4,0,0]),
 fog2 = new Stunt("an enemy has -2 on their next Attack roll",2,"Any",[1,3,0,0]),
 mindFog2 = new Stunt("an enemy has -2 on their next Create an Advantage roll",2,"Any",[3,4,0,0]),
-weaken2 = new Stunt("an enemy has -2 on their next Defense roll",2,"Any",[2,1,0,0]),  
+weaken2 = new Stunt("an enemy has -2 on their next Defense roll",2,"Any",[2,1,0,0]), 
+shield2 = new Stunt("an ally has +2 on their next Defense roll",2,"Any",[0,1,4,0]),          
 defend2 = new Stunt("get +2 to your next Defense roll",2,"Defense",[2,4,0,0]),   
 fatePointGain = new Stunt("gain a Fate Point",2,"Fate Point",[1,2,3,4]), 
 regeneration = new Stunt("Remove a Minor Consequence from an ally",2,"Defense",[1,0,0,0]),
@@ -889,8 +931,10 @@ massfog3 = new Stunt("all enemies have -1 on their next Attack roll",3,"Any",[1,
 massmindFog3 = new Stunt("all enemies have -1 on their next Create an Advantage roll",3,"Any",[1,3,0,0]),
 massweaken3 = new Stunt("all enemies have -1 on their next Defense roll",3,"Any",[3,2,4,0]), 
 defend3 = new Stunt("get +3 to your next Defense roll",3,"Defense",[2,4,0,0]),                  
-      // Lvl 4
+shield3 = new Stunt("an ally has +3 on their next Defense roll",3,"Any",[0,1,4,0]),          
+        // Lvl 4
 flight = new Stunt("you have the Aspect: Flight until the end of the Scene",4,"Any",[2,1,0,0]),
+shield4 = new Stunt("an ally has +4 on their next Defense roll",4,"Any",[0,1,4,0]),          
 defend4 = new Stunt("get +4 to your next Defense roll",4,"Defense",[2,4,0,0]),                  
 advantageMaker = new Stunt("have +1 to two Skills",4,"Skill",[1,2,3,4]),    
 legendNature = new Stunt("you can use your Legendary Ability for free using non-Legendary Rolls until the end of the Scene",4,"Legendary",[1,3,4,0]),
@@ -901,6 +945,7 @@ innerPower4 = new Stunt("invoke \"" + rand + "\" for free as an Attack action tw
 outerPower4 = new Stunt("invoke " + rand + " for free as a Create an Advantage action twice",4,"Personal Aspect",[1,2,3,4]),
 instagib4 = new Stunt("automatically deal a 3-shift Damage to an enemy",4,"Any",[2,0,0,0]),        
       // Lvl 5
+shield5 = new Stunt("an ally has +5 on their next Defense roll",5,"Any",[0,1,4,0]),          
 createAspect5 = new Stunt("automatically create an Aspect that requires a +4 opposition to remove",5,"Any",[1,3,4,0]),
 aspectBonus5 = new Stunt("until the end of the Scene, when you invoke a Personal Aspect or an Aspect you created, gain +4 instead",5,"Any",[1,3,4,0]),
 aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, gain +4 instead",5,"Any",[1,3,4,0]),  
