@@ -16,7 +16,7 @@
     <title>Scion by Ellil1</title>
     
     <script>
-function npcChoice() {
+ function npcChoice() {
 
 //____________________________________________________________________________________________________
 
@@ -138,13 +138,14 @@ else {
 };
 
 function combat2ChoiceFunction() {
- combatChoice2 = prompt("What is your " + typeChoice + "'s combat speciality' ? \n1 - Support \n2 - Fighter \n3 - Controller");
-    if (combatChoice2 === "1" || combatChoice2 === "2" || combatChoice2 === "3") {}
+ combatChoice2 = prompt("What is your " + typeChoice + "'s combat speciality' ? \n1 - Support \n2 - Fighter \n3 - Controller \n4 - Tank");
+    if (combatChoice2 === "1" || combatChoice2 === "2" || combatChoice2 === "3" || combatChoice2 === "4") {}
 
 else {
     combat2ChoiceFunction();
     return;
 }
+ combatChoice2Int = parseInt(combatChoice2);
 };
 
 legendChoiceFunction();
@@ -164,11 +165,11 @@ var Aspect = function(name,type,origin,subOrigin,legend,intelligence,behavior,co
     
 };
     
-var Stunt = function(description,dangerlevel,combat2) {
+var Stunt = function(description,dangerlevel,stuntType,stuntCombat2) {
   this.description = description;
   this.dangerlevel = dangerlevel;
-  this.combat2 = combat2;
-  
+  this.stuntType = stuntType;
+  this.stuntCombat2 = stuntCombat2;  
   
 };
 //____________________________________________________________________________________________________
@@ -275,7 +276,14 @@ var highConcept = [
  giantRat = new Aspect("Giant Rat","Titanspawn","6",["65"],["1"],"1"),
  desertSnake = new Aspect("Desert Snake","Titanspawn","4",["42"],["1"],"1"), 
  ghoul = new Aspect("Ghoul","Titanspawn","8",["83"],["1","2"],"1"),    
-     
+ clockworkGnome = new Aspect("Clockwork Gnome","Titanspawn","6",["63"],["1"],"2"),
+ clockWorkGnome = new Aspect("Clockwork Gnome","Titanspawn","1",["13"],["1"],"2"),
+ tideSpoutTyrant = new Aspect("Tidespout Tyrant","Titanspawn","7",["71"],["2","3"],"2"),
+ cloudDjinn = new Aspect("Cloud Djinn","Titanspawn","5",["53"],["2","3"],"2"),
+ djilluminatus = new Aspect("Djinn Illuminatus","Titanspawn","4",["41"],["2","3"],"2"),  
+ stormcloudDjinn = new Aspect("Stormcloud Djinn","Titanspawn","5",["51"],["3"],"2"),
+ thunderDragon = new Aspect("Thunder Dragon","Titanspawn","5",["51"],["3","2"],"2"),  
+       
      
     // Mythborn  
 
@@ -288,7 +296,15 @@ var highConcept = [
  blackKnight = new Aspect("Black Knight","Mythborn","2",["22"],["2"],"2"),   
  minotaur = new Aspect("Minautor","Mythborn","4",["43"],["2"],"2"),
  shadowUnicorn = new Aspect("Shadow Unicorn","Mythborn","2",["21"],["2"],"1"),
- 
+ seaSprite = new Aspect("Sea Sprite","Mythborn","1",["14"],["1"],"1"),
+ timberWolf = new Aspect("Timber Wolf","Mythborn","4",["43"],["1"],"1"),
+ diamondFairy = new Aspect("Diamond Fairy","Mythborn","2",["21"],["2"],"2"),
+ willowFairy = new Aspect("Willow Fairy","Mythborn","1",["11"],["1"],"2"),
+ fireSprite = new Aspect("Fire Sprite","Mythborn","1",["14"],["1"],"1"),
+ moonSprite = new Aspect("Moon Sprite","Mythborn","2",["24"],["1"],"1"),
+ twoHeadedDragon = new Aspect("Two-Headed Dragon","Mythborn","3",["33"],["2","3"],"2"),
+ furnaceWhelp = new Aspect("Furnace Whelp","Mythborn","3",["31"],["1","2"],"1"),  
+ brimstoneDragon = new Aspect("Brimstone Dragon","Mythborn","3",["31"],["2","3"],"2"),
     
     
     /* name = new Aspect("name","Mythborn","origin","subOrigin","legend","intelligence","behavior","combat1"),*/
@@ -739,7 +755,8 @@ druidClaw = new Aspect("Druid of the Claw","Titanspawn","6","61","Zoothropy: Bea
    // Water
 keeperDrowned = new Aspect("Keeper of the Drowned","Titanspawn","7","74","Invokation: Death - Necromancy(" + abilityOne + ")","Invokation: Water - Terror(" + abilityTwo + ")","behavior","2","2"),
 waterCrafter = new Aspect("Water Crafter","Titanspawn","7","72","Invokation: Water - Life(" + abilityOne + ")","Hematurgy: Itztli(" + abilityTwo + ")","behavior","2","1"),
-  //Death
+seaSinger = new Aspect("Sea Singer"," + typeChoice + ","7","71","Invokation: Water - Sea(" + abilityOne + ")","Epic Appearance - Hypnosis(" + abilityTwo + ")","behavior","2","3"),  
+     //Death
 ghostWhisperer = new Aspect("Ghost Whisperer","Titanspawn","8","81","Invokation: Death - Shamanism(" + abilityOne + ")","Epic Will(" + abilityTwo + ")","behavior","2","1"),
 lordDead = new Aspect("Lord of the Dead","Titanspawn","8","82","Invokation: Death - Necromancy(" + abilityOne + ")","Epic Physique: Strength(" + abilityTwo + ")","behavior","1","1"),
 necromancer = new Aspect("Necromancer","Titanspawn","8","81","Invokation: Death - Necromancy(" + abilityOne + ")","Voodoo - Mind Control(" + abilityTwo + ")","behavior","2","3"),
@@ -755,17 +772,18 @@ voidMage = new Aspect("Voidmage","Titanspawn","3","32","Invokation: Darkness - V
 // Wind
 stormBinder = new Aspect("Stormbinder","Titanspawn","5","51","Invokation: Sky - Storm(" + abilityOne + ")","Voodoo: Mind Control(" + abilityTwo + ")","behavior","2","3"),
 // Fire
-forgeMaster = new Aspect("Forgemaster","Titanspawn","1","13","Invokation: Fire - Creation(" + abilityOne + ")","Invokation: Earth - Shaping(" + abilityTwo + ")","behavior","1","1"),
-flameWaker = new Aspect("Flame Waker","Titanspawn","1","12","Invokation: Fire - Summoning(" + abilityOne + ")","Epic Will(" + abilityTwo + ")","behavior","2","1"),
-landScorcher = new Aspect("Land Scorcher","Titanspawn","1","11","Invokation: Fire - Destruction(" + abilityOne + ")","Epic Strength(" + abilityTwo + ")","behavior","1","2"),
+forgeMaster = new Aspect("Forgemaster","Titanspawn","1",["13","12"],"Invokation: Fire - Creation(" + abilityOne + ")","Invokation: Earth - Shaping(" + abilityTwo + ")","behavior","1","1"),
+flameWaker = new Aspect("Flame Waker","Titanspawn","1",["12","11"],"Invokation: Fire - Summoning(" + abilityOne + ")","Epic Will(" + abilityTwo + ")","behavior","2","1"),
+landScorcher = new Aspect("Land Scorcher","Titanspawn","1",["11","12"],"Invokation: Fire - Destruction(" + abilityOne + ")","Epic Strength(" + abilityTwo + ")","behavior","1","2"),
 
      //________________________________________________________________________________
      //Mythborn
      //________________________________________________________________________________
 
 monsoonMaker = new Aspect("Monsoon Maker"," + Mythborn + ","1","11","Fey Sorcerer: Summer(" + abilityOne + ")","Invokation: Sky - Storm(" + abilityTwo + ")","behavior","2","3"),     
-cruelTrickster = new Aspect("Cruel Trickster","Mythborn","2","21","Epic Appearance: Glamour(" + abilityOne + ")","Invokation: Frost(" + abilityTwo + ")","behavior","2","3"),]
-
+cruelTrickster = new Aspect("Cruel Trickster","Mythborn","2",["21","22","23","24"],"Epic Appearance: Glamour(" + abilityOne + ")","Invokation: Frost(" + abilityTwo + ")","behavior","2","3"),
+windDancer = new Aspect("Wind Dancer"," + typeChoice + ","2",["24","22","21"],"Invokation: Sky - Wind(" + abilityOne + ")","Epic Speed(" + abilityTwo + ")","behavior","3","2"),
+banisher = new Aspect("Banisher"," + typeChoice + ","4","44","Invokation: Death - Void(" + abilityOne + ")","Epic Will(" + abilityTwo + ")","behavior","2","3")]
      
      
      
@@ -835,56 +853,64 @@ var rand5 = abilitiesOptions[Math.floor(Math.random() * abilitiesOptions.length)
 //____________________________________________________________________________________________________
 // name = new Stunt("description","dangerlevel"),
     //Here only varname, Name, combat1 and combat2 matter, and the Effect part is under "type"
-
-    
+   
     
    var stuntEffect = [
 
        // Lvl 2
-energyBlast = new Stunt("use a Legendary Ability for free as an Attack action",2),
-mysticPower = new Stunt("use a Legendary Ability for free to Create a Personal Advantage",2),
-innerPower = new Stunt("invoke a Personal Aspect for free as an Attack action","2"),
-outerPower = new Stunt("invoke a Personal Aspect for free as a Create an Advantage action",2),
-mysticConstruct = new Stunt("use a Legendary Ability for free to Create a Situational Advantage",2),
-affectOther = new Stunt("use a Legendary Ability for free to Create a Character Advantage",2),
-uniqueNature = new Stunt("use a Personal Aspect for free to Create a Character Advantage",2),
-theElite = new Stunt("gain +2 to a Skill to Create an Advantage for one Action",2),
-theReckless = new Stunt("gain +2 to a Skill to Attack for one Action",2),
-allyHelp = new Stunt("give an ally a Free Invocation on an Aspect",2),
-fog2 = new Stunt("an enemy has -2 on their next Attack roll",2),
-mindFog2 = new Stunt("an enemy has -2 on their next Create an Advantage roll",2),
-weaken2 = new Stunt("an enemy has -2 on their next Defense roll",2),  
+energyBlast = new Stunt("use a Legendary Ability for free as an Attack action",2,"Legendary",[2,0,0,0]),
+mysticPower = new Stunt("use a Legendary Ability for free to Create a Personal Advantage",2,"Legendary",[2,4,3,0]),
+innerPower = new Stunt("invoke " + rand + " for free as an Attack action",2,"Personal Aspect",[2,0,0,0]),
+outerPower = new Stunt("invoke " + rand + " for free as a Create an Advantage action",2,"Personal Aspect",[1,3,4,0]),
+mysticConstruct = new Stunt("use a Legendary Ability for free to Create a Situational Advantage",2,"Legendary",[1,2,3,4]),
+affectOther = new Stunt("use a Legendary Ability for free to Create a Character Advantage",2,"Legendary",[1,2,3,4]),
+uniqueNature = new Stunt("invoke " + rand + " for free to Create a Character Advantage",2,"Personal Aspect",[1,2,3,4]),
+theElite = new Stunt("gain +2 to a Skill to Create an Advantage for one Action",2,"Skill",[1,3,4,0]),
+theReckless = new Stunt("gain +2 to a Skill to Attack for one Action",2,"Skill",[2,0,0,0]),
+allyHelp = new Stunt("give an ally a Free Invocation on an Aspect",2,"Any",[1,4,0,0]),
+fog2 = new Stunt("an enemy has -2 on their next Attack roll",2,"Any",[1,3,0,0]),
+mindFog2 = new Stunt("an enemy has -2 on their next Create an Advantage roll",2,"Any",[3,4,0,0]),
+weaken2 = new Stunt("an enemy has -2 on their next Defense roll",2,"Any",[2,1,0,0]),  
+defend2 = new Stunt("get +2 to your next Defense roll",2,"Defense",[2,4,0,0]),   
+fatePointGain = new Stunt("gain a Fate Point",2,"Fate Point",[1,2,3,4]), 
+regeneration = new Stunt("Remove a Minor Consequence from an ally",2,"Defense",[1,0,0,0]),
+regeneration = new Stunt("Remove a Minor Consequence from yourself",2,"Any",[4,0,0,0]),        
        // Lvl 3
-skilled3 = new Stunt("have +1 to a Skill",3),
-theElite3 = new Stunt("gain +3 to a Skill to Create an Advantage",3),
-theReckless3 = new Stunt("gain +3 to a Skill for an Attack Action",3),
-aspectBonus = new Stunt("when you invoke a Personal Aspect or an Aspect you created, gain +3 instead",3), 
-aspectBonusAlly = new Stunt("when an ally invokes an Aspect you created, gain +3 instead",3), 
-createAspect3 = new Stunt("automatically create an Aspect that requires a +2 opposition to remove",3),
-fog3 = new Stunt("an enemy has -3 on their next Attack roll",3),
-mindFog3 = new Stunt("an enemy has -3 on their next Create an Advantage roll",3),
-weaken3 = new Stunt("an enemy has -3 on their next Defense roll",3),       
-massfog3 = new Stunt("all enemies have -1 on their next Attack roll",3),
-massmindFog3 = new Stunt("all enemies have -1 on their next Create an Advantage roll",3),
-massweaken3 = new Stunt("all enemies have -1 on their next Defense roll",3),               
+skilled3 = new Stunt("have +1 to a Skill",3,"Skill",[1,2,3,4]),
+theElite3 = new Stunt("gain +3 to a Skill to Create an Advantage",3,"Skill",[1,3,4,2]),
+theReckless3 = new Stunt("gain +3 to a Skill for an Attack Action",3,"Skill",[2,0,0,0]),
+aspectBonus = new Stunt("when you invoke a Personal Aspect or an Aspect you created, gain +3 instead",3,"Any",[1,3,4,0]), 
+aspectBonusAlly = new Stunt("when an ally invokes an Aspect you created, gain +3 instead",3,"Any",[1,3,4,0]), 
+createAspect3 = new Stunt("automatically create an Aspect that requires a +2 opposition to remove",3,"Any",[1,3,4,0]),
+fog3 = new Stunt("an enemy has -3 on their next Attack roll",3,"Any",[1,3,4]),
+mindFog3 = new Stunt("an enemy has -3 on their next Create an Advantage roll",3,"Any",[3,4,0,0]),
+weaken3 = new Stunt("an enemy has -3 on their next Defense roll",3,"Any",[1,3,0,0]),       
+massfog3 = new Stunt("all enemies have -1 on their next Attack roll",3,"Any",[1,3,4,0]),
+massmindFog3 = new Stunt("all enemies have -1 on their next Create an Advantage roll",3,"Any",[1,3,0,0]),
+massweaken3 = new Stunt("all enemies have -1 on their next Defense roll",3,"Any",[3,2,4,0]), 
+defend3 = new Stunt("get +3 to your next Defense roll",3,"Defense",[2,4,0,0]),                  
       // Lvl 4
-flight = new Stunt("you have the Aspect: Flight until the end of the Scene",4),
-advantageMaker = new Stunt("have +1 to two Skills",4),    
-legendNature = new Stunt("you can use your Legendary Ability for free using non-Legendary Rolls until the end of the Scene",4),
-createAspect4 = new Stunt("automatically create an Aspect that requires a +3 opposition to remove",4),
-energyBlast4 = new Stunt("use a Legendary Ability for free as an Attack action twice",4),
-mysticPower4 = new Stunt("use a Legendary Ability for free to Create a Personal Advantage twice",4),
-innerPower4 = new Stunt("invoke a Personal Aspect for free as an Attack action twice",4),
-outerPower4 = new Stunt("invoke a Personal Aspect for free as a Create an Advantage action twice",4),
+flight = new Stunt("you have the Aspect: Flight until the end of the Scene",4,"Any",[2,1,0,0]),
+defend4 = new Stunt("get +4 to your next Defense roll",4,"Defense",[2,4,0,0]),                  
+advantageMaker = new Stunt("have +1 to two Skills",4,"Skill",[1,2,3,4]),    
+legendNature = new Stunt("you can use your Legendary Ability for free using non-Legendary Rolls until the end of the Scene",4,"Legendary",[1,3,4,0]),
+createAspect4 = new Stunt("automatically create an Aspect that requires a +3 opposition to remove",4,"Any",[1,3,4,0]),
+energyBlast4 = new Stunt("use a Legendary Ability for free as an Attack action twice",4,"Legendary",[2,0,0,0]),
+mysticPower4 = new Stunt("use a Legendary Ability for free to Create a Personal Advantage twice",4,"Legendary",[1,4,3,0]),
+innerPower4 = new Stunt("invoke \"" + rand + "\" for free as an Attack action twice",4,"Personal Aspect",[2,0,0,0]),
+outerPower4 = new Stunt("invoke " + rand + " for free as a Create an Advantage action twice",4,"Personal Aspect",[1,2,3,4]),
+instagib4 = new Stunt("automatically deal a 3-shift Damage to an enemy",4,"Any",[2,0,0,0]),        
       // Lvl 5
-createAspect5 = new Stunt("automatically create an Aspect that requires a +4 opposition to remove",5),
-aspectBonus5 = new Stunt("until the end of the Scene, when you invoke a Personal Aspect or an Aspect you created, gain +4 instead",5),
-aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, gain +4 instead",5),  
-skilled5 = new Stunt("have +3 to a Skill for the rest of the Scene",5),
-massfog5 = new Stunt("all enemies have -2 on their next Attack roll",5),
-massmindfog5 = new Stunt("all enemies have -2 to their next Create an Advantage Rolls",5),        
+createAspect5 = new Stunt("automatically create an Aspect that requires a +4 opposition to remove",5,"Any",[1,3,4,0]),
+aspectBonus5 = new Stunt("until the end of the Scene, when you invoke a Personal Aspect or an Aspect you created, gain +4 instead",5,"Any",[1,3,4,0]),
+aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, gain +4 instead",5,"Any",[1,3,4,0]),  
+skilled5 = new Stunt("have +3 to a Skill for the rest of the Scene",5,"Skill",[1,2,3,4]),
+massfog5 = new Stunt("all enemies have -2 on their next Attack roll",5,"Any",[1,4,3,0]),
+massmindfog5 = new Stunt("all enemies have -2 to their next Create an Advantage Rolls",5,"Any",[1,3,4,0]), 
+defend2 = new Stunt("get +5 to your next Defense roll",5,"Defense",[4,0,0,0]),                  
       // Lvl 6
-createAspect6 = new Stunt("automatically create an Aspect that requires a +6 opposition to remove",6),
+createAspect6 = new Stunt("automatically create an Aspect that requires a +6 opposition to remove",6,"Any",[1,3,4,0]),
+instagib6 = new Stunt("automatically deal a 5-shift Damage to an enemy",6,"Any",[2,0,0,0]),
 
        
        
@@ -892,30 +918,42 @@ createAspect6 = new Stunt("automatically create an Aspect that requires a +6 opp
        
        
 var stuntCost = [    
-
+thatMuchWow =  new Stunt("Once per turn, ",-3,"Any",[1,2,3,4]),
        // Lvl -2
-thatMuchWow =  new Stunt("Twice per Scene, ",-2),
+thatMuchWow =  new Stunt("Twice per Scene, ",-2,"Any",[1,2,3,4]),
        // Lvl -1
-soMuch =  new Stunt("Once per Scene, ",-1),
-invokeBonus =  new Stunt("When you invoke an Aspect, ",-1),       
+soMuch =  new Stunt("Once per Scene, ",-1,"Any",[1,2,3,4]),
+invokeBonus =  new Stunt("When you invoke an Aspect, ",-1,"Any",[1,2,3,4]), 
        // Lvl 0
-free = new Stunt("Once per Scene, ",0),
+free = new Stunt("Once per Scene, ",0,"Any",[1,2,3,4]),
        // Lvl 1
-recklessAttack = new Stunt("Once per Scene, gain -1 to your next Defense Roll, and ",1), 
-painGain = new Stunt("Whenever you receive a Consequence, ",1),       
+recklessAttack = new Stunt("Gain -1 to your next Defense Roll, and ",1,"Defense",[1,2,3,0]), 
+mentalStress1 =  new Stunt("Take 1 Mental Stress, ",1,"Any",[1,2,3,4]),   
+painGain = new Stunt("Whenever you receive a Consequence, ",1,"Any",[2,4,0,0]),
+physicalStress1 =  new Stunt("Take 1 Physical Stress, ",1,"Any",[1,2,3,0]),        
        // Lvl 2  
-fatePoint = new Stunt("For 1 Fate Point, ",2),     
-       // Lvl 3
-newAspect = new Stunt("You gain the Aspect: 'Vulnerable', and ",3),     
-recklessAttack3 = new Stunt("Once per Scene, gain -3 to your next Defense Roll, and ",3),
-focus = new Stunt("Lose your Action this turn, and ",3),      
-       // Lvl 4
-extreme = new Stunt("You take a Medium Physical Consequence, and ",4),
-transform = new Stunt("Remove an Aspect you created, and ",4),             
-       // Lvl 5
-brutal = new Stunt("You take a Major Physical Consequence, and ",5), 
-recklessAttack5 = new Stunt("Once per Scene, gain -5 to your next Defense Roll, and ",5),              
-       // Lvl 6
+fatePoint = new Stunt("For 1 Fate Point, ",2,"Fate Point",[1,2,3,4]),  
+fatePoint2 = new Stunt("For 1 Legendary Ability use, ",2,"Legendary",[1,2,3,4]),  
+mentalStress2 =  new Stunt("Take 2 Mental Stress, ",2,"Any",[1,2,3,4]),   
+lowPain = new Stunt("You take a Minor Physical Consequence, and ",2,"Defense",[1,2,3,0]),        
+physicalStress2 =  new Stunt("Take 2 Physical Stress, ",2,"Any",[1,2,3,0]),   
+     // Lvl 3
+newAspect = new Stunt("You gain the Aspect: 'Vulnerable', and ",3,"Any",[1,3,0,0]),     
+recklessAttack3 = new Stunt("Gain -3 to your next Defense Roll, and ",3,"Defense",[1,2,3,0]),
+focus = new Stunt("Lose your Action this turn, and ",3,"Any",[1,3,0,0]),
+mentalStress3 =  new Stunt("Take 3 Mental Stress, ",3,"Any",[1,2,3,4]),   
+transform = new Stunt("Remove an Aspect you created, and ",3,"Any",[1,3,4,0]),                     
+physicalStress3 =  new Stunt("Take 3 Physical Stress, ",4,"Any",[1,2,3,0]),   
+     // Lvl 4
+extreme = new Stunt("You take a Medium Physical Consequence, and ",4,"Defense",[1,2,3,0]),
+mentalStress4 =  new Stunt("Take 4 Mental Stress, ",4,"Any",[1,2,3,4]),   
+physicalStress4 =  new Stunt("Take 4 Physical Stress, ",4,"Any",[1,2,3,0]),   
+     // Lvl 5
+brutal = new Stunt("You take a Major Physical Consequence, and ",5,"Defense",[1,2,3,0]), 
+mentalStress5 =  new Stunt("Take 6 Mental Stress, ",5,"Any",[1,2,3,4]),   
+recklessAttack5 = new Stunt("Gain -5 to your next Defense Roll, and ",5,"Defense",[1,2,3,0]),              
+physicalStress6 =  new Stunt("Take 6 Physical Stress, ",5,"Any",[1,2,3,0]),   
+     // Lvl 6
        
    ]       
        
@@ -924,23 +962,36 @@ var randomEffect = Math.floor(Math.random() * 4) + 3
 var randomEffect2 = randomEffect - abilityOne
 
 
-
 var stuntEffectOptions = [];
 var stuntCostOptions = [];
-    
+
+     
+function stuntChooser (){  
+     
 for(h=0; h < stuntEffect.length; h++) {
-  if (randomEffect === stuntEffect[h].dangerlevel)
-{ stuntEffectOptions.push(stuntEffect[h].description) }}
+  if ((randomEffect === stuntEffect[h].dangerlevel) && (stuntEffect[h].stuntCombat2[0] === combatChoice2Int || stuntEffect[h].stuntCombat2[1] === combatChoice2Int || stuntEffect[h].stuntCombat2[2] === combatChoice2Int || stuntEffect[h].stuntCombat2[3] === combatChoice2Int))
+{ stuntEffectOptions.push(stuntEffect[h]) }}
 
     
 for(j=0; j < stuntCost.length; j++) {
-  if (randomEffect2 === stuntCost[j].dangerlevel){
-  stuntCostOptions.push(stuntCost[j].description)   
+  if ((randomEffect2 === stuntCost[j].dangerlevel) && (stuntCost[j].stuntCombat2[0] === combatChoice2Int || stuntCost[j].stuntCombat2[1] === combatChoice2Int || stuntCost[j].stuntCombat2[2] === combatChoice2Int || stuntCost[j].stuntCombat2[3] === combatChoice2Int)){
+  stuntCostOptions.push(stuntCost[j])   
   }} 
+     
+ randEffect = stuntEffectOptions[Math.floor(Math.random() * stuntEffectOptions.length)];
+ randCost = stuntCostOptions[Math.floor(Math.random() * stuntCostOptions.length)];
 
-var randEffect = stuntEffectOptions[Math.floor(Math.random() * stuntEffectOptions.length)];
-var randCost = stuntCostOptions[Math.floor(Math.random() * stuntCostOptions.length)];
-var rand6 = ("\nStunt: \n- " + randCost + randEffect)    
+
+}
+stuntChooser();
+      
+
+if(randCost.stuntType === randEffect.stuntType  && (randEffect.stuntType !== "Any" || randCost.stuntType !== "Any")){
+stuntChooser();
+}
+    
+     
+var rand6 = ("\nStunt: \n- " + randCost.description + randEffect.description)    
                
 //____________________________________________________________________________________________________
 
@@ -950,10 +1001,10 @@ var rand6 = ("\nStunt: \n- " + randCost + randEffect)
 
 //____________________________________________________________________________________________________
 function StuntmakerRoll () {
-    randomEffect3 = Math.floor(Math.random() * 4) + 3
+    randomEffect3 = Math.floor(Math.random() * 5) + 2
     if (randomEffect3 === randomEffect){
-        StuntmakerRoll();
-    }}
+         StuntmakerRoll();}
+    }
     
 StuntmakerRoll();
     
@@ -962,25 +1013,42 @@ var randomEffect4 = randomEffect3 - abilityOne
 var stuntEffectOptions2 = [];
 var stuntCostOptions2 = [];
     
-for(a=0; a < stuntEffect.length; a++) {
-  if (randomEffect3 === stuntEffect[a].dangerlevel)
-{ stuntEffectOptions2.push(stuntEffect[a].description) }}
+
+
+   
+function stuntChooser2 (){  
+    
+
+for(h=0; h < stuntEffect.length; h++) {
+  if ((randomEffect3 === stuntEffect[h].dangerlevel) && (stuntEffect[h].stuntCombat2[0] === combatChoice2Int || stuntEffect[h].stuntCombat2[1] === combatChoice2Int || stuntEffect[h].stuntCombat2[2] === combatChoice2Int || stuntEffect[h].stuntCombat2[3] === combatChoice2Int))
+{ stuntEffectOptions2.push(stuntEffect[h]) }}
 
     
-for(b=0; b < stuntCost.length; b++) {
-  if (randomEffect4 === stuntCost[b].dangerlevel){
-  stuntCostOptions2.push(stuntCost[b].description)   
-  }} 
+for(j=0; j < stuntCost.length; j++) {
+  if ((randomEffect4 === stuntCost[j].dangerlevel) && (stuntCost[j].stuntCombat2[0] === combatChoice2Int || stuntCost[j].stuntCombat2[1] === combatChoice2Int || stuntCost[j].stuntCombat2[2] === combatChoice2Int || stuntCost[j].stuntCombat2[3] === combatChoice2Int)){
+  stuntCostOptions2.push(stuntCost[j])   
+  }}      
+     
+     
+ randEffect2 = stuntEffectOptions2[Math.floor(Math.random() * stuntEffectOptions2.length)];
+ randCost2 = stuntCostOptions2[Math.floor(Math.random() * stuntCostOptions2.length)];
 
-var randEffect2 = stuntEffectOptions2[Math.floor(Math.random() * stuntEffectOptions2.length)];
-var randCost2 = stuntCostOptions2[Math.floor(Math.random() * stuntCostOptions2.length)];
-var rand7 = ("\n- " + randCost2 + randEffect2)     
+}
+stuntChooser2();
+
+if(randCost2.stuntType === randEffect2.stuntType && (randEffect2.stuntType !== "Any" || randCost2.stuntType !== "Any")){
+stuntChooser2();
+}
+
+          
+var rand7 = ("\n- " + randCost2.description + randEffect2.description)     
     
        
 alert ("High Concept: " + rand  + "\nFirst Aspect: " + rand2 + "\nSecond Aspect: " + rand3 + "\nThird Aspect: "   + rand5 + rand6 + rand7)
 
 
 }
+
 
 </script>
 <script>
