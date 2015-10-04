@@ -16,7 +16,7 @@
     <title>Scion by Ellil1</title>
     
     <script>
-  function npcChoice() {
+ function npcChoice() {
 
 //____________________________________________________________________________________________________
 
@@ -104,7 +104,7 @@ else {
 };
 
 function behaviorChoiceFunction() {
-  behaviorChoice = prompt("What is your " + typeChoice + "'s behavior like ? \n 1 - Aggressive \n 2 - Diplomatic \n 3 - Friendly ");  
+  behaviorChoice = prompt("What is your " + typeChoice + "'s behavior like ? \n 1 - Aggressive \n 2 - Diplomatic");  
     if (behaviorChoice === "1" || behaviorChoice === "2" || behaviorChoice === "3") {
  intelligenceChoiceFunction();
 }
@@ -298,12 +298,10 @@ var highConcept = [
  blackKnight = new Aspect("Black Knight","Mythborn","2",["22"],["2"],"2"),   
  minotaur = new Aspect("Minautor","Mythborn","4",["43"],["2"],"2"),
  shadowUnicorn = new Aspect("Shadow Unicorn","Mythborn","2",["21"],["2"],"1"),
- seaSprite = new Aspect("Sea Sprite","Mythborn","1",["14"],["1"],"1"),
+ sSprite = new Aspect("Sprite","Mythborn","1",["14"],["1"],"1"),
  timberWolf = new Aspect("Timber Wolf","Mythborn","4",["43"],["1"],"1"),
  diamondFairy = new Aspect("Diamond Fairy","Mythborn","2",["21"],["2"],"2"),
  willowFairy = new Aspect("Willow Fairy","Mythborn","1",["11"],["1"],"2"),
- fireSprite = new Aspect("Fire Sprite","Mythborn","1",["14"],["1"],"1"),
- moonSprite = new Aspect("Moon Sprite","Mythborn","2",["24"],["1"],"1"),
  twoHeadedDragon = new Aspect("Two-Headed Dragon","Mythborn","3",["33"],["2","3"],"2"),
  furnaceWhelp = new Aspect("Furnace Whelp","Mythborn","3",["31"],["1","2"],"1"),  
  brimstoneDragon = new Aspect("Brimstone Dragon","Mythborn","3",["31"],["2","3"],"2"),
@@ -339,7 +337,7 @@ for(i=0; i < highConcept.length; i++) {
   }
 };
 
-if (typeof highConceptOptions[i] === 'undefined') {
+if (typeof highConceptOptions[0] === 'undefined') {
 for(i=0; i < highConcept.length; i++) {
   if (
     typeChoice === highConcept[i].type && 
@@ -351,7 +349,7 @@ for(i=0; i < highConcept.length; i++) {
   }
 }
 };
-    
+
 // _______________________________________
     
     
@@ -361,7 +359,7 @@ for(i=0; i < highConcept.length; i++) {
 // _______________________________________
 
  
-if (typeof highConceptOptions[i] === 'undefined') {
+if (typeof highConceptOptions[0] === 'undefined') {
   
     
     // Titans Options
@@ -420,7 +418,7 @@ else if (typeChoice === "Titanspawn" && combatChoice1 === "3") {
 }
     
     // Mythborn Options
-if (typeof highConceptOptions[i] === 'undefined') {
+
      
 if (typeChoice === "Mythborn" && originChoice === "2") {
     if (subOriginChoice === "21") { originDefault = ["Winter Fey"]}
@@ -472,7 +470,7 @@ else if (typeChoice === "Mythborn" && originChoice === "6") {
 // Combat 1 Options
     if (intelligenceChoice === "2") {
 if (typeChoice === "Mythborn" && combatChoice1 === "1") {
-     combat1Default = ["Fighter","Guard","Warrior"]
+     combat1Default = ["Fighter","Guard","Warrior","Brawler"]
 }
 else if (typeChoice === "Mythborn" && combatChoice1 === "2") {
      combat1Default = ["Sorcerer", "Mage", "Druid"]
@@ -484,7 +482,7 @@ else if (typeChoice === "Mythborn" && combatChoice1 === "3") {
     
 else {
 if (typeChoice === "Mythborn" && combatChoice1 === "1") {
-     combat1Default = ["Beast","Monster","Creature","Colossus"]
+     combat1Default = ["Beast","Monster","Creature"]
 }
 else if (typeChoice === "Mythborn" && combatChoice1 === "2") {
      combat1Default = ["Wildcaller", "Mythcaller"]
@@ -496,14 +494,12 @@ else if (typeChoice === "Mythborn" && combatChoice1 === "3") {
 
     
 } 
-     
-     
+if (typeof highConceptOptions[0] === 'undefined') {     
+combat1DefaultRandom = combat1Default[Math.floor(Math.random() * combat1Default.length)];
+originDefaultRandom = originDefault[Math.floor(Math.random() * originDefault.length)];
+highConceptOptions.push(originDefaultRandom + " " + combat1DefaultRandom)        
 };
-
-var originDefaultRandom = originDefault[Math.floor(Math.random() * originDefault.length)];
-var combat1DefaultRandom = combat1Default[Math.floor(Math.random() * combat1Default.length)];
-
-highConceptOptions.push(originDefaultRandom + " " + combat1DefaultRandom)    
+  
  
 
 var rand = highConceptOptions[Math.floor(Math.random() * highConceptOptions.length)];
@@ -849,7 +845,7 @@ for(g=0; g < abilities.length; g++) {
   }
 }
 
-if (typeof abilitiesOptions[i] === 'undefined') {
+if (typeof abilitiesOptions[0] === 'undefined') {
 for(g=0; g < abilities.length; g++) {
   if (typeChoice === abilities[g].type &&
       originChoice === abilities[g].origin  &&
@@ -866,7 +862,7 @@ for(g=0; g < abilities.length; g++) {
 }
 }
 
-if (typeof abilitiesOptions[i] === 'undefined') {
+if (typeof abilitiesOptions[0] === 'undefined') {
 for(g=0; g < abilities.length; g++) {
   if (typeChoice === abilities[g].type &&
       originChoice === abilities[g].origin) {
@@ -884,7 +880,59 @@ for(g=0; g < abilities.length; g++) {
     
 var rand5 = abilitiesOptions[Math.floor(Math.random() * abilitiesOptions.length)];
 
-    
+//____________________________________________________________________________________________________
+
+
+//Skills Maker ------------------------------------------------------------------
+
+
+//____________________________________________________________________________________________________
+
+var Skill = function(name,level){
+  this.name = name;
+  this.level = level;  
+}   
+
+var skillOptions = [
+fight = new Skill (" Fight: +",1),
+will = new Skill (" Will: +",0),
+rapport = new Skill (" Rapport: +",0),
+physique = new Skill (" Physique: +",0),
+presence = new Skill (" Presence: +",0),
+stealth = new Skill (" Stealth: +",0),
+lore = new Skill (" Lore: +",0),
+notice = new Skill (" Notice: +",0)
+]
+
+if (behaviorChoice === "1"){presence.level += 2}
+else if (behaviorChoice === "2"){rapport.level += 2}
+
+if (intelligenceChoice === "1"){will.level += 2}
+else if (intelligenceChoice === "2"){lore.level += 2}
+
+if (combatChoice1 === "1"){fight.level += 1;physique.level += 2}
+else if (combatChoice1 === "2"){will.level += 1;lore.level += 1}
+else if (combatChoice1 === "3"){stealth.level += 3;fight.level += 2}
+   
+if (combatChoice2 === "1"){will.level += 2;lore.level += 2;notice.level+=1;stealth.level += 1}
+else if (combatChoice2 === "2"){fight.level += 3;stealth.level += 1;physique.level+=1}
+else if (combatChoice2 === "3"){lore.level += 1;will.level += 2;stealth.level += 1;presence.level+=1;rapport.level+=1}
+else if (combatChoice2 === "4"){fight.level += 2;notice.level += 1;physique.level +=3;will.level += 2}
+
+skillOptions.sort(function(a,b) {
+    return b.level-a.level;     });
+         
+var randSkills = (skillOptions.sort()[0].name + (2+abilityOne) +  ","+
+     skillOptions.sort()[1].name + (1+abilityOne) +  ","+
+     skillOptions.sort()[2].name + (1+abilityOne) +  ","+
+     skillOptions.sort()[3].name + (1+abilityOne));
+         
+
+      
+ 
+//name = new Aspect("name","type","origin","subOrigin","legend","intelligence","behavior","combat1","combat2"),
+
+
 //____________________________________________________________________________________________________
 
 
@@ -975,6 +1023,7 @@ free = new Stunt("Once per Scene, ",0,"Any",[1,2,3,4]),
 recklessAttack = new Stunt("Gain -1 to your next Defense Roll, and ",1,"Defense",[1,2,3,0]), 
 mentalStress1 =  new Stunt("Take 1 Mental Stress, ",1,"Any",[1,2,3,4]),   
 painGain = new Stunt("Whenever you receive a Consequence, ",1,"Any",[2,4,0,0]),
+friendPainGain = new Stunt("Whenever an ally receives a Consequence, ",1,"Any",[1,3,0,0]),
 physicalStress1 =  new Stunt("Take 1 Physical Stress, ",1,"Any",[1,2,3,0]),        
        // Lvl 2  
 fatePoint = new Stunt("For 1 Fate Point, ",2,"Fate Point",[1,2,3,4]),  
@@ -1036,7 +1085,7 @@ stuntChooser();
 }
     
      
-var rand6 = ("\nStunt: \n- " + randCost.description + randEffect.description)    
+var rand6 = ("\nStunts: \n- " + randCost.description + randEffect.description)    
                
 //____________________________________________________________________________________________________
 
@@ -1089,7 +1138,7 @@ stuntChooser2();
 var rand7 = ("\n- " + randCost2.description + randEffect2.description)     
     
        
-alert ("High Concept: " + rand  + "\nFirst Aspect: " + rand2 + "\nSecond Aspect: " + rand3 + "\nThird Aspect: "   + rand5 + rand6 + rand7)
+alert ("High Concept: " + rand  + "\nFirst Aspect: " + rand2 + "\nSecond Aspect: " + rand3 + "\nThird Aspect: "   + rand5 + "\nSkills: " + randSkills + rand6 + rand7)
 
 
 }
