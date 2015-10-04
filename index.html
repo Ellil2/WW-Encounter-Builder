@@ -1267,6 +1267,20 @@ alert(""+ varname +" = new Aspect(\""+  name + "\",\"" + typeChoice + "\",\""+ o
 // name = new Aspect("name","type","origin","subOrigin","Ability j (" + abilityOne + ")","Ability i (" + abilityTwo + ")","behavior","combat1","combat2"),
 
 </script>
+<script>
+
+$("#mydialog").dialog({
+  buttons: {
+    'Confirm': function() {
+       //do something
+       $(this).dialog('close');
+    },
+    'Cancel': function() {
+       $(this).dialog('close');
+    }
+  }
+});
+</script>
 
   </head>
 
