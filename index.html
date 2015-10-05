@@ -61,13 +61,13 @@ function typeChoiceFunction() {
 
 typeChoicePrompt = prompt("What type of NPC is your character ? \n1 - Mythborn \n2 - Titanspawn");
 if (typeChoicePrompt === "Titanspawn") {
-  typeChoice === "2"
+  var typeChoice === "2"
     typeChoiceFunction();
 }
 
 
 else if (typeChoicePrompt === "Mythborn") {
-  typeChoice === "1"
+  var typeChoice === "1"
    originChoice = prompt("Which Race is your Mythborn  ? Possibilities: \n1 - Summer Court of Fairie \n2 - Winter Court of Fairie \n3 - Jade Sea \n4 - Dark Forest \n5 - Shambhala");
   if (originChoice === "1") {
        subOriginChoice = prompt("What type of Summer Court Fairie Mythborn is your NPC ?  \n11 - Fey  \n12 - Elf \n13 - Small Folk \n14 - Pixie \n15 - Nymph \n98 - Any");
