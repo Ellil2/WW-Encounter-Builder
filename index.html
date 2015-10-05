@@ -16,7 +16,9 @@
     <title>Scion by Ellil1</title>
 
 
-    <script>function npcChoice() {
+    <script>
+    
+    function npcChoice() {
 
 //____________________________________________________________________________________________________
 
@@ -53,7 +55,6 @@ function typeChoiceFunction() {
   }
  
   else {
-    alert("This is not a valid input !")
     typeChoiceFunction();
     return;
 }
@@ -836,10 +837,10 @@ for(g=0; g < abilities.length; g++) {
       combatChoice1 === abilities[g].combat1 && 
       combatChoice2 === abilities[g].combat2) {
       if (legendChoice === "1") {
-  abilitiesOptions.push(abilities[g].name + " \n" + abilities[g].legend) 
+  abilitiesOptions.push(abilities[g].name + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;"+ abilities[g].legend) 
       }
       else {
-  abilitiesOptions.push(abilities[g].name + " \n" + abilities[g].legend + " \n" + abilities[g].intelligence) 
+  abilitiesOptions.push(abilities[g].name + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;" + abilities[g].legend + " <br> &nbsp;&nbsp; " + abilities[g].intelligence) 
       }
   //Legend here is the first Legendary Ability, Intelligence is the second Legendary Ability
   }
@@ -852,10 +853,10 @@ for(g=0; g < abilities.length; g++) {
     (subOriginChoice === abilities[i].subOrigin[0] || subOriginChoice === abilities[i].subOrigin[1] || subOriginChoice === abilities[i].subOrigin[2])  &&
       combatChoice1 === abilities[g].combat1) {
       if (legendChoice === "1") {
-  abilitiesOptions.push(abilities[g].name + " \n" + abilities[g].legend) 
+  abilitiesOptions.push(abilities[g].name + "<br><b>Legendary Abilities:</b> <br>&nbsp;&nbsp;"+ abilities[g].legend) 
       }
       else {
-  abilitiesOptions.push(abilities[g].name + " \n" + abilities[g].legend + " \n" + abilities[g].intelligence) 
+  abilitiesOptions.push(abilities[g].name + "<br><b>Legendary Abilities:</b> <br>&nbsp;&nbsp;"+ abilities[g].legend + " <br>  &nbsp;&nbsp;" + abilities[g].intelligence) 
       }
   //Legend here is the first Legendary Ability, Intelligence is the second Legendary Ability
   }
@@ -867,10 +868,10 @@ for(g=0; g < abilities.length; g++) {
   if (typeChoice === abilities[g].type &&
       originChoice === abilities[g].origin) {
       if (legendChoice === "1") {
-  abilitiesOptions.push(abilities[g].name + " \n" + abilities[g].legend) 
+  abilitiesOptions.push(abilities[g].name + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;" + abilities[g].legend) 
       }
       else {
-  abilitiesOptions.push(abilities[g].name + " \n" + abilities[g].legend + " \n" + abilities[g].intelligence) 
+  abilitiesOptions.push(abilities[g].name + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;" + abilities[g].legend + " <br> &nbsp;&nbsp;" + abilities[g].intelligence) 
       }
   //Legend here is the first Legendary Ability, Intelligence is the second Legendary Ability
   }
@@ -1085,7 +1086,7 @@ stuntChooser();
 }
     
      
-var rand6 = ("\nStunts: \n- " + randCost.description + randEffect.description)    
+var rand6 = ("<br><b>\nStunts:</b> <br>\n- " + randCost.description + randEffect.description)    
                
 //____________________________________________________________________________________________________
 
@@ -1135,13 +1136,18 @@ stuntChooser2();
 }
 
           
-var rand7 = ("\n- " + randCost2.description + randEffect2.description)     
+var rand7 = ("<br>\n- " + randCost2.description + randEffect2.description)     
     
-var myWindow = window.open("", "_blank");
-myWindow.document.write("<p>High Concept: " + rand  + "\nFirst Aspect: " + rand2 + "\nSecond Aspect: " + rand3 + "\nThird Aspect: "   + rand5 + "\nSkills: " + randSkills + rand6 + rand7 + ".</p>");   
+var myWindow = window.open("", "_blank","width=400, height=300");
+myWindow.document.write("<TITLE>Generated NPC</TITLE>")
+myWindow.document.write("<BODY BGCOLOR='#297ACC'>")
+myWindow.document.write("<p style='font-family:arial'><b>Aspects: </b><br>&nbsp;&nbsp;" + rand  + "<br>&nbsp;&nbsp;" + rand2 + "<br>&nbsp;&nbsp;" + rand3 + "<br>\n&nbsp;&nbsp;"   + rand5 + "<br>\n<b>Skills:</b> " + randSkills + rand6 + rand7 + " </p>");   
+myWindow.document.write("</BODY>")
+myWindow.document.write("</HTML>")
 
 
 
+}
 }
 
 </script>
