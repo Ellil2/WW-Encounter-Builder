@@ -17,6 +17,8 @@
 
     <script>
     
+
+    
     function npcChoice() {
 
 //____________________________________________________________________________________________________
@@ -59,14 +61,16 @@ function typeChoiceFunction() {
 }
 }
 
-typeChoice = prompt("What type of NPC is your character ? \nMythborn \nTitanspawn");
-if (typeChoice === "Titanspawn") {
+typeChoicePrompt = prompt("What type of creature is your NPC ? \n1 - Mythborn \n2 - Titanspawn");
+if (typeChoicePrompt === "2") {
+     typeChoice === "Titanspawn"     
     typeChoiceFunction();
 }
 
 
-else if (typeChoice === "Mythborn") {
-   originChoice = prompt("Which Race is your Mythborn  ? Possibilities: \n1 - Summer Court of Fairie \n2 - Winter Court of Fairie \n3 - Jade Sea \n4 - Dark Forest \n5 - Shambhala");
+else if (typeChoicePrompt === "1") {
+     typeChoice === "Mythborn"
+   originChoice = prompt("Which Race is your Mythborn  ? Possibilities: \n1 - Summer Court of Fairie \n2 - Winter Court of Fairie \n3 - Jade Sea \n4 - Dark Forest \n5 - Shambhala \n6 - Atlantis");
   if (originChoice === "1") {
        subOriginChoice = prompt("What type of Summer Court Fairie Mythborn is your NPC ?  \n11 - Fey  \n12 - Elf \n13 - Small Folk \n14 - Pixie \n15 - Nymph \n98 - Any");
   }
@@ -86,10 +90,7 @@ else if (typeChoice === "Mythborn") {
        subOriginChoice = prompt("What type of Atlantis Mythborn is your NPC ?  \n61 - Triton  \n62 - Nymph \n98 - Any");
   }        
 }
-else if (typeChoice === "Human") { 
-   originChoice = prompt("What organization is your character from ? Possibilities: \n21 - Illuminati, \n22 - Cabal, \n23 - Order of the Jade Fist, \n24 - Circle of Merlin, \n25 - Other)");}
-  
-else if (typeChoice !== "Titanspawn" && typeChoice !== "Mythborn" &&typeChoice !== "Human"  ){}
+else if (typeChoice !== "Titanspawn" && typeChoice !== "Mythborn"){}
 
 function legendChoiceFunction() {
   legendChoice = prompt("Is your " + typeChoice + "'s Legend Level: \n1 - Godborn \n2 - Demigod  \n3 - God ");
@@ -104,7 +105,7 @@ else {
 };
 
 function behaviorChoiceFunction() {
-  behaviorChoice = prompt("What is your " + typeChoice + "'s behavior like ? \n 1 - Aggressive \n 2 - Diplomatic");  
+  behaviorChoice = prompt("What is your NPC's behavior like ? \n 1 - Aggressive \n 2 - Diplomatic");  
     if (behaviorChoice === "1" || behaviorChoice === "2") {
  intelligenceChoiceFunction();
 }
@@ -116,7 +117,7 @@ else {
 };
 
 function intelligenceChoiceFunction() {
- intelligenceChoice = prompt("What is your " + typeChoice + "'s Intelligence Level ? \n1 - Feral \n2 - Human");
+ intelligenceChoice = prompt("What is your NPC's Intelligence Level ? \n1 - Feral \n2 - Human");
     if (intelligenceChoice === "1" || intelligenceChoice === "2") {
     combat1ChoiceFunction();
 }
@@ -128,7 +129,7 @@ else {
 };
 
 function combat1ChoiceFunction() {
- combatChoice1 = prompt("What is your " + typeChoice + "'s combat style' ? \n 1 - Warrior\n 2 - Mage\n 3 - Rogue ");
+ combatChoice1 = prompt("What is your NPC's combat style' ? \n 1 - Warrior\n 2 - Mage\n 3 - Rogue ");
     if (combatChoice1 === "1" || combatChoice1 === "2" || combatChoice1 === "3") {
     combat2ChoiceFunction();
 }
@@ -140,7 +141,7 @@ else {
 };
 
 function combat2ChoiceFunction() {
- combatChoice2 = prompt("What is your " + typeChoice + "'s combat speciality' ? \n1 - Support \n2 - Fighter \n3 - Controller \n4 - Tank");
+ combatChoice2 = prompt("What is your NPC's combat speciality' ? \n1 - Support \n2 - Fighter \n3 - Controller \n4 - Tank");
     if (combatChoice2 === "1" || combatChoice2 === "2" || combatChoice2 === "3" || combatChoice2 === "4") {}
 
 else {
