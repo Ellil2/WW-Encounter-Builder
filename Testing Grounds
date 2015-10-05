@@ -1,0 +1,7 @@
+$("myElement").addEvent("click", function(){
+  var SM = new SimpleModal({"btn_ok":"Alert button"});
+      SM.show({
+        "title":"Title",
+        "contents":"Your message..."
+      });
+});
