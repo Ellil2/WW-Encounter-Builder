@@ -18,6 +18,7 @@
     <script>
     
 
+
     function npcChoice() {
 
 //____________________________________________________________________________________________________
@@ -221,7 +222,7 @@ var highConcept = [
  fireAnt = new Aspect("Fire Ant","Titanspawn","1",["13"],["1"],"1","behavior","3","http://i.imgur.com/s1HeQz8.png"),
  fireBird = new Aspect("Fire Bird","Titanspawn","1",["12"],["1"],"1","behavior","1","http://i.imgur.com/uQCV2Ja.jpg"),
  fireColossus = new Aspect("Fire Colossus","Titanspawn","1",["13"],["3"],"1","behavior","1","http://i.imgur.com/4QvgyCw.jpg"),
- fireGiant = new Aspect("Fire Giant", "Titanspawn", "1", ["12"],["3","2"],"2","behavior","1","http://imgur.com/NOT7aEY"),
+ fireGiant = new Aspect("Fire Giant", "Titanspawn", "1", ["12"],["3","2"],"2","behavior","1","http://imgur.com/NOT7aEY.jpg"),
  fireLord = new Aspect("Fire Lord","Titanspawn","1",["12"],["3"],"2","behavior","2","http://i.imgur.com/Zug0tO7.jpg"),
  fireRevenant = new Aspect("Fire Revenant","Titanspawn","1",["12"],["2"],"2","behavior","2","http://i.imgur.com/r5DyVWO.jpg"),    
  fireWyrm = new Aspect("Fire Wyrm", "Titanspawn", "1", ["12"],["2","3"],"1","behavior","1"),
@@ -259,7 +260,7 @@ var highConcept = [
  nightWyrm = new Aspect("Night Wyrm","Titanspawn","2",["23"],["3","2"],"1","behavior","1","http://i.imgur.com/VeL4N81.jpg"),
  orthosSpawn = new Aspect("Orthos Spawn","Titanspawn","6",["61"],["1","2"],"1","behavior","1","http://i.imgur.com/Lj6xNZ6.jpg"),
  runicGuardian = new Aspect("Runic Guardian","Titanspawn","6",["62"],["2"],"2","behavior","1","http://i.imgur.com/qg8pAwX.jpg"),
- sandDjinn = new Aspect("Sand Djinn","Titanspawn","4",["42"],["2","3"], "2","behavior","1","http://i.imgur.com/XVGRtx3.jpg"),
+ sandDjinn = new Aspect("Sand Djinn","Titanspawn","4",["42"],["2","3"], "1","behavior","1","http://i.imgur.com/XVGRtx3.jpg"),
  sandWyrm = new Aspect("Sand Wyrm","Titanspawn","4",["42"],["1","2"],"1","behavior","1","http://i.imgur.com/URi7YQt.jpg"),
  salamander = new Aspect("Salamander","Titanspawn","1",["11"],["1","2"],"2","behavior","2","http://i.imgur.com/5KPNuzG.jpg"), 
  savageChimera = new Aspect("Savage Chimera","Titanspawn","6",["61"],["2"],"1","behavior","1","http://i.imgur.com/zBe9FIH.jpg"),
@@ -268,7 +269,7 @@ var highConcept = [
  seaWitch = new Aspect("Sea Witch","Titanspawn","7",["74"],["2","1"],"2","1","behavior","1","http://i.imgur.com/e2PmzPe.jpg"),
  seerAngel = new Aspect("Harbinger of Aten", "Titanspawn", "4", ["41"], ["3","2"],"2","behavior","2","http://i.imgur.com/EtjtCdu.jpg"),
  shadeWidow = new Aspect("Shade Widow","Titanspawn","3",["32"],["3","2"],"1","behavior","3","http://i.imgur.com/x3wYmvw.jpg"),
- shadowFiend = new Aspect("Shadow Fiend","Titanspawn","Suki no Kumi",["32"],["3","2"],"2","behavior","3","http://i.imgur.com/yvx7qo7.jpg"),    
+ shadowFiend = new Aspect("Shadow Fiend","Titanspawn","3",["32"],["3","2"],"2","behavior","3","http://i.imgur.com/yvx7qo7.jpg"),    
  skeleton = new Aspect("Skeleton","Titanspawn","8",["82"],["1"],"1","behavior","1","http://i.imgur.com/GndSLar.jpg"),
  skeletonWarlock = new Aspect("Skeleton Warlock","Titanspawn","8",["82"],["1"],"2","behavior","1","http://i.imgur.com/omxMk0d.jpg"),
  spawnAbyss = new Aspect("Spawn of the Abyss","Titanspawn","7",["73"],["2"],"1","behavior","1","http://i.imgur.com/NNDxxLI.jpg"),
@@ -345,7 +346,7 @@ for(i=0; i < highConcept.length; i++) {
    highConceptOptions.push(highConcept[i])
   }
 };
-
+/*
 if (typeof highConceptOptions[0] === 'undefined') {
 for(i=0; i < highConcept.length; i++) {
   if (
@@ -358,6 +359,7 @@ for(i=0; i < highConcept.length; i++) {
   }
 }
 };
+*/
 
 // _______________________________________
     
@@ -503,10 +505,11 @@ else if (typeChoice === "Mythborn" && combatChoice1 === "3") {
 
     
 } 
-if (typeof highConceptOptions[0] === 'undefined') {     
+if (typeof highConceptOptions[0] === 'undefined') { 
 combat1DefaultRandom = combat1Default[Math.floor(Math.random() * combat1Default.length)];
 originDefaultRandom = originDefault[Math.floor(Math.random() * originDefault.length)];
-highConceptOptions.push(originDefaultRandom + " " + combat1DefaultRandom)        
+defaultOriginAspect = new Aspect(originDefaultRandom + " " + combat1DefaultRandom,"0","0",["31"],["2","3"],"2"),     
+highConceptOptions.push(defaultOriginAspect)        
 };
   
  
@@ -560,7 +563,7 @@ var aspect1 = [
      "Drowning is Sacred",
      "To The Depths",
      "Amphibian",
-     "Freezign Heart",
+     "Freezing Heart",
      "Drown Them All"],"Titanspawn","7"),  
  shadowAspects = new Aspect([
      "Extinguish the Light",
@@ -1165,6 +1168,7 @@ myWindow.document.write('<img src=' +  imageLink + '" alt="Image" width=100% hei
 myWindow.document.write("</BODY>")
 myWindow.document.write("</HTML>")}     
 }
+
 
 </script>
 
