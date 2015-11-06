@@ -9,7 +9,17 @@
 
 //____________________________________________________________________________________________________
 
-function typeChoiceFunction() {
+
+
+function typeChoiceFunction (){
+typeChoice = prompt("What type of creature is your NPC ? \n- Mythborn \n- Titanspawn");
+if (typeChoice === "Titanspawn") {titanspawnTypeChoiceFunction();
+}
+else if (typeChoice === "Mythborn") {mythbornTypeChoiceFunction()}
+else if (typeChoice !== "Titanspawn" && typeChoice !== "Mythborn"){typeChoiceFunction()}
+}
+
+function titanspawnTypeChoiceFunction() {
    originChoice = prompt("Which Titan is your Titanspawn from ? Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 - Soku no Kumi \n4 - Aether \n5 - Amaunet \n6 - Terra \n7 - Nun \n8 - Death ");
   if (originChoice === "1") {
        subOriginChoice = prompt("What Avatar of Muspelheim is your Titanspawn linked to ?  \n11 - Vrtra  \n12 - Surtr \n13 - Prometheus \n99 - Any");
@@ -36,18 +46,12 @@ function typeChoiceFunction() {
   }
  
   else {
-    typeChoiceFunction();
+    titanspawnTypeChoiceFunction();
     return;
 }
 }
-
-typeChoice = prompt("What type of creature is your NPC ? \n- Mythborn \n- Titanspawn");
-if (typeChoice === "Titanspawn") {
-    typeChoiceFunction();
-}
-
-
-else if (typeChoice === "Mythborn") {
+         
+function mythbornTypeChoiceFunction(){     
    originChoice = prompt("Which Race is your Mythborn  ? Possibilities: \n1 - Summer Court of Fairie \n2 - Winter Court of Fairie \n3 - Jade Sea \n4 - Dark Forest \n5 - Shambhala \n6 - Atlantis");
   if (originChoice === "1") {
        subOriginChoice = prompt("What type of Summer Court Fairie Mythborn is your NPC ?  \n11 - Fey  \n12 - Elf \n13 - Small Folk \n14 - Pixie \n15 - Nymph \n98 - Any");
@@ -67,9 +71,8 @@ else if (typeChoice === "Mythborn") {
   else if (originChoice === "6") {
        subOriginChoice = prompt("What type of Atlantis Mythborn is your NPC ?  \n61 - Triton  \n62 - Nymph \n98 - Any");
   }        
-}
-else if (typeChoice !== "Titanspawn" && typeChoice !== "Mythborn"){}
-
+}         
+         
 function legendChoiceFunction() {
   legendChoice = prompt("Is your " + typeChoice + "'s Legend Level: \n1 - Godborn \n2 - Demigod  \n3 - God ");
   if (legendChoice === "1" || legendChoice === "2" || legendChoice === "3") {
@@ -128,7 +131,7 @@ else {
 }
  combatChoice2Int = parseInt(combatChoice2);
 };
-
+typeChoiceFunction();
 legendChoiceFunction();
 
 
@@ -1148,3 +1151,5 @@ myWindow.document.write('<img src=' +  imageLink + '" alt="Image" width=100% hei
 myWindow.document.write("</BODY>")
 myWindow.document.write("</HTML>")}     
 }
+
+npcChoice();
