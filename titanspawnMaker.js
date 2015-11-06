@@ -131,8 +131,12 @@ else {
 }
  combatChoice2Int = parseInt(combatChoice2);
 };
+
+
 typeChoiceFunction();
 legendChoiceFunction();
+
+if (document.getElementById("playerNumber").value = 2){alert("It works ! Surprisingly.")
 
 
 var Aspect = function(name,type,origin,subOrigin,legend,intelligence,behavior,combat1,combat2) {
