@@ -9,7 +9,7 @@
 
 //____________________________________________________________________________________________________
 
-fightCompute = (((6+playerLevelVar*3)+(fightDifficultyVar*3)*playerNumberVar)
+fightCompute = (((6+playerLevelVar*3)+fightDifficultyVar*3)*playerNumberVar)
 alert(fightCompute)
 
 function typeChoiceFunction (){
