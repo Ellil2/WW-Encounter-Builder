@@ -9,7 +9,8 @@
 
 //____________________________________________________________________________________________________
 
-
+fightCompute = (((6+playerLevelVar*3)+(fightDifficultyVar*3)*playerNumberVar)
+alert(fightCompute)
 
 function typeChoiceFunction (){
 typeChoice = prompt("What type of creature is your NPC ? \n- Mythborn \n- Titanspawn");
@@ -131,12 +132,8 @@ else {
 }
  combatChoice2Int = parseInt(combatChoice2);
 };
-
-
 typeChoiceFunction();
 legendChoiceFunction();
-
-if (document.getElementById("playerNumber").value = 2){alert("It works ! Surprisingly.")
 
 
 var Aspect = function(name,type,origin,subOrigin,legend,intelligence,behavior,combat1,combat2) {
@@ -233,7 +230,7 @@ var highConcept = [
  lavaLegionnaire = new Aspect("Lava Legionnaire","Titanspawn","1",["11"],["1","2"],"1","behavior","1","http://i.imgur.com/zJWcnO7.jpg"),
  lesserPhoenix = new Aspect ("Lesser Phoenix","Titanspawn","4",["41"],["1","2"],"1","behavior","2","http://i.imgur.com/O4FF87t.jpg"),
  lightningCoatl = new Aspect("Lightning Coatl","Titanspawn","5",["51"],["3","2"],"2","behavior","2","http://i.imgur.com/IcSsvbJ.jpg"),
- lightPhoenix = new Aspect("Light Phoenix","Titanspawn","4",["41"],["3"],"1","behavior","2","http://i.imgur.com/QqEsKvg.png"),
+ lightPhoenix = new Aspect("Light Phoenix","Titanspawn","4",["41"],["3"],"1","behavior","2","http://i.imgur.com/i88n5m9.jpg"),
  livingAvalanche = new Aspect("Living Avalanche","Titanspawn","6",["64"],["3"],"1","behavior","2","http://i.imgur.com/0Uss89H.jpg"),
  livingRock = new Aspect("Living Rock","Titanspawn","6",["64"],["1"],"1","behavior","1","http://i.imgur.com/hLkwoXK.jpg"),
  lurkingNightmare = new Aspect("Lurking Nightmare","Titanspawn","2",["22"],["2"],"1","behavior","2","http://i.imgur.com/WXGcGud.jpg"),    
