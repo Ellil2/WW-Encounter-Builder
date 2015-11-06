@@ -41,7 +41,7 @@ function typeChoiceFunction() {
 }
 }
 
-typeChoice = prompt("What type of creature is your NPC ? \n- Mythborn \n- Woopsiedaisy");
+typeChoice = prompt("What type of creature is your NPC ? \n- Mythborn \n- Titanspawn");
 if (typeChoice === "Titanspawn") {
     typeChoiceFunction();
 }
@@ -1148,5 +1148,3 @@ myWindow.document.write('<img src=' +  imageLink + '" alt="Image" width=100% hei
 myWindow.document.write("</BODY>")
 myWindow.document.write("</HTML>")}     
 }
-
-npcChoice();
