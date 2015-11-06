@@ -1,0 +1,50 @@
+function legendaryAttribute () {
+var typeChoice = prompt("Is your NPC a Titanspawn or a Mythborn ?")
+var name = prompt("What is your Third Aspect's Name ?")
+var varname = prompt("What is your Aspect's variable name ?")
+if (typeChoice === "Titanspawn"){
+ originChoice = prompt("Which Titan is your Titanspawn from ? (Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 - Soku no Kumi \n4 - Aether \n5 - Amaunet \n6 -  Terra \n7 -  Nun \n8 - Death ");
+  if (originChoice === "1") {
+       subOriginChoice = prompt("What Avatar of Muspelheim is your Titanspawn linked to ?  \n1.1 - Vrtra  \n1.2 - Surtr \n1.3 - Prometheus \n1.4 - Any");  }
+  else if (originChoice === "2") {
+       subOriginChoice = prompt("What Avatar of Nyx is your Titanspawn linked to ?  \n2.1 - Nott \n2.2 - Fenrir \n2.3 - Apep \n2.4 - Any)"); }
+  else if (originChoice === "3") {
+       subOriginChoice = prompt("What Avatar of Soku no Kumi is your Titanspawn linked to ? \n3.1 - Huehueteotl \n3.2 - Mikaboshi \n3.3 - Erebus \n3.4 Any)");  }
+  else if (originChoice === "4") {
+       subOriginChoice = prompt("What Avatar of Aether is your Titanspawn linked to ? \n4.1 - Aten\n4.2 -  Hyperion\n4.3 -  Any"); }
+  else if (originChoice === "5") {
+       subOriginChoice = prompt("What Avatar of Amaunet is your Titanspawn linked to ? \n5.1 -  Huracan\n5.2 -  Typhon\n5.3 -  Ouranos\n5.4 -  Any");  }
+  else if (originChoice === "6") {
+       subOriginChoice = prompt("What Avatar of Terra is your Titanspawn linked to ? Possibilities:\n6.1 -  Gaia\n6.2 -  Kur\n6.3 -  Dis Pater\n6.4 - Ourea \n6.5 - Crom Cruach \n6.6 -  Any");  }
+  else if (originChoice === "7") {
+       subOriginChoice = prompt("What Avatar of Nun is your Titanspawn linked to ? Possibilities: \n7.1 Yam \n7.2 -  Tiamat \n7.3 -  Abzu \n7.4 -  Cipactli \n7.5 -  Any");  }
+  else if (originChoice === "8") {
+       subOriginChoice = prompt("What Avatar of Death is your Titanspawn linked to ? Possibilities: \n8.1 - Styx\n8.2 -  Grim Reaper\n8.3 -  Any");  }
+}
+else if (typeChoice === "Mythborn") {
+   originChoice = prompt("Which Race is your Mythborn  ? Possibilities: \n1 - Summer Court of Fairie \n2 - Winter Court of Fairie \n3 - Jade Sea \n4 - Dark Forest \n5 - Shambhala");
+  if (originChoice === "1") {
+       subOriginChoice = prompt("What type of Summer Court Fairie Mythborn is your NPC ?  \n11 - Fey  \n12 - Elf \n13 - Small Folk \n14 - Pixie \n15 - Nymph \n98 - Any");
+  }
+  else if (originChoice === "2") {
+       subOriginChoice = prompt("What type of Winter Court Fairie Mythborn is your NPC ?  \n21 - Fey  \n22 - Elf \n23 - Small Folk \n24 - Pixie \n25 - Nymph \n98 - Any");
+  }
+  else if (originChoice === "3") {
+       subOriginChoice = prompt("What type of Jade Sea Mythborn is your NPC ?  \n31 - Western Dragon  \n32 - Eastern Dragon \n33 - Wyvern \n34 - Coatl \n35 - Naga \n98 - Any");
+  }
+  else if (originChoice === "4") {
+       subOriginChoice = prompt("What type of Dark Forest Mythborn is your NPC ?  \n41 - Ent  \n42 - Small Folk \n43 - Garou \n44 - Witch  \n98 - Any");
+  }
+  else if (originChoice === "5") {
+       subOriginChoice = prompt("What type of Shambhala Mythborn is your NPC ?  \n51 - Raksasha  \n52 - Asura \n53 - Nymph \n54 - Naga \n98 - Any");
+  }  
+}
+var Ability1 = prompt("What is your NPC's first Legendary Ability ?")
+var Ability2 = prompt("What is your NPC's second Legendary Ability ?")
+ combat1 = prompt("What is your Titanspawn's combat style' ? \n 1 - Warrior\n 2 - Mage\n 3 - Rogue ");
+ combat2 = prompt("What is your Titanspawn's combat speciality' ? \n1 - Support \n2 - Fighter \n3 - Controller");
+  
+ 
+alert(""+ varname +" = new Aspect(\""+  name + "\",\"" + typeChoice + "\",\""+ originChoice +"\",\""+ subOriginChoice +"\",\""+ Ability1 +"(\" + abilityOne + \")\",\""+ Ability2 +"(\" + abilityTwo + \")\",\"behavior\",\""+ combat1 +"\",\""+ combat2 +"\"),");
+}
+// name = new Aspect("name","type","origin","subOrigin","Ability j (" + abilityOne + ")","Ability i (" + abilityTwo + ")","behavior","combat1","combat2"),
