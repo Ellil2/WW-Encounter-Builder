@@ -50,5 +50,3 @@ else if (typeChoice === "Mythborn") {
      
 alert(""+ varname +" = new Aspect(\""+  name +"\",\""+ typeChoice +"\",\""+ originChoice +"\",[\""+ subOriginChoice +"\"],[\""+ legendChoice +"\"],\""+ intelligenceChoice +"\",\"behavior\",\"2\"," + imageLink + "\")");
 }
-
-highConcept ()
