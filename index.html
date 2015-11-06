@@ -19,9 +19,13 @@
  <script src="legendaryMaker.js"></script>
  
  <script>
-function newFunction(){
-  alert("newFunction is working !")
-  alert(document.getElementById("selected2").value) }  
+function generatorManager(){
+playerNumberVar = document.getElementById("playerNumber").value
+playerLevelVar = (document.getElementById("playerLevel").value)
+fightTypeVar = document.getElementById("fightType").value
+fightDifficultyVar = document.getElementById("fightDifficulty").value
+
+npcChoice()
    
  </script>
 
@@ -70,16 +74,16 @@ function newFunction(){
 <br> 
 <p>Choose the type of fight</p>
 <select  id="fightDifficulty">
-      <option selected value=1>Normal</option>
-      <option  value=2>Challenging</option>
-      <option  value=3>Brutal</option>
+      <option selected value=0>Normal</option>
+      <option  value=1>Challenging</option>
+      <option  value=2>Brutal</option>
   </select>
 <p>Choose the difficulty of the fight</p>
   
   
 <br> 
 <br>
-<button type="button" onclick="npcChoice()">Generate an NPC !</button>
+<button type="button" onclick="generatorManager()">Generate an NPC !</button>
 <br>
 <br>
 <br>
