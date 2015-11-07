@@ -3,7 +3,7 @@ function npcChoice(){
      
 //playerNumberVar = 6
 //playerLevelVar = 1
-//fightTypeVar = 3
+//fightTypeVar = 1
 //fightDifficultyVar = 1
 
 fightCompute = (((6+playerLevelVar*3)+fightDifficultyVar*3)*playerNumberVar)
@@ -52,16 +52,16 @@ if (buffChooser == 4){legendaryBonus2 += 1; fightComputeGroup -= 4 };
 
 //Setting up a Boss and his Minions     
 if (fightTypeVar == 1){
-if (playerLevelVar <= 2){legendChoice = "1"}
-else if (playerLevelVar <= 4){legendChoice = "2"}
-else if (playerLevelVar <= 6){legendChoice = "3"}
-     
-decision()
-fightComputeGroup = fightCompute/2  
 if (playerLevelVar <= 2){legendChoice = "2"}
 else if (playerLevelVar <= 4){legendChoice = "3"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
+     
 decision2()
+fightComputeGroup = fightCompute/2  
+if (playerLevelVar <= 2){legendChoice = "1"}
+else if (playerLevelVar <= 4){legendChoice = "2"}
+else if (playerLevelVar <= 6){legendChoice = "3"}
+decision()
 }     
     
 //Setting up a Crowd of Mobs
@@ -74,7 +74,8 @@ decision()
 fightComputeGroup = fightCompute/2  
 decision()
 }     
-     
+
+//Setting up one big enemy
 else if (fightTypeVar == 3){
 if (playerLevelVar <= 2){legendChoice = "2"}
 else if (playerLevelVar <= 4){legendChoice = "3"}
@@ -823,7 +824,7 @@ sunRay = new Aspect("Rays of the Sun","Titanspawn","4","41","Invokation: Light -
     // Night
 distantStar = new Aspect("Distant Star","Titanspawn","2","21","Invokation: Night - Veil(" + abilityOne + ")","Epic Dexterity(" + abilityTwo + ")","behavior","3","1"),
 veilMaker = new Aspect("Veil Maker","Titanspawn","2","21","Invokation: Night - Obscurity  (" + abilityOne + ")","Illusion (" + abilityTwo + ")","behavior","2","3"),
-fearMongerer = new Aspect("Fear Mongerer","Titanspawn","2","22","Invokation: Night - Fear (" + abilityOne + ")","Ability i (" + abilityTwo + ")","behavior","2","3"),
+fearMongerer = new Aspect("Fear Mongerer","Titanspawn","2","22","Invokation: Night - Fear (" + abilityOne + ")","Epic Presence (" + abilityTwo + ")","behavior","2","3"),
 nightProwler = new Aspect("Night Prowler","Titanspawn","2","22","Epic Strength (" + abilityOne + ")","Invokation: Night - Obscurity (" + abilityTwo + ")","behavior","3","2"),
 fenrisCaller = new Aspect("Fenris Wildcaller","Titanspawn","2","22","Zoothropy: Wolf (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","2","2"),
 nightMaker = new Aspect("Night Maker","Titanspawn","2","23","Invokation: Night - Darkness (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","2","3"),
