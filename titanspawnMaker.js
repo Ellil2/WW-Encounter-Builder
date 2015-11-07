@@ -1,5 +1,91 @@
 
-    function npcChoice() {
+function npcChoice(){
+     
+//playerNumberVar = 6
+//playerLevelVar = 1
+//fightTypeVar = 3
+//fightDifficultyVar = 1
+
+fightCompute = (((6+playerLevelVar*3)+fightDifficultyVar*3)*playerNumberVar)
+
+     function decision(){ 
+skillBonus = 0
+legendaryBonus = 0
+legendaryBonus2 = 0
+enemyNumber = 0
+fightComputeGroup = fightCompute/2  
+while(fightComputeGroup > 0){
+var buffChooser = Math.floor(Math.random() * 4+1)
+if (buffChooser == 1){skillBonus += 1; fightComputeGroup -= 6; enemyNumber += 1};
+if (buffChooser == 2){skillBonus += 1; fightComputeGroup -= 6; enemyNumber += 1 };
+if (buffChooser == 3){legendaryBonus += 1; fightComputeGroup -= 4; enemyNumber += 1 };
+if (buffChooser == 4){legendaryBonus2 += 1; fightComputeGroup -= 4; enemyNumber += 1 };     
+}    npcChoiceLoop()}
+     
+     function decision2(){ 
+skillBonus = 0
+legendaryBonus = 0
+legendaryBonus2 = 0
+enemyNumber = 0
+fightComputeGroup = fightCompute/2-6  
+while(fightComputeGroup > 0){
+var buffChooser = Math.floor(Math.random() * 4+1)
+if (buffChooser == 1){skillBonus += 1; fightComputeGroup -= 6};
+if (buffChooser == 2){skillBonus += 1; fightComputeGroup -= 6  };
+if (buffChooser == 3){legendaryBonus += 1; fightComputeGroup -= 4 };
+if (buffChooser == 4){legendaryBonus2 += 1; fightComputeGroup -= 4 };     
+}    npcChoiceLoop()}
+     
+     function decision3(){ 
+skillBonus = 0
+legendaryBonus = 0
+legendaryBonus2 = 0
+enemyNumber = 0
+fightComputeGroup = fightCompute  
+while(fightComputeGroup > 0){
+var buffChooser = Math.floor(Math.random() * 4+1)
+if (buffChooser == 1){skillBonus += 1; fightComputeGroup -= 6};
+if (buffChooser == 2){skillBonus += 1; fightComputeGroup -= 6  };
+if (buffChooser == 3){legendaryBonus += 1; fightComputeGroup -= 4 };
+if (buffChooser == 4){legendaryBonus2 += 1; fightComputeGroup -= 4 };     
+}    npcChoiceLoop()}     
+
+//Setting up a Boss and his Minions     
+if (fightTypeVar == 1){
+if (playerLevelVar <= 2){legendChoice = "1"}
+else if (playerLevelVar <= 4){legendChoice = "2"}
+else if (playerLevelVar <= 6){legendChoice = "3"}
+     
+decision()
+fightComputeGroup = fightCompute/2  
+if (playerLevelVar <= 2){legendChoice = "2"}
+else if (playerLevelVar <= 4){legendChoice = "3"}
+else if (playerLevelVar <= 6){legendChoice = "3"}
+decision2()
+}     
+    
+//Setting up a Crowd of Mobs
+else if (fightTypeVar == 2){
+if (playerLevelVar <= 2){legendChoice = "1"}
+else if (playerLevelVar <= 4){legendChoice = "2"}
+else if (playerLevelVar <= 6){legendChoice = "3"}
+     
+decision()
+fightComputeGroup = fightCompute/2  
+decision()
+}     
+     
+else if (fightTypeVar == 3){
+if (playerLevelVar <= 2){legendChoice = "2"}
+else if (playerLevelVar <= 4){legendChoice = "3"}
+else if (playerLevelVar <= 6){legendChoice = "3"}
+     
+decision3()
+}     
+
+ 
+ 
+    function npcChoiceLoop() {
 
 //____________________________________________________________________________________________________
 
@@ -9,7 +95,7 @@
 
 //____________________________________________________________________________________________________
 
-fightCompute = (((6+playerLevelVar*3)+fightDifficultyVar*3)*playerNumberVar)
+
 
 function typeChoiceFunction (){
 typeChoice = prompt("What type of creature is your NPC ? \n- Mythborn \n- Titanspawn");
@@ -73,17 +159,8 @@ function mythbornTypeChoiceFunction(){
   }        
 }         
          
-function legendChoiceFunction() {
-  legendChoice = prompt("Is your " + typeChoice + "'s Legend Level: \n1 - Godborn \n2 - Demigod  \n3 - God ");
-  if (legendChoice === "1" || legendChoice === "2" || legendChoice === "3") {
-  behaviorChoiceFunction();
-}
 
-else {
-    legendChoiceFunction();
-    return;
-}
-};
+
 
 function behaviorChoiceFunction() {
   behaviorChoice = prompt("What is your NPC's behavior like ? \n 1 - Aggressive \n 2 - Diplomatic");  
@@ -132,7 +209,7 @@ else {
  combatChoice2Int = parseInt(combatChoice2);
 };
 typeChoiceFunction();
-legendChoiceFunction();
+behaviorChoiceFunction();
 
 
 var Aspect = function(name,type,origin,subOrigin,legend,intelligence,behavior,combat1,combat2) {
@@ -498,7 +575,9 @@ highConceptOptions.push(defaultOriginAspect)
  
 var randHighConcept = Math.floor(Math.random() * highConceptOptions.length)
 var imageLink = highConceptOptions[randHighConcept].combat2;
-var rand = highConceptOptions[randHighConcept].name;
+   
+         if (enemyNumber <= 0) {var rand = highConceptOptions[randHighConcept].name}
+         else{var rand = highConceptOptions[randHighConcept].name + " (" + enemyNumber + ")"} ;
 
 
 //____________________________________________________________________________________________________
@@ -705,19 +784,26 @@ var rand3 = aspect2Options[Math.floor(Math.random() * aspect2Options.length)];
 
 
 //Setting the Level of the Legendary Abilities
+abilityOne = legendaryBonus
+abilityTwo = legendaryBonus2        
+
+
 
 if (legendChoice === "3") {
-    var abilityOne = 3
-    var abilityTwo = 2
+     abilityOne += 3
+     abilityTwo += 2
+     skillAbilityOne =  3
 }
 
 else if (legendChoice === "2") {
-    var abilityOne = 2
-    var abilityTwo = 1
+     abilityOne += 2
+     abilityTwo += 1
+     skillAbilityOne =  2
 }
 
 else if (legendChoice === "1") {
-    var abilityOne = 1
+     abilityOne += 1 + legendaryBonus2
+     skillAbilityOne =  1
 }
 
 
@@ -917,11 +1003,11 @@ else if (combatChoice2 === "4"){fight.level += 2;notice.level += 1;physique.leve
 skillOptions.sort(function(a,b) {
     return b.level-a.level;     });
          
-var randSkills = (skillOptions.sort()[0].name + (2+abilityOne) +  ","+
-     skillOptions.sort()[1].name + (1+abilityOne) +  ","+
-     skillOptions.sort()[2].name + (1+abilityOne) +  ","+
-     skillOptions.sort()[3].name + (1+abilityOne));
-         
+var randSkills = (skillOptions.sort()[0].name + (2+skillAbilityOne+skillBonus) +  ","+
+     skillOptions.sort()[1].name + (1+skillAbilityOne+skillBonus) +  ","+
+     skillOptions.sort()[2].name + (1+skillAbilityOne+skillBonus) +  ","+
+     skillOptions.sort()[3].name + (1+skillAbilityOne+skillBonus));
+//Sorts the highest skills, top first, and gives them a game-normal value. Adds skill bonus from numbers/Boss         
 
       
  
@@ -1006,9 +1092,9 @@ instagib6 = new Stunt("automatically deal a 5-shift Damage to an enemy",6,"Any",
        
        
 var stuntCost = [    
-thatMuchWow =  new Stunt("Once per turn, ",-3,"Any",[1,2,3,4]),
+thatMuchWow =  new Stunt("At will, ",-3,"Any",[1,2,3,4]),
        // Lvl -2
-thatMuchWow =  new Stunt("Twice per Scene, ",-2,"Any",[1,2,3,4]),
+thatMuchWow =  new Stunt("At will, ",-2,"Any",[1,2,3,4]),
        // Lvl -1
 soMuch =  new Stunt("Once per Scene, ",-1,"Any",[1,2,3,4]),
 invokeBonus =  new Stunt("When you invoke an Aspect, ",-1,"Any",[1,2,3,4]), 
@@ -1045,10 +1131,15 @@ physicalStress6 =  new Stunt("Take 6 Physical Stress, ",5,"Any",[1,2,3,0]),
      // Lvl 6
        
    ]       
-       
-var randomEffect = Math.floor(Math.random() * 4) + 3
+ 
 
-var randomEffect2 = randomEffect - abilityOne
+function stuntCalculator(){
+ randomEffect = Math.floor(Math.random() * 4) + 3
+ randomEffect2 = randomEffect - skillAbilityOne
+
+if (randomEffect2 < -2){stuntCalculator()}
+}
+stuntCalculator()         
 
 
 var stuntEffectOptions = [];
@@ -1151,3 +1242,6 @@ myWindow.document.write('<img src=' +  imageLink + '" alt="Image" width=100% hei
 myWindow.document.write("</BODY>")
 myWindow.document.write("</HTML>")}     
 }
+}
+
+npcChoice();
