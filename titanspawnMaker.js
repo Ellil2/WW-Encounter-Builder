@@ -1,54 +1,39 @@
-
 function npcChoice(){
      
-//playerNumberVar = 6
-//playerLevelVar = 1
-//fightTypeVar = 1
+//playerNumberVar = 3
+//playerLevelVar = 6
+//fightTypeVar = 3
 //fightDifficultyVar = 1
 
 fightCompute = (((6+playerLevelVar*3)+fightDifficultyVar*3)*playerNumberVar)
 
-     function decision(){ 
+     function decision(argument,numberOn){ 
 skillBonus = 0
+stuntBonus = 0
+stuntBonus2 = 0
 legendaryBonus = 0
 legendaryBonus2 = 0
 enemyNumber = 0
-fightComputeGroup = fightCompute/2  
+fightComputeGroup = argument
+
 while(fightComputeGroup > 0){
-var buffChooser = Math.floor(Math.random() * 4+1)
-if (buffChooser == 1){skillBonus += 1; fightComputeGroup -= 6; enemyNumber += 1};
-if (buffChooser == 2){skillBonus += 1; fightComputeGroup -= 6; enemyNumber += 1 };
-if (buffChooser == 3){legendaryBonus += 1; fightComputeGroup -= 4; enemyNumber += 1 };
-if (buffChooser == 4){legendaryBonus2 += 1; fightComputeGroup -= 4; enemyNumber += 1 };     
-}    npcChoiceLoop()}
      
-     function decision2(){ 
-skillBonus = 0
-legendaryBonus = 0
-legendaryBonus2 = 0
-enemyNumber = 0
-fightComputeGroup = fightCompute/2-6  
-while(fightComputeGroup > 0){
-var buffChooser = Math.floor(Math.random() * 4+1)
-if (buffChooser == 1){skillBonus += 1; fightComputeGroup -= 6};
-if (buffChooser == 2){skillBonus += 1; fightComputeGroup -= 6  };
-if (buffChooser == 3){legendaryBonus += 1; fightComputeGroup -= 4 };
-if (buffChooser == 4){legendaryBonus2 += 1; fightComputeGroup -= 4 };     
-}    npcChoiceLoop()}
+     if(stuntBonus >= 4+playerLevelVar+playerNumberVar || stuntBonus2 >= 4+playerLevelVar+playerNumberVar){buffChooser = Math.floor(Math.random() * 4+1)}
+     else if(legendaryBonus >= 2 || legendaryBonus2 >= 2){buffChooser = Math.floor(Math.random() * 2+1)}
+     else if((stuntBonus >= 4+playerLevelVar)&&(legendaryBonus >= 2 || legendaryBonus2 >= 2)){buffChooser = Math.floor(Math.random() * 2+1)} 
+     else{buffChooser = Math.floor(Math.random() * 6+1)}     
      
-     function decision3(){ 
-skillBonus = 0
-legendaryBonus = 0
-legendaryBonus2 = 0
-enemyNumber = 0
-fightComputeGroup = fightCompute  
-while(fightComputeGroup > 0){
-var buffChooser = Math.floor(Math.random() * 4+1)
-if (buffChooser == 1){skillBonus += 1; fightComputeGroup -= 6};
-if (buffChooser == 2){skillBonus += 1; fightComputeGroup -= 6  };
-if (buffChooser == 3){legendaryBonus += 1; fightComputeGroup -= 4 };
-if (buffChooser == 4){legendaryBonus2 += 1; fightComputeGroup -= 4 };     
-}    npcChoiceLoop()}     
+if (buffChooser == 1){skillBonus += 1; fightComputeGroup -= 8; enemyNumber += numberOn};
+if (buffChooser == 2){skillBonus += 1; fightComputeGroup -= 8; enemyNumber += numberOn};
+if (buffChooser == 3){legendaryBonus += 1; fightComputeGroup -= 4; enemyNumber += numberOn };
+if (buffChooser == 4){legendaryBonus2 += 1; fightComputeGroup -= 4; enemyNumber += numberOn };     
+if (buffChooser == 5){stuntBonus += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
+if (buffChooser == 6){stuntBonus2 += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
+          
+
+
+}   npcChoiceLoop()}
+    
 
 //Setting up a Boss and his Minions     
 if (fightTypeVar == 1){
@@ -56,12 +41,11 @@ if (playerLevelVar <= 2){legendChoice = "2"}
 else if (playerLevelVar <= 4){legendChoice = "3"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
      
-decision2()
-fightComputeGroup = fightCompute/2  
+decision(fightCompute/2,0)
 if (playerLevelVar <= 2){legendChoice = "1"}
 else if (playerLevelVar <= 4){legendChoice = "2"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
-decision()
+decision(fightCompute/2-6 ,1)
 }     
     
 //Setting up a Crowd of Mobs
@@ -70,9 +54,8 @@ if (playerLevelVar <= 2){legendChoice = "1"}
 else if (playerLevelVar <= 4){legendChoice = "2"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
      
-decision()
-fightComputeGroup = fightCompute/2  
-decision()
+decision(fightCompute/2,1)
+decision(fightCompute/2,1 )
 }     
 
 //Setting up one big enemy
@@ -81,7 +64,8 @@ if (playerLevelVar <= 2){legendChoice = "2"}
 else if (playerLevelVar <= 4){legendChoice = "3"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
      
-decision3()
+decision(fightCompute*0.75,0)
+//This sets the Difficulty of the One Big Enemy setting. It is set lower because of the Defense Stats.
 }     
 
  
@@ -96,18 +80,21 @@ decision3()
 
 //____________________________________________________________________________________________________
 
-
+typeChoice = "nope"
 
 function typeChoiceFunction (){
-typeChoice = prompt("What type of creature is your NPC ? \n- Mythborn \n- Titanspawn");
-if (typeChoice === "Titanspawn") {titanspawnTypeChoiceFunction();
+typeChoicePrompt = prompt("What type of creature is your NPC ? \n1- Titanspawn \n2- Mythborn");
+if (typeChoicePrompt == "1") {titanspawnTypeChoiceFunction();
 }
-else if (typeChoice === "Mythborn") {mythbornTypeChoiceFunction()}
-else if (typeChoice !== "Titanspawn" && typeChoice !== "Mythborn"){typeChoiceFunction()}
+else if (typeChoicePrompt == "2") {mythbornTypeChoiceFunction()}
+else if (typeChoicePrompt !== "1" && typeChoicePrompt !== "2"){typeChoiceFunction()}
 }
+         
 
 function titanspawnTypeChoiceFunction() {
-   originChoice = prompt("Which Titan is your Titanspawn from ? Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 - Soku no Kumi \n4 - Aether \n5 - Amaunet \n6 - Terra \n7 - Nun \n8 - Death ");
+typeChoice = "Titanspawn";
+
+     originChoice = prompt("Which Titan is your Titanspawn from ? Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 - Soku no Kumi \n4 - Aether \n5 - Amaunet \n6 - Terra \n7 - Nun \n8 - Death ");
   if (originChoice === "1") {
        subOriginChoice = prompt("What Avatar of Muspelheim is your Titanspawn linked to ?  \n11 - Vrtra  \n12 - Surtr \n13 - Prometheus \n99 - Any");
   }
@@ -139,7 +126,8 @@ function titanspawnTypeChoiceFunction() {
 }
          
 function mythbornTypeChoiceFunction(){     
-   originChoice = prompt("Which Race is your Mythborn  ? Possibilities: \n1 - Summer Court of Fairie \n2 - Winter Court of Fairie \n3 - Jade Sea \n4 - Dark Forest \n5 - Shambhala \n6 - Atlantis");
+typeChoice = "Mythborn"; 
+     originChoice = prompt("Which Race is your Mythborn  ? Possibilities: \n1 - Summer Court of Fairie \n2 - Winter Court of Fairie \n3 - Jade Sea \n4 - Dark Forest \n5 - Shambhala \n6 - Atlantis");
   if (originChoice === "1") {
        subOriginChoice = prompt("What type of Summer Court Fairie Mythborn is your NPC ?  \n11 - Fey  \n12 - Elf \n13 - Small Folk \n14 - Pixie \n15 - Nymph \n98 - Any");
   }
@@ -231,8 +219,7 @@ var Stunt = function(description,dangerlevel,stuntType,stuntCombat2) {
   this.description = description;
   this.dangerlevel = dangerlevel;
   this.stuntType = stuntType;
-  this.stuntCombat2 = stuntCombat2;  
-  
+  this.stuntCombat2 = stuntCombat2;    
 };
          
          
@@ -794,17 +781,20 @@ if (legendChoice === "3") {
      abilityOne += 3
      abilityTwo += 2
      skillAbilityOne =  3
+     stuntBonus += 3
 }
 
 else if (legendChoice === "2") {
      abilityOne += 2
      abilityTwo += 1
      skillAbilityOne =  2
+     stuntBonus += 2
 }
 
 else if (legendChoice === "1") {
      abilityOne += 1 + legendaryBonus2
      skillAbilityOne =  1
+     stuntBonus += 1
 }
 
 
@@ -1036,77 +1026,65 @@ outerPower = new Stunt("invoke " + rand + " for free as a Create an Advantage ac
 mysticConstruct = new Stunt("use a Legendary Ability for free to Create a Situational Advantage",2,"Legendary",[1,2,3,4]),
 affectOther = new Stunt("use a Legendary Ability for free to Create a Character Advantage",2,"Legendary",[1,2,3,4]),
 uniqueNature = new Stunt("invoke " + rand + " for free to Create a Character Advantage",2,"Personal Aspect",[1,2,3,4]),
-theElite = new Stunt("gain +2 to a Skill to Create an Advantage for one Action",2,"Skill",[1,3,4,0]),
-theReckless = new Stunt("gain +2 to a Skill to Attack for one Action",2,"Skill",[2,0,0,0]),
 allyHelp = new Stunt("give an ally a Free Invocation on an Aspect",2,"Any",[1,4,0,0]),
-fog2 = new Stunt("an enemy has -2 on their next Attack roll",2,"Any",[1,3,0,0]),
-mindFog2 = new Stunt("an enemy has -2 on their next Create an Advantage roll",2,"Any",[3,4,0,0]),
-weaken2 = new Stunt("an enemy has -2 on their next Defense roll",2,"Any",[2,1,0,0]), 
-shield2 = new Stunt("an ally has +2 on their next Defense roll",2,"Any",[0,1,4,0]),          
-defend2 = new Stunt("get +2 to your next Defense roll",2,"Defense",[2,4,0,0]),   
 fatePointGain = new Stunt("gain a Fate Point",2,"Fate Point",[1,2,3,4]), 
 regeneration = new Stunt("Remove a Minor Consequence from an ally",2,"Defense",[1,0,0,0]),
 regeneration = new Stunt("Remove a Minor Consequence from yourself",2,"Any",[4,0,0,0]),        
        // Lvl 3
-skilled3 = new Stunt("have +1 to a Skill",3,"Skill",[1,2,3,4]),
-theElite3 = new Stunt("gain +3 to a Skill to Create an Advantage",3,"Skill",[1,3,4,2]),
-theReckless3 = new Stunt("gain +3 to a Skill for an Attack Action",3,"Skill",[2,0,0,0]),
-aspectBonus = new Stunt("when you invoke a Personal Aspect or an Aspect you created, gain +3 instead",3,"Any",[1,3,4,0]), 
 aspectBonusAlly = new Stunt("when an ally invokes an Aspect you created, gain +3 instead",3,"Any",[1,3,4,0]), 
-createAspect3 = new Stunt("automatically create an Aspect that requires a +2 opposition to remove",3,"Any",[1,3,4,0]),
-fog3 = new Stunt("an enemy has -3 on their next Attack roll",3,"Any",[1,3,4]),
-mindFog3 = new Stunt("an enemy has -3 on their next Create an Advantage roll",3,"Any",[3,4,0,0]),
-weaken3 = new Stunt("an enemy has -3 on their next Defense roll",3,"Any",[1,3,0,0]),       
-massfog3 = new Stunt("all enemies have -1 on their next Attack roll",3,"Any",[1,3,4,0]),
-massmindFog3 = new Stunt("all enemies have -1 on their next Create an Advantage roll",3,"Any",[1,3,0,0]),
 massweaken3 = new Stunt("all enemies have -1 on their next Defense roll",3,"Any",[3,2,4,0]), 
-defend3 = new Stunt("get +3 to your next Defense roll",3,"Defense",[2,4,0,0]),                  
-shield3 = new Stunt("an ally has +3 on their next Defense roll",3,"Any",[0,1,4,0]),          
         // Lvl 4
 flight = new Stunt("you have the Aspect: Flight until the end of the Scene",4,"Any",[2,1,0,0]),
-shield4 = new Stunt("an ally has +4 on their next Defense roll",4,"Any",[0,1,4,0]),          
-defend4 = new Stunt("get +4 to your next Defense roll",4,"Defense",[2,4,0,0]),                  
 advantageMaker = new Stunt("have +1 to two Skills",4,"Skill",[1,2,3,4]),    
 legendNature = new Stunt("you can use your Legendary Ability for free using non-Legendary Rolls until the end of the Scene",4,"Legendary",[1,3,4,0]),
-createAspect4 = new Stunt("automatically create an Aspect that requires a +3 opposition to remove",4,"Any",[1,3,4,0]),
 energyBlast4 = new Stunt("use a Legendary Ability for free as an Attack action twice",4,"Legendary",[2,0,0,0]),
 mysticPower4 = new Stunt("use a Legendary Ability for free to Create a Personal Advantage twice",4,"Legendary",[1,4,3,0]),
 innerPower4 = new Stunt("invoke \"" + rand + "\" for free as an Attack action twice",4,"Personal Aspect",[2,0,0,0]),
 outerPower4 = new Stunt("invoke " + rand + " for free as a Create an Advantage action twice",4,"Personal Aspect",[1,2,3,4]),
-instagib4 = new Stunt("automatically deal a 3-shift Damage to an enemy",4,"Any",[2,0,0,0]),        
       // Lvl 5
-shield5 = new Stunt("an ally has +5 on their next Defense roll",5,"Any",[0,1,4,0]),          
-createAspect5 = new Stunt("automatically create an Aspect that requires a +4 opposition to remove",5,"Any",[1,3,4,0]),
-aspectBonus5 = new Stunt("until the end of the Scene, when you invoke a Personal Aspect or an Aspect you created, gain +4 instead",5,"Any",[1,3,4,0]),
-aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, gain +4 instead",5,"Any",[1,3,4,0]),  
-skilled5 = new Stunt("have +3 to a Skill for the rest of the Scene",5,"Skill",[1,2,3,4]),
-massfog5 = new Stunt("all enemies have -2 on their next Attack roll",5,"Any",[1,4,3,0]),
-massmindfog5 = new Stunt("all enemies have -2 to their next Create an Advantage Rolls",5,"Any",[1,3,4,0]), 
-defend2 = new Stunt("get +5 to your next Defense roll",5,"Defense",[4,0,0,0]),                  
-      // Lvl 6
-createAspect6 = new Stunt("automatically create an Aspect that requires a +6 opposition to remove",6,"Any",[1,3,4,0]),
-instagib6 = new Stunt("automatically deal a 5-shift Damage to an enemy",6,"Any",[2,0,0,0]),
+ 
 
+      // Lvl 6
+
+
+//_____________________
+     
+   ]  
+function pushStunt(uses){
+for(i=2;i<30;i++){
+  stuntEffect.push(shieldScaler = new Stunt("an ally has +" + i + " on their next Defense roll (Uses: "+uses+")",i*uses,"Any",[0,1,4,0]));
+  stuntEffect.push(theEliteScaler = new Stunt("gain +" + i + " to a Skill to Create an Advantage for one Action (Uses: "+uses+")",i*uses,"Skill",[1,3,4,0]));
+  stuntEffect.push(theRecklessScaler = new Stunt("gain +"+i+" to a Skill to Attack for one Action (Uses: "+uses+")",i*uses,"Skill",[2,0,0,0]));
+  stuntEffect.push(fogScaler = new Stunt("an enemy has -"+i+" on their next Attack roll (Uses: "+uses+")",i*uses,"Any",[1,3,0,0]));
+  stuntEffect.push(defendScaler = new Stunt("get +"+i+" to your next Defense roll (Uses: "+uses+")",i*uses,"Defense",[2,4,0,0]));
+  stuntEffect.push(createAspectScaler = new Stunt("automatically create an Aspect that requires a +"+i+" opposition to remove (Uses: "+uses+")",i*uses,"Any",[1,3,4,0]));
+  stuntEffect.push(weakenScaler = new Stunt("an enemy has -"+i+" on their next Defense roll (Uses: "+uses+")",i*uses,"Any",[2,1,0,0]));
+  stuntEffect.push(skilledScaler = new Stunt("have +"+Math.floor(i/2+1)+" to a Skill for the rest of the Scene (Uses: "+uses+")",i*uses,"Skill",[1,2,3,4]));
+  stuntEffect.push(advantageMaker = new Stunt("have +"+Math.floor(i/4+1)+" to two Skills (Uses: "+uses+")",i*uses,"Skill",[1,2,3,4]));
+  stuntEffect.push(massfogScaled = new Stunt("all enemies have -"+Math.floor(i/2+1)+" on their next Attack roll (Uses: "+uses+")",i*uses,"Any",[1,4,3,0]))
+  stuntEffect.push(mindfogScaled = new Stunt("an enemy has -"+i+" on their next Create an Advantage Rolls (Uses: "+uses+")",i*uses,"Any",[1,3,4,0])) 
+  stuntEffect.push(fogScaled = new Stunt("an enemy has -"+i+" on their next Attack roll (Uses: "+uses+")",i*uses,"Any",[1,4,3,0]))
+  stuntEffect.push(massmindfogScaled = new Stunt("all enemies have -"+Math.floor(i/2+1)+" on their next Create an Advantage Rolls (Uses: "+uses+")",i*uses,"Any",[1,3,4,0]))   
+  stuntEffect.push(instagibScaled = new Stunt("automatically deal a "+Math.floor(i*0.8)+"-shift Damage to an enemy (Uses: "+uses+")",i*uses,"Any",[2,0,0,0]))
+  stuntEffect.push(aspectBonus5 = new Stunt("until the end of the Scene, when you invoke a Personal Aspect or an Aspect you created, gain +"+Math.floor(i/3+2)+" instead (Uses: "+uses+")",i*uses,"Any",[1,3,4,0]))
+  stuntEffect.push(aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, gain +"+Math.floor(i/3+2)+" instead (Uses: "+uses+")",i*uses,"Any",[1,3,4,0]))     }
+}
        
-       
-   ]     
-       
-       
+   pushStunt(1);      
+   pushStunt(2);      
+   pushStunt(3);      
+         
+         
+         
 var stuntCost = [    
-thatMuchWow =  new Stunt("At will, ",-3,"Any",[1,2,3,4]),
-       // Lvl -2
-thatMuchWow =  new Stunt("At will, ",-2,"Any",[1,2,3,4]),
-       // Lvl -1
-soMuch =  new Stunt("Once per Scene, ",-1,"Any",[1,2,3,4]),
-invokeBonus =  new Stunt("When you invoke an Aspect, ",-1,"Any",[1,2,3,4]), 
        // Lvl 0
-free = new Stunt("Once per Scene, ",0,"Any",[1,2,3,4]),
+free = new Stunt("On your turn, ",0,"Any",[1,2,3,4]),
        // Lvl 1
-recklessAttack = new Stunt("Gain -1 to your next Defense Roll, and ",1,"Defense",[1,2,3,0]), 
-mentalStress1 =  new Stunt("Take 1 Mental Stress, ",1,"Any",[1,2,3,4]),   
+recklessAttack = new Stunt("On your turn, ",1,"Defense",[1,2,3,0]), 
+mentalStress1 =  new Stunt("On your turn, ",1,"Any",[1,2,3,4]),   
 painGain = new Stunt("Whenever you receive a Consequence, ",1,"Any",[2,4,0,0]),
 friendPainGain = new Stunt("Whenever an ally receives a Consequence, ",1,"Any",[1,3,0,0]),
-physicalStress1 =  new Stunt("Take 1 Physical Stress, ",1,"Any",[1,2,3,0]),        
+physicalStress1 =  new Stunt("On your turn, ",1,"Any",[1,2,3,0]),        
        // Lvl 2  
 fatePoint = new Stunt("For 1 Fate Point, ",2,"Fate Point",[1,2,3,4]),  
 fatePoint2 = new Stunt("For 1 Legendary Ability use, ",2,"Legendary",[1,2,3,4]),  
@@ -1130,18 +1108,16 @@ mentalStress5 =  new Stunt("Take 6 Mental Stress, ",5,"Any",[1,2,3,4]),
 recklessAttack5 = new Stunt("Gain -5 to your next Defense Roll, and ",5,"Defense",[1,2,3,0]),              
 physicalStress6 =  new Stunt("Take 6 Physical Stress, ",5,"Any",[1,2,3,0]),   
      // Lvl 6
-       
+   
+      
    ]       
  
 
-function stuntCalculator(){
- randomEffect = Math.floor(Math.random() * 4) + 3
- randomEffect2 = randomEffect - skillAbilityOne
-
-if (randomEffect2 < -2){stuntCalculator()}
+function stuntCalculator(bonusType){
+ randomEffect2 = Math.floor(Math.random() * 6)
+ randomEffect = randomEffect2 + skillAbilityOne + bonusType  
 }
-stuntCalculator()         
-
+stuntCalculator(stuntBonus)         
 
 var stuntEffectOptions = [];
 var stuntCostOptions = [];
@@ -1181,15 +1157,12 @@ var rand6 = ("<br><b>\nStunts:</b> <br>\n- " + randCost.description + randEffect
 
 
 //____________________________________________________________________________________________________
-function StuntmakerRoll () {
-    randomEffect3 = Math.floor(Math.random() * 5) + 2
-    if (randomEffect3 === randomEffect){
-         StuntmakerRoll();}
-    }
-    
-StuntmakerRoll();
-    
-var randomEffect4 = randomEffect3 - abilityOne
+
+function stuntCalculator2(){
+ randomEffect4 = Math.floor(Math.random() * 6)
+ randomEffect3 = randomEffect4 + skillAbilityOne + stuntBonus2 
+}
+stuntCalculator2(stuntBonus2)      
 
 var stuntEffectOptions2 = [];
 var stuntCostOptions2 = [];
@@ -1246,3 +1219,4 @@ myWindow.document.write("</HTML>")}
 }
 
 npcChoice();
+
