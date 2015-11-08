@@ -1,9 +1,9 @@
 function npcChoice(){
      
-playerNumberVar = 3
-playerLevelVar = 6
-fightTypeVar = 3
-fightDifficultyVar = 1
+//playerNumberVar = 3
+//playerLevelVar = 6
+//fightTypeVar = 3
+//fightDifficultyVar = 1
 
 fightCompute = (((6+playerLevelVar*3)+fightDifficultyVar*3)*playerNumberVar)
 
