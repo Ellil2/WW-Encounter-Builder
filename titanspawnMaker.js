@@ -1,9 +1,9 @@
 function npcChoice(){
      
-//playerNumberVar = 3
-//playerLevelVar = 6
-//fightTypeVar = 3
-//fightDifficultyVar = 1
+playerNumberVar = 3
+playerLevelVar = 6
+fightTypeVar = 3
+fightDifficultyVar = 1
 
 fightCompute = (((6+playerLevelVar*3)+fightDifficultyVar*3)*playerNumberVar)
 
@@ -1052,22 +1052,22 @@ outerPower4 = new Stunt("invoke " + rand + " for free as a Create an Advantage a
    ]  
 function pushStunt(uses){
 for(i=2;i<30;i++){
-  stuntEffect.push(shieldScaler = new Stunt("an ally has +" + i + " on their next Defense roll (Uses: "+uses+")",i*uses,"Any",[0,1,4,0]));
-  stuntEffect.push(theEliteScaler = new Stunt("gain +" + i + " to a Skill to Create an Advantage for one Action (Uses: "+uses+")",i*uses,"Skill",[1,3,4,0]));
-  stuntEffect.push(theRecklessScaler = new Stunt("gain +"+i+" to a Skill to Attack for one Action (Uses: "+uses+")",i*uses,"Skill",[2,0,0,0]));
-  stuntEffect.push(fogScaler = new Stunt("an enemy has -"+i+" on their next Attack roll (Uses: "+uses+")",i*uses,"Any",[1,3,0,0]));
-  stuntEffect.push(defendScaler = new Stunt("get +"+i+" to your next Defense roll (Uses: "+uses+")",i*uses,"Defense",[2,4,0,0]));
-  stuntEffect.push(createAspectScaler = new Stunt("automatically create an Aspect that requires a +"+i+" opposition to remove (Uses: "+uses+")",i*uses,"Any",[1,3,4,0]));
-  stuntEffect.push(weakenScaler = new Stunt("an enemy has -"+i+" on their next Defense roll (Uses: "+uses+")",i*uses,"Any",[2,1,0,0]));
-  stuntEffect.push(skilledScaler = new Stunt("have +"+Math.floor(i/2+1)+" to a Skill for the rest of the Scene (Uses: "+uses+")",i*uses,"Skill",[1,2,3,4]));
-  stuntEffect.push(advantageMaker = new Stunt("have +"+Math.floor(i/4+1)+" to two Skills (Uses: "+uses+")",i*uses,"Skill",[1,2,3,4]));
-  stuntEffect.push(massfogScaled = new Stunt("all enemies have -"+Math.floor(i/2+1)+" on their next Attack roll (Uses: "+uses+")",i*uses,"Any",[1,4,3,0]))
-  stuntEffect.push(mindfogScaled = new Stunt("an enemy has -"+i+" on their next Create an Advantage Rolls (Uses: "+uses+")",i*uses,"Any",[1,3,4,0])) 
-  stuntEffect.push(fogScaled = new Stunt("an enemy has -"+i+" on their next Attack roll (Uses: "+uses+")",i*uses,"Any",[1,4,3,0]))
-  stuntEffect.push(massmindfogScaled = new Stunt("all enemies have -"+Math.floor(i/2+1)+" on their next Create an Advantage Rolls (Uses: "+uses+")",i*uses,"Any",[1,3,4,0]))   
-  stuntEffect.push(instagibScaled = new Stunt("automatically deal a "+Math.floor(i*0.8)+"-shift Damage to an enemy (Uses: "+uses+")",i*uses,"Any",[2,0,0,0]))
-  stuntEffect.push(aspectBonus5 = new Stunt("until the end of the Scene, when you invoke a Personal Aspect or an Aspect you created, gain +"+Math.floor(i/3+2)+" instead (Uses: "+uses+")",i*uses,"Any",[1,3,4,0]))
-  stuntEffect.push(aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, gain +"+Math.floor(i/3+2)+" instead (Uses: "+uses+")",i*uses,"Any",[1,3,4,0]))     }
+  stuntEffect.push(shieldScaler = new Stunt("an ally has +" + (i+Math.floor(randomEffect2*uses/2)-randomEffect2) + " on their next Defense roll (Uses: "+uses+")",i*uses,"Any",[0,1,4,0]));
+  stuntEffect.push(theEliteScaler = new Stunt("gain +" + (i+Math.floor(randomEffect2*uses/2)-randomEffect2) + " to a Skill to Create an Advantage for one Action (Uses: "+uses+")",i*uses,"Skill",[1,3,4,0]));
+  stuntEffect.push(theRecklessScaler = new Stunt("gain +"+(i+Math.floor(randomEffect2*uses/2)-randomEffect2)+" to a Skill to Attack for one Action (Uses: "+uses+")",i*uses,"Skill",[2,0,0,0]));
+  stuntEffect.push(fogScaler = new Stunt("an enemy has -"+(i+Math.floor(randomEffect2*uses/2)-randomEffect2)+" on their next Attack roll (Uses: "+uses+")",i*uses,"Any",[1,3,0,0]));
+  stuntEffect.push(defendScaler = new Stunt("get +"+(i+Math.floor(randomEffect2*uses/2)-randomEffect2)+" to your next Defense roll (Uses: "+uses+")",i*uses,"Defense",[2,4,0,0]));
+  stuntEffect.push(createAspectScaler = new Stunt("automatically create an Aspect that requires a +"+(i+Math.floor(randomEffect2*uses/2)-randomEffect2)+" opposition to remove (Uses: "+uses+")",i*uses,"Any",[1,3,4,0]));
+  stuntEffect.push(weakenScaler = new Stunt("an enemy has -"+(i+Math.floor(randomEffect2*uses/2)-randomEffect2)+" on their next Defense roll (Uses: "+uses+")",i*uses,"Any",[2,1,0,0]));
+  stuntEffect.push(skilledScaler = new Stunt("have +"+Math.floor((i+Math.floor(randomEffect2*uses/2)-randomEffect2)/2+1)+" to a Skill for the rest of the Scene (Uses: "+uses+")",i*uses,"Skill",[1,2,3,4]));
+  stuntEffect.push(advantageMaker = new Stunt("have +"+Math.floor((i+Math.floor(randomEffect2*uses/2)-randomEffect2)/4+1)+" to two Skills (Uses: "+uses+")",i*uses,"Skill",[1,2,3,4]));
+  stuntEffect.push(massfogScaled = new Stunt("all enemies have -"+Math.floor((i+Math.floor(randomEffect2*uses/2)-randomEffect2)/2+1)+" on their next Attack roll (Uses: "+uses+")",i*uses,"Any",[1,4,3,0]))
+  stuntEffect.push(mindfogScaled = new Stunt("an enemy has -"+(i+Math.floor(randomEffect2*uses/2)-randomEffect2)+" on their next Create an Advantage Rolls (Uses: "+uses+")",i*uses,"Any",[1,3,4,0])) 
+  stuntEffect.push(fogScaled = new Stunt("an enemy has -"+(i+Math.floor(randomEffect2*uses/2)-randomEffect2)+" on their next Attack roll (Uses: "+uses+")",i*uses,"Any",[1,4,3,0]))
+  stuntEffect.push(massmindfogScaled = new Stunt("all enemies have -"+Math.floor((i+Math.floor(randomEffect2*uses/2)-randomEffect2)/2+1)+" on their next Create an Advantage Rolls (Uses: "+uses+")",i*uses,"Any",[1,3,4,0]))   
+  stuntEffect.push(instagibScaled = new Stunt("automatically deal a "+Math.floor((i+Math.floor(randomEffect2*uses/2)-randomEffect2)*0.8)+"-shift Damage to an enemy (Uses: "+uses+")",i*uses,"Any",[2,0,0,0]))
+  stuntEffect.push(aspectBonus5 = new Stunt("until the end of the Scene, when you invoke a Personal Aspect or an Aspect you created, gain an additional +"+Math.floor((i+Math.floor(randomEffect2*uses/2)-randomEffect2)/3)+" (Uses: "+uses+")",i*uses,"Any",[1,3,4,0]))
+  stuntEffect.push(aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, they gain an additional +"+Math.floor((i+Math.floor(randomEffect2*uses/2)-randomEffect2)/3)+" (Uses: "+uses+")",i*uses,"Any",[1,3,4,0]))     }
 }
        
    pushStunt(1);      
@@ -1218,5 +1218,4 @@ myWindow.document.write("</HTML>")}
 }
 }
 
-npcChoice();
 
