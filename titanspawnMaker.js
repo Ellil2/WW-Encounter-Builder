@@ -1,9 +1,9 @@
 function npcChoice(){
      
-//playerNumberVar = 3
-//playerLevelVar = 6
-//fightTypeVar = 3
-//fightDifficultyVar = 1
+playerNumberVar = 3
+playerLevelVar = 6
+fightTypeVar = 3
+fightDifficultyVar = 1
 
 fightCompute = (((6+playerLevelVar*3)+fightDifficultyVar*3)*playerNumberVar)
 
@@ -1217,8 +1217,8 @@ myWindow.document.write('<img src=' +  imageLink + '" alt="Image" width=100% hei
 myWindow.document.write("</BODY>")
 myWindow.document.write("</HTML>")}     
 
-alert(randomEffect+ "," + randomEffect3)
 }
 }
+
 
 
