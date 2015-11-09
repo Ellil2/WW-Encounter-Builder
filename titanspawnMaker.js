@@ -1128,7 +1128,7 @@ var stuntEffectOptions = [];
 var stuntCostOptions = [];
 
      
-function stuntChooser (targettedArray){  
+function stuntChooser (targettedArray,targettedSecondArray){  
      
 for(h=0; h < targettedArray.length; h++) {
   if ((randomEffect === targettedArray[h].dangerlevel) && (targettedArray[h].stuntCombat2[0] === combatChoice2Int || targettedArray[h].stuntCombat2[1] === combatChoice2Int || targettedArray[h].stuntCombat2[2] === combatChoice2Int || targettedArray[h].stuntCombat2[3] === combatChoice2Int))
@@ -1145,11 +1145,11 @@ for(j=0; j < stuntCost.length; j++) {
 
 
 }
-stuntChooser(stuntEffect);
+stuntChooser(stuntEffect,stuntEffectOptions);
       
 
 if(randCost.stuntType === randEffect.stuntType  && (randEffect.stuntType !== "Any" || randCost.stuntType !== "Any")){
-stuntChooser(stuntEffect);
+stuntChooser(stuntEffect,stuntEffectOptions);
 }
     
      
@@ -1216,14 +1216,13 @@ for(i=2;i<30;i++){
 var stuntEffectOptions2 = [];
 var stuntCostOptions2 = [];
 
-stuntChooser(stuntEffect2);
-
- randCost2 = stuntCostOptions[Math.floor(Math.random() * stuntCostOptions.length)];
+stuntChooser(stuntEffect2,stuntEffectOptions2);
 
 
 
-if((randCost2.stuntType === randEffect.stuntType && (randEffect.stuntType !== "Any" || randCost2.stuntType !== "Any"))||(randEffect === costSaved)){
-stuntChooser(stuntEffect2);
+
+if((randCost.stuntType === randEffect.stuntType && (randEffect.stuntType !== "Any" || randCost.stuntType !== "Any"))||(randCost === randCost2)){
+stuntChooser(stuntEffect2,stuntEffectOptions2);
      
      
      
