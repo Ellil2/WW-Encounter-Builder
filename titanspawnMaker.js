@@ -1162,10 +1162,10 @@ var rand6 = ("<br><b>\nStunts:</b> <br>\n- " + randCost.description + randEffect
 
 //____________________________________________________________________________________________________
 
-
+console.log(randomEffect2)
 randomEffect2 = Math.floor(Math.random() * 6);
 randomEffect = randomEffect2 + skillAbilityOne + stuntBonus2 ;
-
+console.log(randomEffect2)
 
 
 var stuntEffect2 = [
