@@ -1,8 +1,8 @@
 function npcChoice(){
      
-//playerNumberVar = 3
-//playerLevelVar = 6
-//fightTypeVar = 3
+//playerNumberVar = 2
+//playerLevelVar = 1
+//fightTypeVar = 1
 //fightDifficultyVar = 1
 
 fightCompute = (((6+playerLevelVar*3)+fightDifficultyVar*3)*playerNumberVar)
@@ -1172,7 +1172,7 @@ var stuntCostOptions2 = [];
     
 
 
-   
+alert(h)   
 function stuntChooser2 (){  
     
 
@@ -1183,7 +1183,7 @@ for(h=0; h < stuntEffect.length; h++) {
  randEffect4 = stuntEffectOptions2[Math.round(Math.random() * stuntEffectOptions2.length)];
     
 for(j=0; j < stuntCost.length; j++) {
-  if ((randomEffect2 === Math.round(stuntCost[j].dangerlevel)) && (stuntCost[j].stuntCombat2[0] === combatChoice2Int || stuntCost[j].stuntCombat2[1] === combatChoice2Int || stuntCost[j].stuntCombat2[2] === combatChoice2Int || stuntCost[j].stuntCombat2[3] === combatChoice2Int)){
+  if ((randomEffect4 === Math.round(stuntCost[j].dangerlevel)) && (stuntCost[j].stuntCombat2[0] === combatChoice2Int || stuntCost[j].stuntCombat2[1] === combatChoice2Int || stuntCost[j].stuntCombat2[2] === combatChoice2Int || stuntCost[j].stuntCombat2[3] === combatChoice2Int)){
   stuntCostOptions2.push(stuntCost[j])   
   }}      
      
