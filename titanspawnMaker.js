@@ -1015,6 +1015,7 @@ var randSkills = (skillOptions.sort()[0].name + (2+skillAbilityOne+skillBonus) +
 //____________________________________________________________________________________________________
 // name = new Stunt("description","dangerlevel"),
     //Here only varname, Name, combat1 and combat2 matter, and the Effect part is under "type"
+stuntCalculator(stuntBonus)         
 
    var stuntEffect = [
 
@@ -1103,12 +1104,14 @@ extreme = new Stunt("You take a Medium Physical Consequence, and ",4,"Defense",[
 mentalStress4 =  new Stunt("Take 4 Mental Stress, ",4,"Any",[1,2,3,4]),   
 physicalStress4 =  new Stunt("Take 4 Physical Stress, ",4,"Any",[1,2,3,0]),   
      // Lvl 5
-brutal = new Stunt("You take a Major Physical Consequence, and ",5,"Defense",[1,2,3,0]), 
-mentalStress5 =  new Stunt("Take 6 Mental Stress, ",5,"Any",[1,2,3,4]),   
+mentalStress5 =  new Stunt("Take 5 Mental Stress, ",5,"Any",[1,2,3,4]),   
 recklessAttack5 = new Stunt("Gain -5 to your next Defense Roll, and ",5,"Defense",[1,2,3,0]),              
-physicalStress6 =  new Stunt("Take 6 Physical Stress, ",5,"Any",[1,2,3,0]),   
+physicalStress6 =  new Stunt("Take 5 Physical Stress, ",5,"Any",[1,2,3,0]),   
      // Lvl 6
-   
+brutal = new Stunt("You take a Major Physical Consequence, and ",6,"Defense",[1,2,3,0]), 
+mentalStress5 =  new Stunt("Take 5 Mental Stress, ",6,"Any",[1,2,3,4]),   
+recklessAttack5 = new Stunt("Gain -5 to your next Defense Roll, and ",6,"Defense",[1,2,3,0]),              
+physicalStress6 =  new Stunt("Take 5 Physical Stress, ",6,"Any",[1,2,3,0]),   
       
    ]       
  
@@ -1118,7 +1121,6 @@ function stuntCalculator(bonusType){
  randomEffect = randomEffect2 + skillAbilityOne + bonusType  
 }
    
-stuntCalculator(stuntBonus)         
     
 var stuntEffectOptions = [];
 var stuntCostOptions = [];
@@ -1161,7 +1163,7 @@ var rand6 = ("<br><b>\nStunts:</b> <br>\n- " + randCost.description + randEffect
 
 function stuntCalculator2(){
  randomEffect2 = Math.floor(Math.random() * 6)
- randomEffect = randomEffect4 + skillAbilityOne + stuntBonus2 
+ randomEffect = randomEffect2 + skillAbilityOne + stuntBonus2 
 }
 stuntCalculator(stuntBonus2)      
 
