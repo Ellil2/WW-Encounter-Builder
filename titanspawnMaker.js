@@ -1120,7 +1120,6 @@ physicalStress6 =  new Stunt("Take 5 Physical Stress, ",6,"Any",[1,2,3,0]),
 function stuntCalculator(bonusType){
  randomEffect2 = Math.floor(Math.random() * 6)
  randomEffect = randomEffect2 + skillAbilityOne + bonusType  
- costSaved =  randomEffect2   
 }
    
     
@@ -1212,7 +1211,7 @@ for(i=2;i<30;i++){
   stuntEffect.push(aspectBonus5 = new Stunt("until the end of the Scene, when you invoke a Personal Aspect or an Aspect you created, gain an additional +"+Math.floor(i/3+1)+" (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0]))
   stuntEffect.push(aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, they gain an additional +"+Math.floor(i/3+1)+" (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0]))     }
 }    
-                   
+savedCost = randCost                   
 var stuntEffectOptions2 = [];
 var stuntCostOptions2 = [];
 
@@ -1221,7 +1220,7 @@ stuntChooser(stuntEffect2,stuntEffectOptions2);
 
 
 
-if((randCost.stuntType === randEffect.stuntType && (randEffect.stuntType !== "Any" || randCost.stuntType !== "Any"))||(randCost === randCost2)){
+if((randCost.stuntType === randEffect.stuntType && (randEffect.stuntType !== "Any" || randCost.stuntType !== "Any"))||(randCost === savedCost)){
 stuntChooser(stuntEffect2,stuntEffectOptions2);
      
      
@@ -1229,7 +1228,7 @@ stuntChooser(stuntEffect2,stuntEffectOptions2);
 }
 
           
-var rand7 = ("<br>\n- " + randCost2.description + randEffect.description)     
+var rand7 = ("<br>\n- " + randCost.description + randEffect.description)     
 
 if (typeof imageLink === 'undefined') {     
 var myWindow = window.open("", "_blank","width=400, height=400");
