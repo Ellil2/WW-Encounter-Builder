@@ -1161,15 +1161,12 @@ var rand6 = ("<br><b>\nStunts:</b> <br>\n- " + randCost.description + randEffect
 
 //____________________________________________________________________________________________________
 
-function stuntCalculator2(){
- randomEffect2 === Math.floor(Math.random() * 6)
- randomEffect === randomEffect2 + skillAbilityOne + stuntBonus2 
-}
-stuntCalculator2(stuntBonus2)      
+randomEffect2 = Math.floor(Math.random() * 6);
+randomEffect = randomEffect2 + skillAbilityOne + stuntBonus2 ;
+      
 
 var stuntEffectOptions2 = [];
 var stuntCostOptions2 = [];
-    
 
 
 function stuntChooser2 (){  
@@ -1192,7 +1189,7 @@ for(l=0; l < stuntCost.length; l++) {
 }
 stuntChooser2();
 
-if(randCost2.stuntType === randomEffect2.stuntType && (randomEffect2.stuntType !== "Any" || randCost2.stuntType !== "Any")){
+if(randCost2.stuntType === randEffect4.stuntType && (randEffect4.stuntType !== "Any" || randCost2.stuntType !== "Any")){
 stuntChooser2();
 }
 
