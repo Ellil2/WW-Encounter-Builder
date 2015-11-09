@@ -1051,7 +1051,7 @@ outerPower4 = new Stunt("invoke " + rand + " for free as a Create an Advantage a
 //_____________________
      
    ]  
-function pushStunt(uses){
+function pushStunt2(uses){
 for(i=2;i<30;i++){
   stuntEffect.push(shieldScaler = new Stunt("an ally has +" + i + " on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0]));
   stuntEffect.push(theEliteScaler = new Stunt("gain +" + i + " to a Skill to Create an Advantage for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,3,4,0]));
@@ -1071,11 +1071,12 @@ for(i=2;i<30;i++){
   stuntEffect.push(aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, they gain an additional +"+Math.floor(i/3+1)+" (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0]))     }
 }
        
-   pushStunt(1);      
-   pushStunt(2);      
-   pushStunt(3);      
-         
-         
+   pushStunt2(1);      
+   pushStunt2(2);      
+   pushStunt2(3); 
+
+
+
          
 var stuntCost = [    
        // Lvl 0
@@ -1119,6 +1120,7 @@ physicalStress6 =  new Stunt("Take 5 Physical Stress, ",6,"Any",[1,2,3,0]),
 function stuntCalculator(bonusType){
  randomEffect2 = Math.floor(Math.random() * 6)
  randomEffect = randomEffect2 + skillAbilityOne + bonusType  
+ costSaved =  randomEffect2   
 }
    
     
@@ -1126,11 +1128,11 @@ var stuntEffectOptions = [];
 var stuntCostOptions = [];
 
      
-function stuntChooser (){  
+function stuntChooser (targettedArray){  
      
-for(h=0; h < stuntEffect.length; h++) {
-  if ((randomEffect === stuntEffect[h].dangerlevel) && (stuntEffect[h].stuntCombat2[0] === combatChoice2Int || stuntEffect[h].stuntCombat2[1] === combatChoice2Int || stuntEffect[h].stuntCombat2[2] === combatChoice2Int || stuntEffect[h].stuntCombat2[3] === combatChoice2Int))
-{ stuntEffectOptions.push(stuntEffect[h]) }}
+for(h=0; h < targettedArray.length; h++) {
+  if ((randomEffect === targettedArray[h].dangerlevel) && (targettedArray[h].stuntCombat2[0] === combatChoice2Int || targettedArray[h].stuntCombat2[1] === combatChoice2Int || targettedArray[h].stuntCombat2[2] === combatChoice2Int || targettedArray[h].stuntCombat2[3] === combatChoice2Int))
+{ stuntEffectOptions.push(targettedArray[h]) }}
 
  randEffect = stuntEffectOptions[Math.round(Math.random() * stuntEffectOptions.length)];
     
@@ -1143,11 +1145,11 @@ for(j=0; j < stuntCost.length; j++) {
 
 
 }
-stuntChooser();
+stuntChooser(stuntEffect);
       
 
 if(randCost.stuntType === randEffect.stuntType  && (randEffect.stuntType !== "Any" || randCost.stuntType !== "Any")){
-stuntChooser();
+stuntChooser(stuntEffect);
 }
     
      
@@ -1161,40 +1163,74 @@ var rand6 = ("<br><b>\nStunts:</b> <br>\n- " + randCost.description + randEffect
 
 //____________________________________________________________________________________________________
 
+
 randomEffect2 = Math.floor(Math.random() * 6);
 randomEffect = randomEffect2 + skillAbilityOne + stuntBonus2 ;
-      
 
+
+
+var stuntEffect2 = [
+        // Lvl 2
+energyBlast = new Stunt("use a Legendary Ability for free as an Attack action",2,"Legendary",[2,0,0,0]),
+mysticPower = new Stunt("use a Legendary Ability for free to Create a Personal Advantage",2,"Legendary",[2,4,3,0]),
+innerPower = new Stunt("invoke " + rand + " for free as an Attack action",2,"Personal Aspect",[2,0,0,0]),
+outerPower = new Stunt("invoke " + rand + " for free as a Create an Advantage action",2,"Personal Aspect",[1,3,4,0]),
+mysticConstruct = new Stunt("use a Legendary Ability for free to Create a Situational Advantage",2,"Legendary",[1,2,3,4]),
+affectOther = new Stunt("use a Legendary Ability for free to Create a Character Advantage",2,"Legendary",[1,2,3,4]),
+uniqueNature = new Stunt("invoke " + rand + " for free to Create a Character Advantage",2,"Personal Aspect",[1,2,3,4]),
+allyHelp = new Stunt("give an ally a Free Invocation on an Aspect",2,"Any",[1,4,0,0]),
+fatePointGain = new Stunt("gain a Fate Point",2,"Fate Point",[1,2,3,4]), 
+regeneration = new Stunt("Remove a Minor Consequence from an ally",2,"Defense",[1,0,0,0]),
+regeneration = new Stunt("Remove a Minor Consequence from yourself",2,"Any",[4,0,0,0]),        
+       // Lvl 3
+aspectBonusAlly = new Stunt("when an ally invokes an Aspect you created, gain +3 instead",3,"Any",[1,3,4,0]), 
+massweaken3 = new Stunt("all enemies have -1 on their next Defense roll",3,"Any",[3,2,4,0]), 
+        // Lvl 4
+flight = new Stunt("you have the Aspect: Flight until the end of the Scene",4,"Any",[2,1,0,0]),
+advantageMaker = new Stunt("have +1 to two Skills",4,"Skill",[1,2,3,4]),    
+legendNature = new Stunt("you can use your Legendary Ability for free using non-Legendary Rolls until the end of the Scene",4,"Legendary",[1,3,4,0]),
+energyBlast4 = new Stunt("use a Legendary Ability for free as an Attack action twice",4,"Legendary",[2,0,0,0]),
+mysticPower4 = new Stunt("use a Legendary Ability for free to Create a Personal Advantage twice",4,"Legendary",[1,4,3,0]),
+innerPower4 = new Stunt("invoke \"" + rand + "\" for free as an Attack action twice",4,"Personal Aspect",[2,0,0,0]),
+outerPower4 = new Stunt("invoke " + rand + " for free as a Create an Advantage action twice",4,"Personal Aspect",[1,2,3,4]),]  
+function pushStunt(uses){
+for(i=2;i<30;i++){
+  stuntEffect.push(shieldScaler = new Stunt("an ally has +" + i + " on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0]));
+  stuntEffect.push(theEliteScaler = new Stunt("gain +" + i + " to a Skill to Create an Advantage for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,3,4,0]));
+  stuntEffect.push(theRecklessScaler = new Stunt("gain +"+i+" to a Skill to Attack for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[2,0,0,0]));
+  stuntEffect.push(fogScaler = new Stunt("an enemy has -"+i+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,0,0]));
+  stuntEffect.push(defendScaler = new Stunt("get +"+i+" to your next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Defense",[2,4,0,0]));
+  stuntEffect.push(createAspectScaler = new Stunt("automatically create an Aspect that requires a +"+i+" opposition to remove (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0]));
+  stuntEffect.push(weakenScaler = new Stunt("an enemy has -"+i+" on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[2,1,0,0]));
+  stuntEffect.push(skilledScaler = new Stunt("have +"+Math.floor(i/2+1)+" to a Skill for the rest of the Scene (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,2,3,4]));
+  stuntEffect.push(advantageMaker = new Stunt("have +"+Math.floor(i/4+1)+" to two Skills (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,2,3,4]));
+  stuntEffect.push(massfogScaled = new Stunt("all enemies have -"+Math.floor(i/2+1)+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,4,3,0]))
+  stuntEffect.push(mindfogScaled = new Stunt("an enemy has -"+i+" on their next Create an Advantage Rolls (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0])) 
+  stuntEffect.push(fogScaled = new Stunt("an enemy has -"+i+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,4,3,0]))
+  stuntEffect.push(massmindfogScaled = new Stunt("all enemies have -"+Math.floor(i/2+1)+" on their next Create an Advantage Rolls (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0]))   
+  stuntEffect.push(instagibScaled = new Stunt("automatically deal a "+Math.floor(i*0.8)+"-shift Damage to an enemy (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[2,0,0,0]))
+  stuntEffect.push(aspectBonus5 = new Stunt("until the end of the Scene, when you invoke a Personal Aspect or an Aspect you created, gain an additional +"+Math.floor(i/3+1)+" (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0]))
+  stuntEffect.push(aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, they gain an additional +"+Math.floor(i/3+1)+" (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0]))     }
+}    
+                   
 var stuntEffectOptions2 = [];
 var stuntCostOptions2 = [];
 
+stuntChooser(stuntEffect2);
 
-function stuntChooser2 (){  
-    
+ randCost2 = stuntCostOptions[Math.floor(Math.random() * stuntCostOptions.length)];
 
-for(k=0; k < stuntEffect.length; k++) {
-  if ((randomEffect === stuntEffect[k].dangerlevel) && (stuntEffect[k].stuntCombat2[0] === combatChoice2Int || stuntEffect[k].stuntCombat2[1] === combatChoice2Int || stuntEffect[k].stuntCombat2[2] === combatChoice2Int || stuntEffect[k].stuntCombat2[3] === combatChoice2Int))
-{ stuntEffectOptions2.push(stuntEffect[k]) }}
 
- randEffect4 = stuntEffectOptions2[Math.round(Math.random() * stuntEffectOptions2.length)];
-    
-for(l=0; l < stuntCost.length; l++) {
-  if ((randomEffect2 === Math.round(stuntCost[l].dangerlevel)) && (stuntCost[l].stuntCombat2[0] === combatChoice2Int || stuntCost[l].stuntCombat2[1] === combatChoice2Int || stuntCost[l].stuntCombat2[2] === combatChoice2Int || stuntCost[l].stuntCombat2[3] === combatChoice2Int)){
-  stuntCostOptions2.push(stuntCost[l])   
-  }}      
+
+if((randCost2.stuntType === randEffect.stuntType && (randEffect.stuntType !== "Any" || randCost2.stuntType !== "Any"))||(randEffect === costSaved)){
+stuntChooser(stuntEffect2);
      
      
- randCost2 = stuntCostOptions2[Math.round(Math.random() * stuntCostOptions2.length)];
-
-}
-stuntChooser2();
-
-if(randCost2.stuntType === randEffect4.stuntType && (randEffect4.stuntType !== "Any" || randCost2.stuntType !== "Any")){
-stuntChooser2();
+     
 }
 
           
-var rand7 = ("<br>\n- " + randCost2.description + randEffect4.description)     
+var rand7 = ("<br>\n- " + randCost2.description + randEffect.description)     
 
 if (typeof imageLink === 'undefined') {     
 var myWindow = window.open("", "_blank","width=400, height=400");
