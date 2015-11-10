@@ -4,7 +4,7 @@ var varname = prompt("What is your NPC's variable name ?")
 var typeChoice = prompt("Is your NPC a Titanspawn, or a Mythborn ?")
 
 if (typeChoice === "Titanspawn"){
-originChoice = prompt("Which Titan is your Titanspawn from ? (Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 -  Soku no Kumi \n4 - Aether \n5 -  Amaunet \n6 -  Terra \n7 -  Nun, \n8 - Death ");
+originChoice = prompt("Which Titan is your Titanspawn from ? (Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 -  Soku no Kumi \n4 - Aether \n5 -  Amaunet \n6 -  Terra \n7 -  Nun \n8 - Death ");
   if (originChoice === "1") {
        subOriginChoice = prompt("What Avatar of Muspelheim is your Titanspawn linked to ?  \n11 - Vrtra  \n12 - Surtr \n13 - Prometheus ");  }
   else if (originChoice === "2") {
@@ -48,5 +48,5 @@ else if (typeChoice === "Mythborn") {
      
      
      
-alert(""+ varname +" = new Aspect(\""+  name +"\",\""+ typeChoice +"\",\""+ originChoice +"\",[\""+ subOriginChoice +"\"],[\""+ legendChoice +"\"],\""+ intelligenceChoice +"\",\"behavior\",\"2\"," + imageLink + "\")");
+alert(""+ varname +" = new Aspect(\""+  name +"\",\""+ typeChoice +"\",\""+ originChoice +"\",[\""+ subOriginChoice +"\"],[\""+ legendChoice +"\"],\""+ intelligenceChoice +"\",\"behavior\",\"2\",\"" + imageLink + "\")");
 }
