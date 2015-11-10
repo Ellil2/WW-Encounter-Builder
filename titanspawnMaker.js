@@ -1,7 +1,7 @@
 function npcChoice(){
      
-//playerNumberVar = 2
-//playerLevelVar = 1
+//playerNumberVar = 4
+//playerLevelVar = 6
 //fightTypeVar = 1
 //fightDifficultyVar = 1
 
@@ -231,6 +231,7 @@ var Stunt = function(description,dangerlevel,stuntType,stuntCombat2,usesCheck) {
 
 //____________________________________________________________________________________________________
 
+        //Here, is the link to the image.
 var highConcept = [
     // Titanspawn
  agentVoid = new Aspect("Agent of the Void","Titanspawn","3",["32"],["2"],"2","behavior","2","http://i.imgur.com/DnRaFjz.jpg"), 
@@ -1052,7 +1053,7 @@ outerPower4 = new Stunt("invoke " + rand + " for free as a Create an Advantage a
      
    ]  
 function pushStunt2(uses){
-for(i=2;i<30;i++){
+for(i=2;i<50;i++){
   stuntEffect.push(shieldScaler = new Stunt("an ally has +" + i + " on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0]));
   stuntEffect.push(theEliteScaler = new Stunt("gain +" + i + " to a Skill to Create an Advantage for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,3,4,0]));
   stuntEffect.push(theRecklessScaler = new Stunt("gain +"+i+" to a Skill to Attack for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[2,0,0,0]));
@@ -1252,3 +1253,4 @@ myWindow.document.write("</HTML>")}
 }
 }
 
+npcChoice()
