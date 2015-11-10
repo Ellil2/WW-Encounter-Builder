@@ -1252,5 +1252,3 @@ myWindow.document.write("</HTML>")}
 
 }
 }
-
-npcChoice()
