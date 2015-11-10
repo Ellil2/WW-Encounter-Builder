@@ -1053,7 +1053,7 @@ outerPower4 = new Stunt("invoke " + rand + " for free as a Create an Advantage a
      
    ]  
 function pushStunt2(uses){
-for(i=2;i<50;i++){
+for(i=2;i<200;i++){
   stuntEffect.push(shieldScaler = new Stunt("an ally has +" + i + " on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0]));
   stuntEffect.push(theEliteScaler = new Stunt("gain +" + i + " to a Skill to Create an Advantage for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,3,4,0]));
   stuntEffect.push(theRecklessScaler = new Stunt("gain +"+i+" to a Skill to Attack for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[2,0,0,0]));
