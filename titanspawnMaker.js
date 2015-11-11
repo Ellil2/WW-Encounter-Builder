@@ -39,6 +39,7 @@ if (buffChooser == 6){stuntBonus2 += 1; fightComputeGroup -= 1; enemyNumber += n
 if (fightTypeVar == 1){
 if (playerLevelVar <= 2){legendChoice = "2"}
 else if (playerLevelVar <= 4){legendChoice = "3"}
+//else if ((playerLevelVar <= 6)&&(fightDifficultyVar === 3){legendChoice = "4"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
      
 decision(fightCompute/2,0)
@@ -62,6 +63,7 @@ decision(fightCompute/2,1 )
 else if (fightTypeVar == 3){
 if (playerLevelVar <= 2){legendChoice = "2"}
 else if (playerLevelVar <= 4){legendChoice = "3"}
+//else if ((playerLevelVar <= 6)&&(fightDifficultyVar === 3)){legendChoice = "4"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
      
 decision(fightCompute*0.75,0)
