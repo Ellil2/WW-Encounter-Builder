@@ -1,11 +1,11 @@
 function npcChoice(){
      
-//playerNumberVar = 4
-//playerLevelVar = 6
-//fightTypeVar = 1
+//playerNumberVar = 5
+//playerLevelVar = 2
+//fightTypeVar = 3
 //fightDifficultyVar = 1
 
-fightCompute = (((6+playerLevelVar*3)+fightDifficultyVar*3)*playerNumberVar)
+fightCompute = Math.floor(((6+playerLevelVar*3)+fightDifficultyVar*3)*playerNumberVar*0.75)
 
      function decision(argument,numberOn){ 
 skillBonus = 0
@@ -13,23 +13,26 @@ stuntBonus = 0
 stuntBonus2 = 0
 legendaryBonus = 0
 legendaryBonus2 = 0
+physicalStressBonus = 0
+mentalStressBonus = 0
 enemyNumber = 0
 fightComputeGroup = argument
 
 while(fightComputeGroup > 0){
      
-     if(stuntBonus >= 4+(playerLevelVar+playerNumberVar)/2 || stuntBonus2 >= 4+playerLevelVar+playerNumberVar){buffChooser = Math.floor(Math.random() * 4+1)}
-     else if(legendaryBonus >= 2 || legendaryBonus2 >= 2){buffChooser = Math.floor(Math.random() * 2+1)}
-     else if((stuntBonus >= 4+playerLevelVar)&&(legendaryBonus >= 2 || legendaryBonus2 >= 2)){buffChooser = Math.floor(Math.random() * 2+1)} 
-     else{buffChooser = Math.floor(Math.random() * 6+1)}     
+     if(stuntBonus >= 4+(playerLevelVar+playerNumberVar)/2 || stuntBonus2 >= 4+playerLevelVar+playerNumberVar){buffChooser = Math.floor(Math.random() * 6+1)}
+     else if((stuntBonus >= 4+playerLevelVar)&&(mentalStressBonus >= 5 || physicalStressBonus >= 5)){buffChooser = Math.floor(Math.random() * 4+1)} 
+     else if((stuntBonus >= 4+playerLevelVar)&&(mentalStressBonus >= 5 || physicalStressBonus >= 5)&&(skillBonus >= playerLevelVar+playerNumberVar)){buffChooser = Math.floor(Math.random() * 2+3)} 
+     else{buffChooser = Math.floor(Math.random() * 8+1)}     
      
 if (buffChooser == 1){skillBonus += 1; fightComputeGroup -= 8; enemyNumber += numberOn};
 if (buffChooser == 2){skillBonus += 1; fightComputeGroup -= 8; enemyNumber += numberOn};
 if (buffChooser == 3){legendaryBonus += 1; fightComputeGroup -= 4; enemyNumber += numberOn };
-if (buffChooser == 4){legendaryBonus2 += 1; fightComputeGroup -= 4; enemyNumber += numberOn };     
-if (buffChooser == 5){stuntBonus += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
-if (buffChooser == 6){stuntBonus2 += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
-          
+if (buffChooser == 4){legendaryBonus2 += 1; fightComputeGroup -= 4; enemyNumber += numberOn };      
+if (buffChooser == 5){physicalStressBonus += 1; fightComputeGroup -= 2; enemyNumber += numberOn }; 
+if (buffChooser == 6){mentalStressBonus += 1; fightComputeGroup -= 2; enemyNumber += numberOn }; 
+if (buffChooser == 7){stuntBonus += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
+if (buffChooser == 8){stuntBonus2 += 1; fightComputeGroup -= 1; enemyNumber += numberOn };          
 
 
 }   npcChoiceLoop()}
@@ -39,16 +42,22 @@ if (buffChooser == 6){stuntBonus2 += 1; fightComputeGroup -= 1; enemyNumber += n
 if (fightTypeVar == 1){
 if (playerLevelVar <= 2){legendChoice = "2"}
 else if (playerLevelVar <= 4){legendChoice = "3"}
-//else if ((playerLevelVar <= 6)&&(fightDifficultyVar === 3){legendChoice = "4"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
      
 decision(fightCompute/2,0)
+playerLevelVar >= 4 ? groupOrArmy = Math.floor(Math.random()*2) : groupOrArmy = 0
+if(groupOrArmy === 0){
 if (playerLevelVar <= 2){legendChoice = "1"}
 else if (playerLevelVar <= 4){legendChoice = "2"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
 decision(fightCompute/2-6 ,1)
 }     
-    
+if(groupOrArmy === 1){
+if (playerLevelVar <= 4){legendChoice = "1"}
+else if (playerLevelVar <= 6){legendChoice = "2"}
+decision(fightCompute/2-6 ,3)     
+}   
+}
 //Setting up a Crowd of Mobs
 else if (fightTypeVar == 2){
 if (playerLevelVar <= 2){legendChoice = "1"}
@@ -63,7 +72,6 @@ decision(fightCompute/2,1 )
 else if (fightTypeVar == 3){
 if (playerLevelVar <= 2){legendChoice = "2"}
 else if (playerLevelVar <= 4){legendChoice = "3"}
-//else if ((playerLevelVar <= 6)&&(fightDifficultyVar === 3)){legendChoice = "4"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
      
 decision(fightCompute*0.75,0)
@@ -167,27 +175,11 @@ else {
 
 function intelligenceChoiceFunction() {
  intelligenceChoice = prompt("What is your NPC's Intelligence Level ? \n1 - Feral \n2 - Human");
-    if (intelligenceChoice === "1" || intelligenceChoice === "2") {
-    combat1ChoiceFunction();
-}
-
-else {
-    intelligenceChoiceFunction();
-    return;
-}
-};
+ (intelligenceChoice === "1" || intelligenceChoice === "2") ? combat1ChoiceFunction() : intelligenceChoiceFunction(); return;};
 
 function combat1ChoiceFunction() {
  combatChoice1 = prompt("What is your NPC's combat style' ? \n 1 - Warrior\n 2 - Mage\n 3 - Rogue ");
-    if (combatChoice1 === "1" || combatChoice1 === "2" || combatChoice1 === "3") {
-    combat2ChoiceFunction();
-}
-
-else {
-    combat1ChoiceFunction();
-    return;
-}
-};
+ (combatChoice1 === "1" || combatChoice1 === "2" || combatChoice1 === "3") ? combat2ChoiceFunction() : combat1ChoiceFunction(); return; };
 
 function combat2ChoiceFunction() {
  combatChoice2 = prompt("What is your NPC's combat speciality' ? \n1 - Support \n2 - Fighter \n3 - Controller \n4 - Tank");
@@ -247,7 +239,7 @@ var highConcept = [
  ashGiant = new Aspect("Ash Giant","Titanspawn","1",["11"],["3"],"1","behavior","1","http://i.imgur.com/2chmjUal.jpg"),
  atlanticDevourer = new Aspect("Atlantic Devourer","Titanspawn","7",["74"],["3"],"1","behavior","2","http://i.imgur.com/x8NPgBo.jpg"),
  baddassosaurus = new Aspect("Badassosaurus","Titanspawn","6",["63"],["2"],"1","behavior","2","http://i.imgur.com/OHEyu8l.jpg"),
- barachiel = new Aspect("Barachiel, Wrath of the Heavens","Titanspawn","4",["41"],["4"],"2","behavior","2","http://i.imgur.com/eX9JSFs.jpg"),
+ barachiel = new Aspect("Barachiel, Wrath of the Heavens","Titanspawn","4",["41"],["3"],"2","behavior","2","http://i.imgur.com/eX9JSFs.jpg"),
  batKing = new Aspect("Bat King","Titanspawn","8",["83"],["3"],"2","behavior","3","http://i.imgur.com/J6qYdeBl.jpg"),
  blindConqueror = new Aspect("Blind Conqueror","Titanspawn","3",["31"],["2","3"],"2","behavior","2","http://i.imgur.com/liB2c0I.jpg"),
  blindJuggernaunt = new Aspect("Blind Juggernaunt","Titanspawn","3",["31","33"],["2","3"],"2","behavior","2","http://i.imgur.com/ihZpYkk.jpg"),
@@ -635,8 +627,9 @@ highConceptOptions.push(defaultOriginAspect)
 var randHighConcept = Math.floor(Math.random() * highConceptOptions.length)
 var imageLink = highConceptOptions[randHighConcept].combat2;
    
-         if (enemyNumber <= 0) {var rand = highConceptOptions[randHighConcept].name}
-         else{var rand = highConceptOptions[randHighConcept].name + " (" + enemyNumber + ")"} ;
+var rand = highConceptOptions[randHighConcept].name;
+
+if(enemyNumber > 0){rand += " (" + enemyNumber + ")"};
 
 
 //____________________________________________________________________________________________________
@@ -1085,7 +1078,7 @@ var randSkills = (skillOptions.sort()[0].name + (2+skillAbilityOne+skillBonus) +
 //____________________________________________________________________________________________________
 // name = new Stunt("description","dangerlevel"),
     //Here only varname, Name, combat1 and combat2 matter, and the Effect part is under "type"
-stuntCalculator(stuntBonus)         
+stuntCalculator(stuntBonus,6)         
 
    var stuntEffect = [
 
@@ -1187,8 +1180,8 @@ physicalStress6 =  new Stunt("Take 5 Physical Stress, ",6,"Any",[1,2,3,0]),
    ]       
  
 
-function stuntCalculator(bonusType){
- randomEffect2 = Math.floor(Math.random() * 6)
+function stuntCalculator(bonusType,costLevelSetter){
+ randomEffect2 = Math.floor(Math.random() * costLevelSetter)
  randomEffect = randomEffect2 + skillAbilityOne + bonusType  
 }
    
@@ -1233,7 +1226,7 @@ var rand6 = ("<br><b>\nStunts:</b> <br>\n- " + randCost.description + randEffect
 //____________________________________________________________________________________________________
 
 console.log(randomEffect2)
-randomEffect2 = Math.floor(Math.random() * 6);
+randomEffect2 = Math.floor(Math.random() * 3);
 randomEffect = randomEffect2 + skillAbilityOne + stuntBonus2 ;
 console.log(randomEffect2)
 
@@ -1263,7 +1256,7 @@ mysticPower4 = new Stunt("use a Legendary Ability for free to Create a Personal 
 innerPower4 = new Stunt("invoke \"" + rand + "\" for free as an Attack action twice",4,"Personal Aspect",[2,0,0,0]),
 outerPower4 = new Stunt("invoke " + rand + " for free as a Create an Advantage action twice",4,"Personal Aspect",[1,2,3,4]),]  
 function pushStunt(uses){
-for(i=2;i<30;i++){
+for(i=2;i<60;i++){
   stuntEffect.push(shieldScaler = new Stunt("an ally has +" + i + " on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0]));
   stuntEffect.push(theEliteScaler = new Stunt("gain +" + i + " to a Skill to Create an Advantage for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,3,4,0]));
   stuntEffect.push(theRecklessScaler = new Stunt("gain +"+i+" to a Skill to Attack for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[2,0,0,0]));
@@ -1298,13 +1291,50 @@ stuntChooser(stuntEffect2,stuntEffectOptions2);
 }
 
           
-var rand7 = ("<br>\n- " + randCost.description + randEffect.description)     
+var rand7 = ("<br>\n- " + randCost.description + randEffect.description)    
+
+//____________________________________________________________________________________________________
+
+
+// Stress Maker ------------------------------------------------------------------
+
+
+//____________________________________________________________________________________________________
+
+physicalStress = ["<br>\nPhysical Stress: -1 ","-2 ","-3 ","Mild ","Medium "]
+
+mentalStress = ["<br>\nMental Stress: -1 ","-2 ","","Mild ","Medium "]
+
+function damageMaker(damageType,stringType){
+if(damageType === 0){stringType[0] += ""}
+if(damageType === 1){stringType[1] += "-2 "}
+if(damageType === 2){stringType[0] += "-1 "; stringType[2] += "-3 "}
+if(damageType === 3){stringType[0] += "-1 "; stringType[3] += "Mild "; stringType[2] += "-3 "}
+if(damageType === 4){stringType[0] += "-1 "; stringType[4] += "Medium "; stringType[2] += "-3 "}
+if(damageType === 5){stringType[0] += "-1 "; stringType[3] += "Mild "; stringType[4] += "Medium "; stringType[2] += "-3 "}
+}
+
+damageMaker(physicalStressBonus,physicalStress)
+damageMaker(mentalStressBonus,mentalStress)
+
+randPhysical = physicalStress[0] + physicalStress[1] + physicalStress[2] + physicalStress[3] + physicalStress[4]
+randMental = mentalStress[0] + mentalStress[1] + mentalStress[2] + mentalStress[3] + mentalStress[4]
+
+
+//____________________________________________________________________________________________________
+
+
+// New Window Maker ------------------------------------------------------------------
+
+
+//____________________________________________________________________________________________________
+
 
 if (typeof imageLink === 'undefined') {     
 var myWindow = window.open("", "_blank","width=400, height=400");
 myWindow.document.write("<TITLE>Generated NPC</TITLE>")
 myWindow.document.write("<BODY BGCOLOR='#297ACC'>")
-myWindow.document.write("<p style='font-family:arial'><b>Aspects: </b><br>&nbsp;&nbsp;" + rand  + "<br>&nbsp;&nbsp;" + rand2 + "<br>&nbsp;&nbsp;" + rand3 + "<br>\n&nbsp;&nbsp;"   + rand5 + "<br>\n<b>Skills:</b> " + randSkills + rand6 + rand7 + " </p>");   
+myWindow.document.write("<p style='font-family:arial'><b>Aspects: </b><br>&nbsp;&nbsp;" + rand  + "<br>&nbsp;&nbsp;" + rand2 + "<br>&nbsp;&nbsp;" + rand3 + "<br>\n&nbsp;&nbsp;"   + rand5 + "<br>\n<b>Skills:</b> " + randSkills + rand6 + rand7 + randPhysical + randMental + " </p>");   
 myWindow.document.write("</BODY>")
 myWindow.document.write("</HTML>")}
 
@@ -1312,7 +1342,7 @@ else{
 var myWindow = window.open("", "_blank","width=500, height=800");
 myWindow.document.write("<TITLE>Generated NPC</TITLE>")
 myWindow.document.write("<BODY BGCOLOR='#297ACC'>")
-myWindow.document.write("<p style='font-family:arial'><b>Aspects: </b><br>&nbsp;&nbsp;" + rand  + "<br>&nbsp;&nbsp;" + rand2 + "<br>&nbsp;&nbsp;" + rand3 + "<br>\n&nbsp;&nbsp;"   + rand5 + "<br>\n<b>Skills:</b> " + randSkills + rand6 + rand7 + " </p>");   
+myWindow.document.write("<p style='font-family:arial'><b>Aspects: </b><br>&nbsp;&nbsp;" + rand  + "<br>&nbsp;&nbsp;" + rand2 + "<br>&nbsp;&nbsp;" + rand3 + "<br>\n&nbsp;&nbsp;"   + rand5 + "<br>\n<b>Skills:</b> " + randSkills + rand6 + rand7 + randPhysical + randMental + " </p>");   
 myWindow.document.write('<img src=' +  imageLink + '" alt="Image" width=100% height=auto >')
 //myWindow.document.write('<img src="http://i.imgur.com/uuMetIe.jpg" alt="Image"width=100% height=60% >')
      
@@ -1322,3 +1352,4 @@ myWindow.document.write("</HTML>")}
 }
 }
 
+npcChoice()
