@@ -1,8 +1,8 @@
 function npcChoice(){
      
-//playerNumberVar = 5
-//playerLevelVar = 4
-//fightTypeVar = 3
+//playerNumberVar = 4
+//playerLevelVar = 2
+//fightTypeVar = 2
 //fightDifficultyVar = 1
 
 fightCompute = Math.floor(((6+playerLevelVar*3)+fightDifficultyVar*3)*playerNumberVar*0.75)
@@ -893,159 +893,131 @@ else if (legendChoice === "1") {
 }
 
 
-var abilities = [ 
 
-     
-     //_______________________________________________________________________________
-     //Titanspawn
-     //________________________________________________________________________________
-    //Light
-sunWarden = new Aspect("Sun Warden","Titanspawn","4","42","Invokation: Light - Sun (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","2"),
-sunPriest = new Aspect("Sun Priest","Titanspawn","4","41","Invokation: Light - Sun (" + abilityOne + ")","Heku - Riot (" + abilityTwo + ")","behavior","2","3"),
-crowdDazzler = new Aspect("Crowd Dazzler","Titanspawn","4","41","Heku - Riot (" + abilityOne + ")","Invokation: Light - Illumination (" + abilityTwo + ")","behavior","2","3"),
-lightShepard = new Aspect("Light Shepard","Titanspawn","4","41","Heku - Soothe (" + abilityOne + ")","Invokation: Light - Blind (" + abilityTwo + ")","behavior","2","3"),
-desertWarden = new Aspect("Desert Warden","Titanspawn","4","42","Invokation: Light - Sand (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","3"),
-sunRay = new Aspect("Rays of the Sun","Titanspawn","4","41","Invokation: Light - Energy (" + abilityOne + ")","Epic Dexterity (" + abilityTwo + ")","behavior","3","2"),
-    // Night
-distantStar = new Aspect("Distant Star","Titanspawn","2","21","Invokation: Night - Veil(" + abilityOne + ")","Epic Dexterity(" + abilityTwo + ")","behavior","3","1"),
-veilMaker = new Aspect("Veil Maker","Titanspawn","2","21","Invokation: Night - Obscurity  (" + abilityOne + ")","Illusion (" + abilityTwo + ")","behavior","2","3"),
-fearMongerer = new Aspect("Fear Mongerer","Titanspawn","2","22","Invokation: Night - Fear (" + abilityOne + ")","Epic Presence (" + abilityTwo + ")","behavior","2","3"),
-nightProwler = new Aspect("Night Prowler","Titanspawn","2","22","Epic Strength (" + abilityOne + ")","Invokation: Night - Obscurity (" + abilityTwo + ")","behavior","3","2"),
-fenrisCaller = new Aspect("Fenris Wildcaller","Titanspawn","2","22","Zoothropy: Wolf (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","2","2"),
-nightMaker = new Aspect("Night Maker","Titanspawn","2","23","Invokation: Night - Darkness (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","2","3"),
-apophisAnnihilator = new Aspect("Apophis Annihilator","Titanspawn","2","23","Zoothropy: Snake (" + abilityOne + ")","Invokation: Night - Fear (" + abilityTwo + ")","behavior","1","2"),
-    // Earth
-earthcaller = new Aspect("Earthcaller","Titanspawn","6","61","Invokation: Earth - Summoning(" + abilityOne + ")","Invokation: Earth - Nature(" + abilityTwo + ")","behavior","2","1"),
-jungleShaman = new Aspect("Jungle Shaman","Titanspawn","6","61","Invokation: Earth - Nature(" + abilityOne + ")","Invokation: Death - Shamanism(" + abilityTwo + ")","behavior","2","3"),
-groundShaker = new Aspect("Ground Shaker","Titanspawn","6","64","Invokation: Earth - Stone(" + abilityOne + ")","Epic Strength(" + abilityTwo + ")","behavior","2","3"),
-blightsoilDruid = new Aspect("Blightsoil Druid","Titanspawn","6","65","Druidism: Green(" + abilityOne + ")","Invokation: Earth - Decay(" + abilityTwo + ")","behavior","2","1"),
-earthblighter = new Aspect("Earthblighter","Titanspawn","6","65","Invokation: Earth - Decay(" + abilityOne + ")","Epic Physique(" + abilityTwo + ")","behavior","1","2"),
-geolord = new Aspect("Geolord","Titanspawn","6","62","Invokation: Earth - Land(" + abilityOne + ")","Epic Strength(" + abilityTwo + ")","behavior","1","2"),
-earthBreaker = new Aspect("Earth Breaker","Titanspawn","6","62","Invokation: Earth - Stone (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","2"),
-earthWarden = new Aspect("Earth Warden","Titanspawn","6","61","Invokation: Earth - Nature(" + abilityOne + ")","Epic Physique(" + abilityTwo + ")","behavior","1","1"),
-   // Water
-keeperDrowned = new Aspect("Keeper of the Drowned","Titanspawn","7","74","Invokation: Death - Necromancy(" + abilityOne + ")","Invokation: Water - Terror(" + abilityTwo + ")","behavior","2","2"),
-waterCrafter = new Aspect("Water Crafter","Titanspawn","7","72","Invokation: Water - Life(" + abilityOne + ")","Hematurgy: Itztli(" + abilityTwo + ")","behavior","2","1"),
-seaSinger = new Aspect("Sea Singer"," + typeChoice + ","7","71","Invokation: Water - Sea(" + abilityOne + ")","Epic Appearance - Hypnosis(" + abilityTwo + ")","behavior","2","3"),  
-     //Death
-ghostWhisperer = new Aspect("Ghost Whisperer","Titanspawn","8","81","Invokation: Death - Shamanism(" + abilityOne + ")","Epic Will(" + abilityTwo + ")","behavior","2","1"),
-lordDead = new Aspect("Lord of the Dead","Titanspawn","8","82","Invokation: Death - Necromancy(" + abilityOne + ")","Epic Physique: Strength(" + abilityTwo + ")","behavior","1","1"),
-necromancer = new Aspect("Necromancer","Titanspawn","8","81","Invokation: Death - Necromancy(" + abilityOne + ")","Voodoo - Mind Control(" + abilityTwo + ")","behavior","2","3"),
-plagueBringer = new Aspect("Plaguebringer","Titanspawn","8","82","Invokation: Death - Reaper(" + abilityOne + ")","Invokation: Earth - Decay(" + abilityTwo + ")","behavior","2","3"),
-  //Light
-ancientOracle = new Aspect("Ancient Oracle","Titanspawn","4","41","Wyrdseeing: Prophecy(" + abilityOne + ")","Invokation: Light - Illumination(" + abilityTwo + ")","behavior","2","1"),
-sunChaser = new Aspect("Sun Chaser","Titanspawn","4","42","Epic Speed(" + abilityOne + ")","Invokation: Light - Sun(" + abilityTwo + ")","behavior","3","2"),
-gifterBlindness = new Aspect("Gifter of Blindness","Titanspawn","4","41","Invokation: Light - Brightness(" + abilityOne + ")","Epic Speed(" + abilityTwo + ")","behavior","3","3"),
-dawnbreakAssassin = new Aspect("Dawnbreak Assassin","Titanspawn","4","42","Invokation: Light - Brightness(" + abilityOne + ")","Epic Speed(" + abilityTwo + ")","behavior","3","2"),
-discipleDeceit = new Aspect("Disciple of Deceit","Titanspawn","4","41","Epic Appearance: Illusion(" + abilityOne + ")","Invokation: Light - Brightness(" + abilityTwo + ")","behavior","3","1"),
-// Darkness
-voidMage = new Aspect("Voidmage","Titanspawn","3","32","Invokation: Darkness - Void(" + abilityOne + ")","Wyrdseeing: Mystery(" + abilityTwo + ")","behavior","2","3"),
-// Wind
-stormBinder = new Aspect("Stormbinder","Titanspawn","5","51","Invokation: Sky - Storm(" + abilityOne + ")","Voodoo: Mind Control(" + abilityTwo + ")","behavior","2","3"),
-// Fire
-forgeMaster = new Aspect("Forgemaster","Titanspawn","1",["13","12"],"Invokation: Fire - Creation(" + abilityOne + ")","Invokation: Earth - Shaping(" + abilityTwo + ")","behavior","1","1"),
-flameWaker = new Aspect("Flame Waker","Titanspawn","1",["12","11"],"Invokation: Fire - Summoning(" + abilityOne + ")","Epic Will(" + abilityTwo + ")","behavior","2","1"),
-landScorcher = new Aspect("Land Scorcher","Titanspawn","1",["11","12"],"Invokation: Fire - Destruction(" + abilityOne + ")","Epic Strength(" + abilityTwo + ")","behavior","1","2"),
-
-     //________________________________________________________________________________
-     //Mythborn
-     //________________________________________________________________________________
-
-fireDancer = new Aspect("Fire Dancer","Mythborn","1","15","Invokation: Fire - Destruction(" + abilityOne + ")","Epic Physique: Speed(" + abilityTwo + ")","behavior","1","2"),     
-monsoonMaker = new Aspect("Monsoon Maker"," + Mythborn + ","1","11","Fey Sorcerer: Summer(" + abilityOne + ")","Invokation: Sky - Storm(" + abilityTwo + ")","behavior","2","3"),     
-cruelTrickster = new Aspect("Cruel Trickster","Mythborn","2",["21","22","23","24"],"Epic Appearance: Glamour(" + abilityOne + ")","Invokation: Frost(" + abilityTwo + ")","behavior","2","3"),
-windDancer = new Aspect("Wind Dancer","Mythborn","2",["24","22","21"],"Invokation: Sky - Wind(" + abilityOne + ")","Epic Speed(" + abilityTwo + ")","behavior","3","2"),
-banisher = new Aspect("Banisher","Mythborn","4","44","Invokation: Death - Void(" + abilityOne + ")","Epic Will(" + abilityTwo + ")","behavior","2","3"),
-ancientDruid = new Aspect("Ancient Druid","Mythborn","4",["44"],"Druidism: Green Druid(" + abilityOne + ")","Invokation: Death - Shamanism(" + abilityTwo + ")","behavior","2","3"),
-sunWarden = new Aspect("Sun Warden","Mythborn","1","12","Invokation: Light - Sun (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","2"),
-sunPriest = new Aspect("Sun Priest","Mythborn","1","12","Invokation: Light - Sun (" + abilityOne + ")","Heku - Riot (" + abilityTwo + ")","behavior","2","3"),
-crowdDazzler = new Aspect("Crowd Dazzler","Mythborn","1","11","Heku - Riot (" + abilityOne + ")","Invokation: Light - Illumination (" + abilityTwo + ")","behavior","2","3"),
-lightShepard = new Aspect("Light Shepard","Mythborn","1","13","Heku - Soothe (" + abilityOne + ")","Invokation: Light - Blind (" + abilityTwo + ")","behavior","2","3"),
-desertWarden = new Aspect("Desert Warden","Mythborn","3",["31","33"],"Invokation: Light - Sand (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","3"),
-sunRay = new Aspect("Rays of the Sun","Mythborn","3",["31","32","33"],"Invokation: Light - Energy (" + abilityOne + ")","Epic Dexterity (" + abilityTwo + ")","behavior","3","2"),
-distantStar = new Aspect("Distant Star","Mythborn","2",["21","24"],"Invokation: Night - Veil(" + abilityOne + ")","Epic Dexterity(" + abilityTwo + ")","behavior","3","1"),
-veilMaker = new Aspect("Veil Maker","Mythborn","2",["21"],"Invokation: Night - Obscurity  (" + abilityOne + ")","Illusion (" + abilityTwo + ")","behavior","2","3"),
-fearMongerer = new Aspect("Fear Mongerer","Mythborn","4",["44"],"Invokation: Night - Fear (" + abilityOne + ")","Ability i (" + abilityTwo + ")","behavior","2","3"),
-nightProwler = new Aspect("Night Prowler","Mythborn","4",["43"],"Epic Strength (" + abilityOne + ")","Invokation: Night - Obscurity (" + abilityTwo + ")","behavior","3","2"),
-fenrisCaller = new Aspect("Fenris Wildcaller","Mythborn","4",["43"],"Zoothropy: Wolf (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","2","2"),
-nightMaker = new Aspect("Night Maker","Mythborn","4",["44","43"],"Invokation: Night - Darkness (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","2","3"),
-earthcaller = new Aspect("Earthcaller","Mythborn","4",["41","44","42"],"Invokation: Earth - Summoning(" + abilityOne + ")","Invokation: Earth - Nature(" + abilityTwo + ")","behavior","2","1"),
-jungleShaman = new Aspect("Jungle Shaman","Mythborn","4",["41","42","44"],"Invokation: Earth - Nature(" + abilityOne + ")","Invokation: Death - Shamanism(" + abilityTwo + ")","behavior","2","3"),
-groundShaker = new Aspect("Ground Shaker","Mythborn","3",["32","31","33"],"Invokation: Earth - Stone(" + abilityOne + ")","Epic Strength(" + abilityTwo + ")","behavior","2","3"),
-blightsoilDruid = new Aspect("Blightsoil Druid","Mythborn","4",["44","41","43","42"],"Druidism: Green(" + abilityOne + ")","Invokation: Earth - Decay(" + abilityTwo + ")","behavior","2","1"),
-earthblighter = new Aspect("Earthblighter","Mythborn","4",["44","41","43","42"],"Invokation: Earth - Decay(" + abilityOne + ")","Epic Physique(" + abilityTwo + ")","behavior","1","2"),
-geolord = new Aspect("Geolord","Mythborn","4",["44","41","43","42"],"Invokation: Earth - Land(" + abilityOne + ")","Epic Strength(" + abilityTwo + ")","behavior","1","2"),
-earthBreaker = new Aspect("Earth Breaker","Mythborn","4",["44","41","43"],"Invokation: Earth - Stone (" + abilityOne + ")","Epic Physique (" + abilityTwo + ")","behavior","1","2"),
-earthWarden = new Aspect("Earth Warden","Mythborn","4",["44","41","43","42"],"Invokation: Earth - Nature(" + abilityOne + ")","Epic Physique(" + abilityTwo + ")","behavior","1","1"),
-druidClaw = new Aspect("Druid of the Claw","Mythborn","4",["44","43"],"Zoothropy: Bear(" + abilityOne + ")","Epic Physique(" + abilityTwo + ")","behavior","1","1"),
-keeperDrowned = new Aspect("Keeper of the Drowned","Mythborn","6",["61"],"Invokation: Death - Necromancy(" + abilityOne + ")","Invokation: Water - Terror(" + abilityTwo + ")","behavior","2","2"),
-waterCrafter = new Aspect("Water Crafter","Mythborn","6",["62","61"],"Invokation: Water - Life(" + abilityOne + ")","Hematurgy: Itztli(" + abilityTwo + ")","behavior","2","1"),
-seaSinger = new Aspect("Sea Singer","Mythborn","6",["61","62"],"Invokation: Water - Sea(" + abilityOne + ")","Epic Appearance - Hypnosis(" + abilityTwo + ")","behavior","2","3"),  
-necromancer = new Aspect("Necromancer","Mythborn","4",["44"],"Invokation: Death - Necromancy(" + abilityOne + ")","Voodoo - Mind Control(" + abilityTwo + ")","behavior","2","3"),
-plagueBringer = new Aspect("Plaguebringer","Mythborn","4",["44","43"],"Invokation: Death - Reaper(" + abilityOne + ")","Invokation: Earth - Decay(" + abilityTwo + ")","behavior","2","3"),
-ancientOracle = new Aspect("Ancient Oracle","Mythborn","3",["31","32","33","34","35"],"Wyrdseeing: Prophecy(" + abilityOne + ")","Invokation: Light - Illumination(" + abilityTwo + ")","behavior","2","1"),
-sunChaser = new Aspect("Sun Chaser","Mythborn","1",["42"],"Epic Speed(" + abilityOne + ")","Invokation: Light - Sun(" + abilityTwo + ")","behavior","3","2"),
-dawnbreakAssassin = new Aspect("Dawnbreak Assassin","Mythborn","2",["22","21"],"Invokation: Light - Brightness(" + abilityOne + ")","Epic Speed(" + abilityTwo + ")","behavior","3","2"),
-discipleDeceit = new Aspect("Disciple of Deceit","Mythborn","2",["21","24","25","22"],"Epic Appearance: Illusion(" + abilityOne + ")","Invokation: Light - Brightness(" + abilityTwo + ")","behavior","3","1"),
-stormBinder = new Aspect("Stormbinder","Mythborn","3",["31","32","33","34","35"],"Invokation: Sky - Storm(" + abilityOne + ")","Voodoo: Mind Control(" + abilityTwo + ")","behavior","2","3"),
-]     
-     
-     
-     
-     // name = new Aspect("name","type","origin","subOrigin","Ability j (" + abilityOne + ")","Ability i (" + abilityTwo + ")","behavior","combat1","combat2"),
-
-var abilitiesOptions = [];
-
-for(g=0; g < abilities.length; g++) {
-  if (typeChoice === abilities[g].type &&
-    (originChoice === abilities[i].origin[0] || originChoice === abilities[i].origin[1] || originChoice === abilities[i].origin[2])  &&
-    (subOriginChoice === abilities[i].subOrigin[0] || subOriginChoice === abilities[i].subOrigin[1] || subOriginChoice === abilities[i].subOrigin[2])  &&
-      combatChoice1 === abilities[g].combat1 && 
-      combatChoice2 === abilities[g].combat2) {
-      if (legendChoice === "1") {
-  abilitiesOptions.push(abilities[g].name + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;"+ abilities[g].legend) 
-      }
-      else {
-  abilitiesOptions.push(abilities[g].name + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;" + abilities[g].legend + " <br> &nbsp;&nbsp; " + abilities[g].intelligence) 
-      }
-  //Legend here is the first Legendary Ability, Intelligence is the second Legendary Ability
-  }
+var LegendaryAbility = function(name,npcOptions,combat1Options,combat2Options){
+    this.name = name
+    this.npcOptions = npcOptions
+    this.combat1Options = combat1Options
+    this.combat2Options = combat2Options
 }
+rightOriginArray = []; rightOriginCombat1Array = []; rightOriginCombatAllArray = []                    
+fullNameArray = []; name1Array = []; name2Array = []
 
-if (typeof abilitiesOptions[0] === 'undefined') {
-for(g=0; g < abilities.length; g++) {
-  if (typeChoice === abilities[g].type &&
-      originChoice === abilities[g].origin  &&
-    (subOriginChoice === abilities[i].subOrigin[0] || subOriginChoice === abilities[i].subOrigin[1] || subOriginChoice === abilities[i].subOrigin[2])  &&
-      combatChoice1 === abilities[g].combat1) {
-      if (legendChoice === "1") {
-  abilitiesOptions.push(abilities[g].name + "<br><b>Legendary Abilities:</b> <br>&nbsp;&nbsp;"+ abilities[g].legend) 
-      }
-      else {
-  abilitiesOptions.push(abilities[g].name + "<br><b>Legendary Abilities:</b> <br>&nbsp;&nbsp;"+ abilities[g].legend + " <br>  &nbsp;&nbsp;" + abilities[g].intelligence) 
-      }
-  //Legend here is the first Legendary Ability, Intelligence is the second Legendary Ability
-  }
-}
-}
+var abilities2 = [
+// Wyrdseeing
+wyrdseeingProphecy = new LegendaryAbility(["Wyrdseeing: Prophecy","Prophetic","Prophet"],[["Titanspawn","1","13"],["Titanspawn","2","24"],["Titanspawn","2","21"],["Titanspawn","3","99"],["Titanspawn","4","99"],["Titanspawn","5","53"],["Titanspawn","6","62"],["Titanspawn","6","64"],["Titanspawn","6","61"],["Titanspawn","6","65"],["Titanspawn","7","71"],["Titanspawn","7","72"],["Titanspawn","8","99"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","42"],["Mythborn","4","43"],["Mythborn","4","44"],["Mythborn","5","99"],["Mythborn","6","99"]],["1","2","3"],[,"1","3","2"]),
 
-if (typeof abilitiesOptions[0] === 'undefined') {
-for(g=0; g < abilities.length; g++) {
-  if (typeChoice === abilities[g].type &&
-      originChoice === abilities[g].origin) {
-      if (legendChoice === "1") {
-  abilitiesOptions.push(abilities[g].name + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;" + abilities[g].legend) 
-      }
-      else {
-  abilitiesOptions.push(abilities[g].name + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;" + abilities[g].legend + " <br> &nbsp;&nbsp;" + abilities[g].intelligence) 
-      }
-  //Legend here is the first Legendary Ability, Intelligence is the second Legendary Ability
-  }
+// Druidism
+druidismRunes = new LegendaryAbility(["Druidism: Runes","Runic","Runemaster"],[["Titanspawn","3","33"],["Titanspawn","4","42"],["Titanspawn","6","99"],["Titanspawn","7","73"],["Mythborn","1","12"],["Mythborn","1","13"],["Mythborn","2","22"],["Mythborn","2","23"],["Mythborn","3","99"],["Mythborn","4","99"],["Mythborn","5","52"],["Mythborn","5","54"]],["1","2"],[,"1","2","3","4"]),
+druidismGreen = new LegendaryAbility(["Druidism: Green Druid","Nature-Loving","Druid"],[["Titanspawn","6","61"],["Titanspawn","6","62"],["Titanspawn","6","64"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","4","99"],["Mythborn","3","99"],["Mythborn","5","54"]],["2","1"],[,"1","2","3"]),
+druidismMythcalling = new LegendaryAbility(["Druidism: Mythcalling","Mythcalling","Mythcaller"],[["Titanspawn","6","61"],["Titanspawn","4","99"],["Titanspawn","2","24"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","99"],["Mythborn","5","99"],["Mythborn","6","99"]],["2","1"],[,"1","2","3","4"]),
+druidismTechnodruid = new LegendaryAbility(["Druidism: Technodruid","Cyborg","Technodruid"],[["Titanspawn","6","99"],["Mythborn","4","99"],["Mythborn","2","21"],["Mythborn","2","22"],["Mythborn","2","23"],["Mythborn","1","11"],["Mythborn","1","12"],["Mythborn","1","13"],["Mythborn","3","99"]],["2","3"],["1","3","2","4"]),             
+druidismFey = new LegendaryAbility(["Druidism - Fey Sorcery","Mischievous","Sorcerer"],[["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","41"],["Mythborn","4","42"],["Mythborn","5","53"]],["2","3"],[,"1","2","3"]),
+
+
+// Invokation
+fireCreation = new LegendaryAbility(["Invokation: Fire - Creation","Foundry","Blacksmith"],[["Titanspawn","1","99"],["Titanspawn","6","63"],["Mythborn","1","13"],["Mythborn","2","23"],["Mythborn","1","12"],["Mythborn","3","99"],["Mythborn","5","51"],["Mythborn","5","52"],["Mythborn","5","54"]],["1","2","3"],[,"1","2","3","4"]),
+fireDestruction = new LegendaryAbility(["Invokation: Fire - Destruction","Destructive","Pyromancer"],[["Titanspawn","1","99"],["Mythborn","1","99"],["Mythborn","3","99"],["Mythborn","5","99"]],["1","2"],[,"2","3"]),
+fireDrought = new LegendaryAbility(["Invokation: Fire - Drought","Desert","Scorcher"],[["Titanspawn","1","11"],["Titanspawn","1","12"],["Titanspawn","5","52"],["Mythborn","1","99"],["Mythborn","3","99"],["Mythborn","5","99"]],["1","2"],[,"2","3"]),
+fireLava = new LegendaryAbility(["Invokation: Fire - Lava","Magma","Earthmelter"],[["Titanspawn","1","99"],["Titanspawn","6","62"],["Titanspawn","6","63"],["Titanspawn","6","64"],["Mythborn","1","12"],["Mythborn","1","13"],["Mythborn","3","99"],["Mythborn","5","99"]],["1","2"],[,"1","2","3","4"]),
+fireSummoning = new LegendaryAbility(["Invokation: Fire - Summoning","Flamecalling","Flamebringer"],[["Titanspawn","1","99"],["Mythborn","1","99"],["Mythborn","3","99"],["Mythborn","5","99"]],["1","2"],[,"1","2","3","4"]),
+nightVeil = new LegendaryAbility(["Invokation: Night - Veil","Veiling","Veilmaker"],[["Titanspawn","2","99"],["Titanspawn","3","99"],["Titanspawn","8","81"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","99"]],["2","3"],[,"1","3","4"]),
+nightFear = new LegendaryAbility(["Invokation: Night - Fear","Horrifying","Fearmonger"],[["Titanspawn","2","21"],["Titanspawn","2","22"],["Titanspawn","2","23"],["Titanspawn","3","31"],["Mythborn","2","21"],["Mythborn","2","23"],["Mythborn","2","24"],["Mythborn","2","25"],["Mythborn","3","32"],["Mythborn","4","99"]],["2","3","1"],[,"1","2","3","4"]),
+nightMoon = new LegendaryAbility(["Invokation: Night - Moonlight","Moonlit","Beholder"],[["Titanspawn","2","24"],["Titanspawn","2","21"],["Titanspawn","4","42"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","99"]],["2","3"],[,"1","2"]),
+darknessSenses = new LegendaryAbility(["Invokation: Darkness - Senses","Blinding","Visionbreaker"],[["Titanspawn","3","99"],["Titanspawn","2","22"],["Titanspawn","7","73"],["Titanspawn","8","99"],["Mythborn","2","99"],["Mythborn","4","99"],["Mythborn","5","51"],["Mythborn","5","52"]],["2","3"],[,"1","3","4"]),
+darknessVoid = new LegendaryAbility(["Invokation: Darkness - Void","Voidwalking","Voidwalker"],[["Titanspawn","2","22"],["Titanspawn","2","23"],["Titanspawn","3","32"],["Titanspawn","3","31"],["Titanspawn","8","99"],["Mythborn","2","21"],["Mythborn","2","22"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","4","42"],["Mythborn","5","51"],["Mythborn","5","52"]],["1","2","3"],[,"2","3"]),
+darknessUnderground = new LegendaryAbility(["Invokation: Darkness - Underground","Underground","Cavern Dweller"],[["Titanspawn","3","99"],["Titanspawn","6","65"],["Titanspawn","6","64"],["Titanspawn","8","99"],["Titanspawn","7","73"],["Titanspawn","7","74"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","43"],["Mythborn","4","44"],["Mythborn","4","42"],["Mythborn","5","51"],["Mythborn","5","52"],["Mythborn","5","54"]],["2","3"],[,"3","4"]),
+lightIllumination = new LegendaryAbility(["Invokation: Light - Illumination","Illuminated","Genius"],[["Titanspawn","4","99"],["Titanspawn","1","13"],["Titanspawn","6","63"],["Mythborn","1","12"],["Mythborn","2","22"],["Mythborn","3","99"],["Mythborn","4","42"],["Mythborn","1","13"],["Mythborn","2","23"],["Mythborn","5","99"]],["2","3"],[,"1","2","3"]),
+lightGlory = new LegendaryAbility(["Invokation: Sun - Glory","Glorious","Lightbringer"],[["Titanspawn","4","99"],["Mythborn","1","12"],["Mythborn","1","14"],["Mythborn","3","99"],["Mythborn","5","99"]],["1","2"],[,"1","2","3","4"]),
+lightSun = new LegendaryAbility(["Invokation: Light - Sun","Sunlit","Sunwalker"],[["Titanspawn","4","99"],["Mythborn","1","99"],["Mythborn","3","99"],["Mythborn","5","51"],["Mythborn","5","52"]],["1","2"],[,"2","3","4"]),
+lightBrightness = new LegendaryAbility(["Invokation: Light - Brightness","Bright","Priest"],[["Titanspawn","4","99"],["Titanspawn","2","24"],["Mythborn","1","99"],["Mythborn","3","99"],["Mythborn","5","99"]],["2","1"],[,"2","3","4"]),
+skyTempest = new LegendaryAbility(["Invokation: Sky - Tempest","Tempest","Skybreaker"],[["Titanspawn","4","41"],["Titanspawn","5","51"],["Titanspawn","5","52"],["Mythborn","1","11"],["Mythborn","1","14"],["Mythborn","2","21"],["Mythborn","2","24"],["Mythborn","3","99"],["Mythborn","5","52"]],["1","2"],[,"2","3","4"]),
+skyDestruction = new LegendaryAbility(["Invokation: Sky - Destruction","Stormborn","Skylord"],[["Titanspawn","5","51"],["Titanspawn","5","52"],["Titanspawn","1","12"],["Mythborn","3","99"],["Mythborn","5","52"]],["1","2"],[,"2","3","4"]),
+skyCalm = new LegendaryAbility(["Invokation: Sky - Calm","Calm","Peacemaker"],[["Titanspawn","4","42"],["Titanspawn","5","53"],["Mythborn","1","99"],["Mythborn","3","99"],["Mythborn","5","54"],["Mythborn","5","53"]],["2","3"],[,"1","3","4"]),
+skyLightning = new LegendaryAbility(["Invokation: Sky - Lightning","Lightning","Thunderer"],[["Titanspawn","1","12"],["Titanspawn","2","24"],["Titanspawn","4","99"],["Titanspawn","5","99"],["Mythborn","1","12"],["Mythborn","2","22"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","99"]],["1","2"],[,"2","3","4"]),
+earthAbundance = new LegendaryAbility(["Invokation: Earth - Abundance","Metalcrafting","Engineer"],[["Titanspawn","1","13"],["Titanspawn","6","99"],["Mythborn","1","99"],["Mythborn","2","21"],["Mythborn","2","22"],["Mythborn","2","23"],["Mythborn","3","99"],["Mythborn","4","42"],["Mythborn","4","43"],["Mythborn","4","44"],["Mythborn","5","51"],["Mythborn","5","54"]],["1","2"],[,"1","2","3","4"]),
+earthCreation = new LegendaryAbility(["Invokation: Earth - Creation","Earthcrafting","Broodlord"],[["Titanspawn","5","53"],["Titanspawn","6","99"],["Titanspawn","7","72"],["Mythborn","1","99"],["Mythborn","2","25"],["Mythborn","2","24"],["Mythborn","3","99"],["Mythborn","4","99"],["Mythborn","5","52"],["Mythborn","5","53"],["Mythborn","5","54"],["Mythborn","6","99"]],["2","1"],[,"1","2","3","4"]),
+earthFertility = new LegendaryAbility(["Invokation: Earth - Fertility","Lustful","Childbearer"],[["Titanspawn","2","21"],["Titanspawn","6","61"],["Titanspawn","6","62"],["Titanspawn","7","72"],["Mythborn","1","99"],["Mythborn","2","25"],["Mythborn","4","41"],["Mythborn","4","44"],["Mythborn","5","52"]],["2","1"],[,"1","4","3"]),
+earthNature = new LegendaryAbility(["Invokation: Earth - Nature","Forest","Jungledweller"],[["Titanspawn","6","99"],["Mythborn","1","99"],["Mythborn","2","23"],["Mythborn","2","24"],["Mythborn","2","25"],["Mythborn","3","99"],["Mythborn","4","99"],["Mythborn","5","53"],["Mythborn","5","54"]],["2","1"],[,"1","2","3","4"]),
+earthDecay = new LegendaryAbility(["Invokation: Earth - Decay","Plague","Blighter"],[["Titanspawn","1","11"],["Titanspawn","3","31"],["Titanspawn","3","33"],["Titanspawn","3","32"],["Titanspawn","6","61"],["Titanspawn","6","62"],["Titanspawn","6","65"],["Titanspawn","7","74"],["Titanspawn","8","99"],["Mythborn","1","11"],["Mythborn","1","14"],["Mythborn","1","15"],["Mythborn","2","21"],["Mythborn","2","22"],["Mythborn","2","99"],["Mythborn","3","32"],["Mythborn","3","34"],["Mythborn","3","35"],["Mythborn","4","99"],["Mythborn","5","54"],["Mythborn","5","53"],["Mythborn","5","52"],["Mythborn","5","51"]],["1","2"],[,"2","3","4"]),
+earthStone = new LegendaryAbility(["Invokation: Earth - Stone","Avalanche","Earthbreaker"],[["Titanspawn","6","99"],["Mythborn","1","12"],["Mythborn","1","13"],["Mythborn","2","22"],["Titanspawn","3","33"],["Mythborn","2","23"],["Mythborn","3","99"],["Mythborn","4","42"],["Mythborn","5","99"]],["1","2"],[,"1","2","3","4"]),
+earthLand = new LegendaryAbility(["Invokation: Earth - Land","Travelling","Wanderer"],[["Titanspawn","2","21"],["Titanspawn","3","33"],["Titanspawn","4","42"],["Titanspawn","5","53"],["Titanspawn","6","99"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","99"],["Mythborn","5","99"]],["2","3"],[,"1","2","4","3"]),
+waterAbyss = new LegendaryAbility(["Invokation: Water - Abyss","Abyssal","Abyss-Caller"],[["Titanspawn","7","99"],["Mythborn","3","99"],["Mythborn","6","99"]],["1","2"],[,"2","3","4"]),
+waterTerror = new LegendaryAbility(["Invokation: Water - Terror","Threatening","Terror"],[["Titanspawn","2","22"],["Titanspawn","5","51"],["Titanspawn","7","99"],["Mythborn","2","21"],["Mythborn","2","24"],["Mythborn","2","25"],["Mythborn","3","32"],["Mythborn","3","34"],["Mythborn","3","35"],["Mythborn","4","44"],["Mythborn","5","52"],["Mythborn","5","53"],["Mythborn","5","54"],["Mythborn","6","00"]],["2","3"],[,"1","3","4","2"]),
+waterLife = new LegendaryAbility(["Invokation: Water - Life","Swarm","Progenitor"],[["Titanspawn","6","61"],["Titanspawn","7","99"],["Mythborn","1","12"],["Mythborn","1","13"],["Mythborn","1","14"],["Mythborn","1","15"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","53"],["Mythborn","5","54"],["Mythborn","6","00"]],["2","1"],[,"1","2","3","4"]),
+waterSummoning = new LegendaryAbility(["Invokation: Water - Summoning","Watercrafting","Watercrafter"],[["Titanspawn","7","99"],["Mythborn","2","25"],["Mythborn","2","24"],["Mythborn","2","22"],["Mythborn","3","99"],["Mythborn","6","99"],["Mythborn","5","53"],["Mythborn","5","54"]],["1","2"],["1","2","3","4"]),
+waterDrown = new LegendaryAbility(["Invokation: Water - Drowning","Flood","Drowned"],[["Titanspawn","7","99"],["Titanspawn","8","99"],["Mythborn","2","99"],["Mythborn","1","15"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","53"],["Mythborn","5","54"],["Mythborn","6","99"]],["1","2"],[,"2","3"]),
+waterSea = new LegendaryAbility(["Invokation: Water - Sea","Seafaring","Explorer"],[["Titanspawn","6","62"],["Titanspawn","5","53"],["Titanspawn","7","99"],["Titanspawn","8","81"],["Mythborn","2","99"],["Mythborn","1","99"],["Mythborn","3","99"],["Mythborn","5","99"],["Mythborn","6","99"]],["2","3"],[,"2","3","1"]),
+waterIce = new LegendaryAbility(["Invokation: Water - Ice","Frozen","Iceheart"],[["Titanspawn","3","32"],["Titanspawn","3","33"],["Titanspawn","2","23"],["Titanspawn","5","51"],["Titanspawn","5","52"],["Titanspawn","7","73"],["Titanspawn","7","74"],["Titanspawn","8","82"],["Titanspawn","8","83"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","5","54"],["Mythborn","5","53"],["Mythborn","5","52"],["Mythborn","6","99"]],["1","2"],[,"2","3","4"]),
+waterMist = new LegendaryAbility(["Invokation: Water - Mist","Mistborn","Mistweaver"],[["Titanspawn","2","21"],["Titanspawn","5","53"],["Titanspawn","7","99"],["Titanspawn","8","81"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","4","42"],["Mythborn","5","54"],["Mythborn","5","53"],["Mythborn","6","99"]],["2","3"],[,"1","3"]),
+deathPsychopomp = new LegendaryAbility(["Invokation: Death - Psychopomp","Soulspeaking","Psychopomp"],[["Titanspawn","8","81"],["Titanspawn","8","82"],["Mythborn","4","44"]],["2","3"],["1","3"]),
+deathDestruction = new LegendaryAbility(["Invokation: Death - Destruction","Murderous","Killer"],[["Titanspawn","3","99"],["Titanspawn","2","22"],["Titanspawn","5","52"],["Titanspawn","7","73"],["Titanspawn","7","74"],["Titanspawn","8","99"],["Mythborn","2","21"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","51"],["Mythborn","5","52"],["Mythborn","5","54"]],["1","2"],[,"2"]),
+deathNecromancer = new LegendaryAbility(["Invokation: Death - Necromancy","Soulstealing","Necromancer"],[["Titanspawn","2","22"],["Titanspawn","2","23"],["Titanspawn","3","31"],["Titanspawn","3","33"],["Titanspawn","7","74"],["Titanspawn","8","99"],["Mythborn","2","21"],["Mythborn","2","22"],["Mythborn","2","25"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","51"],["Mythborn","5","52"]],["1","2"],[,"1","2","3","4"]),
+deathShamanism = new LegendaryAbility(["Invokation: Death - Shamanism","Shamanistic","Shaman"],[["Titanspawn","8","81"],["Titanspawn","8","82"],["Mythborn","1","13"],["Mythborn","1","15"],["Mythborn","2","25"],["Mythborn","3","99"],["Mythborn","4","99"],["Mythborn","5","99"]],["2","3","1"],[,"1","2","3","4"]),
+
+// Hematurgy
+hematurgyItztli = new LegendaryAbility(["Hematurgy - Itztli","Blood Drinking","Executioner"],[["Titanspawn","2","22"],["Titanspawn","6","65"],["Titanspawn","7","74"],["Titanspawn","8","83"],["Mythborn","1","11"],["Mythborn","2","21"],["Mythborn","2","22"],["Mythborn","4","44"],["Mythborn","4","44"],["Mythborn","5","51"],["Mythborn","5","52"]],["1","2"],[,"1","2","4"]),
+hematurgyYahuar = new LegendaryAbility(["Hematurgy - Yahuar","Self Sacrificial","Bloodsharer"],[["Titanspawn","6","61"],["Mythborn","1","99"],["Mythborn","3","31"],["Mythborn","3","33"],["Mythborn","3","34"],["Mythborn","3","35"],["Mythborn","4","43"],["Mythborn","4","44"],["Mythborn","5","52"],["Mythborn","5","54"]],["1","2"],[,"1"]),
+
+    
+// Epic Phsyiology
+physiqueStrength = new LegendaryAbility(["Epic Physique: Strength","Mighty","Goliath"],[["Titanspawn","1","99"],["Titanspawn","2","99"],["Titanspawn","3","99"],["Titanspawn","4","99"],["Titanspawn","5","99"],["Titanspawn","6","99"],["Titanspawn","7","99"],["Mythborn","4","99"],["Mythborn","3","99"],["Mythborn","5","99"]],["1"],["1","2","3","4"]),
+physiqueToughness = new LegendaryAbility(["Epic Physique - Toughness","Resilient","Hulk"],[["Titanspawn","1","11"],["Titanspawn","1","12"],["Titanspawn","1","13"],["Titanspawn","2","21"],["Titanspawn","2","23"],["Titanspawn","2","22"],["Titanspawn","3","99"],["Titanspawn","4","42"],["Titanspawn","5","99"],["Titanspawn","6","99"],["Titanspawn","7","99"],["Titanspawn","8","83"],["Mythborn","1","12"],["Mythborn","2","22"],["Mythborn","3","99"],["Mythborn","4","99"],["Mythborn","5","51"],["Mythborn","5","52"],["Mythborn","5","54"],["Mythborn","6","99"]],["1"],[,"2","4"]),
+presenceLeader = new LegendaryAbility(["Epic Presence - Leader","Charismatic","General"],[["Titanspawn","2","22"],["Titanspawn","1","12"],["Titanspawn","1","11"],["Titanspawn","4","99"],["Titanspawn","5","51"],["Titanspawn","5","53"],["Titanspawn","6","99"],["Titanspawn","7","72"],["Titanspawn","7","73"],["Mythborn","1","12"],["Mythborn","1","11"],["Mythborn","2","22"],["Mythborn","3","99"],["Mythborn","4","43"],["Mythborn","5","99"]],["1","2"],[,"1","2","4"]),
+appearanceBeauty = new LegendaryAbility(["Epic Appearance - Beauty","Beautiful","Supermodel"],[["Titanspawn","2","21"],["Titanspawn","2","24"],["Titanspawn","3","32"],["Titanspawn","4","99"],["Titanspawn","6","0"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","4","44"],["Mythborn","4","42"],["Mythborn","5","99"],["Mythborn","6","62"]],["2","3"],[,"3"]),
+
+
+
+// Zoothropy
+zoothropyLion = new LegendaryAbility(["Zoothropy: Lion","Roaring","Lionheart"],[["Titanspawn","4","99"],["Titanspawn","6","61"],["Mythborn","1","99"],["Mythborn","4","44"],["Mythborn","5","99"]],["1","2","3"],[,"1","2","3","4"]),
+zoothropyFrog = new LegendaryAbility(["Zoothropy - Frog","Frog","Slimer"],[["Titanspawn","6","65"],["Titanspawn","6","64"],["Titanspawn","6","61"],["Titanspawn","7","74"],["Mythborn","1","12"],["Mythborn","1","15"],["Mythborn","1","13"],["Mythborn","2","23"],["Mythborn","4","44"]],["2","3"],[,"2","3"]),
+zoothropyDragon = new LegendaryAbility(["Zoothropy - Dragon","Dragon","Drakonid"],[["Titanspawn","1","12"],["Titanspawn","1","11"],["Titanspawn","2","23"],["Titanspawn","3","32"],["Titanspawn","4","42"],["Titanspawn","5","51"],["Titanspawn","5","52"],["Titanspawn","6","61"],["Titanspawn","6","62"],["Titanspawn","7","73"],["Mythborn","3","99"],["Mythborn","5","54"],["Mythborn","5","51"]],["1","2"],[,"1","2","3","4"]),
+
+// Pantheon-Specific Abilities
+hekuRiot = new LegendaryAbility(["Heku - Riot","Riotous","Crowd Agitator"],[["Titanspawn","1","12"],["Titanspawn","2","22"],["Titanspawn","4","99"],["Titanspawn","5","51"],["Titanspawn","6","65"],["Titanspawn","7","74"],["Titanspawn","8","83"],["Mythborn","1","99"],["Mythborn","2","21"],["Mythborn","3","32"],["Mythborn","3","35"],["Mythborn","4","44"],["Mythborn","5","99"]],["2"],[,"3"]),
+hekuSoothe = new LegendaryAbility(["Heku - Soothe","Calm","Soother"],[["Titanspawn","2","24"],["Titanspawn","4","99"],["Titanspawn","5","53"],["Titanspawn","8","81"],["Mythborn","1","11"],["Mythborn","1","99"],["Mythborn","2","24"],["Mythborn","3","32"],["Mythborn","3","35"],["Mythborn","5","53"],["Mythborn","5","54"]],["2"],[,"1","3"]),
+taiyiManipulator = new LegendaryAbility(["Taiyi - Legend-Molding","Legend-Changing","Manipulator"],[["Titanspawn","1","13"],["Titanspawn","2","24"],["Titanspawn","4","42"],["Titanspawn","6","61"],["Titanspawn","6","62"],["Titanspawn","7","71"],["Titanspawn","7","72"],["Mythborn","1","11"],["Mythborn","2","11"],["Mythborn","2","21"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","99"]],["1","2"],[,"3","2","1"]),
+taiyiFlow = new LegendaryAbility(["Taiyi - Flow Manipulation","Disruptive","Disruptor"],[["Titanspawn","1","13"],["Titanspawn","6","63"],["Titanspawn","3","99"],["Titanspawn","2","21"],["Titanspawn","2","23"],["Titanspawn","7","73"],["Titanspawn","8","81"],["Titanspawn","8","82"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","51"],["Mythborn","5","52"]],["1","2"],[,"1","3","4"]),
+
+
+]
+for(a=0;a<abilities2.length;a++){
+for(b=0;b<abilities2[a].npcOptions.length;b++){
+
+if((abilities2[a].npcOptions[b][0] === typeChoice)&&
+    (abilities2[a].npcOptions[b][1] === originChoice)&&
+    (abilities2[a].npcOptions[b][2] === "99")
+  ){rightOriginArray.push(abilities2[a])}    
+ 
+else if((abilities2[a].npcOptions[b][0] === typeChoice)&&
+    (abilities2[a].npcOptions[b][1] === originChoice)&&
+    (abilities2[a].npcOptions[b][2] === subOriginChoice)
+  ){rightOriginArray.push(abilities2[a])}                 
 }
+                    }  
+
+for(c=0;c<rightOriginArray.length;c++){
+for(d=0;d<rightOriginArray[c].combat1Options.length;d++){
+    if(rightOriginArray[c].combat1Options[d][0] === combatChoice1){rightOriginCombat1Array.push(rightOriginArray[c])}                 
+}}
+   
+for(e=0;e<rightOriginCombat1Array.length;e++){
+for(f=0;f<rightOriginCombat1Array[e].combat1Options.length;f++){
+    if(rightOriginCombat1Array[e].combat1Options[f][0] === combatChoice1){rightOriginCombatAllArray.push(rightOriginCombat1Array[e])}                 
+}}    
+function randCalculator(){
+randSpawn = Math.floor(Math.random()*rightOriginCombatAllArray.length)
+randSpawn2 = Math.floor(Math.random()*rightOriginCombatAllArray.length)
 }
+randCalculator()
+while((randSpawn === randSpawn2)||(rightOriginCombatAllArray[randSpawn].name[0].indexOf("Invokation") > -1 && rightOriginCombatAllArray[randSpawn2].name[0].indexOf("Invokation") > -1)){randCalculator()}
+
+
+
     
     
-var rand5 = abilitiesOptions[Math.floor(Math.random() * abilitiesOptions.length)];
+var rand5 = (rightOriginCombatAllArray[randSpawn].name[1] + " " + rightOriginCombatAllArray[randSpawn2].name[2] + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;\n" + rightOriginCombatAllArray[randSpawn].name[0] + " (" + abilityOne + ")<br>&nbsp;&nbsp; \n" + rightOriginCombatAllArray[randSpawn2].name[0]+ " (" + abilityTwo + ")")
+
 
 //____________________________________________________________________________________________________
 
@@ -1382,4 +1354,3 @@ myWindow.document.write("</HTML>")}
 
 }
 }
-
