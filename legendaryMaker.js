@@ -1,7 +1,7 @@
 //    epicStrength = new LegendaryAbility(["Epic Strength","Mighty","Goliath"],[["Titanspawn","1","99"],["Titanspawn","2","99"],["Titanspawn","3","99"],["Titanspawn","4","99"],["Titanspawn","5","99"],["Titanspawn","6","99"],["Titanspawn","7","99"],["Mythborn","4","99"],["Mythborn","3","99"],["Mythborn","5","99"]],["1"],["1","2","3","4"])
 //fireDestruction = new LegendaryAbility[["Invokation: Fire - Destruction","Pyromancer","Pyromaniac"]],[["Titanspawn","1","12"],["Titanspawn","1","11"],["Titanspawn","1","13"],["Mythborn","1","11"],["Mythborn","1","12"],["Mythborn","1","14"],["Mythborn","1","15"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","99"]],["1","2"],["2","3","4"]
 // 
-
+function legendaryAttribute(){
 //____________________________________________________________________________________________________
 
 
@@ -169,3 +169,4 @@ intelligenceChoiceFunction()
 
 
 alert(name + ",[" + npcOptions + "],[" + combat1Options + "],[" + combat2Options + "],[" + intelligenceOptions + "]),")
+}
