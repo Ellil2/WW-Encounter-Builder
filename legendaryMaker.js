@@ -1,5 +1,3 @@
-function legendaryAttribute(){
-
 //    epicStrength = new LegendaryAbility(["Epic Strength","Mighty","Goliath"],[["Titanspawn","1","99"],["Titanspawn","2","99"],["Titanspawn","3","99"],["Titanspawn","4","99"],["Titanspawn","5","99"],["Titanspawn","6","99"],["Titanspawn","7","99"],["Mythborn","4","99"],["Mythborn","3","99"],["Mythborn","5","99"]],["1"],["1","2","3","4"])
 //fireDestruction = new LegendaryAbility[["Invokation: Fire - Destruction","Pyromancer","Pyromaniac"]],[["Titanspawn","1","12"],["Titanspawn","1","11"],["Titanspawn","1","13"],["Mythborn","1","11"],["Mythborn","1","12"],["Mythborn","1","14"],["Mythborn","1","15"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","99"]],["1","2"],["2","3","4"]
 // 
@@ -122,7 +120,7 @@ typeChoice = "Mythborn";
 combat1Options = ""
 
 function combat1ChoiceFunction() {
- combatChoice1 = prompt("What is your NPC's combat style' ? \n 1 - Warrior\n 2 - Mage\n 3 - Rogue \n 0 - End");
+ combatChoice1 = prompt("What is your NPC's combat style ? \n 1 - Warrior\n 2 - Mage\n 3 - Rogue \n 0 - End");
     if (combatChoice1 === "1" || combatChoice1 === "2" || combatChoice1 === "3") {
         if(combat1Options === ""){ combat1Options += ("\"" + combatChoice1 +  "\"");combat1ChoiceFunction(); }
         else{combat1Options += (",\"" + combatChoice1 +  "\"");combat1ChoiceFunction();}
@@ -141,12 +139,33 @@ combat1ChoiceFunction()
 combat2Options = ""
 
 function combat2ChoiceFunction() {
- combatChoice2 = prompt("What is your NPC's combat speciality' ? \n1 - Support \n2 - Fighter \n3 - Controller \n4 - Tank \n 0 - End");
+ combatChoice2 = prompt("What is your NPC's combat speciality ? \n1 - Support \n2 - Fighter \n3 - Controller \n4 - Tank \n 0 - End");
     if (combatChoice2 === "1" || combatChoice2 === "2" || combatChoice2 === "3" || combatChoice2 === "4") {
-        if(combat1Options === ""){ combat1Options += ("\"" + combatChoice1 +  "\"");combat1ChoiceFunction(); }
+        if(combatChoice2 === ""){ combatChoice2 += ("\"" + combatChoice2 +  "\"");combat2ChoiceFunction(); }
         else{combat2Options += (",\"" + combatChoice2 +  "\"");combat2ChoiceFunction(); }}
     
 }
 combat2ChoiceFunction()
 
-alert(name + ",[" + npcOptions + "],[" + combat1Options + "],[" + combat2Options + "]),")}
+//____________________________________________________________________________________________________
+
+
+//Set Intelligence
+
+//____________________________________________________________________________________________________
+
+
+intelligenceOptions = ""
+
+function intelligenceChoiceFunction() {
+ intelligenceChoice = prompt("What is your NPC's Intelligence ? \n1 - Feral \n2 - Human \n 0 - End");
+    if (intelligenceChoice === "1" || intelligenceChoice === "2" || intelligenceChoice === "3" || intelligenceChoice === "4") {
+        if(intelligenceChoice === ""){ intelligenceOptions += ("\"" + intelligenceChoice +  "\"");intelligenceChoiceFunction(); }
+        else{intelligenceOptions += (",\"" + intelligenceChoice +  "\"");intelligenceChoiceFunction(); }}
+    
+}
+intelligenceChoiceFunction()
+
+
+
+alert(name + ",[" + npcOptions + "],[" + combat1Options + "],[" + combat2Options + "],[" + intelligenceOptions + "]),")
