@@ -1,8 +1,8 @@
 function npcChoice(){
      
 //playerNumberVar = 4
-//playerLevelVar = 6
-//fightTypeVar = 3
+//playerLevelVar = 7
+//fightTypeVar = 1
 //fightDifficultyVar = 1
 
 fightCompute = Math.floor(((6+playerLevelVar*3)+fightDifficultyVar*3)*playerNumberVar*0.75)
@@ -45,20 +45,24 @@ enemyType = "Boss"
 if (playerLevelVar <= 2){legendChoice = "2"}
 else if (playerLevelVar <= 4){legendChoice = "3"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
-     
-decision(fightCompute/2,0)
+else if (playerLevelVar > 6){legendChoice = "4"}
+decision(fightCompute/2+6,0)
+console.log(legendChoice);
 enemyType = "Group1"
 playerLevelVar >= 4 ? groupOrArmy = Math.floor(Math.random()*2) : groupOrArmy = 0
 if(groupOrArmy === 0){
+
 if (playerLevelVar <= 2){legendChoice = "1"}
 else if (playerLevelVar <= 4){legendChoice = "2"}
-else if (playerLevelVar <= 6){legendChoice = "3"}
+else if (playerLevelVar <= 7){legendChoice = "3"}
 decision(fightCompute/2-6 ,1)
 }     
 if(groupOrArmy === 1){
 enemyType = "Group1"
-if (playerLevelVar <= 4){legendChoice = "1"}
-else if (playerLevelVar <= 6){legendChoice = "2"}
+
+if (playerLevelVar <= 2){legendChoice ="1"}
+else if (playerLevelVar <= 4){legendChoice = "2"}
+else if (playerLevelVar <= 7){legendChoice = "3"}
 decision(fightCompute/2-6 ,3)     
 }   
 }
@@ -78,6 +82,7 @@ else if (fightTypeVar == 3){
 if (playerLevelVar <= 2){legendChoice = "2"}
 else if (playerLevelVar <= 4){legendChoice = "3"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
+else if (playerLevelVar > 6){legendChoice = "4"}
 enemyType = "Solo"     
 decision(fightCompute*0.75,0)
 //This sets the Difficulty of the One Big Enemy setting. It is set lower because of the Defense Stats.
@@ -246,7 +251,7 @@ abyssalSage = new Aspect("Abyssal Sage","Titanspawn","7",["71"],["2"],"2","behav
  ashGiant = new Aspect("Ash Giant","Titanspawn","1",["11"],["3"],"1","behavior","1","http://i.imgur.com/2chmjUal.jpg"),
  atlanticDevourer = new Aspect("Atlantic Devourer","Titanspawn","7",["74"],["3"],"1","behavior","2","http://i.imgur.com/x8NPgBo.jpg"),
  baddassosaurus = new Aspect("Badassosaurus","Titanspawn","6",["63"],["2"],"1","behavior","2","http://i.imgur.com/OHEyu8l.jpg"),
- barachiel = new Aspect("Barachiel, Wrath of the Heavens","Titanspawn","4",["41"],["3"],"2","behavior","2","http://i.imgur.com/eX9JSFs.jpg"),
+ barachiel = new Aspect("Barachiel, Wrath of the Heavens","Titanspawn","4",["41"],["4"],"2","behavior","2","http://i.imgur.com/eX9JSFs.jpg"),
  batKing = new Aspect("Bat King","Titanspawn","8",["83"],["3"],"2","behavior","3","http://i.imgur.com/J6qYdeBl.jpg"),
  blindConqueror = new Aspect("Blind Conqueror","Titanspawn","3",["31"],["2","3"],"2","behavior","2","http://i.imgur.com/liB2c0I.jpg"),
  blindJuggernaunt = new Aspect("Blind Juggernaunt","Titanspawn","3",["31","33"],["2","3"],"2","behavior","2","http://i.imgur.com/ihZpYkk.jpg"),
@@ -271,7 +276,7 @@ childofYam = new Aspect("Child of Yam","Titanspawn","7",["71"],["1","2"],"1","be
 cloudKeeper = new Aspect("Cloud Keeper","Titanspawn","5",["53"],["3"],"2","behavior","2","http://i.imgur.com/EDTqH0I.jpg"),
  corpseSpider = new Aspect("Corpse Spider","Titanspawn","8",["83"],["1"],"1","behavior","1","http://i.imgur.com/19vnxLK.jpg"),
 corpseDevourer = new Aspect("Corpse Devourer","Titanspawn","8",["83"],["1","2"],"1","behavior","2","http://i.imgur.com/pod2fOi.jpg"),
- cottus = new Aspect("Cottus the Furious, Second of the Hecatonkheires","Titanspawn","6",["61"],["3"],"2","behavior","2","http://i.imgur.com/660AZAG.jpg"),
+ cottus = new Aspect("Cottus the Furious, Second of the Hecatonkheires","Titanspawn","6",["61"],["4"],"2","behavior","2","http://i.imgur.com/660AZAG.jpg"),
 crazedGeist = new Aspect("Crazed Geist","Titanspawn","8",["82"],["1"],"1","behavior","2","http://i.imgur.com/YkXHvVm.jpg"),
 darkPuppeteer = new Aspect("Dark Puppeteer","Titanspawn","3",["32"],["2","3"],"2","behavior","2","http://i.imgur.com/iZzjU5Z.jpg"),
  darkQueen = new Aspect("Dark Queen","Titanspawn","2",["21","23"],["3"],"2","behavior","1","http://i.imgur.com/k5BQY0O.jpg"),
@@ -282,7 +287,7 @@ deepDweller = new Aspect("Deep Dweller","Titanspawn","7",["71","73"],["2","3"],"
  desertSnake = new Aspect("Desert Snake","Titanspawn","4",["42"],["1"],"1","behavior","1","http://i.imgur.com/NlocRHB.png"), 
  djilluminatus = new Aspect("Djinn Illuminatus","Titanspawn","4",["41"],["2","3"],"2","behavior","2","http://i.imgur.com/adypqZz.jpg"),  
  drownedKeeper = new Aspect("Keeper of the Drowned","Titanspawn","7",["73"],["1"],"2","behavior","1","http://i.imgur.com/IZdInGS.jpg"),    
-dolgrund = new Aspect("Dolgrund, Shadow King of An'leth","Titanspawn","3",["33"],["3"],"2","behavior","2","http://i.imgur.com/HiUWgs5.jpg"),
+dolgrund = new Aspect("Dolgrund, Shadow King of An'leth","Titanspawn","3",["33"],["4"],"2","behavior","2","http://i.imgur.com/HiUWgs5.jpg"),
 dryadAshes = new Aspect("Dryad of Ashes","Titanspawn","1",["12"],["1"],"2","behavior","2","http://i.imgur.com/lcUN7j6.jpg"),
  facelessLegionnaire = new Aspect("Faceless Legionnaire","Titanspawn","3",["31"],["1"],"2","behavior","1","http://i.imgur.com/uwizIO6.jpg"),
 falseSavior = new Aspect("False Savior","Titanspawn","4",["41"],["2"],"2","behavior","2","http://i.imgur.com/tSr4AZj.jpg"),
@@ -313,8 +318,8 @@ foundryChampion = new Aspect("Foundry Champion","Titanspawn","1",["13"],["2"],"1
  ghoul = new Aspect("Ghoul","Titanspawn","8",["83"],["1","2"],"1","behavior","1","http://i.imgur.com/GArrLAM.jpg"),    
  giantCentipede = new Aspect("Giant Centipede","Titanspawn","6",["65"],["2"],"1","behavior","1","http://i.imgur.com/ZgPBeOf.jpg"),
  giantRat = new Aspect("Giant Rat","Titanspawn","6",["65"],["1"],"1","behavior","1","http://i.imgur.com/MmWJhbk.jpg"),
-glarvonjar = new Aspect("Glarvonjar, Great Thane of Muspelheim","Titanspawn","1",["12"],["3"],"2","behavior","2","http://i.imgur.com/0PfXXCR.jpg"),
- gloag = new Aspect("Gloag'thul, the Reaper's Might","Titanspawn","8",["82"],["3"],"2","behavior","2","http://i.imgur.com/X7Jq3rS.jpg"),
+glarvonjar = new Aspect("Glarvonjar, Great Thane of Muspelheim","Titanspawn","1",["12"],["4"],"2","behavior","2","http://i.imgur.com/0PfXXCR.jpg"),
+ gloag = new Aspect("Gloag'thul, the Reaper's Might","Titanspawn","8",["82"],["4"],"2","behavior","2","http://i.imgur.com/X7Jq3rS.jpg"),
 goldenKnight = new Aspect("Golden Knight","Titanspawn","4",["42","41"],["2","3"],"2","behavior","2","http://i.imgur.com/SwJHBXJ.jpg"),
  graniteGolem = new Aspect("Granite Golem","Titanspawn","6",["64"],["2","3"],"1","behavior","1","http://i.imgur.com/PuVZbml.jpg"),
 hauntedGuardian = new Aspect("Haunted Guardian","Titanspawn","8",["81","82"],["1","2"],"1","behavior","2","http://i.imgur.com/7vrHfD6.jpg"),
@@ -352,7 +357,7 @@ oceanBehemoth = new Aspect("Ocean Behemoth","Titanspawn","7",["71"],["3"],"1","b
  orthosSpawn = new Aspect("Orthos Spawn","Titanspawn","6",["61"],["1","2"],"1","behavior","1","http://i.imgur.com/Lj6xNZ6.jpg"),
 paleSeer = new Aspect("Pale Seer","Titanspawn","3",["32"],["2","3"],"2","behavior","2","http://i.imgur.com/vNLrhJa.jpg"),
 pliosaurus = new Aspect("Pliosaurus","Titanspawn","7",["71"],["2"],"1","behavior","2","http://i.imgur.com/17prnrk.jpg"),
-rasaj = new Aspect("Rasaj, First Herald of Aten","Titanspawn","4",["41"],["3"],"2","behavior","2","http://i.imgur.com/I7tJJZr.jpg"),
+rasaj = new Aspect("Rasaj, First Herald of Aten","Titanspawn","4",["41"],["4"],"2","behavior","2","http://i.imgur.com/I7tJJZr.jpg"),
  reacherDepths = new Aspect("Reacher of the Depths","Titanspawn","7",["74"],["2","3"],"1","behavior","2","http://i.imgur.com/x1DfWA5.jpg"),
  runicGuardian = new Aspect("Runic Guardian","Titanspawn","6",["62"],["2","1"],"2","behavior","1","http://i.imgur.com/qg8pAwX.jpg"),
  sandDjinn = new Aspect("Sand Djinn","Titanspawn","4",["42"],["2","3"], "1","behavior","1","http://i.imgur.com/XVGRtx3.jpg"),
@@ -374,7 +379,7 @@ skeleton = new Aspect("Skeleton","Titanspawn","8",["82"],["1"],"1","behavior","1
  spawnAbyss = new Aspect("Spawn of the Abyss","Titanspawn","7",["73"],["2"],"1","behavior","1","http://i.imgur.com/NNDxxLI.jpg"),
 soulCollector = new Aspect("Soul Collector","Titanspawn","8",["81"],["2","3"],"2","behavior","2","http://i.imgur.com/DdNOld4.jpg"),
  soulReaper = new Aspect("Soul Reaper","Titanspawn","8",["82"],["2"],"2","behavior","1","http://i.imgur.com/FqQoOzE.jpg"),
- soulSearer = new Aspect("Soul Searer","Titanspawn","8",["82"],["3","2"],"1","behavior","2","http://i.imgur.com/kxkMaW8.jpg"),
+ soulSearer = new Aspect("Soul Searer","Titanspawn","8",["82"],["3","2"],"2","behavior","2","http://i.imgur.com/kxkMaW8.jpg"),
 starChild = new Aspect("Star Child","Titanspawn","2",["24"],["2"],"2","behavior","2","http://i.imgur.com/2ZHAcN0.jpg"),
  steelcladGiant = new Aspect("Steelclad Giant","Titanspawn","6",["63"],["3","2"],"2","behavior","1","http://i.imgur.com/q50wOJu.jpg"),
  steelCoatl = new Aspect("Steel Coatl","Titanspawn","5",["51"],["2"],"2","behavior","1","http://i.imgur.com/wtEnkkm.jpg"),
@@ -384,16 +389,16 @@ starChild = new Aspect("Star Child","Titanspawn","2",["24"],["2"],"2","behavior"
  stoneDragon = new Aspect("Stone Dragon","Titanspawn","6",["62"],["3","2"],"2","behavior","1","http://i.imgur.com/Ra20tJ6.png"), 
 stormBroodlord = new Aspect("Storm Broodlord","Titanspawn","5",["51"],["3"],"1","behavior","2","http://i.imgur.com/wCGF41m.jpg"),
  stormbornMyrmidon = new Aspect("Stormborn Myrmidon","Titanspawn","5",["52"],["2","3"],"2","behavior","1","http://i.imgur.com/0EVug2Z.jpg"),
-sulTharash = new Aspect("Sul'Tharash, Bane of Atlantis","Titanspawn","7",["71","72"],["3"],"2","behavior","2","http://i.imgur.com/0FM4f6C.jpg"),
+sulTharash = new Aspect("Sul'Tharash, Bane of Atlantis","Titanspawn","7",["71","72"],["4"],"2","behavior","2","http://i.imgur.com/0FM4f6C.jpg"),
      sunDrake = new Aspect("Sun Drake","Titanspawn","4",["41"],["3","2"],"2","behavior","2","http://i.imgur.com/x6yjUl8.jpg"),
  surtrJuggernaut = new Aspect("Surtr Juggernaut","Titanspawn","1",["12"],["3"],"2","behavior","1","http://i.imgur.com/NOT7aEY.jpg"),
  swampHulk = new Aspect("Swamp Hulk","Titanspawn","6",["61"],["2","3"],"1","behavior","1","http://i.imgur.com/5XFk0gT.jpg"),
 terastodon = new Aspect("Terastodon","Titanspawn","6",["61"],["2"],"1","behavior","2","http://i.imgur.com/7WM1Bd9.jpg"),
-theBeastBelow = new Aspect("The Beast Below","Titanspawn","7",["74"],["3"],"1","behavior","2","http://i.imgur.com/VHNpxXw.jpg"),
+theBeastBelow = new Aspect("The Beast Below","Titanspawn","7",["74"],["4"],"1","behavior","2","http://i.imgur.com/VHNpxXw.jpg"),
 thunderDragon = new Aspect("Thunder Dragon","Titanspawn","5",["51"],["3","2"],"2","behavior","1","http://i.imgur.com/rrk7dTl.jpg"),  
  tideSpoutTyrant = new Aspect("Tidespout Tyrant","Titanspawn","7",["71"],["2","3"],"2","http://i.imgur.com/xvhPIhR.jpg"),
 tritonFootman = new Aspect("Triton Footman","Titanspawn","7",["72","73","71"],["1"],"2","behavior","2","http://i.imgur.com/IB4skAc.jpg"),
-trokan = new Aspect("Trokan, The King of Bones","Titanspawn","8",["82"],["3"],"2","behavior","2","http://i.imgur.com/eT6ntWs.jpg"),
+trokan = new Aspect("Trokan, The King of Bones","Titanspawn","8",["82"],["4"],"2","behavior","2","http://i.imgur.com/eT6ntWs.jpg"),
 tsunamiDragon = new Aspect("Tsunami Dragon","Titanspawn","7",["73","72","71"],["2","3"],"2","behavior","2","http://i.imgur.com/yYTVHha.jpg"),
 twistedDryad = new Aspect("Twisted Dryad","Titanspawn","3",["32"],["1","2"],"2","behavior","2","http://i.imgur.com/9gvtr4d.jpg"),
  twistedSoulcursed = new Aspect("Twisted Soulcursed","Titanspawn","8",["82"],["3","2"],"1","behavior","2","http://i.imgur.com/uuMetIe.jpg"), 
@@ -401,7 +406,7 @@ twistedDryad = new Aspect("Twisted Dryad","Titanspawn","3",["32"],["1","2"],"2",
  valkyrie = new Aspect("Valkyrie","Titanspawn","8",["81"],["2"],"2","behavior","1","http://i.imgur.com/1CvhuV0.jpg"),
  volcanoCyclops = new Aspect("Volcano Cyclops","Titanspawn","1",["13"],["2","1"],"2","behavior","1","http://i.imgur.com/GKTE8TB.jpg"),
 volcanicTyrant = new Aspect("Volcanic Tyrant","Titanspawn","1",["12"],["3"],"2","behavior","2","http://i.imgur.com/fSgS4GO.jpg"),
-vulsrak = new Aspect("Vulsrak, the Dark Tyrant","Titanspawn","3",["33","32","31"],["3"],"2","behavior","2","http://i.imgur.com/137so4v.jpg"),
+vulsrak = new Aspect("Vulsrak, the Dark Tyrant","Titanspawn","3",["33","32","31"],["4"],"2","behavior","2","http://i.imgur.com/137so4v.jpg"),
 warpedCockRoach = new Aspect("Warped Cockroach","Titanspawn","6",["65"],["1"],"1","behavior","1","http://i.imgur.com/UNNxvNm.jpg"),
 wildScorcher = new Aspect("Wild Scorcher","Titanspawn","2",["22"],["2","3"],"1","behavior","2","http://i.imgur.com/jjuKq9D.jpg"),
 willBreaker = new Aspect("Will Breaker","Titanspawn","4",["41"],["3"],"2","behavior","2","http://i.imgur.com/O9jNhvp.jpg"),
@@ -416,8 +421,8 @@ ancientDeer = new Aspect("Ancient Deer","Mythborn","4",["43"],["1"],"1","behavio
 ancientTurtle = new Aspect("Ancient Turtle","Mythborn","4",["43"],["2"],"1","behavior","2","http://i.imgur.com/N5BPXMy.jpg"),
 armoredMinotaur = new Aspect("Armored Minotaur","Mythborn","4",["43"],["1","2"],"2","behavior","2","http://i.imgur.com/qo5NA08.jpg"),
 assimilatedGuardian = new Aspect("Assimilated Guardian","Mythborn","4",["41"],["1"],"1","behavior","2","http://i.imgur.com/LDSBiza.jpg"),
-aukuang = new Aspect("Au Kuang, Dragon King","Mythborn","3",["32"],["3"],"2","behavior","2","http://i.imgur.com/uo3nDec.jpg"),
-aoShun = new Aspect("Ao Shun, Dragon King of the North Sea","Mythborn","3",["32"],["3"],"2","behavior","2","http://i.imgur.com/U0LA5mO.jpg"),
+aukuang = new Aspect("Au Kuang, Dragon King","Mythborn","3",["32"],["4"],"2","behavior","2","http://i.imgur.com/uo3nDec.jpg"),
+aoShun = new Aspect("Ao Shun, Dragon King of the North Sea","Mythborn","3",["32"],["4"],"2","behavior","2","http://i.imgur.com/U0LA5mO.jpg"),
 blackKnight = new Aspect("Black Knight","Mythborn","2",["22"],["2"],"2"),   
  brimstoneDragon = new Aspect("Brimstone Dragon","Mythborn","3",["31"],["2","3"],"2"),
 burningSwordmaster = new Aspect("Burning Swordmaster","Mythborn","5",["52"],["1","2"],"2","behavior","2","http://i.imgur.com/15aZHGl.jpg"),
@@ -432,7 +437,7 @@ frogBehemoth = new Aspect("Frog Behemoth","Mythborn","4",["43"],["2","3"],"1","b
 frostHungerer = new Aspect("Frost Hungerer","Mythborn","2",["22"],["2"],"1","behavior","2","http://i.imgur.com/L7XQnCs.jpg"),
  furnaceWhelp = new Aspect("Whelp","Mythborn","3",["31"],["1","2"],"1"),  
 ganeshiGiant = new Aspect("Ganeshi Giant","Mythborn","4",["43"],["2"],"2","behavior","2","http://i.imgur.com/k9ApgUp.jpg"),
-garudaKing = new Aspect("Garuda King","Mythborn","4",["43"],["3"],"2","behavior","2","http://i.imgur.com/RUC1FT4.jpg"),
+garudaKing = new Aspect("Garuda King","Mythborn","4",["43"],["4"],"2","behavior","2","http://i.imgur.com/RUC1FT4.jpg"),
 gladeGuardian = new Aspect("Glade Guardian","Mythborn","4",["41"],["1","2"],"1","behavior","2","http://i.imgur.com/1g7udZn.jpg"),
 goblinAmbusher = new Aspect("Goblin Ambusher","Mythborn","1",["12"],["1","2"],"2","behavior","2","http://i.imgur.com/Vf9HDuG.jpg"),
 goldenKnight2 = new Aspect("Golden Knight","Mythborn","1",["12"],["2"],"2","behavior","2","http://i.imgur.com/SwJHBXJ.jpg"),
@@ -507,7 +512,6 @@ for(i=0; i < highConcept.length; i++) {
   }
 }
 };
-
 
 // _______________________________________
     
@@ -876,9 +880,14 @@ var rand3 = aspect2Options[Math.floor(Math.random() * aspect2Options.length)];
 abilityOne = legendaryBonus
 abilityTwo = legendaryBonus2        
 
+if (legendChoice === "4") {
+     abilityOne += 4
+     abilityTwo += 3
+     skillAbilityOne =  4
+     stuntBonus += 4
 
-
-if (legendChoice === "3") {
+}
+else if (legendChoice === "3") {
      abilityOne += 3
      abilityTwo += 2
      skillAbilityOne =  3
@@ -952,7 +961,7 @@ waterAbyss = new LegendaryAbility(["Invokation: Water - Abyss","Abyssal","Abyss-
 waterTerror = new LegendaryAbility(["Invokation: Water - Terror","Threatening","Terror"],[["Titanspawn","2","22"],["Titanspawn","5","51"],["Titanspawn","7","99"],["Mythborn","2","21"],["Mythborn","2","24"],["Mythborn","2","25"],["Mythborn","3","32"],["Mythborn","3","34"],["Mythborn","3","35"],["Mythborn","4","44"],["Mythborn","5","52"],["Mythborn","5","53"],["Mythborn","5","54"],["Mythborn","6","00"]],["2","3"],[,"1","3","4","2"],["1","2"]),
 waterLife = new LegendaryAbility(["Invokation: Water - Life","Swarm","Progenitor"],[["Titanspawn","6","61"],["Titanspawn","7","99"],["Mythborn","1","12"],["Mythborn","1","13"],["Mythborn","1","14"],["Mythborn","1","15"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","53"],["Mythborn","5","54"],["Mythborn","6","00"]],["2","1"],[,"1","2","3","4"],["1","2"]),
 waterSummoning = new LegendaryAbility(["Invokation: Water - Summoning","Watercrafting","Watercrafter"],[["Titanspawn","7","99"],["Mythborn","2","25"],["Mythborn","2","24"],["Mythborn","2","22"],["Mythborn","3","99"],["Mythborn","6","99"],["Mythborn","5","53"],["Mythborn","5","54"]],["1","2"],["1","2","3","4"],["1","2"]),
-waterDrown = new LegendaryAbility(["Invokation: Water - Drowning","Flood","Drowned"],[["Titanspawn","7","99"],["Titanspawn","8","99"],["Mythborn","2","99"],["Mythborn","1","15"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","53"],["Mythborn","5","54"],["Mythborn","6","99"]],["1","2"],[,"2","3"],["1","2"]),
+waterDrown = new LegendaryAbility(["Invokation: Water - Drowning","Flood","Drowned"],[["Titanspawn","7","99"],["Mythborn","2","99"],["Mythborn","1","15"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","53"],["Mythborn","5","54"],["Mythborn","6","99"]],["1","2"],[,"2","3"],["1","2"]),
 waterSea = new LegendaryAbility(["Invokation: Water - Sea","Seafaring","Explorer"],[["Titanspawn","6","62"],["Titanspawn","5","53"],["Titanspawn","7","99"],["Titanspawn","8","81"],["Mythborn","2","99"],["Mythborn","1","99"],["Mythborn","3","99"],["Mythborn","5","99"],["Mythborn","6","99"]],["2","3"],[,"2","3","1"],["1","2"]),
 waterIce = new LegendaryAbility(["Invokation: Water - Ice","Frozen","Iceheart"],[["Titanspawn","3","32"],["Titanspawn","3","33"],["Titanspawn","2","23"],["Titanspawn","5","51"],["Titanspawn","5","52"],["Titanspawn","7","73"],["Titanspawn","7","74"],["Titanspawn","8","82"],["Titanspawn","8","83"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","5","54"],["Mythborn","5","53"],["Mythborn","5","52"],["Mythborn","6","99"]],["1","2"],[,"2","3","4"],["1","2"]),
 waterMist = new LegendaryAbility(["Invokation: Water - Mist","Mistborn","Mistweaver"],[["Titanspawn","2","21"],["Titanspawn","5","53"],["Titanspawn","7","99"],["Titanspawn","8","81"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","4","42"],["Mythborn","5","54"],["Mythborn","5","53"],["Mythborn","6","99"]],["2","3"],[,"1","3"],["1","2"]),
@@ -1029,7 +1038,7 @@ while((randSpawn === randSpawn2)||(fullFinalArray[randSpawn].name[0].indexOf("In
 
     
     
-var rand5 = (fullFinalArray[randSpawn].name[1] + " " + fullFinalArray[randSpawn2].name[2] + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;\n" + rightOriginCombatAllArray[randSpawn].name[0] + " (" + abilityOne + ")<br>&nbsp;&nbsp; \n" + fullFinalArray[randSpawn2].name[0]+ " (" + abilityTwo + ")")
+var rand5 = (fullFinalArray[randSpawn].name[1] + " " + fullFinalArray[randSpawn2].name[2] + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;\n" + fullFinalArray[randSpawn].name[0] + " (" + abilityOne + ")<br>&nbsp;&nbsp; \n" + fullFinalArray[randSpawn2].name[0]+ " (" + abilityTwo + ")")
 
 
 //____________________________________________________________________________________________________
@@ -1137,7 +1146,7 @@ outerPower4 = new Stunt("invoke " + rand + " for free as a Create an Advantage a
      
    ]  
 function pushStunt2(uses){
-for(i=2;i<50;i++){
+for(i=2;i<40;i++){
 // These are the Active Effects.
   stuntEffect.push(shieldScaler = new Stunt("an ally has +" + i + " on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0],"Active",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(theEliteScaler = new Stunt("gain +" + i + " to a Skill to Create an Advantage for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]));
@@ -1153,39 +1162,46 @@ for(i=2;i<50;i++){
   stuntEffect.push(massmindfogScaled = new Stunt("all enemies have -"+Math.floor(i/2+1)+" on their next Create an Advantage Rolls (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]))   
   stuntEffect.push(instagibScaled = new Stunt("automatically deal a "+Math.floor(i*0.8)+"-shift Damage to an enemy (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[2,0,0,0],"Active",["Group1","Boss","Solo","Group2"]))
   stuntEffect.push(aspectBonus5 = new Stunt("until the end of the Scene, when you invoke a Personal Aspect or an Aspect you created, gain an additional +"+Math.floor(i/3+1)+" (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]))
-  stuntEffect.push(aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, they gain an additional +"+Math.floor(i/3+1)+" (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]))     }
+  stuntEffect.push(aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, they gain an additional +"+Math.floor(i/3+1)+" (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]))     
+  stuntEffect.push(healAlly = new Stunt("heal an ally's Stress and Consequences to a total of "+ Math.ceil(i*0.75) + " (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,0,4,0],"Active",["Group1","Boss","Group2"]))     
+  stuntEffect.push(cleanseAlly = new Stunt("automatically do a roll of +"+ i + " to overcome an Aspect against the creator (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,0,0],"Active",["Group1","Boss","Group2"]))     
+  stuntEffect.push(shield = new Stunt("gain the \"Shield\" Personal Aspect and get two +"+ Math.ceil(i/2) + " Stress Boxes (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,4,0,0],"Active",["Group1","Boss","Group2"]))     
+  stuntEffect.push(shield = new Stunt("create the \"Shield\" Personal Aspect on an ally. They get two +"+ Math.ceil(i/2) + " Stress Boxes (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0],"Active",["Group1","Boss","Group2"]))     }
      
      
 }
        
-//   pushStunt2(1);      
-//   pushStunt2(2);      
-//   pushStunt2(3); 
+   pushStunt2(1);      
+   pushStunt2(2);      
+   pushStunt2(3); 
 // Creates Stutns for 1-3 uses. New function needed for Passives
 
-
 function pushStuntPassives(){
-for(i=2;i<50;i++){
+for(i=2;i<40;i++){
   stuntEffect.push(physicalResist = new Stunt("you have +" + Math.ceil(i/3) + " to Defense Rolls against Physical attacks ",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(magicResist = new Stunt("you have +" + Math.ceil(i/2) + " to Defense Rolls against Non-Physical attacks ",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(rageAlly = new Stunt("you have the \"Rage\" Aspect and have +" + Math.ceil(i*0.75) + " to Attack Rolls until an ally suffers a Consequence",i,"Any",[0,2,4,0],"Passive",["Group1","Boss","Group2"]));
-  stuntEffect.push(allyChannel = new Stunt("you have the \"Empowered\" Aspect and have +" + Math.ceil(i*0.75) + " to Attack Rolls until an ally suffers a Consequence",i,"Any",[0,2,4,0],"Passive",["Group1","Boss","Group2"]));
+  stuntEffect.push(allyChannel = new Stunt("you have the \"Empowered\" Aspect and have +" + Math.ceil(i*0.50) + " to Attack Rolls until an ally suffers a Consequence",i,"Any",[0,2,4,0],"Passive",["Group1","Boss","Group2"]));
   stuntEffect.push(allyChannel2 = new Stunt("you have the \"Empowered\" Aspect and have +" + Math.ceil(i*0.75) + " to Defense Rolls until an ally suffers a Consequence",i,"Any",[0,2,4,0],"Passive",["Group1","Boss","Group2"]));
   stuntEffect.push(allyBuff = new Stunt("you have the \"Protector\" Aspect and your allies have +" + Math.ceil(i/3) + " to Defense Rolls until you are Taken Out",i,"Any",[1,0,4,0],"Passive",["Group1","Boss","Group2"]));
   stuntEffect.push(allyEnrage = new Stunt("you have the \"Enrager\" Aspect and your allies have +" + Math.ceil(i/3) + " to Attack Rolls until you are Taken Out",i,"Any",[0,1,4,0],"Passive",["Group1","Boss","Group2"]));
   stuntEffect.push(bleedEnrage = new Stunt("you have +" + Math.ceil(i/6) + " to Attack Rolls every time you take a Consequence ",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(bleedBuff = new Stunt("you have +" + Math.ceil(i/6) + " to Create an Advantage Rolls every time you take a Consequence ",i,"Any",[2,4,3,1],"Passive",["Group1","Boss","Solo","Group2"]));
-     
+  stuntEffect.push(lifeSteal = new Stunt("you gain a +" + Math.ceil(i/2) + " Stress Box every time you inflict a Consequence",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(thorns = new Stunt("whenever an enemy attacks you in melee, they take an Attack at +"+ Math.ceil(i/2) + " against Physique",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(antiMagy = new Stunt("you have the \"Dampening Field\" Aspect and all enemies have -"+ Math.ceil(i/4) + " to Legendary Rolls until you are Taken Out",i,"Any",[1,4,3,0],"Passive",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(weakAttack = new Stunt("you have the \"Weakening Attack\" Aspect and an enemy gets -"+ Math.ceil(i/2) + " to a Skill when you inflict a Physical Consequence on them",i,"Any",[1,4,3,0],"Passive",["Group1","Boss","Solo","Group2"]));
      
 }}
 pushStuntPassives()
 pushStuntPassives()
 pushStuntPassives()
-pushStuntPassives()
+
 
 }
 
 stuntEffectCreator()
+
          
 var stuntCost = [ 
  
@@ -1196,8 +1212,6 @@ free = new Stunt("At any time, ",0,"Any",[1,2,3,4],"Active",["Group1","Boss","So
        // Lvl 1
 recklessAttack = new Stunt("On your turn, ",1,"Defense",[1,2,3,0],"Active",["Group1","Boss","Solo","Group2"]), 
 mentalStress1 =  new Stunt("On your turn, ",1,"Any",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]),   
-painGain = new Stunt("Whenever you receive a Consequence, ",1,"Any",[2,4,0,0],"Active",["Group1","Boss","Solo","Group2"]),
-friendPainGain = new Stunt("Whenever an ally receives a Consequence, ",1,"Any",[1,3,0,0],"Active",["Group1","Boss","Solo","Group2"]),
 physicalStress1 =  new Stunt("On your turn, ",1,"Any",[1,2,3,0],"Active",["Group1","Boss","Solo","Group2"]),        
        // Lvl 2  
 fatePoint = new Stunt("For 1 Fate Point, ",2,"Fate Point",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]),  
@@ -1214,11 +1228,12 @@ transform = new Stunt("Remove an Aspect you created, and ",3,"Any",[1,3,4,0],"Ac
 physicalStress3 =  new Stunt("Take 3 Physical Stress, ",4,"Any",[1,2,3,0],"Active",["Group1","Boss","Solo","Group2"]),   
 
 // These are the Passive Costs.
-recklessAttack = new Stunt("On your turn, ",0,"Any",[1,2,3,0],"Passive",["Group1","Boss","Solo","Group2"]),   
-recklessAttack = new Stunt("On your turn, ",1,"Any",[1,2,3,0],"Passive",["Group1","Boss","Solo","Group2"]), 
-recklessAttack2 = new Stunt("On your turn, ",2,"Any",[1,2,3,0],"Passive",["Group1","Boss","Solo","Group2"]), 
-recklessAttack3 = new Stunt("You have -1 to all Defense Rolls, ",3,"Any",[1,2,3,0],"Passive",["Group1","Boss","Solo","Group2"]), 
-recklessAttack4 = new Stunt("You have -1 to all Defense Rolls, ",4,"Any",[1,2,3,0],"Passive",["Group1","Boss","Solo","Group2"]), 
+
+recklessAttack = new Stunt("Passively, ",0,"Any",[1,2,3,4],"Passive",["Group1","Boss","Solo","Group2"]),   
+recklessAttack = new Stunt("Passively, ",1,"Any",[1,2,3,4],"Passive",["Group1","Boss","Solo","Group2"]), 
+recklessAttack2 = new Stunt("Passively, ",2,"Any",[1,2,3,4],"Passive",["Group1","Boss","Solo","Group2"]), 
+recklessAttack3 = new Stunt("You have -1 to all Defense Rolls, ",3,"Any",[1,2,3,4],"Passive",["Group1","Boss","Solo","Group2"]), 
+recklessAttack4 = new Stunt("You have -1 to all Defense Rolls, ",4,"Any",[1,2,3,4],"Passive",["Group1","Boss","Solo","Group2"]), 
 
      
    ]       
@@ -1244,9 +1259,7 @@ for(j=0; j < stuntCost.length; j++) {
 
 }
 stuntChooser(stuntEffect,stuntEffectOptions);
-   alert(randEffect.type + " " + randCost.type)   
-while((randCost.stuntType === randEffect.stuntType  && (randEffect.stuntType !== "Any" || randCost.stuntType !== "Any")) || (randEffect.type === randCost.type)){
-alert(randEffect.type + " " + randCost.type)  
+while((randCost.stuntType === randEffect.stuntType  && (randEffect.stuntType !== "Any" || randCost.stuntType !== "Any")) || (randEffect.type !== randCost.type)){
 stuntChooser(stuntEffect,stuntEffectOptions);
 }
   
@@ -1278,7 +1291,7 @@ savedCost = randCost
 stuntEffectCreator()
 var stuntEffectOptions2 = [];
 stuntChooser(stuntEffect,stuntEffectOptions2);
-while((randCost.stuntType === randEffect.stuntType && (randEffect.stuntType !== "Any" || randCost.stuntType !== "Any"))||(randCost === savedCost)){stuntChooser(stuntEffect,stuntEffectOptions2)}
+while((randCost.stuntType === randEffect.stuntType && (randEffect.stuntType !== "Any" || randCost.stuntType !== "Any"))||(randCost === savedCost)|| (randEffect.type !== randCost.type)){stuntChooser(stuntEffect,stuntEffectOptions2)}
 
 stuntResultActives2 = randCost.description + randEffect.description  
 // This is the result of the Stunt making function for Active Stunts
