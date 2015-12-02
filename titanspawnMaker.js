@@ -1,11 +1,12 @@
 function npcChoice(){
      
 //playerNumberVar = 4
-//playerLevelVar = 2
-//fightTypeVar = 2
+//playerLevelVar = 6
+//fightTypeVar = 3
 //fightDifficultyVar = 1
 
 fightCompute = Math.floor(((6+playerLevelVar*3)+fightDifficultyVar*3)*playerNumberVar*0.75)
+
 
      function decision(argument,numberOn){ 
 skillBonus = 0
@@ -40,11 +41,13 @@ if (buffChooser == 8){stuntBonus2 += 1; fightComputeGroup -= 1; enemyNumber += n
 
 //Setting up a Boss and his Minions     
 if (fightTypeVar == 1){
+enemyType = "Boss"
 if (playerLevelVar <= 2){legendChoice = "2"}
 else if (playerLevelVar <= 4){legendChoice = "3"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
      
 decision(fightCompute/2,0)
+enemyType = "Group1"
 playerLevelVar >= 4 ? groupOrArmy = Math.floor(Math.random()*2) : groupOrArmy = 0
 if(groupOrArmy === 0){
 if (playerLevelVar <= 2){legendChoice = "1"}
@@ -53,6 +56,7 @@ else if (playerLevelVar <= 6){legendChoice = "3"}
 decision(fightCompute/2-6 ,1)
 }     
 if(groupOrArmy === 1){
+enemyType = "Group1"
 if (playerLevelVar <= 4){legendChoice = "1"}
 else if (playerLevelVar <= 6){legendChoice = "2"}
 decision(fightCompute/2-6 ,3)     
@@ -63,8 +67,9 @@ else if (fightTypeVar == 2){
 if (playerLevelVar <= 2){legendChoice = "1"}
 else if (playerLevelVar <= 4){legendChoice = "2"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
-     
+enemyType = "Group2"     
 decision(fightCompute/2,1)
+enemyType = "Group2"
 decision(fightCompute/2,1 )
 }     
 
@@ -73,7 +78,7 @@ else if (fightTypeVar == 3){
 if (playerLevelVar <= 2){legendChoice = "2"}
 else if (playerLevelVar <= 4){legendChoice = "3"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
-     
+enemyType = "Solo"     
 decision(fightCompute*0.75,0)
 //This sets the Difficulty of the One Big Enemy setting. It is set lower because of the Defense Stats.
 }     
@@ -209,12 +214,13 @@ var Aspect = function(name,type,origin,subOrigin,legend,intelligence,behavior,co
     
 };
     
-var Stunt = function(description,dangerlevel,stuntType,stuntCombat2,usesCheck) {
+var Stunt = function(description,dangerlevel,stuntType,stuntCombat2,type,NPCtype) {
   this.description = description;
   this.dangerlevel = dangerlevel;
   this.stuntType = stuntType;
   this.stuntCombat2 = stuntCombat2;
-  this.usesCheck=usesCheck;
+  this.type=type;
+  this.NPCtype = NPCtype   
 };
          
          
@@ -291,7 +297,7 @@ falseSavior = new Aspect("False Savior","Titanspawn","4",["41"],["2"],"2","behav
  fireLord = new Aspect("Fire Lord","Titanspawn","1",["12"],["3"],"2","behavior","2","http://i.imgur.com/Zug0tO7.jpg"),
  fireRevenant = new Aspect("Fire Revenant","Titanspawn","1",["12"],["2"],"2","behavior","2","http://i.imgur.com/r5DyVWO.jpg"),    
 firewalker = new Aspect("Firewalker","Titanspawn","1",["12"],["1"],"1","behavior","2","http://i.imgur.com/0tPWTCi.jpg"),
- fireWyrm = new Aspect("Fire Wyrm", "Titanspawn", "1", ["12"],["2","3"],"1","behavior","1"),
+ fireWyrm = new Aspect("Fire Wyrm", "Titanspawn", "1", ["12"],["2","3"],"1","behavior","1","http://i.imgur.com/9UC0iDn.jpg"),
  fomorian = new Aspect("Fomorian","Titanspawn","6",["65"],["1"],"2","behavior","1","http://i.imgur.com/t5jfTfs.jpg"),
  fomorianChieftain = new Aspect("Fomorian Chieftain","Titanspawn","6",["65"],["2"],"2","behavior","1","http://i.imgur.com/cWUrgVF.jpg"),
  fomorianHound = new Aspect("Fomorian Hound","Titanspawn","6",["65"],["1"],"1","behavior","3","http://i.imgur.com/lKa51EE.jpg"),    
@@ -1088,37 +1094,43 @@ var randSkills = (skillOptions.sort()[0].name + (2+skillAbilityOne+skillBonus) +
 //____________________________________________________________________________________________________
 // name = new Stunt("description","dangerlevel"),
     //Here only varname, Name, combat1 and combat2 matter, and the Effect part is under "type"
-stuntCalculator(stuntBonus,6)         
+function stuntCalculator(bonusType,costLevelSetter){
+ randomEffect2 = Math.floor(Math.random() * costLevelSetter)
+ randomEffect = randomEffect2 + skillAbilityOne + bonusType  
+}
+     
+// randomEffect2 here is the Cost of the ability, while randomEffect is the actual power of the ability
+     
+stuntCalculator(stuntBonus,4)         
+stuntEffect = []
 
-   var stuntEffect = [
-
+function stuntEffectCreator(){
+     
+  stuntEffect = [
+// These are the Active Effects.
        // Lvl 2
-energyBlast = new Stunt("use a Legendary Ability for free as an Attack action",2,"Legendary",[2,0,0,0]),
-mysticPower = new Stunt("use a Legendary Ability for free to Create a Personal Advantage",2,"Legendary",[2,4,3,0]),
-innerPower = new Stunt("invoke " + rand + " for free as an Attack action",2,"Personal Aspect",[2,0,0,0]),
-outerPower = new Stunt("invoke " + rand + " for free as a Create an Advantage action",2,"Personal Aspect",[1,3,4,0]),
-mysticConstruct = new Stunt("use a Legendary Ability for free to Create a Situational Advantage",2,"Legendary",[1,2,3,4]),
-affectOther = new Stunt("use a Legendary Ability for free to Create a Character Advantage",2,"Legendary",[1,2,3,4]),
-uniqueNature = new Stunt("invoke " + rand + " for free to Create a Character Advantage",2,"Personal Aspect",[1,2,3,4]),
-allyHelp = new Stunt("give an ally a Free Invocation on an Aspect",2,"Any",[1,4,0,0]),
-fatePointGain = new Stunt("gain a Fate Point",2,"Fate Point",[1,2,3,4]), 
-regeneration = new Stunt("Remove a Minor Consequence from an ally",2,"Defense",[1,0,0,0]),
-regeneration = new Stunt("Remove a Minor Consequence from yourself",2,"Any",[4,0,0,0]),        
+energyBlast = new Stunt("use a Legendary Ability for free as an Attack action",2,"Legendary",[2,0,0,0],"Active",["Group1","Boss","Solo","Group2"]),
+mysticPower = new Stunt("use a Legendary Ability for free to Create a Personal Advantage",2,"Legendary",[2,4,3,0],"Active",["Group1","Boss","Solo","Group2"]),
+innerPower = new Stunt("invoke " + rand + " for free as an Attack action",2,"Personal Aspect",[2,0,0,0],"Active",["Group1","Boss","Solo","Group2"]),
+outerPower = new Stunt("invoke " + rand + " for free as a Create an Advantage action",2,"Personal Aspect",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]),
+mysticConstruct = new Stunt("use a Legendary Ability for free to Create a Situational Advantage",2,"Legendary",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]),
+affectOther = new Stunt("use a Legendary Ability for free to Create a Character Advantage",2,"Legendary",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]),
+uniqueNature = new Stunt("invoke " + rand + " for free to Create a Character Advantage",2,"Personal Aspect",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]),
+allyHelp = new Stunt("give an ally a Free Invocation on an Aspect",2,"Any",[1,4,0,0],"Active",["Group1","Boss","Solo","Group2"]),
+fatePointGain = new Stunt("gain a Fate Point",2,"Fate Point",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]), 
+regeneration = new Stunt("Remove a Minor Consequence from an ally",2,"Defense",[1,0,0,0],"Active",["Group1","Boss","Solo","Group2"]),
+regeneration = new Stunt("Remove a Minor Consequence from yourself",2,"Any",[4,0,0,0],"Active",["Group1","Boss","Solo","Group2"]),        
        // Lvl 3
-aspectBonusAlly = new Stunt("when an ally invokes an Aspect you created, gain +3 instead",3,"Any",[1,3,4,0]), 
-massweaken3 = new Stunt("all enemies have -1 on their next Defense roll",3,"Any",[3,2,4,0]), 
+aspectBonusAlly = new Stunt("when an ally invokes an Aspect you created, gain +3 instead",3,"Any",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]), 
+massweaken3 = new Stunt("all enemies have -1 on their next Defense roll",3,"Any",[3,2,4,0],"Active",["Group1","Boss","Solo","Group2"]), 
         // Lvl 4
-flight = new Stunt("you have the Aspect: Flight until the end of the Scene",4,"Any",[2,1,0,0]),
-advantageMaker = new Stunt("have +1 to two Skills",4,"Skill",[1,2,3,4]),    
-legendNature = new Stunt("you can use your Legendary Ability for free using non-Legendary Rolls until the end of the Scene",4,"Legendary",[1,3,4,0]),
-energyBlast4 = new Stunt("use a Legendary Ability for free as an Attack action twice",4,"Legendary",[2,0,0,0]),
-mysticPower4 = new Stunt("use a Legendary Ability for free to Create a Personal Advantage twice",4,"Legendary",[1,4,3,0]),
-innerPower4 = new Stunt("invoke \"" + rand + "\" for free as an Attack action twice",4,"Personal Aspect",[2,0,0,0]),
-outerPower4 = new Stunt("invoke " + rand + " for free as a Create an Advantage action twice",4,"Personal Aspect",[1,2,3,4]),
+advantageMaker = new Stunt("have +1 to two Skills",4,"Skill",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]),    
+legendNature = new Stunt("you can use your Legendary Ability for free using non-Legendary Rolls until the end of the Scene",4,"Legendary",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]),
+energyBlast4 = new Stunt("use a Legendary Ability for free as an Attack action twice",4,"Legendary",[2,0,0,0],"Active",["Group1","Boss","Solo","Group2"]),
+mysticPower4 = new Stunt("use a Legendary Ability for free to Create a Personal Advantage twice",4,"Legendary",[1,4,3,0],"Active",["Group1","Boss","Solo","Group2"]),
+innerPower4 = new Stunt("invoke \"" + rand + "\" for free as an Attack action twice",4,"Personal Aspect",[2,0,0,0],"Active",["Group1","Boss","Solo","Group2"]),
+outerPower4 = new Stunt("invoke " + rand + " for free as a Create an Advantage action twice",4,"Personal Aspect",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]),
       // Lvl 5
- 
-
-      // Lvl 6
 
 
 //_____________________
@@ -1126,106 +1138,122 @@ outerPower4 = new Stunt("invoke " + rand + " for free as a Create an Advantage a
    ]  
 function pushStunt2(uses){
 for(i=2;i<50;i++){
-  stuntEffect.push(shieldScaler = new Stunt("an ally has +" + i + " on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0]));
-  stuntEffect.push(theEliteScaler = new Stunt("gain +" + i + " to a Skill to Create an Advantage for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,3,4,0]));
-  stuntEffect.push(theRecklessScaler = new Stunt("gain +"+i+" to a Skill to Attack for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[2,0,0,0]));
-  stuntEffect.push(fogScaler = new Stunt("an enemy has -"+i+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,0,0]));
-  stuntEffect.push(defendScaler = new Stunt("get +"+i+" to your next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Defense",[2,4,0,0]));
-  stuntEffect.push(createAspectScaler = new Stunt("automatically create an Aspect that requires a +"+i+" opposition to remove (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0]));
-  stuntEffect.push(weakenScaler = new Stunt("an enemy has -"+i+" on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[2,1,0,0]));
-  stuntEffect.push(skilledScaler = new Stunt("have +"+Math.floor(i/2+1)+" to a Skill for the rest of the Scene (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,2,3,4]));
-  stuntEffect.push(advantageMaker = new Stunt("have +"+Math.floor(i/4+1)+" to two Skills (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,2,3,4]));
-  stuntEffect.push(massfogScaled = new Stunt("all enemies have -"+Math.floor(i/2+1)+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,4,3,0]))
-  stuntEffect.push(mindfogScaled = new Stunt("an enemy has -"+i+" on their next Create an Advantage Rolls (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0])) 
-  stuntEffect.push(fogScaled = new Stunt("an enemy has -"+i+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,4,3,0]))
-  stuntEffect.push(massmindfogScaled = new Stunt("all enemies have -"+Math.floor(i/2+1)+" on their next Create an Advantage Rolls (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0]))   
-  stuntEffect.push(instagibScaled = new Stunt("automatically deal a "+Math.floor(i*0.8)+"-shift Damage to an enemy (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[2,0,0,0]))
-  stuntEffect.push(aspectBonus5 = new Stunt("until the end of the Scene, when you invoke a Personal Aspect or an Aspect you created, gain an additional +"+Math.floor(i/3+1)+" (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0]))
-  stuntEffect.push(aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, they gain an additional +"+Math.floor(i/3+1)+" (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0]))     }
+// These are the Active Effects.
+  stuntEffect.push(shieldScaler = new Stunt("an ally has +" + i + " on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0],"Active",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(theEliteScaler = new Stunt("gain +" + i + " to a Skill to Create an Advantage for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(theRecklessScaler = new Stunt("gain +"+i+" to a Skill to Attack for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[2,0,0,0],"Active",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(fogScaler = new Stunt("an enemy has -"+i+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,0,0],"Active",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(defendScaler = new Stunt("get +"+i+" to your next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Defense",[2,4,0,0],"Active",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(createAspectScaler = new Stunt("automatically create an Aspect that requires a +"+i+" opposition to remove (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(weakenScaler = new Stunt("an enemy has -"+i+" on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[2,1,0,0],"Active",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(skilledScaler = new Stunt("have +"+Math.floor(i/2+1)+" to a Skill for the rest of the Scene (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(advantageMaker = new Stunt("have +"+Math.floor(i/4+1)+" to two Skills (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(massfogScaled = new Stunt("all enemies have -"+Math.floor(i/2+1)+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,4,3,0],"Active",["Group1","Boss","Solo","Group2"]))
+  stuntEffect.push(fogScaled = new Stunt("an enemy has -"+i+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,4,3,0],"Active",["Group1","Boss","Solo","Group2"]))
+  stuntEffect.push(massmindfogScaled = new Stunt("all enemies have -"+Math.floor(i/2+1)+" on their next Create an Advantage Rolls (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]))   
+  stuntEffect.push(instagibScaled = new Stunt("automatically deal a "+Math.floor(i*0.8)+"-shift Damage to an enemy (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[2,0,0,0],"Active",["Group1","Boss","Solo","Group2"]))
+  stuntEffect.push(aspectBonus5 = new Stunt("until the end of the Scene, when you invoke a Personal Aspect or an Aspect you created, gain an additional +"+Math.floor(i/3+1)+" (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]))
+  stuntEffect.push(aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, they gain an additional +"+Math.floor(i/3+1)+" (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]))     }
+     
+     
 }
        
-   pushStunt2(1);      
-   pushStunt2(2);      
-   pushStunt2(3); 
+//   pushStunt2(1);      
+//   pushStunt2(2);      
+//   pushStunt2(3); 
+// Creates Stutns for 1-3 uses. New function needed for Passives
 
 
+function pushStuntPassives(){
+for(i=2;i<50;i++){
+  stuntEffect.push(physicalResist = new Stunt("you have +" + Math.ceil(i/3) + " to Defense Rolls against Physical attacks ",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(magicResist = new Stunt("you have +" + Math.ceil(i/2) + " to Defense Rolls against Non-Physical attacks ",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(rageAlly = new Stunt("you have the \"Rage\" Aspect and have +" + Math.ceil(i*0.75) + " to Attack Rolls until an ally suffers a Consequence",i,"Any",[0,2,4,0],"Passive",["Group1","Boss","Group2"]));
+  stuntEffect.push(allyChannel = new Stunt("you have the \"Empowered\" Aspect and have +" + Math.ceil(i*0.75) + " to Attack Rolls until an ally suffers a Consequence",i,"Any",[0,2,4,0],"Passive",["Group1","Boss","Group2"]));
+  stuntEffect.push(allyChannel2 = new Stunt("you have the \"Empowered\" Aspect and have +" + Math.ceil(i*0.75) + " to Defense Rolls until an ally suffers a Consequence",i,"Any",[0,2,4,0],"Passive",["Group1","Boss","Group2"]));
+  stuntEffect.push(allyBuff = new Stunt("you have the \"Protector\" Aspect and your allies have +" + Math.ceil(i/3) + " to Defense Rolls until you are Taken Out",i,"Any",[1,0,4,0],"Passive",["Group1","Boss","Group2"]));
+  stuntEffect.push(allyEnrage = new Stunt("you have the \"Enrager\" Aspect and your allies have +" + Math.ceil(i/3) + " to Attack Rolls until you are Taken Out",i,"Any",[0,1,4,0],"Passive",["Group1","Boss","Group2"]));
+  stuntEffect.push(bleedEnrage = new Stunt("you have +" + Math.ceil(i/6) + " to Attack Rolls every time you take a Consequence ",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(bleedBuff = new Stunt("you have +" + Math.ceil(i/6) + " to Create an Advantage Rolls every time you take a Consequence ",i,"Any",[2,4,3,1],"Passive",["Group1","Boss","Solo","Group2"]));
+     
+     
+}}
+pushStuntPassives()
+pushStuntPassives()
+pushStuntPassives()
+pushStuntPassives()
 
-         
-var stuntCost = [    
-       // Lvl 0
-free = new Stunt("On your turn, ",0,"Any",[1,2,3,4]),
-       // Lvl 1
-recklessAttack = new Stunt("On your turn, ",1,"Defense",[1,2,3,0]), 
-mentalStress1 =  new Stunt("On your turn, ",1,"Any",[1,2,3,4]),   
-painGain = new Stunt("Whenever you receive a Consequence, ",1,"Any",[2,4,0,0]),
-friendPainGain = new Stunt("Whenever an ally receives a Consequence, ",1,"Any",[1,3,0,0]),
-physicalStress1 =  new Stunt("On your turn, ",1,"Any",[1,2,3,0]),        
-       // Lvl 2  
-fatePoint = new Stunt("For 1 Fate Point, ",2,"Fate Point",[1,2,3,4]),  
-fatePoint2 = new Stunt("For 1 Legendary Ability use, ",2,"Legendary",[1,2,3,4]),  
-mentalStress2 =  new Stunt("Take 2 Mental Stress, ",2,"Any",[1,2,3,4]),   
-lowPain = new Stunt("You take a Minor Physical Consequence, and ",2,"Defense",[1,2,3,0]),        
-physicalStress2 =  new Stunt("Take 2 Physical Stress, ",2,"Any",[1,2,3,0]),   
-     // Lvl 3
-newAspect = new Stunt("You gain the Aspect: 'Vulnerable', and ",3,"Any",[1,3,0,0]),     
-recklessAttack3 = new Stunt("Gain -3 to your next Defense Roll, and ",3,"Defense",[1,2,3,0]),
-focus = new Stunt("Lose your Action this turn, and ",3,"Any",[1,3,0,0]),
-mentalStress3 =  new Stunt("Take 3 Mental Stress, ",3,"Any",[1,2,3,4]),   
-transform = new Stunt("Remove an Aspect you created, and ",3,"Any",[1,3,4,0]),                     
-physicalStress3 =  new Stunt("Take 3 Physical Stress, ",4,"Any",[1,2,3,0]),   
-     // Lvl 4
-extreme = new Stunt("You take a Medium Physical Consequence, and ",4,"Defense",[1,2,3,0]),
-mentalStress4 =  new Stunt("Take 4 Mental Stress, ",4,"Any",[1,2,3,4]),   
-physicalStress4 =  new Stunt("Take 4 Physical Stress, ",4,"Any",[1,2,3,0]),   
-     // Lvl 5
-mentalStress5 =  new Stunt("Take 5 Mental Stress, ",5,"Any",[1,2,3,4]),   
-recklessAttack5 = new Stunt("Gain -5 to your next Defense Roll, and ",5,"Defense",[1,2,3,0]),              
-physicalStress6 =  new Stunt("Take 5 Physical Stress, ",5,"Any",[1,2,3,0]),   
-     // Lvl 6
-brutal = new Stunt("You take a Major Physical Consequence, and ",6,"Defense",[1,2,3,0]), 
-mentalStress5 =  new Stunt("Take 5 Mental Stress, ",6,"Any",[1,2,3,4]),   
-recklessAttack5 = new Stunt("Gain -5 to your next Defense Roll, and ",6,"Defense",[1,2,3,0]),              
-physicalStress6 =  new Stunt("Take 5 Physical Stress, ",6,"Any",[1,2,3,0]),   
-      
-   ]       
- 
-
-function stuntCalculator(bonusType,costLevelSetter){
- randomEffect2 = Math.floor(Math.random() * costLevelSetter)
- randomEffect = randomEffect2 + skillAbilityOne + bonusType  
 }
+
+stuntEffectCreator()
+         
+var stuntCost = [ 
+ 
+// These are the Active Costs.
+     
+       // Lvl 0
+free = new Stunt("At any time, ",0,"Any",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]),
+       // Lvl 1
+recklessAttack = new Stunt("On your turn, ",1,"Defense",[1,2,3,0],"Active",["Group1","Boss","Solo","Group2"]), 
+mentalStress1 =  new Stunt("On your turn, ",1,"Any",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]),   
+painGain = new Stunt("Whenever you receive a Consequence, ",1,"Any",[2,4,0,0],"Active",["Group1","Boss","Solo","Group2"]),
+friendPainGain = new Stunt("Whenever an ally receives a Consequence, ",1,"Any",[1,3,0,0],"Active",["Group1","Boss","Solo","Group2"]),
+physicalStress1 =  new Stunt("On your turn, ",1,"Any",[1,2,3,0],"Active",["Group1","Boss","Solo","Group2"]),        
+       // Lvl 2  
+fatePoint = new Stunt("For 1 Fate Point, ",2,"Fate Point",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]),  
+fatePoint2 = new Stunt("For 1 Legendary Ability use, ",2,"Legendary",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]),  
+mentalStress2 =  new Stunt("Take 2 Mental Stress, ",2,"Any",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]),   
+lowPain = new Stunt("You take a Minor Physical Consequence, and ",2,"Defense",[1,2,3,0],"Active",["Group1","Boss","Solo","Group2"]),        
+physicalStress2 =  new Stunt("Take 2 Physical Stress, ",2,"Any",[1,2,3,0],"Active",["Group1","Boss","Solo","Group2"]),   
+     // Lvl 3
+newAspect = new Stunt("You gain the Aspect: 'Vulnerable', and ",3,"Any",[1,3,0,0],"Active",["Group1","Boss","Solo","Group2"]),     
+recklessAttack3 = new Stunt("Gain -3 to your next Defense Roll, and ",3,"Defense",[1,2,3,0],"Active",["Group1","Boss","Solo","Group2"]),
+focus = new Stunt("Lose your Action this turn, and ",3,"Any",[1,3,0,0],"Active",["Group1","Boss","Solo","Group2"]),
+mentalStress3 =  new Stunt("Take 3 Mental Stress, ",3,"Any",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]),   
+transform = new Stunt("Remove an Aspect you created, and ",3,"Any",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]),                     
+physicalStress3 =  new Stunt("Take 3 Physical Stress, ",4,"Any",[1,2,3,0],"Active",["Group1","Boss","Solo","Group2"]),   
+
+// These are the Passive Costs.
+recklessAttack = new Stunt("On your turn, ",0,"Any",[1,2,3,0],"Passive",["Group1","Boss","Solo","Group2"]),   
+recklessAttack = new Stunt("On your turn, ",1,"Any",[1,2,3,0],"Passive",["Group1","Boss","Solo","Group2"]), 
+recklessAttack2 = new Stunt("On your turn, ",2,"Any",[1,2,3,0],"Passive",["Group1","Boss","Solo","Group2"]), 
+recklessAttack3 = new Stunt("You have -1 to all Defense Rolls, ",3,"Any",[1,2,3,0],"Passive",["Group1","Boss","Solo","Group2"]), 
+recklessAttack4 = new Stunt("You have -1 to all Defense Rolls, ",4,"Any",[1,2,3,0],"Passive",["Group1","Boss","Solo","Group2"]), 
+
+     
+   ]       
    
-    
 var stuntEffectOptions = [];
 var stuntCostOptions = [];
 
      
-function stuntChooser (targettedArray,targettedSecondArray){  
+function stuntChooser (targettedArray,targettedSecondArray){   
      
 for(h=0; h < targettedArray.length; h++) {
-  if ((randomEffect === targettedArray[h].dangerlevel) && (targettedArray[h].stuntCombat2[0] === combatChoice2Int || targettedArray[h].stuntCombat2[1] === combatChoice2Int || targettedArray[h].stuntCombat2[2] === combatChoice2Int || targettedArray[h].stuntCombat2[3] === combatChoice2Int))
+  if ((randomEffect === targettedArray[h].dangerlevel) && (targettedArray[h].stuntCombat2[0] === combatChoice2Int || targettedArray[h].stuntCombat2[1] === combatChoice2Int || targettedArray[h].stuntCombat2[2] === combatChoice2Int || targettedArray[h].stuntCombat2[3] === combatChoice2Int)&&((targettedArray[h].NPCtype[0] === enemyType)||(targettedArray[h].NPCtype[1] === enemyType)||(targettedArray[h].NPCtype[2] === enemyType)||(targettedArray[h].NPCtype[3] === enemyType)))
 { stuntEffectOptions.push(targettedArray[h]) }}
 
  randEffect = stuntEffectOptions[Math.round(Math.random() * stuntEffectOptions.length)];
     
 for(j=0; j < stuntCost.length; j++) {
-  if ((randomEffect2 ===  Math.round(stuntCost[j].dangerlevel)) && (stuntCost[j].stuntCombat2[0] === combatChoice2Int || stuntCost[j].stuntCombat2[1] === combatChoice2Int || stuntCost[j].stuntCombat2[2] === combatChoice2Int || stuntCost[j].stuntCombat2[3] === combatChoice2Int)){
+  if ((randomEffect2 ===  Math.round(stuntCost[j].dangerlevel)) && (stuntCost[j].stuntCombat2[0] === combatChoice2Int || stuntCost[j].stuntCombat2[1] === combatChoice2Int || stuntCost[j].stuntCombat2[2] === combatChoice2Int || stuntCost[j].stuntCombat2[3] === combatChoice2Int)&&((stuntCost[j].NPCtype[0] === enemyType)||(stuntCost[j].NPCtype[1] === enemyType)||(stuntCost[j].NPCtype[2] === enemyType)||(stuntCost[j].NPCtype[3] === enemyType))){
   stuntCostOptions.push(stuntCost[j])   
   }} 
      
  randCost = stuntCostOptions[Math.floor(Math.random() * stuntCostOptions.length)];
 
-
 }
 stuntChooser(stuntEffect,stuntEffectOptions);
-      
-
-if(randCost.stuntType === randEffect.stuntType  && (randEffect.stuntType !== "Any" || randCost.stuntType !== "Any")){
+   alert(randEffect.type + " " + randCost.type)   
+while((randCost.stuntType === randEffect.stuntType  && (randEffect.stuntType !== "Any" || randCost.stuntType !== "Any")) || (randEffect.type === randCost.type)){
+alert(randEffect.type + " " + randCost.type)  
 stuntChooser(stuntEffect,stuntEffectOptions);
 }
-    
+  
+stuntResultActives = randCost.description + randEffect.description  
+// This is the result of the Stunt making function for Active Stunts
      
-var rand6 = ("<br><b>\nStunts:</b> <br>\n- " + randCost.description + randEffect.description)    
+var rand6 = ("<br><b>\nStunts:</b> <br>\n- " + stuntResultActives)    
                
 //____________________________________________________________________________________________________
 
@@ -1236,72 +1264,28 @@ var rand6 = ("<br><b>\nStunts:</b> <br>\n- " + randCost.description + randEffect
 //____________________________________________________________________________________________________
 
 console.log(randomEffect2)
-randomEffect2 = Math.floor(Math.random() * 3);
+randomEffect2 = Math.floor(Math.random() * 4);
 randomEffect = randomEffect2 + skillAbilityOne + stuntBonus2 ;
 console.log(randomEffect2)
 
+stuntEffect = []
+stuntCostOptions = []
+stuntEffectOptions = []
 
-var stuntEffect2 = [
-        // Lvl 2
-energyBlast = new Stunt("use a Legendary Ability for free as an Attack action",2,"Legendary",[2,0,0,0]),
-mysticPower = new Stunt("use a Legendary Ability for free to Create a Personal Advantage",2,"Legendary",[2,4,3,0]),
-innerPower = new Stunt("invoke " + rand + " for free as an Attack action",2,"Personal Aspect",[2,0,0,0]),
-outerPower = new Stunt("invoke " + rand + " for free as a Create an Advantage action",2,"Personal Aspect",[1,3,4,0]),
-mysticConstruct = new Stunt("use a Legendary Ability for free to Create a Situational Advantage",2,"Legendary",[1,2,3,4]),
-affectOther = new Stunt("use a Legendary Ability for free to Create a Character Advantage",2,"Legendary",[1,2,3,4]),
-uniqueNature = new Stunt("invoke " + rand + " for free to Create a Character Advantage",2,"Personal Aspect",[1,2,3,4]),
-allyHelp = new Stunt("give an ally a Free Invocation on an Aspect",2,"Any",[1,4,0,0]),
-fatePointGain = new Stunt("gain a Fate Point",2,"Fate Point",[1,2,3,4]), 
-regeneration = new Stunt("Remove a Minor Consequence from an ally",2,"Defense",[1,0,0,0]),
-regeneration = new Stunt("Remove a Minor Consequence from yourself",2,"Any",[4,0,0,0]),        
-       // Lvl 3
-aspectBonusAlly = new Stunt("when an ally invokes an Aspect you created, gain +3 instead",3,"Any",[1,3,4,0]), 
-massweaken3 = new Stunt("all enemies have -1 on their next Defense roll",3,"Any",[3,2,4,0]), 
-        // Lvl 4
-flight = new Stunt("you have the Aspect: Flight until the end of the Scene",4,"Any",[2,1,0,0]),
-advantageMaker = new Stunt("have +1 to two Skills",4,"Skill",[1,2,3,4]),    
-legendNature = new Stunt("you can use your Legendary Ability for free using non-Legendary Rolls until the end of the Scene",4,"Legendary",[1,3,4,0]),
-energyBlast4 = new Stunt("use a Legendary Ability for free as an Attack action twice",4,"Legendary",[2,0,0,0]),
-mysticPower4 = new Stunt("use a Legendary Ability for free to Create a Personal Advantage twice",4,"Legendary",[1,4,3,0]),
-innerPower4 = new Stunt("invoke \"" + rand + "\" for free as an Attack action twice",4,"Personal Aspect",[2,0,0,0]),
-outerPower4 = new Stunt("invoke " + rand + " for free as a Create an Advantage action twice",4,"Personal Aspect",[1,2,3,4]),]  
-function pushStunt(uses){
-for(i=2;i<60;i++){
-  stuntEffect.push(shieldScaler = new Stunt("an ally has +" + i + " on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0]));
-  stuntEffect.push(theEliteScaler = new Stunt("gain +" + i + " to a Skill to Create an Advantage for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,3,4,0]));
-  stuntEffect.push(theRecklessScaler = new Stunt("gain +"+i+" to a Skill to Attack for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[2,0,0,0]));
-  stuntEffect.push(fogScaler = new Stunt("an enemy has -"+i+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,0,0]));
-  stuntEffect.push(defendScaler = new Stunt("get +"+i+" to your next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Defense",[2,4,0,0]));
-  stuntEffect.push(createAspectScaler = new Stunt("automatically create an Aspect that requires a +"+i+" opposition to remove (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0]));
-  stuntEffect.push(weakenScaler = new Stunt("an enemy has -"+i+" on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[2,1,0,0]));
-  stuntEffect.push(skilledScaler = new Stunt("have +"+Math.floor(i/2+1)+" to a Skill for the rest of the Scene (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,2,3,4]));
-  stuntEffect.push(advantageMaker = new Stunt("have +"+Math.floor(i/4+1)+" to two Skills (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[1,2,3,4]));
-  stuntEffect.push(massfogScaled = new Stunt("all enemies have -"+Math.floor(i/2+1)+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,4,3,0]))
-  stuntEffect.push(mindfogScaled = new Stunt("an enemy has -"+i+" on their next Create an Advantage Rolls (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0])) 
-  stuntEffect.push(fogScaled = new Stunt("an enemy has -"+i+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,4,3,0]))
-  stuntEffect.push(massmindfogScaled = new Stunt("all enemies have -"+Math.floor(i/2+1)+" on their next Create an Advantage Rolls (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0]))   
-  stuntEffect.push(instagibScaled = new Stunt("automatically deal a "+Math.floor(i*0.8)+"-shift Damage to an enemy (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[2,0,0,0]))
-  stuntEffect.push(aspectBonus5 = new Stunt("until the end of the Scene, when you invoke a Personal Aspect or an Aspect you created, gain an additional +"+Math.floor(i/3+1)+" (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0]))
-  stuntEffect.push(aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, they gain an additional +"+Math.floor(i/3+1)+" (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0]))     }
-}    
-savedCost = randCost                   
+console.log(stuntEffect)
+savedCost = randCost                    
+
+stuntEffectCreator()
 var stuntEffectOptions2 = [];
-var stuntCostOptions2 = [];
+stuntChooser(stuntEffect,stuntEffectOptions2);
+while((randCost.stuntType === randEffect.stuntType && (randEffect.stuntType !== "Any" || randCost.stuntType !== "Any"))||(randCost === savedCost)){stuntChooser(stuntEffect,stuntEffectOptions2)}
 
-stuntChooser(stuntEffect2,stuntEffectOptions2);
+stuntResultActives2 = randCost.description + randEffect.description  
+// This is the result of the Stunt making function for Active Stunts
+         
+var rand7 = ("<br>\n- " + stuntResultActives2)  
 
 
-
-
-if((randCost.stuntType === randEffect.stuntType && (randEffect.stuntType !== "Any" || randCost.stuntType !== "Any"))||(randCost === savedCost)){
-stuntChooser(stuntEffect2,stuntEffectOptions2);
-     
-     
-     
-}
-
-          
-var rand7 = ("<br>\n- " + randCost.description + randEffect.description)    
 
 //____________________________________________________________________________________________________
 
@@ -1313,7 +1297,7 @@ var rand7 = ("<br>\n- " + randCost.description + randEffect.description)
 
 physicalStress = ["<br>\nPhysical Stress: -1 ","-2 ","-3 ","Mild ","Medium "]
 
-mentalStress = ["<br>\nMental Stress: -1 ","-2 ","","Mild ","Medium "]
+mentalStress = ["<br>\nMental Stress: -1 ","-2 ","-3 ","Mild ","Medium "]
 
 function damageMaker(damageType,stringType){
 if(damageType === 0){stringType[0] += ""}
@@ -1359,5 +1343,4 @@ myWindow.document.write('<img src=' +  imageLink + '" alt="Image" width=100% hei
 myWindow.document.write("</BODY>")
 myWindow.document.write("</HTML>")}     
 
-}
-}
+}}
