@@ -806,17 +806,13 @@ var aspect1 = [
 // name = new Aspect("name","type","origin"),
 ]
 
-var aspect1Options = [];
 
-for(i=0; i < aspect1.length; i++) {
-  if (typeChoice === aspect1[i].type && 
-      originChoice === aspect1[i].origin) {
-  var chosenAspect = aspect1[i].name[Math.floor(Math.random() * aspect1[i].name.length)];
-  aspect1Options.push(chosenAspect)
-};
-};
 
-var rand2 = aspect1Options[Math.floor(Math.random() * aspect1Options.length)];
+var aspect1Options = aspect1.filter(function (el) {
+  return el.type === typeChoice &&
+         el.origin === originChoice 
+});
+var rand2 = aspect1Options[0].name[Math.floor(Math.random()*(aspect1Options[0].name.length))];
 
 //____________________________________________________________________________________________________
 
@@ -867,16 +863,12 @@ var aspect2 = [
  
 ]
 
-var aspect2Options = [];
+var aspect2Options = aspect2.filter(function (el) {
+  return el.behavior === behaviorChoice &&
+         el.intelligence === intelligenceChoice 
+});
 
-for(g=0; g < aspect2.length; g++) {
-  if (behaviorChoice === aspect2[g].behavior && 
-      intelligenceChoice === aspect2[g].intelligence) {
-  aspect2Options.push(aspect2[g].name)
-};
-};
-
-var rand3 = aspect2Options[Math.floor(Math.random() * aspect2Options.length)];
+var rand3 = aspect2Options[Math.floor(Math.random() * aspect2Options.length)].name;
 
 //____________________________________________________________________________________________________
 
@@ -987,10 +979,11 @@ hematurgyYahuar = new LegendaryAbility(["Hematurgy - Yahuar","Self Sacrificial",
 
     
 // Epic Phsyiology
-physiqueStrength = new LegendaryAbility(["Epic Physique: Strength","Mighty","Goliath"],[["Titanspawn","1","99"],["Titanspawn","2","99"],["Titanspawn","3","99"],["Titanspawn","4","99"],["Titanspawn","5","99"],["Titanspawn","6","99"],["Titanspawn","7","99"],["Mythborn","4","99"],["Mythborn","3","99"],["Mythborn","5","99"]],["1"],["1","2","3","4"],["1","2"]),
+physiqueStrength = new LegendaryAbility(["Epic Physique - Strength","Mighty","Goliath"],[["Titanspawn","1","99"],["Titanspawn","2","99"],["Titanspawn","3","99"],["Titanspawn","4","99"],["Titanspawn","5","99"],["Titanspawn","6","99"],["Titanspawn","7","99"],["Mythborn","4","99"],["Mythborn","3","99"],["Mythborn","5","99"]],["1"],["1","2","3","4"],["1","2"]),
 physiqueToughness = new LegendaryAbility(["Epic Physique - Toughness","Resilient","Hulk"],[["Titanspawn","1","11"],["Titanspawn","1","12"],["Titanspawn","1","13"],["Titanspawn","2","21"],["Titanspawn","2","23"],["Titanspawn","2","22"],["Titanspawn","3","99"],["Titanspawn","4","42"],["Titanspawn","5","99"],["Titanspawn","6","99"],["Titanspawn","7","99"],["Titanspawn","8","83"],["Mythborn","1","12"],["Mythborn","2","22"],["Mythborn","3","99"],["Mythborn","4","99"],["Mythborn","5","51"],["Mythborn","5","52"],["Mythborn","5","54"],["Mythborn","6","99"]],["1"],[,"2","4"],["1","2"]),
 presenceLeader = new LegendaryAbility(["Epic Presence","Intimidating","Lord"],[["Titanspawn","2","22"],["Titanspawn","1","12"],["Titanspawn","1","11"],["Titanspawn","4","99"],["Titanspawn","5","51"],["Titanspawn","5","53"],["Titanspawn","6","99"],["Titanspawn","7","72"],["Titanspawn","7","73"],["Mythborn","1","12"],["Mythborn","1","11"],["Mythborn","2","22"],["Mythborn","3","99"],["Mythborn","4","43"],["Mythborn","5","99"]],["1","2"],[,"1","2","4"],["2"]),
 appearanceBeauty = new LegendaryAbility(["Epic Appearance - Beauty","Beautiful","Supermodel"],[["Titanspawn","2","21"],["Titanspawn","2","24"],["Titanspawn","3","32"],["Titanspawn","4","99"],["Titanspawn","6","0"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","4","44"],["Mythborn","4","42"],["Mythborn","5","99"],["Mythborn","6","62"]],["2","3"],[,"3"],["2"]),
+sensesDexterity = new LegendaryAbility(["Epic Senses - Dexterity","Agile","Assassin"],[["Titanspawn","1","13"],["Titanspawn","2","99"],["Titanspawn","3","32"],["Titanspawn","4","99"],["Titanspawn","5","51"],["Titanspawn","5","52"],["Titanspawn","6","63"],["Titanspawn","6","65"],["Titanspawn","7","99"],["Titanspawn","8","99"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","42"],["Mythborn","4","43"],["Mythborn","5","99"],["Mythborn","6","99"]],["1","3"],[,"2","3","4"],[,"1","2"]),
 
 
 
@@ -1360,4 +1353,3 @@ myWindow.document.write("</BODY>")
 myWindow.document.write("</HTML>")}     
 
 }}
-
