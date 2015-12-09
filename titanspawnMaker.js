@@ -2,7 +2,7 @@ function npcChoice(){
      
 //playerNumberVar = 4
 //playerLevelVar = 7
-//fightTypeVar = 3
+//fightTypeVar = 2
 //fightDifficultyVar = 1
 
 fightCompute = Math.floor((6+playerLevelVar*3)*playerNumberVar*(1.5-(fightDifficultyVar/4)))
@@ -326,7 +326,7 @@ hauntedGuardian = new Aspect("Haunted Guardian","Titanspawn","8",["81","82"],["1
 hydraKing = new Aspect("Hydra King","Titanspawn","6",["61","62"],["3"],"1","behavior","2","http://i.imgur.com/Bje3G9A.jpg"),
 icebergSwallower = new Aspect("Iceberg Swallower","Titanspawn","7",["71"],["2","3"],"1","behavior","2","http://i.imgur.com/Ifcvsae.jpg"),
 janaleth = new Aspect("Janaleth the Defiant, King of the Desert","Titanspawn","4",["42"],["4"],"1","behavior","2","http://i.imgur.com/Njg991N.jpg"),
-jokung = new Aspect("Jo'Kung, Breaker of Dynasties","Titanspawn","8",["82","83"],["4"],"2","behavior","2","http://i.imgur.com/BkjFyh4.jpg"),
+jokung = new Aspect("Jo'Kung, Breaker of Dynasties","Titanspawn","8",["82","83"],["3"],"2","behavior","2","http://i.imgur.com/BkjFyh4.jpg"),
  jormungandrSpawn = new Aspect("Spawn of Jormungandr","Titanspawn","7",["72"],["3"],"1","behavior","2","http://i.imgur.com/NiLH0D7.jpg"),
  kraken = new Aspect("Kraken","Titanspawn","7",["74"],["3","2"],"1","behavior","2","http://i.imgur.com/OIXbO4t.jpg"),
  lampDjinn = new Aspect("Lamp Djinn","Titanspawn","4",["42"],["1"],"2","behavior","2","http://i.imgur.com/tQ3VBYm.png"),
@@ -1330,13 +1330,7 @@ randMental = mentalStress[0] + mentalStress[1] + mentalStress[2] + mentalStress[
 
 
 //____________________________________________________________________________________________________
-var imageLink2 = new Image();
-imageLink2.onload = function() {
-if(this.width > this.height){sizeSpecs = "width=100% height=auto; margin: 10%"} 
-else{sizeSpecs = "width=auto height=75%; margin: 10%"}
-}
-imageLink2.src = imageLink
-imageLink2 = imageLink
+
 
 if (typeof imageLink === 'undefined') {     
 var myWindow = window.open("", "_blank","width=400, height=400");
@@ -1352,11 +1346,10 @@ myWindow.document.write("<TITLE>Generated NPC</TITLE>")
 myWindow.document.write("<BODY BGCOLOR='#297ACC'>")
 myWindow.document.write("<p style='font-family:arial'><b>Aspects: </b><br>&nbsp;&nbsp;" + rand  + "<br>&nbsp;&nbsp;" + rand2 + "<br>&nbsp;&nbsp;" + rand3 + "<br>\n&nbsp;&nbsp;"   + rand5 + "<br>\n<b>Skills:</b> " + randSkills + rand6 + rand7 + randPhysical + randMental + " </p>");   
 
-myWindow.document.write('<img src=' +  imageLink2 + '" alt="Image" ' + sizeSpecs + ' >')
+myWindow.document.write('<img src=' +  imageLink + '" alt="Image" width=100% height=auto >')
 //myWindow.document.write('<img src="http://i.imgur.com/uuMetIe.jpg" alt="Image"width=100% height=60% >')
      
 myWindow.document.write("</BODY>")
 myWindow.document.write("</HTML>")}     
 
 }}
-
