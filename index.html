@@ -26,12 +26,55 @@ fightTypeVar = document.getElementById("fightType").value
 fightDifficultyVar = document.getElementById("fightDifficulty").value
 
 npcChoice()
-
-  
-  
 }
  </script>
+<script>
+function riddles(){
+function firstRiddleFunction(){
+  firstNumberRiddle = prompt("Entry 001: Enlightened Indoctrination Success Rate at 43%. Further Experimentation Required. \n112213\n312213\n212223\n113213\n311223\n212223\n114113\n41021314\n?")
+}
+firstRiddleFunction()
+while(firstNumberRiddle !== "31121324"){firstRiddleFunction()}
+if(firstNumberRiddle === "31121324"){secondRiddleFunction()}
 
+
+function secondRiddleFunction(){
+  secondNumberRiddle = prompt("Entry 002: Humanity need for Sunlight reduced. 'Electric' Power responsible. Paradigm Shift Required. \n1011011001\n1000000000\n101010111\n?")
+}
+
+while(secondNumberRiddle !== "11011000"){secondRiddleFunction()}
+if(secondNumberRiddle === "11011000"){thirdRiddleFunction()}
+
+function thirdRiddleFunction(){
+  thirdNumberRiddle = prompt("Entry 004: Contact established with S. Herald is pleased. Tests Encouraging. \nGSV YIRMTVI LU ORTSG \nGSV YIVZPVI LU TLWH \nGSV LMV GIFV HFM \nGSV YIRTSG LMV \nGSV YZMV LU SBKVIRLM \nYB SRH MZNV HSZOO DV YV UIVVW \n?")
+}
+thirdNumberRiddleBetter = thirdNumberRiddle.toLowerCase()
+while(thirdNumberRiddleBetter !== "aten"){thirdRiddleFunction()}
+if(thirdNumberRiddleBetter === "aten"){fourthRiddleFunction()}
+
+function fourthRiddleFunction(){
+  fourthNumberRiddle = prompt("Entry 008: Fear of Night encourages Indoctrination. Indoctrination at 54%. Unknown factor preventing further progress. Paradigm Shift Required.\n \nFvm Fzim Cqn qp Afik oyhh dzyns pqzfv fvm Mfmznah Hysvf. Fvm pahcm Cin, fvm Mashm, ? oyhh tau.\n?")
+}
+fourthNumberRiddleBetter = fourthNumberRiddle.toLowerCase()
+
+while(fourthNumberRiddleBetter !== "ra"){fourthRiddleFunction()}
+if(fourthNumberRiddleBetter === "ra"){fifthRiddleFunction()}
+
+function fifthRiddleFunction(){
+  fifthNumberRiddle = prompt("Entry 012: Selene actively hampering our plans. Intervention Required. New Directive: Find her Children. \n \nThe year of AAS's meeting according to Legrasse's Tale marks the birth of our ambitions\n?")
+}                                                                                                                                                                      
+
+while(fifthNumberRiddle !== "1908"){fifthRiddleFunction()}
+if(fifthNumberRiddle === "1908"){sixthRiddleFunction()}
+
+function sixthRiddleFunction(){
+  sixthNumberRiddle = prompt("Entry 012: Selene actively hampering our plans. Intervention Required. New Directive: Find her Children. \n \nFrom the rising of the sun to its setting The name of Aten is to be praised. \nENTER CODE: ----")
+}                                                                                                                                                                      
+
+while(sixthNumberRiddle !== "1133"){sixthRiddleFunction()}
+if(sixthNumberRiddle === "1133"){seventhRiddleFunction()}
+}
+</script>
   </head>
 
   <body>
@@ -95,6 +138,9 @@ npcChoice()
 <br>
 <br>
 <button type="button" onclick="legendaryAttribute()">Generate a Legendary Aspect !</button>
+<br>
+<br>
+<button type="button" onclick="riddles()">Hack the Angel's Datapad.</button>
 <br>
 <br>
 
