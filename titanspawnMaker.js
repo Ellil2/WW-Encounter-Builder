@@ -87,8 +87,11 @@ decision(fightCompute*0.75,0)
 //This sets the Difficulty of the One Big Enemy setting. It is set lower because of the Defense Stats.
 }
 else if (fightTypeVar == 4){
-legendDecider()
-
+if (playerLevelVar <= 2){legendChoice = "2"}
+else if (playerLevelVar <= 4){legendChoice = "3"}
+else if (playerLevelVar <= 6){legendChoice = "3"}
+else if (playerLevelVar > 6){legendChoice = "4"}
+  
 enemyType = "Group2"     
 decision(fightCompute/2,0)
 enemyType = "Group2"
