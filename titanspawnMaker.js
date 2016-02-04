@@ -5,7 +5,7 @@ function npcChoice(){
 //fightTypeVar = 2
 //fightDifficultyVar = 1
 
-fightCompute = Math.floor((playerLevelVar*3)*playerNumberVar*(1.5-(fightDifficultyVar/4)))
+fightCompute = Math.floor(((playerLevelVar-0.5)*3)*(playerNumberVar*2/3)*(1.5-(fightDifficultyVar/4)))
 
 
      function decision(argument,numberOn){ 
@@ -28,8 +28,8 @@ while(fightComputeGroup > 0){
      
 if (buffChooser == 1){skillBonus += 1; fightComputeGroup -= 8; enemyNumber += numberOn};
 if (buffChooser == 2){skillBonus += 1; fightComputeGroup -= 8; enemyNumber += numberOn};
-if (buffChooser == 3){legendaryBonus += 1; fightComputeGroup -= 4; enemyNumber += numberOn };
-if (buffChooser == 4){legendaryBonus2 += 1; fightComputeGroup -= 4; enemyNumber += numberOn };      
+if (buffChooser == 3){legendaryBonus += 1; fightComputeGroup -= 3; enemyNumber += numberOn };
+if (buffChooser == 4){legendaryBonus2 += 1; fightComputeGroup -= 3; enemyNumber += numberOn };      
 if (buffChooser == 5){physicalStressBonus += 1; fightComputeGroup -= 2; enemyNumber += numberOn }; 
 if (buffChooser == 6){mentalStressBonus += 1; fightComputeGroup -= 2; enemyNumber += numberOn }; 
 if (buffChooser == 7){stuntBonus += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
@@ -1162,7 +1162,6 @@ function pushStunt2(uses){
 for(i=2;i<40;i++){
 // These are the Active Effects.
   stuntEffect.push(shieldScaler = new Stunt("an ally has +" + i + " on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0],"Active",["Group1","Boss","Solo","Group2"]));
-  stuntEffect.push(theRecklessScaler = new Stunt("gain +"+i+" to a Skill to Attack for one Action (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Skill",[2,0,0,0],"Active",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(defendScaler = new Stunt("get +"+i+" to your next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Defense",[2,4,0,0],"Active",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(createAspectScaler = new Stunt("automatically create an Aspect that requires a +"+i+" opposition to remove (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(massfogScaled = new Stunt("all enemies have -"+Math.floor(i/2+1)+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,4,3,0],"Active",["Group1","Boss","Solo","Group2"]))
@@ -1184,13 +1183,13 @@ function pushStuntPassives(){
 for(i=2;i<40;i++){
   stuntEffect.push(physicalResist = new Stunt("you have +" + Math.ceil(i/3) + " to Defense Rolls against Physical attacks ",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(magicResist = new Stunt("you have +" + Math.ceil(i/2) + " to Defense Rolls against Non-Physical attacks ",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
-  stuntEffect.push(rageAlly = new Stunt("you have the \"Rage\" Aspect and have +" + Math.ceil(i*0.75) + " to Attack Rolls until an ally suffers a Consequence",i,"Any",[0,2,4,0],"Passive",["Group1","Boss","Group2"]));
-  stuntEffect.push(allyChannel = new Stunt("you have the \"Empowered\" Aspect and have +" + Math.ceil(i*0.50) + " to Attack Rolls until an ally suffers a Consequence",i,"Any",[0,2,4,0],"Passive",["Group1","Boss","Group2"]));
+  stuntEffect.push(rageAlly = new Stunt("you have the \"Rage\" Aspect and have +" + Math.ceil(i*0.75) + " to Attack Rolls when an ally has suffered a Consequence",i,"Any",[0,2,4,0],"Passive",["Group1","Boss","Group2"]));
+  stuntEffect.push(allyChannel = new Stunt("you have the \"Empowered\" Aspect and have +" + Math.ceil(i*0.50) + " to Attack Rolls until an ally has suffered a Consequence",i,"Any",[0,2,4,0],"Passive",["Group1","Boss","Group2"]));
   stuntEffect.push(allyChannel2 = new Stunt("you have the \"Empowered\" Aspect and have +" + Math.ceil(i*0.75) + " to Defense Rolls until an ally suffers a Consequence",i,"Any",[0,2,4,0],"Passive",["Group1","Boss","Group2"]));
   stuntEffect.push(allyBuff = new Stunt("you have the \"Protector\" Aspect and your allies have +" + Math.ceil(i/3) + " to Defense Rolls until you are Taken Out",i,"Any",[1,0,4,0],"Passive",["Group1","Boss","Group2"]));
   stuntEffect.push(allyEnrage = new Stunt("you have the \"Enrager\" Aspect and your allies have +" + Math.ceil(i/3) + " to Attack Rolls until you are Taken Out",i,"Any",[0,1,4,0],"Passive",["Group1","Boss","Group2"]));
   stuntEffect.push(bleedEnrage = new Stunt("you have +" + Math.ceil(i/6) + " to Attack Rolls every time you take a Consequence ",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
-  stuntEffect.push(bleedBuff = new Stunt("you have +" + Math.ceil(i/6) + " to Create an Advantage Rolls every time you take a Consequence ",i,"Any",[2,4,3,1],"Passive",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(bleedBuff = new Stunt("you have +" + Math.ceil(i/5) + " to Create an Advantage Rolls every time you take a Consequence ",i,"Any",[2,4,3,1],"Passive",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(lifeSteal = new Stunt("you gain a +" + Math.ceil(i/2) + " Stress Box every time you inflict a Consequence",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(thorns = new Stunt("whenever an enemy attacks you in melee, they take an Attack at +"+ Math.ceil(i/2) + " against Physique",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(antiMagy = new Stunt("you have the \"Dampening Field\" Aspect and all enemies have -"+ Math.ceil(i/4) + " to Legendary Rolls until you are Taken Out",i,"Any",[1,4,3,0],"Passive",["Group1","Boss","Solo","Group2"]));
