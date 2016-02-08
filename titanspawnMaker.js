@@ -1164,13 +1164,13 @@ for(i=2;i<40;i++){
   stuntEffect.push(shieldScaler = new Stunt("an ally has +" + i + " on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0],"Active",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(defendScaler = new Stunt("get +"+i+" to your next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Defense",[2,4,0,0],"Active",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(createAspectScaler = new Stunt("automatically create an Aspect that requires a +"+i+" opposition to remove (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,0],"Active",["Group1","Boss","Solo","Group2"]));
-  stuntEffect.push(massfogScaled = new Stunt("all enemies have -"+Math.floor(i/2+1)+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,4,3,0],"Active",["Group1","Boss","Solo","Group2"]))
-  stuntEffect.push(instagibScaled = new Stunt("automatically deal a "+Math.floor(i*0.8)+"-shift Damage to an enemy (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[2,0,0,0],"Active",["Group1","Boss","Solo","Group2"]))
+  stuntEffect.push(massfogScaled = new Stunt("all enemies have -"+Math.ceil(i/2)+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,4,3,0],"Active",["Group1","Boss","Solo","Group2"]))
   stuntEffect.push(healAlly = new Stunt("heal an ally's Stress and Consequences to a total of "+ Math.ceil(i*0.75) + " (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,0,4,0],"Active",["Group1","Boss","Group2"]))     
-  stuntEffect.push(cleanseAlly = new Stunt("automatically do a roll of +"+ i + " to overcome a Personal Aspect against the creator (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,0,0],"Active",["Group1","Boss","Group2"]))     
   stuntEffect.push(shield = new Stunt("gain the \"Shield\" Personal Aspect and get two +"+ Math.ceil(i/2) + " Stress Boxes (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,4,0,0],"Active",["Group1","Boss","Group2"]))     
   stuntEffect.push(shield = new Stunt("create the \"Shield\" Personal Aspect on an ally. They get two +"+ Math.ceil(i/2) + " Stress Boxes (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0],"Active",["Group1","Boss","Group2"]))     }
-     
+  stuntEffect.push(situationBuff = new Stunt("The next time you create a Situation Aspect, all enemies have -"+Math.ceil(i/3)+"to a Skill while it is Active (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,2],"Active",["Group1","Boss","Group2","Solo"]))     
+  stuntEffect.push(situationBuff = new Stunt("The next time you create a Character Aspect, the target has -"+Math.ceil(i/2)+"to two Skills while it is Active (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,2],"Active",["Group1","Boss","Group2","Solo"]))     
+      
      
 }
        
@@ -1188,15 +1188,15 @@ for(i=2;i<40;i++){
   stuntEffect.push(allyChannel2 = new Stunt("you have the \"Empowered\" Aspect and have +" + Math.ceil(i*0.75) + " to Defense Rolls until an ally suffers a Consequence",i,"Any",[0,2,4,0],"Passive",["Group1","Boss","Group2"]));
   stuntEffect.push(allyBuff = new Stunt("you have the \"Protector\" Aspect and your allies have +" + Math.ceil(i/3) + " to Defense Rolls until you are Taken Out",i,"Any",[1,0,4,0],"Passive",["Group1","Boss","Group2"]));
   stuntEffect.push(allyEnrage = new Stunt("you have the \"Enrager\" Aspect and your allies have +" + Math.ceil(i/3) + " to Attack Rolls until you are Taken Out",i,"Any",[0,1,4,0],"Passive",["Group1","Boss","Group2"]));
-  stuntEffect.push(bleedEnrage = new Stunt("you have +" + Math.ceil(i/6) + " to Attack Rolls every time you take a Consequence ",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
-  stuntEffect.push(bleedBuff = new Stunt("you have +" + Math.ceil(i/5) + " to Create an Advantage Rolls every time you take a Consequence ",i,"Any",[2,4,3,1],"Passive",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(bleedEnrage = new Stunt("you have +" + Math.ceil(i/5) + " to Attack Rolls every time you take a Consequence ",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(bleedBuff = new Stunt("you have +" + Math.ceil(i/4) + " to Create an Advantage Rolls every time you take a Consequence ",i,"Any",[2,4,3,1],"Passive",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(lifeSteal = new Stunt("you gain a +" + Math.ceil(i/2) + " Stress Box every time you inflict a Consequence",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(thorns = new Stunt("whenever an enemy attacks you in melee, they take an Attack at +"+ Math.ceil(i/2) + " against Physique",i,"Any",[2,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(antiMagy = new Stunt("you have the \"Dampening Field\" Aspect and all enemies have -"+ Math.ceil(i/4) + " to Legendary Rolls until you are Taken Out",i,"Any",[1,4,3,0],"Passive",["Group1","Boss","Solo","Group2"]));
-  stuntEffect.push(weakAttack = new Stunt("you have the \"Weakening Attack\" Aspect and an enemy gets -"+ Math.ceil(i/2) + " to a Skill when you inflict a Physical Consequence on them",i,"Any",[1,4,3,0],"Passive",["Group1","Boss","Solo","Group2"]));
+  stuntEffect.push(weakAttack = new Stunt("you have the \"Weakening Attack\" Aspect and an enemy gets -"+ Math.ceil(i/2) + " to a Skill when you inflict Physical Stress or a Physical Consequence on them",i,"Any",[1,4,3,0],"Passive",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(aspectBonus5 = new Stunt("until the end of the Scene, when you invoke a Personal Aspect or an Aspect you created, gain an additional +"+Math.floor(i/3+1)+" ",i,"Any",[1,3,4,0],"Passive",["Group1","Boss","Solo","Group2"]))
   stuntEffect.push(aspectBonusAlly = new Stunt("until the end of the Scene, whenever an ally invokes an Aspect you created, they gain an additional +"+Math.floor(i/3+1)+" ",i,"Any",[1,3,4,0],"Passive",["Group1","Boss","Group2"]))     
-     
+    
 }}
 pushStuntPassives()
 pushStuntPassives()
