@@ -1167,7 +1167,7 @@ for(i=2;i<40;i++){
   stuntEffect.push(massfogScaled = new Stunt("all enemies have -"+Math.ceil(i/2)+" on their next Attack roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,4,3,0],"Active",["Group1","Boss","Solo","Group2"]))
   stuntEffect.push(healAlly = new Stunt("heal an ally's Stress and Consequences to a total of "+ Math.ceil(i*0.75) + " (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,0,4,0],"Active",["Group1","Boss","Group2"]))     
   stuntEffect.push(shield = new Stunt("gain the \"Shield\" Personal Aspect and get two +"+ Math.ceil(i/2) + " Stress Boxes (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,4,0,0],"Active",["Group1","Boss","Group2"]))     
-  stuntEffect.push(shield = new Stunt("create the \"Shield\" Personal Aspect on an ally. They get two +"+ Math.ceil(i/2) + " Stress Boxes (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0],"Active",["Group1","Boss","Group2"]))     }
+  stuntEffect.push(shield = new Stunt("create the \"Shield\" Personal Aspect on an ally. They get two +"+ Math.ceil(i/2) + " Stress Boxes (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0],"Active",["Group1","Boss","Group2"]))     
   stuntEffect.push(situationBuff = new Stunt("The next time you create a Situation Aspect, all enemies have -"+Math.ceil(i/3)+" to a Skill while it is Active (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,2],"Active",["Group1","Boss","Group2","Solo"]))     
   stuntEffect.push(soloBuff = new Stunt("The next time you create a Character Aspect, the target has -"+Math.ceil(i/2)+" to two Skills while it is Active (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[1,3,4,2],"Active",["Group1","Boss","Group2","Solo"]))     
   stuntEffect.push(attackSelfBuff = new Stunt("The next time you create a Character Aspect, your next Attack gains +"+Math.ceil(i)+" if it is Active (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,0,4,2],"Active",["Group1","Boss","Group2","Solo"]))     
@@ -1182,7 +1182,7 @@ for(i=2;i<40;i++){
   stuntEffect.push(stackSelfLegend = new Stunt("The next time you create a Situation Aspect, you gain  "+Math.ceil(i/9)+" Legendary Ability uses every turn it is Active (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,0,4,0],"Active",["Group1","Boss","Group2","Solo"]))     
       
      
-}
+}}
        
    pushStunt2(1);      
    pushStunt2(2);      
