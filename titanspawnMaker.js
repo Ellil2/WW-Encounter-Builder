@@ -213,6 +213,7 @@ else {
 }
  combatChoice2Int = parseInt(combatChoice2);
 };
+typeChoiceFunction ()
 behaviorChoiceFunction();
 
 
