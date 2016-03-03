@@ -115,6 +115,7 @@ decision(fightCompute/2,0)
 typeChoice = "nope"
 
 function typeChoiceFunction (){
+
 typeChoicePrompt = prompt("What type of creature is your NPC ? \n1- Titanspawn \n2- Mythborn");
 if (typeChoicePrompt == "1") {titanspawnTypeChoiceFunction();
 }
@@ -213,7 +214,6 @@ else {
 }
  combatChoice2Int = parseInt(combatChoice2);
 };
-typeChoiceFunction();
 behaviorChoiceFunction();
 
 
