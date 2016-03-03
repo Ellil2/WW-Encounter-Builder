@@ -51,7 +51,10 @@ else{
 }
  </script>
 <script>
-
+function alertFightLevel(){
+alert(Math.floor(((playerLevelVar-0.5)*3)*(playerNumberVar)*(1.5-(fightDifficultyVar/4))))	
+	
+}
 </script>
   </head>
 
@@ -133,7 +136,9 @@ else{
 <button type="button" onclick="legendaryAttribute()">Generate a Legendary Aspect !</button>
 <br>
 <br>
-
+<button type="button" onclick="alertFightLevel()">Give estimated Fight Difficulty !</button>
+<br>
+<br>
 
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
