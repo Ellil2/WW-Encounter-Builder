@@ -1000,8 +1000,6 @@ sensesDexterity = new LegendaryAbility(["Epic Senses - Dexterity","Agile","Assas
 
 
 // Zoothropy
-zoothropyLion = new LegendaryAbility(["Zoothropy: Lion","Roaring","Lionheart"],[["Titanspawn","4","99"],["Titanspawn","6","61"],["Mythborn","1","99"],["Mythborn","4","44"],["Mythborn","5","99"]],["1","2","3"],[,"1","2","3","4"],["1","2"]),
-zoothropyFrog = new LegendaryAbility(["Zoothropy - Frog","Frog","Slimer"],[["Titanspawn","6","65"],["Titanspawn","6","64"],["Titanspawn","6","61"],["Titanspawn","7","74"],["Mythborn","1","12"],["Mythborn","1","15"],["Mythborn","1","13"],["Mythborn","2","23"],["Mythborn","4","44"]],["2","3"],[,"2","3"],["1","2"]),
 zoothropyDragon = new LegendaryAbility(["Zoothropy - Dragon","Dragon","Drakonid"],[["Titanspawn","1","12"],["Titanspawn","1","11"],["Titanspawn","2","23"],["Titanspawn","3","32"],["Titanspawn","4","42"],["Titanspawn","5","51"],["Titanspawn","5","52"],["Titanspawn","6","61"],["Titanspawn","6","62"],["Titanspawn","7","73"],["Mythborn","3","99"],["Mythborn","5","54"],["Mythborn","5","51"]],["1","2"],[,"1","2","3","4"],["1","2"]),
 
 // Pantheon-Specific Abilities
