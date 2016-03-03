@@ -5,9 +5,9 @@ function npcChoice(){
 //fightTypeVar = 2
 //fightDifficultyVar = 1
 
-if(document.getElementById("finalBattle").value = 0){fightCompute = Math.floor(((playerLevelVar-0.5)*3)*(playerNumberVar)*(1.5-(fightDifficultyVar/4)))}
-if(document.getElementById("finalBattle").value = 1){fightCompute = document.getElementById("Aten").value}
-if(document.getElementById("finalBattle").value = 1){fightCompute = document.getElementById("Fenrir").value}
+fightCompute = Math.floor(((playerLevelVar-0.5)*3)*(playerNumberVar)*(1.5-(fightDifficultyVar/4)))
+if(document.getElementById("finalBattle").value == 1){fightCompute = document.getElementById("Aten").value}
+if(document.getElementById("finalBattle").value == 2){fightCompute = document.getElementById("Fenrir").value}
 alert(fightCompute)
 
      function decision(argument,numberOn){ 
