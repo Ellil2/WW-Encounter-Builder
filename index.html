@@ -28,6 +28,27 @@ fightDifficultyVar = document.getElementById("fightDifficulty").value
 
 npcChoice()
 }
+
+function displayExtra(){
+	if (document.getElementById('finalBattle').value == 1) {
+	  document.getElementById("Aten").style.display = 'block';
+	  document.getElementById("AtenP").style.display = 'block' ;
+	  document.getElementById("Fenrir").style.display = 'none';
+	  document.getElementById("FenrirP").style.display = 'none' ;    
+	} 
+else if(document.getElementById('finalBattle').value == 2){
+	  document.getElementById("Aten").style.display = 'none';
+	  document.getElementById("AtenP").style.display = 'none' ;
+	  document.getElementById("Fenrir").style.display = 'block';
+	  document.getElementById("FenrirP").style.display = 'block' ;  
+}
+else{	  
+    document.getElementById("Aten").style.display = 'none';
+	  document.getElementById("AtenP").style.display = 'none' ;
+	  document.getElementById("Fenrir").style.display = 'none';
+	  document.getElementById("FenrirP").style.display = 'none' ;  
+}
+}
  </script>
 <script>
 
@@ -86,7 +107,7 @@ npcChoice()
 <p>Choose the difficulty of the fight</p>
 
 <br> 
-<select  id="finalBattle">
+<select  id="finalBattle"  onchange = displayExtra()>
       <option selected value=0>No</option>
       <option  value=1>YES ! SHIT'S GOING DOWN ! ATEN'S HERALD IS COMING !</option>
       <option  value=2>YES ! SHIT'S GOING DOWN ! FENRIR'S HERALD IS COMING !</option>
@@ -94,11 +115,11 @@ npcChoice()
   </select>
 <p>Is it the Big Bad Final Battle ?</p>
 
- <textarea id="Aten" rows="2" cols="6"></textarea> 
-<p>What's the Church of the New Sun's Summoning Score ?</p>
+ <textarea id="Aten" rows="2" cols="6" style="display: none"></textarea> 
+<p id="AtenP" style="display: none">  What's the Church of the New Sun's Summoning Score ?</p>
 <br>
- <textarea id="Fenrir" rows="2" cols="6"></textarea> 
-<p>What's Skoll's Maw's Summoning Score ?</p>
+ <textarea id="Fenrir" rows="2" cols="6" style="display: none"></textarea> 
+<p id="FenrirP" style="display: none">What's Skoll's Maw's Summoning Score ?</p>
 
 <br> 
 <br>
