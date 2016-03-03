@@ -6,8 +6,7 @@ function npcChoice(){
 //fightDifficultyVar = 1
 
 fightCompute = Math.floor(((playerLevelVar-0.5)*3)*(playerNumberVar)*(1.5-(fightDifficultyVar/4)))
-if(document.getElementById("finalBattle").value == 1){fightCompute = document.getElementById("Aten").value}
-if(document.getElementById("finalBattle").value == 2){fightCompute = document.getElementById("Fenrir").value}
+
 
      function decision(argument,numberOn){ 
 skillBonus = 0
