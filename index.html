@@ -49,13 +49,19 @@ else{
 	  document.getElementById("FenrirP").style.display = 'none' ;  
 }
 }
- </script>
-<script>
+
+
 function alertFightLevel(){
+playerNumberVar = document.getElementById("playerNumber").value
+playerLevelVar = (document.getElementById("playerLevel").value)
+fightTypeVar = document.getElementById("fightType").value
+fightDifficultyVar = document.getElementById("fightDifficulty").value
 alert(Math.floor(((playerLevelVar-0.5)*3)*(playerNumberVar)*(1.5-(fightDifficultyVar/4))))	
 	
 }
-</script>
+ </script>
+
+
   </head>
 
   <body>
