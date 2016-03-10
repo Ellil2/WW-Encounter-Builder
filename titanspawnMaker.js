@@ -93,10 +93,10 @@ else if (playerLevelVar <= 6){legendChoice = "3"}
 else if (playerLevelVar > 6){legendChoice = "4"}
   
 enemyType = "Group2"   
-if(document.getElementById("Aten").value){playerLevelVar = 7; decision(document.getElementById("Aten").value,0)}
+if(document.getElementById("Aten").value){playerLevelVar == 7; decision(document.getElementById("Aten").value,0)}
 else{decision(fightCompute/2,0)}
 enemyType = "Group2"
-if(document.getElementById("Fenrir").value){playerLevelVar = 7; decision(document.getElementById("Fenrir").value,0)}
+if(document.getElementById("Fenrir").value){playerLevelVar == 7; decision(document.getElementById("Fenrir").value,0)}
 else{decision(fightCompute/2,0)}
 }     
 
@@ -897,30 +897,30 @@ abilityOne = legendaryBonus
 abilityTwo = legendaryBonus2        
 
 if (legendChoice === "4") {
-     abilityOne += 4
-     abilityTwo += 3
-     skillAbilityOne =  4
-     stuntBonus += 4
+     abilityOne += //4
+     abilityTwo += //3
+     skillAbilityOne =  //4
+     stuntBonus += //4
 
 }
 else if (legendChoice === "3") {
-     abilityOne += 3
-     abilityTwo += 2
-     skillAbilityOne =  3
-     stuntBonus += 3
+     abilityOne += 0//3
+     abilityTwo += 0//2
+     skillAbilityOne =  0//3
+     stuntBonus += 0//3
 }
 
 else if (legendChoice === "2") {
-     abilityOne += 2
-     abilityTwo += 1
-     skillAbilityOne =  2
-     stuntBonus += 2
+     abilityOne += 0//2
+     abilityTwo += 0//1
+     skillAbilityOne =  0//2
+     stuntBonus += 0//2
 }
 
 else if (legendChoice === "1") {
-     abilityOne += 1 + legendaryBonus2
-     skillAbilityOne =  1
-     stuntBonus += 1
+     abilityOne += 0 + legendaryBonus2//1 + legendaryBonus2
+     skillAbilityOne =  0//1
+     stuntBonus += 0//1
 }
 
 
