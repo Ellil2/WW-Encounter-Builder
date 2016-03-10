@@ -897,10 +897,10 @@ abilityOne = legendaryBonus
 abilityTwo = legendaryBonus2        
 
 if (legendChoice === "4") {
-     abilityOne += //4
-     abilityTwo += //3
-     skillAbilityOne =  //4
-     stuntBonus += //4
+     abilityOne += 0//4
+     abilityTwo += 0//3
+     skillAbilityOne =  0//4
+     stuntBonus += 0//4
 
 }
 else if (legendChoice === "3") {
