@@ -93,10 +93,10 @@ else if (playerLevelVar <= 6){legendChoice = "3"}
 else if (playerLevelVar > 6){legendChoice = "4"}
   
 enemyType = "Group2"   
-if(document.getElementById("Aten").value){decision(document.getElementById("Aten").value,0); playerLevelVar == 7}
+if(document.getElementById("Aten").value){decision(document.getElementById("Aten").value,0); playerLevelVar = 7}
 else{decision(fightCompute/2,0)}
 enemyType = "Group2"
-if(document.getElementById("Fenrir").value){decision(document.getElementById("Fenrir").value,0); playerLevelVar == 7}
+if(document.getElementById("Fenrir").value){decision(document.getElementById("Fenrir").value,0); playerLevelVar = 7}
 else{decision(fightCompute/2,0)}
 }     
 
