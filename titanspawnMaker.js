@@ -5,7 +5,7 @@ function npcChoice(){
 //fightTypeVar = 2
 //fightDifficultyVar = 1
 
-fightCompute = Math.floor(((playerLevelVar-0.5)*3)*(playerNumberVar)*(1.5-(fightDifficultyVar/4)))
+fightCompute = Math.floor(((playerLevelVar-0.5)*5)*(playerNumberVar)*(1.5-(fightDifficultyVar/4)))
 
 
      function decision(argument,numberOn){ 
@@ -21,7 +21,7 @@ fightComputeGroup = argument
 
 while(fightComputeGroup > 0){
      
-     if(stuntBonus >= 4+(playerLevelVar+playerNumberVar)/2 || stuntBonus2 >= 4+playerLevelVar+playerNumberVar){buffChooser = Math.floor(Math.random() * 6+1)}
+     if(stuntBonus >= 4+(playerLevelVar+playerNumberVar)/2 || stuntBonus2 >= 4+playerLevelVar+playerNumberVar){buffChooser = Math.floor(Math.random() * 5+1)}
      else if((stuntBonus >= 4+playerLevelVar)&&(mentalStressBonus >= 5 || physicalStressBonus >= 5)){buffChooser = Math.floor(Math.random() * 4+1)} 
      else if((stuntBonus >= 4+playerLevelVar)&&(mentalStressBonus >= 5 || physicalStressBonus >= 5)&&(skillBonus >= playerLevelVar+playerNumberVar)){buffChooser = Math.floor(Math.random() * 2+3)} 
      else{buffChooser = Math.floor(Math.random() * 7+1)}     
@@ -31,8 +31,8 @@ if (buffChooser == 2){skillBonus += 1; fightComputeGroup -= 6; enemyNumber += nu
 if (buffChooser == 3){legendaryBonus += 1; fightComputeGroup -= 3; enemyNumber += numberOn };
 if (buffChooser == 4){legendaryBonus2 += 1; fightComputeGroup -= 3; enemyNumber += numberOn };      
 if (buffChooser == 5){physicalStressBonus += 1; fightComputeGroup -= 2; enemyNumber += numberOn }; 
-if (buffChooser == 7){mentalStressBonus += 1; fightComputeGroup -= 2; enemyNumber += numberOn }; 
-if (buffChooser == 8){stuntBonus += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
+if (buffChooser == 6){stuntBonus2 += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
+if (buffChooser == 7){stuntBonus += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
 
 
 }   npcChoiceLoop()}
