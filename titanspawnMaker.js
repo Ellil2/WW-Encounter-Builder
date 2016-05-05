@@ -686,24 +686,14 @@ originDefaultRandom = originDefault[Math.floor(Math.random() * originDefault.len
 defaultOriginAspect = new Aspect(originDefaultRandom + " " + combat1DefaultRandom,"0","0",["31"],["2","3"],"2"),     
 highConceptOptions.push(defaultOriginAspect)        
 };
-
-choosingHighConcept = ""
-for(i=0;i<highConceptOptions.length;i++){
-     choosingHighConcept+=(i + " " + highConceptOptions[i].name + "\n")
-}
+  
  
-//var randHighConcept = Math.floor(Math.random() * highConceptOptions.length)
-//var imageLink = highConceptOptions[randHighConcept].combat2;
+var randHighConcept = Math.floor(Math.random() * highConceptOptions.length)
+var imageLink = highConceptOptions[randHighConcept].combat2;
    
-//var rand = highConceptOptions[randHighConcept].name;
-        
-chosenHighConcept = parseInt(prompt(choosingHighConcept))
- 
-var rand = highConceptOptions[chosenHighConcept].name
-var imageLink = highConceptOptions[chosenHighConcept].combat2;
+var rand = highConceptOptions[randHighConcept].name;
 
-
-if(enemyNumber > 1){rand += " (" + enemyNumber + ")"};
+if(enemyNumber > 0){rand += " (" + enemyNumber + ")"};
 
 
 //____________________________________________________________________________________________________
@@ -1377,11 +1367,9 @@ myWindow.document.write("<BODY BGCOLOR='#297ACC'>")
 myWindow.document.write("<p style='font-family:arial'><b>Aspects: </b><br>&nbsp;&nbsp;" + rand  + "<br>&nbsp;&nbsp;" + rand2 + "<br>&nbsp;&nbsp;" + rand3 + "<br>\n&nbsp;&nbsp;"   + rand5 + "<br>\n<b>Skills:</b> " + randSkills + rand6 + rand7 + randPhysical + randMental + " </p>");   
 
 myWindow.document.write('<img src=' +  imageLink + '" alt="Image" width=100% height=auto >')
-myWindow.document.write('<img src="http://i.imgur.com/uuMetIe.jpg" alt="Image"width=100% height=60% >')
+//myWindow.document.write('<img src="http://i.imgur.com/uuMetIe.jpg" alt="Image"width=100% height=60% >')
      
 myWindow.document.write("</BODY>")
-myWindow.document.write("</HTML>")
-}     
+myWindow.document.write("</HTML>")}     
 
 }}
-
