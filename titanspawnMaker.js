@@ -1011,7 +1011,7 @@ sensesDexterity = new LegendaryAbility(["Epic Senses - Dexterity","Agile","Assas
 
 
 // Zoothropy
-zoothropyDragon = new LegendaryAbility(["Zoothropy - Dragon","Dragon","Drakonid"],[["Titanspawn","1","12"],["Titanspawn","1","11"],["Titanspawn","2","23"],["Titanspawn","3","32"],["Titanspawn","4","42"],["Titanspawn","5","51"],["Titanspawn","5","52"],["Titanspawn","6","61"],["Titanspawn","6","62"],["Titanspawn","7","73"],["Mythborn","3","99"],["Mythborn","5","54"],["Mythborn","5","51"]],["1","2"],[,"1","2","3","4"],["1","2"]),
+zoothropyDragon = new LegendaryAbility(["Zoothropy - Dragon","Dragon","Drakonid"],[["Titanspawn","1","12"],["Titanspawn","1","11"],["Titanspawn","2","23"],["Titanspawn","3","32"],["Titanspawn","4","42"],["Titanspawn","5","51"],["Titanspawn","5","52"],["Titanspawn","6","61"],["Titanspawn","7","73"],["Mythborn","3","99"],["Mythborn","5","54"],["Mythborn","5","51"]],["1","2"],[,"1","2","3","4"],["1","2"]),
 
 // Pantheon-Specific Abilities
 hekuRiot = new LegendaryAbility(["Heku - Riot","Riotous","Crowd Agitator"],[["Titanspawn","1","12"],["Titanspawn","2","22"],["Titanspawn","4","99"],["Titanspawn","5","51"],["Titanspawn","6","65"],["Titanspawn","7","74"],["Titanspawn","8","83"],["Mythborn","1","99"],["Mythborn","2","21"],["Mythborn","3","32"],["Mythborn","3","35"],["Mythborn","4","44"],["Mythborn","5","99"]],["2"],[,"3"],["2"]),
