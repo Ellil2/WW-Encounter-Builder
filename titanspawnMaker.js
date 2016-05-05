@@ -325,6 +325,7 @@ firewalker = new Aspect("Firewalker","Titanspawn","1",["12"],["1"],"1","behavior
 forestWyrm = new Aspect("Forest Wyrm","Titanspawn","6",["61","65","62"],["2","3"],"1","behavior","2","http://i.imgur.com/gEpCEPv.jpg"),
 foundryChampion = new Aspect("Foundry Champion","Titanspawn","1",["13"],["2"],"1","behavior","2","http://i.imgur.com/8FRYxDH.jpg"),
  frogElder = new Aspect("Frog Elder","Titanspawn","6",["61"],["1","2"],"2","behavior","2","http://i.imgur.com/iZ8e1CF.jpg"),
+FungusSpawn = new Aspect("Fungus Spawn","Titanspawn","6",["61"],["1"],"1","behavior","2")
  garmSpawn = new Aspect("Garm Spawn","Titanspawn","1",["12"],["1"],"1","behavior","1","http://i.imgur.com/zzRa39l.jpg"),    
  gemstoneGolem = new Aspect("Gemstone Golem","Titanspawn","6",["64"],["3","2"],"1","behavior","1","http://i.imgur.com/xZYlvx0.jpg"),
  ghoul = new Aspect("Ghoul","Titanspawn","8",["83"],["1","2"],"1","behavior","1","http://i.imgur.com/GArrLAM.jpg"),    
