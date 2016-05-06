@@ -535,8 +535,8 @@ for(i=0; i < highConcept.length; i++) {
       highConceptOptions.push(highConcept[i])
   }
 }
-if (highConceptOptions.length < 4){highConceptOptions[highConceptOptions.length - 1]+= "\n Default Options: "}
 };
+if (highConceptOptions.length < 4){highConceptOptions[highConceptOptions.length - 1]+= "\n Default Options: "}
 
 // _______________________________________
     
