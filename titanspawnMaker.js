@@ -681,12 +681,16 @@ else if (typeChoice === "Mythborn" && combatChoice1 === "3") {
 
     
 } 
-if (typeof highConceptOptions[0] === 'undefined') { 
+
+     function addRandom(){
 combat1DefaultRandom = combat1Default[Math.floor(Math.random() * combat1Default.length)];
 originDefaultRandom = originDefault[Math.floor(Math.random() * originDefault.length)];
 defaultOriginAspect = new Aspect(originDefaultRandom + " " + combat1DefaultRandom,"0","0",["31"],["2","3"],"2"),     
-highConceptOptions.push(defaultOriginAspect)        
-};
+highConceptOptions.push(defaultOriginAspect)}     
+
+while (typeof highConceptOptions[3] === 'undefined') { 
+ addRandom()
+};    
 
 choosingHighConcept = ""
 for(i=0;i<highConceptOptions.length;i++){
@@ -1378,7 +1382,7 @@ myWindow.document.write("<BODY BGCOLOR='#297ACC'>")
 myWindow.document.write("<p style='font-family:arial'><b>Aspects: </b><br>&nbsp;&nbsp;" + rand  + "<br>&nbsp;&nbsp;" + rand2 + "<br>&nbsp;&nbsp;" + rand3 + "<br>\n&nbsp;&nbsp;"   + rand5 + "<br>\n<b>Skills:</b> " + randSkills + rand6 + rand7 + randPhysical + randMental + " </p>");   
 
 myWindow.document.write('<img src=' +  imageLink + '" alt="Image" width=100% height=auto >')
-myWindow.document.write('<img src="http://i.imgur.com/uuMetIe.jpg" alt="Image"width=100% height=60% >')
+//myWindow.document.write('<img src="http://i.imgur.com/uuMetIe.jpg" alt="Image"width=100% height=60% >')
      
 myWindow.document.write("</BODY>")
 myWindow.document.write("</HTML>")
