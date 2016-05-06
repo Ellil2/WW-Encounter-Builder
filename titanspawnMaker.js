@@ -682,7 +682,8 @@ else if (typeChoice === "Mythborn" && combatChoice1 === "3") {
 
     
 } 
-
+combat1DefaultRandom = ""
+originDefaultRandom = ""
      function addRandom(){
 combat1DefaultRandom = combat1Default[Math.floor(Math.random() * combat1Default.length)];
 originDefaultRandom = originDefault[Math.floor(Math.random() * originDefault.length)];
