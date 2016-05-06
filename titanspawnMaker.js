@@ -536,7 +536,7 @@ for(i=0; i < highConcept.length; i++) {
   }
 }
 };
-if (highConceptOptions.length < 4){highConceptOptions[highConceptOptions.length - 1]+= "\n Default Options: "}
+var highConceptsBeforeDefaults = highConceptOptions
 
 // _______________________________________
     
@@ -696,6 +696,7 @@ while (typeof highConceptOptions[3] === 'undefined') {
 
 choosingHighConcept = ""
 for(i=0;i<highConceptOptions.length;i++){
+if(i = highConceptsBeforeDefaults.length){choosingHighConcept += "Defaults: \n"+ i + " " + highConceptOptions[i].name + "\n"}
      choosingHighConcept+=(i + " " + highConceptOptions[i].name + "\n")
 }
  
