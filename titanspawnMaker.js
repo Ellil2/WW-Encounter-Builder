@@ -547,51 +547,51 @@ if (highConceptOptions.length < 4){highConceptOptions[highConceptOptions.length-
 // _______________________________________
 
  
-if (typeof highConceptOptions[0] === 'undefined') {
+//if (typeof highConceptOptaions[3] === 'undefined') {
   
     
     // Titans Options
 if (typeChoice === "Titanspawn" && originChoice === "4") {
-     originDefault = ["Sun", "Sand", "Light"]
+     originDefault = ["Sun", "Sand", "Light","Bright","Shining","Radiant"]
 }
 else if (typeChoice === "Titanspawn" && originChoice === "2") {
-     originDefault = ["Night", "Midnight", "Moonlit", "Nightmare"]
+     originDefault = ["Night", "Midnight", "Moonlit", "Nightmare","Dark","Somber","Twilight","Gloomy"]
 }
 else if (typeChoice === "Titanspawn" && originChoice === "8") {
-     originDefault = ["Death", "Soul Eating"]
+     originDefault = ["Death", "Soul Eating","Dark","Grief","Grave","Ghost","Oblivion","Ruin"]
 }
 else if (typeChoice === "Titanspawn" && originChoice === "3") {
-     originDefault = ["Darkness", "Faceless", "Silent"]
+     originDefault = ["Darkness", "Faceless", "Silent","Obscure","Slithering"]
 }
 else if (typeChoice === "Titanspawn" && originChoice === "7") {
-     originDefault = ["Drowned", "Naga", "Lizard"]
+     originDefault = ["Drowned", "Naga", "Lizard","Sea","Mist","Ocean","Tentacled","Abyss","Ancient","Amphibian","Froglike","Shark"]
 }
 else if (typeChoice === "Titanspawn" && originChoice === "5") {
-     originDefault = ["Wind", "Cloud", "Lightning"]
+     originDefault = ["Wind", "Cloud", "Lightning","Flying","Mist","Fog","Sky","Heavenly"]
 }
 else if (typeChoice === "Titanspawn" && originChoice === "1") {
-     originDefault = ["Lava", "Fire", "Ash"]
+     originDefault = ["Lava", "Fire", "Ash","Blazing","Heat","Charred","Glowing","Devouring","Incandescent","Searing","Flaming","Pyromaniac"]
 }
 else if (typeChoice === "Titanspawn" && originChoice === "6") {
-     originDefault = ["Swamp", "Rock", "Stone","Forest","Jungle","Giant"]
+     originDefault = ["Swamp", "Rock", "Stone","Forest","Jungle","Giant","Mountain"]
 }
 
 // Combat 1 Options
     if (intelligenceChoice === "2") {
 if (typeChoice === "Titanspawn" && combatChoice1 === "1") {
-     combat1Default = ["Soldier","Legionnaire","Footsoldier","Cultist"]
+     combat1Default = ["Soldier","Legionnaire","Footsoldier","Cultist","Servant","Guard","Defender","Sentinel","Champion","Warrior",]
 }
 else if (typeChoice === "Titanspawn" && combatChoice1 === "2") {
-     combat1Default = ["Sorcerer", "Prophet", "Worshipper"]
+     combat1Default = ["Sorcerer", "Prophet","Conjurer","Worshipper","Mage","Warlock","Wizard"]
 }
 else if (typeChoice === "Titanspawn" && combatChoice1 === "3") {
-     combat1Default = ["Scout", "Archer", "Assassin"]
+     combat1Default = ["Scout", "Archer", "Assassin","Ranger","Spy","Agent","Lookout","Sentry","Sentinel"]
 }
     }
     
 else {
 if (typeChoice === "Titanspawn" && combatChoice1 === "1") {
-     combat1Default = ["Beast","Monster","Creature","Colossus"]
+     combat1Default = ["Beast","Monster","Creature","Colossus","Fiend"]
 }
 else if (typeChoice === "Titanspawn" && combatChoice1 === "2") {
      combat1Default = ["Invoker", "Primordial", "Servant"]
@@ -603,24 +603,24 @@ else if (typeChoice === "Titanspawn" && combatChoice1 === "3") {
      
      
 }
-}
+//}
     
     // Mythborn Options
 
      
 if (typeChoice === "Mythborn" && originChoice === "2") {
-    if (subOriginChoice === "21") { originDefault = ["Winter Fey"]}
-    else if (subOriginChoice === "22") { originDefault = ["Svartalfheim", "Dark Elf"]}
+    if (subOriginChoice === "21") { originDefault = ["Winter Fey","Frozen"]}
+    else if (subOriginChoice === "22") { originDefault = ["Svartalfheim", "Dark Elf","Silver"]}
     else if (subOriginChoice === "23") { originDefault = ["Leprechaun", "Ice Korrigan", "Korrigan","Gnome"]}
-    else if (subOriginChoice === "24") { originDefault = ["Pixie"]}
+    else if (subOriginChoice === "24") { originDefault = ["Pixie","Sprite"]}
     else if (subOriginChoice === "25") { originDefault = ["Stream Nymph", "Pine Dryad", "Frozen Dryad"]}
     else if (subOriginChoice === "99") { originDefault = ["Svartalfheim", "Dark Elf","Leprechaun", "Ice Korrigan", "Korrigan","Gnome","Pixie","Stream Nymph", "Pine Dryad", "Frozen Dryad"]}
 }
 else if (typeChoice === "Mythborn" && originChoice === "1") {
     if (subOriginChoice === "11") { originDefault = ["Summer Fey"]}
-    else if (subOriginChoice === "12") { originDefault = ["Alfheim", "Light Elf"]}
+    else if (subOriginChoice === "12") { originDefault = ["Alfheim", "Light Elf","El Dorado","Annwn"]}
     else if (subOriginChoice === "13") { originDefault = ["Leprechaun", "Summer Korrigan", "Korrigan","Gnome"]}
-    else if (subOriginChoice === "14") { originDefault = ["Pixie"]}
+    else if (subOriginChoice === "14") { originDefault = ["Pixie","Sprite"]}
     else if (subOriginChoice === "15") { originDefault = ["Vine Nymph", "Jungle Dryad", "Spring Dryad"]}
     else if (subOriginChoice === "98") { originDefault = ["Alfheim", "Light Elf","Leprechaun", "Summer Korrigan", "Korrigan","Gnome","Pixie","Vine Nymph", "Jungle Dryad", "Spring Dryad"]}
 }
