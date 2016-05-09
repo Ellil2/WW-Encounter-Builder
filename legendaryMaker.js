@@ -12,7 +12,7 @@ function legendaryAttribute(){
 abilityName = prompt("What is the Name of your Legendary Ability ?")
 name1 = prompt("What is the First-Part Aspect Name from your Legendary Ability ?")
 name2 = prompt("What is the Second-Part Aspect Name from your Legendary Ability ?")
-variableName = prompt("What is your Legendary Ability's Variable Name")    
+variableName = abilityName.replace(/\s/g, '');
 name =  variableName + " = new LegendaryAbility([\"" + abilityName + "\"" + ",\"" + name1 + "\"" + ",\"" + name2 + "\"]"      
 
 
