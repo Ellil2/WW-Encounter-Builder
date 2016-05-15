@@ -253,7 +253,7 @@ var highConcept = [
     // Titanspawn
  abbysalPriest = new Aspect("Abyssal Priest","Titanspawn","7",["71"],["2","1"],"2","behavior","2","http://i.imgur.com/fPtcAQe.jpg"),
 abyssalSage = new Aspect("Abyssal Sage","Titanspawn","7",["71"],["2"],"2","behavior","2","http://i.imgur.com/y7zM752.jpg"),
-abyssAncient = new Aspect("Abyss Ancient","Titanspawn","7",["73"],["3"],"1","behavior","2","http://i.imgur.com/FBhUm4Z.png")
+abyssAncient = new Aspect("Abyss Ancient","Titanspawn","7",["73"],["3"],"1","behavior","2","http://i.imgur.com/FBhUm4Z.png"),
  agentVoid = new Aspect("Agent of the Void","Titanspawn","3",["32"],["2"],"2","behavior","2","http://i.imgur.com/DnRaFjz.jpg"), 
  ancientWitch = new Aspect("Ancient Witch","Titanspawn","6",["65"],["2"],"2","behavior","2","http://i.imgur.com/IIpthjn.jpg"),
  angel = new Aspect("Knight Angel","Titanspawn","4",["41"],["2","1"],"2","behavior","1","http://i.imgur.com/KVbDBKh.jpg"),
