@@ -1418,7 +1418,7 @@ randMental = mentalStress[0] + mentalStress[1] + mentalStress[2] + mentalStress[
 
 if (typeof imageLink === 'undefined') {     
 var myWindow = window.open("", "_blank","width=400, height=400");
-myWindow.document.write("<TITLE>Generated NPC</TITLE>")
+myWindow.document.write("<TITLE>"+rand+"</TITLE>")
 myWindow.document.write("<BODY BGCOLOR='#297ACC'>")
 myWindow.document.write("<p style='font-family:arial'><b>Aspects: </b><br>&nbsp;&nbsp;" + rand  + "<br>&nbsp;&nbsp;" + rand2 + "<br>&nbsp;&nbsp;" + rand3 + "<br>\n&nbsp;&nbsp;"   + rand5 + "<br>\n<b>Skills:</b> " + randSkills + rand6 + rand7 + randPhysical + randMental + " </p>");   
 myWindow.document.write("</BODY>")
