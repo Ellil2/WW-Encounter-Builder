@@ -1429,10 +1429,10 @@ var myWindow = window.open("", "_blank","width=400, height=400");
 myWindow.document.write("<TITLE>" + rand +"</TITLE>")
 myWindow.document.write("<BODY BGCOLOR='#297ACC'>")
 myWindow.document.write("<p style='font-family:arial'><b>Aspects: </b><br>&nbsp;&nbsp;" + rand  + "<br>&nbsp;&nbsp;" + rand2 + "<br>&nbsp;&nbsp;" + rand3 + "<br>\n&nbsp;&nbsp;"   + rand5 + "<br>\n<b>Skills:</b> " + randSkills + rand6 + rand7 + randPhysical + randMental + " </p>");   
+myWindow.document.write('<img src=' + imageLink + '" alt="Image" width=100% height=auto >')
 myWindow.document.write("</BODY>")
 myWindow.document.write("</HTML>")
 
-window.open(imageLink, rand, "width=500, height=450");
 
 }     
 
