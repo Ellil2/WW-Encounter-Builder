@@ -534,7 +534,7 @@ wereElephanGuard = new Aspect("Were-Elephant Guard","Mythborn","4",["43"],["1","
  willowFairy = new Aspect("Willow Fairy","Mythborn","1",["11"],["1"],"2"),
  winterCourtNoble = new Aspect("Winter Court Noble","Mythborn","1",["21"],["2","3"],"2"),    
 woodlandDryad = new Aspect("Woodland Dryad","Mythborn","1",["15"],["1"],"2","behavior","2","http://i.imgur.com/e1RUQy0.jpg"),
-woodWarden = new Aspect("Wood Warden","Mythborn","4",["43"],["1","2"],"2","behavior","2","http://i.imgur.com/67gpudO.jpg"),
+woodWarden = new Aspect("Wood Warden","Mythborn","4",["43"],["1","2"],"2","behavior","2","http://i.imgur.com/67gpudO.jpg")
     
     
     /* name = new Aspect("name","Mythborn","origin","subOrigin","legend","intelligence","behavior","combat1"),*/
