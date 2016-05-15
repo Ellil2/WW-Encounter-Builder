@@ -1432,7 +1432,7 @@ myWindow.document.write("<p style='font-family:arial'><b>Aspects: </b><br>&nbsp;
 myWindow.document.write("</BODY>")
 myWindow.document.write("</HTML>")
 
-window.open(imageLink, "Window Title", "width=500, height=450");
+window.open(imageLink, rand, "width=500, height=450");
 
 }     
 
