@@ -1,3 +1,4 @@
+
 function npcChoice(){
      
 //playerNumberVar = 4
@@ -1183,7 +1184,7 @@ var randSkills = (skillOptions.sort()[0].name + (2+skillAbilityOne+skillBonus) +
     //Here only varname, Name, combat1 and combat2 matter, and the Effect part is under "type"
 function stuntCalculator(bonusType,costLevelSetter){
  randomEffect2 = Math.floor(Math.random() * costLevelSetter)
- randomEffect = randomEffect2 + skillAbilityOne + bonusType  
+ randomEffect = randomEffect2 + 1 + bonusType  
 }
      
 // randomEffect2 here is the Cost of the ability, while randomEffect is the actual power of the ability
@@ -1437,3 +1438,4 @@ myWindow.document.write("</HTML>")
 }     
 
 }}
+npcChoice()
