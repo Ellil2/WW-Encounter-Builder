@@ -49,7 +49,7 @@ if (playerLevelVar <= 2){legendChoice = "2"}
 else if (playerLevelVar <= 4){legendChoice = "3"}
 else if (playerLevelVar <= 6){legendChoice = "3"}
 else if (playerLevelVar > 6){legendChoice = "4"}
-decision(fightCompute/2+6,0)
+decision(fightCompute/2,0)
 console.log(legendChoice);
 enemyType = "Group1"
 
@@ -62,7 +62,7 @@ decision(fightCompute/2-6 ,1)
 if(groupOrArmy === 1){
 enemyType = "Group1"
 legendDecider()
-decision(fightCompute/2-6 ,3)     
+decision(fightCompute/2 ,3)     
 }   
 }
 //Setting up a Crowd of Mobs
