@@ -6,7 +6,7 @@ function npcChoice(){
 //fightTypeVar = 2
 //fightDifficultyVar = 1
 
-fightCompute = Math.floor((((playerLevelVar-0.5)*4)+20)*(playerNumberVar)*(1.5-(fightDifficultyVar/4)))
+fightCompute = Math.floor((((playerLevelVar-0.5)*4)+10)*(playerNumberVar)*(1.5-(fightDifficultyVar/4)))
 
 
      function decision(argument,numberOn){ 
