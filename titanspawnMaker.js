@@ -20,18 +20,18 @@ mentalStressBonus = 0
 enemyNumber = 0
 fightComputeGroup = argument
 
+
+
+
 while(fightComputeGroup > 0){
      
-     if(stuntBonus >= 4+(playerLevelVar+playerNumberVar)/2 || stuntBonus2 >= 4+playerLevelVar+playerNumberVar){buffChooser = Math.floor(Math.random() * 5+1)}
-     else if((stuntBonus >= 4+playerLevelVar)&&(mentalStressBonus >= 5 || physicalStressBonus >= 5)){buffChooser = Math.floor(Math.random() * 4+1)} 
-     else if((stuntBonus >= 4+playerLevelVar)&&(mentalStressBonus >= 5 || physicalStressBonus >= 5)&&(skillBonus >= playerLevelVar+playerNumberVar)){buffChooser = Math.floor(Math.random() * 2+3)} 
-     else{buffChooser = Math.floor(Math.random() * 7+1)}     
+buffChooser = Math.floor(Math.random() * 7+1)    
      
-if (buffChooser == 1){skillBonus += 1; fightComputeGroup -= 6+Math.floor(skillBonus/2); enemyNumber += numberOn};
-if (buffChooser == 2){skillBonus += 1; fightComputeGroup -= 6+Math.floor(skillBonus/2); enemyNumber += numberOn};
-if (buffChooser == 3){legendaryBonus += 1; fightComputeGroup -= 3; enemyNumber += numberOn };
-if (buffChooser == 4){legendaryBonus2 += 1; fightComputeGroup -= 3; enemyNumber += numberOn };      
-if (buffChooser == 5){physicalStressBonus += 1; fightComputeGroup -= 2; enemyNumber += numberOn }; 
+if (buffChooser == 1 && skillBonus <= Math.floor(playerLevelVar/2)+4){skillBonus += 1; fightComputeGroup -= 6+Math.floor(skillBonus/2); enemyNumber += numberOn};
+if (buffChooser == 2 && skillBonus <= Math.floor(playerLevelVar/2)+4){skillBonus += 1; fightComputeGroup -= 6+Math.floor(skillBonus/2); enemyNumber += numberOn};
+if (buffChooser == 3 && legendaryBonus <= 6){legendaryBonus += 1; fightComputeGroup -= 3; enemyNumber += numberOn };
+if (buffChooser == 4 && legendaryBonus2 <= 6){legendaryBonus2 += 1; fightComputeGroup -= 3; enemyNumber += numberOn };      
+if (buffChooser == 5 && physicalStressBonus <= 5){physicalStressBonus += 1; fightComputeGroup -= 2; enemyNumber += numberOn }; 
 if (buffChooser == 6){stuntBonus2 += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
 if (buffChooser == 7){stuntBonus += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
 
