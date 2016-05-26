@@ -27,10 +27,10 @@ while(fightComputeGroup > 0){
      
 buffChooser = Math.floor(Math.random() * 7+1)    
      
-if (buffChooser == 1 && skillBonus <= Math.floor(playerLevelVar/2)+4){skillBonus += 1; fightComputeGroup -= 6+Math.floor(skillBonus/2); enemyNumber += numberOn};
-if (buffChooser == 2 && skillBonus <= Math.floor(playerLevelVar/2)+4){skillBonus += 1; fightComputeGroup -= 6+Math.floor(skillBonus/2); enemyNumber += numberOn};
-if (buffChooser == 3 && legendaryBonus <= 6){legendaryBonus += 1; fightComputeGroup -= 3; enemyNumber += numberOn };
-if (buffChooser == 4 && legendaryBonus2 <= 6){legendaryBonus2 += 1; fightComputeGroup -= 3; enemyNumber += numberOn };      
+if (buffChooser == 1 && skillBonus <= Math.floor(playerLevelVar/2+playerNumberVar/2)+4){skillBonus += 1; fightComputeGroup -= 6+Math.floor(skillBonus/2); enemyNumber += numberOn};
+if (buffChooser == 2 && skillBonus <= Math.floor(playerLevelVar/2+playerNumberVar/2)+4){skillBonus += 1; fightComputeGroup -= 6+Math.floor(skillBonus/2); enemyNumber += numberOn};
+if (buffChooser == 3 && legendaryBonus <= 5){legendaryBonus += 1; fightComputeGroup -= 3; enemyNumber += numberOn };
+if (buffChooser == 4 && legendaryBonus2 <= 5){legendaryBonus2 += 1; fightComputeGroup -= 3; enemyNumber += numberOn };      
 if (buffChooser == 5 && physicalStressBonus <= 5){physicalStressBonus += 1; fightComputeGroup -= 2; enemyNumber += numberOn }; 
 if (buffChooser == 6){stuntBonus2 += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
 if (buffChooser == 7){stuntBonus += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
