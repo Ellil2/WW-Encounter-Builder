@@ -1224,7 +1224,7 @@ outerPower4 = new Stunt("invoke " + rand + " for free as a Create an Advantage a
      
    ]  
 function pushStunt2(uses){
-for(i=2;i<40;i++){
+for(i=-4;i<40;i++){
 // These are the Active Effects.
   stuntEffect.push(shieldScaler = new Stunt("an ally has +" + i + " on their next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Any",[0,1,4,0],"Active",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(defendScaler = new Stunt("get +"+i+" to your next Defense roll (Uses: "+uses+")",(i*uses)-(Math.round(randomEffect2*(uses-1))),"Defense",[2,4,0,0],"Active",["Group1","Boss","Solo","Group2"]));
@@ -1255,7 +1255,7 @@ for(i=2;i<40;i++){
 // Creates Stutns for 1-3 uses. New function needed for Passives
 
 function pushStuntPassives(){
-for(i=2;i<40;i++){
+for(i=-4;i<40;i++){
   stuntEffect.push(physicalResist = new Stunt("you have +" + Math.ceil(i/3) + " to Defense Rolls against Physical attacks ",i,"Any",[3,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(magicResist = new Stunt("you have +" + Math.ceil(i/2) + " to Defense Rolls against Non-Physical attacks ",i,"Any",[3,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
   stuntEffect.push(rageAlly = new Stunt("you have the \"Rage\" Aspect and have +" + Math.ceil(i*0.75) + " to Attack Rolls when an ally has suffered a Consequence",i,"Any",[0,2,4,0],"Passive",["Group1","Boss","Group2"]));
