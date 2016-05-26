@@ -1112,7 +1112,7 @@ randSpawn = Math.floor(Math.random()*fullFinalArray.length)
 randSpawn2 = Math.floor(Math.random()*fullFinalArray.length)
 }
 randCalculator()
-while((randSpawn === randSpawn2)||(fullFinalArray[randSpawn].name[0].indexOf("Invokation") > -1 && fullFinalArray[randSpawn2].name[0].indexOf("Invokation") > -1)){randCalculator()}
+while(randSpawn === randSpawn2){randCalculator()}
 
 
     
@@ -1328,10 +1328,10 @@ for(h=0; h < targettedArray.length; h++) {
   if ((randomEffect === targettedArray[h].dangerlevel) && (targettedArray[h].stuntCombat2[0] === combatChoice2Int || targettedArray[h].stuntCombat2[1] === combatChoice2Int || targettedArray[h].stuntCombat2[2] === combatChoice2Int || targettedArray[h].stuntCombat2[3] === combatChoice2Int)&&((targettedArray[h].NPCtype[0] === enemyType)||(targettedArray[h].NPCtype[1] === enemyType)||(targettedArray[h].NPCtype[2] === enemyType)||(targettedArray[h].NPCtype[3] === enemyType)))
 { stuntEffectOptions.push(targettedArray[h]) }}
 
- randEffect = stuntEffectOptions[Math.round(Math.random() * stuntEffectOptions.length)];
+ randEffect = stuntEffectOptions[Math.floor(Math.random() * stuntEffectOptions.length)];
     
 for(j=0; j < stuntCost.length; j++) {
-  if ((randomEffect2 ===  Math.round(stuntCost[j].dangerlevel)) && (stuntCost[j].stuntCombat2[0] === combatChoice2Int || stuntCost[j].stuntCombat2[1] === combatChoice2Int || stuntCost[j].stuntCombat2[2] === combatChoice2Int || stuntCost[j].stuntCombat2[3] === combatChoice2Int)&&((stuntCost[j].NPCtype[0] === enemyType)||(stuntCost[j].NPCtype[1] === enemyType)||(stuntCost[j].NPCtype[2] === enemyType)||(stuntCost[j].NPCtype[3] === enemyType))){
+  if ((randomEffect2 ===  Math.floor(stuntCost[j].dangerlevel)) && (stuntCost[j].stuntCombat2[0] === combatChoice2Int || stuntCost[j].stuntCombat2[1] === combatChoice2Int || stuntCost[j].stuntCombat2[2] === combatChoice2Int || stuntCost[j].stuntCombat2[3] === combatChoice2Int)&&((stuntCost[j].NPCtype[0] === enemyType)||(stuntCost[j].NPCtype[1] === enemyType)||(stuntCost[j].NPCtype[2] === enemyType)||(stuntCost[j].NPCtype[3] === enemyType))){
   stuntCostOptions.push(stuntCost[j])   
   }} 
      
