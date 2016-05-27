@@ -1111,13 +1111,13 @@ function randCalculator(){
 if(fullFinalArray.length>1){
 randSpawn = Math.floor(Math.random()*fullFinalArray.length)
 randSpawn2 = Math.floor(Math.random()*fullFinalArray.length)
-var rand5 = (fullFinalArray[randSpawn].name[1] + " " + fullFinalArray[randSpawn2].name[2] + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;\n" + fullFinalArray[randSpawn].name[0] + " (" + abilityOne + ")<br>&nbsp;&nbsp; \n" + fullFinalArray[randSpawn2].name[0]+ " (" + abilityTwo + ")")
+rand5 = (fullFinalArray[randSpawn].name[1] + " " + fullFinalArray[randSpawn2].name[2] + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;\n" + fullFinalArray[randSpawn].name[0] + " (" + abilityOne + ")<br>&nbsp;&nbsp; \n" + fullFinalArray[randSpawn2].name[0]+ " (" + abilityTwo + ")")
 
 }
 else{
 randSpawn = Math.floor(Math.random()*rightOriginCombatAllArray.length)
 randSpawn2 = Math.floor(Math.random()*rightOriginCombatAllArray.length)
-var rand5 = (rightOriginCombatAllArray[randSpawn].name[1] + " " + rightOriginCombatAllArray[randSpawn2].name[2] + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;\n" + rightOriginCombatAllArray[randSpawn].name[0] + " (" + abilityOne + ")<br>&nbsp;&nbsp; \n" + rightOriginCombatAllArray[randSpawn2].name[0]+ " (" + abilityTwo + ")")
+rand5 = (rightOriginCombatAllArray[randSpawn].name[1] + " " + rightOriginCombatAllArray[randSpawn2].name[2] + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;\n" + rightOriginCombatAllArray[randSpawn].name[0] + " (" + abilityOne + ")<br>&nbsp;&nbsp; \n" + rightOriginCombatAllArray[randSpawn2].name[0]+ " (" + abilityTwo + ")")
 
 }
 }
