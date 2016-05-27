@@ -1108,8 +1108,14 @@ for(i=0;i<rightOriginCombatAllArray.length;i++){
 
 
 function randCalculator(){
+if(fullFinalArray.length>1){
 randSpawn = Math.floor(Math.random()*fullFinalArray.length)
 randSpawn2 = Math.floor(Math.random()*fullFinalArray.length)
+}
+else{
+randSpawn = Math.floor(Math.random()*rightOriginCombatAllArray.length)
+randSpawn2 = Math.floor(Math.random()*rightOriginCombatAllArray.length)
+}
 }
 randCalculator()
 while(randSpawn === randSpawn2){randCalculator()}
