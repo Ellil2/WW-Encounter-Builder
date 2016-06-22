@@ -112,7 +112,7 @@ alert(Math.floor((((playerLevelVar-0.5)*4)+20)*(playerNumberVar)*(1.5-(fightDiff
 <p>Choose the difficulty of the fight</p>
 
 <br> 
-<select  id="finalBattle"  onchange = displayExtra()>
+<select  id="finalBattle"  onchange = displayExtra() style="display:none" >
       <option selected value=0>No</option>
       <option  value=1>YES ! SHIT'S GOING DOWN ! ATEN'S HERALD IS COMING !</option>
       <option  value=2>YES ! SHIT'S GOING DOWN ! FENRIR'S HERALD IS COMING !</option>
@@ -141,6 +141,7 @@ alert(Math.floor((((playerLevelVar-0.5)*4)+20)*(playerNumberVar)*(1.5-(fightDiff
 <button type="button" onclick="alertFightLevel()">Give estimated Fight Difficulty !</button>
 <br>
 <br>
+<button type="button" onclick="findOrigin()">Find NPCs of a given Origin !</button>
 
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
