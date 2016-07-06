@@ -460,6 +460,146 @@ while(sixthNumberRiddle !== "1251"){sixthRiddleFunction()}
 if(sixthNumberRiddle === "1251"){alert("Message 024: Siege of the Silver Queen is proving problematic. We are bringing the Bus. Work is to continue.")}
 }
 
+function checkCookie(){
+ visits = getCookie("visitscounter");
+if (!visits) {visits = 0}
+visits = parseInt(visits) + 1;
+warning = 4-visits
+ expdate = new Date ();
+expdate.setTime(expdate.getTime() + (3600*1000*20)); 
+setCookie("visitscounter", visits, expdate);
+}
+
+
+
+
+
+function setCookie(isName,isValue,dExpires) {
+document.cookie = isName + "=" + isValue + ";expires=" + dExpires.toGMTString() ;   // path not specified so cookie only active for this page
+}
+
+function getCookie(isName){
+cookieStr = document.cookie;
+startSlice = cookieStr.indexOf(isName+"=");
+if (startSlice == -1) {return false}
+endSlice = cookieStr.indexOf(";",startSlice+1)
+if (endSlice == -1){endSlice = cookieStr.length}
+isData = cookieStr.substring(startSlice,endSlice)
+isValue = isData.substring(isData.indexOf("=")+1,isData.length);
+return isValue;
+
+}
+
+function clearCookie(){
+
+document.cookie = "visitscounter=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+}
+
+
+function riddles1(){
+ checkCookie()
+if(visits<=3){
+alert("La tablette vous trouble de plus en plus. (" + warning + " essais restants)")}
+
+else{
+alert("Les lettres sur la tablette vous semblent impossible a déchiffrer sans vous évanouir !"); return
+}
+    
+
+function firstRiddleFunction(){
+  firstNumberRiddle = prompt(" uni ds  fgln LgetndoaleenueSàrl t’u annes e allauzm td  proneainiéLredoopud  neèméèueuue efge mogrr tsnt ul,veiee.srstovto i rnn oee,mi iclvedtDn r blcrhle,e o laraleeaen  dupeiitet.s aleazo te ?t slnenneus nlXeQaot  ssrip ")
+firstNumberRiddleBetter = firstNumberRiddle.toLowerCase()
+}
+alert("Il était une fois, dans un royaume brisé par la cupidité et la tyrannie, deux orphelines rencontrèrent un vieillard. \n\nElles demandèrent au vieillard: 'Que pouvons-nous faire?'. Et le vieillard leur répondit: 'Seul un Roi peut changer un Royaume.'")
+    
+firstRiddleFunction()
+
+while(firstNumberRiddleBetter !== "akragas" && firstNumberRiddleBetter !== "acragas"){
+    checkCookie()
+if(visits<=3){
+alert("La tablette vous trouble de plus en plus. (" + warning + " essais restants)");
+; firstRiddleFunction()}
+
+else{
+alert("Les symboles sur la tablette vous semblent impossible a déchiffrer sans vous évanouir ! Il faudra regagner des forces. Peut-être aurez-vous plus de chance demain..."); return
+}
+}
+if(firstNumberRiddleBetter === "akragas" || firstNumberRiddleBetter === "acragas"){document.cookie = "visitscounter=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+
+                             }
+    
+function secondRiddleFunction(){
+  secondNumberRiddle = prompt("107 68 135 15 133 104 104 ?")
+
+}
+alert("Ensemble, les orphelines et le vieillard gagnèrent des alliés. Des loups et des dragons, des anges et des démons. Elles devinrent reines, et les tyrans furent bannis. \n\nMais la paix ne fut pas longue. Les tyrans formèrent de nouvelles forces, attaquant le royaume, encore et encore, aucune muraille assez grande pour les arrêter.")
+    
+secondRiddleFunction()
+
+while(secondNumberRiddle !== "16"){
+    checkCookie()
+if(visits<=3){
+alert("La tablette vous trouble de plus en plus. (" + warning + " essais restants)");
+; secondRiddleFunction()}
+
+else{
+alert("Les symboles sur la tablette vous semblent impossible a déchiffrer sans vous évanouir ! Il faudra regagner des forces. Peut-être aurez-vous plus de chance demain..."); return
+}
+}
+if(secondNumberRiddle === "16"){document.cookie = "visitscounter=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+
+}
+   
+function thirdRiddleFunction(){
+  thirdNumberRiddle = prompt("Les derniers mots d'Oberon.")
+  thirdNumberRiddleBetter = thirdNumberRiddle.toLowerCase()
+
+}
+    alert("C’est alors que le vieillard et les jeunes Reines firent la rencontre d’un nouvel ami. Un ami qui voulait les aider, les sauver.\n\n A la Reine Blanche, il donna un arbre. A la Reine Noire, il donna un palais. Et au vieillard, il donna un voile, qui pourra les cacher de leurs ennemis. Puis il parti, sans aucune demande autre que leur royaume reste libre.")
+thirdRiddleFunction(); 
+    
+while(thirdNumberRiddleBetter !== "meet me all by break of day." && thirdNumberRiddleBetter !== "meet me all by break of day" ){
+    checkCookie()
+if(visits<=3){
+alert("La tablette vous trouble de plus en plus. (" + warning + " essais restants)");
+; thirdRiddleFunction()}
+
+else{
+alert("Les symboles sur la tablette vous semblent impossible a déchiffrer sans vous évanouir ! Il faudra regagner des forces. Peut-être aurez-vous plus de chance demain..."); return
+}
+}
+if(thirdNumberRiddleBetter === "meet me all by break of day." || thirdNumberRiddleBetter !== "meet me all by break of day" ){document.cookie = "visitscounter=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+
+}
+
+    function fourthRiddleFunction(){
+  fourthNumberRiddle = prompt("12137152318253734272334251829352425321799723412491720173127233731137152318917172435312427232532179972341249171314283338423724211348223826243429221728393524272325381981626382623232134232424193425")
+  fourthNumberRiddleBetter = fourthNumberRiddle.toLowerCase()
+
+}
+   alert("Mais un jour le vieillard et son voile disparurent. Les ennemis trouvèrent leur chemin à nouveau, aidés par de nouvelles routes, par les eaux et par les airs. \n\nEt la Reine Blanche ne savait pas comment sauver son Royaume.")  
+fourthRiddleFunction(); 
+
+while(fourthNumberRiddleBetter !== "perséphone" && fourthNumberRiddleBetter !== "persephone" ){
+    checkCookie()
+if(visits<=3){
+alert("La tablette vous trouble de plus en plus. (" + warning + " essais restants)");
+; fourthRiddleFunction()}
+
+else{
+alert("Les symboles sur la tablette vous semblent impossible a déchiffrer sans vous évanouir ! Il faudra regagner des forces. Peut-être aurez-vous plus de chance demain..."); return
+}
+}
+    if(fourthNumberRiddleBetter !== "perséphone" || forthNumberRiddleBetter !== "persephone" ){alert("La Reine fit donc appel à son vieil ami. Et Kur répondit à son appel, comme il l’avait fait par le passé. \n\nIl sauva le Royaume, mais une question se posait. Comment pouvait-il sauver le Royaume et vaincre les serviteurs des Tyrans sans que se sache son pacte avec ses amies?\n\nC’est alors qu’une marine celte tomba du ciel..."); setCookie("visitscounter", 0, expdate);
+
+}}
+
+
+
+
+
+
+
 function ridďles(){
 function firstRiddleFunction(){
   firstNumberRiddle = prompt("Message 001: Enlightened Indoctrination Success Rate at 43%. Further Experimentation Required. \n112213\n312213\n212223\n113213\n311223\n212223\n114213\n31121314\n \nENTER CODE:")
