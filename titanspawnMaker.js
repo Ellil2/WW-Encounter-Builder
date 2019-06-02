@@ -8,6 +8,7 @@ function npcChoice(){
 
 fightCompute = Math.floor((((playerLevelVar-0.5)*5)+10)*(playerNumberVar)*(1.5-(fightDifficultyVar/4)))
 
+     // fightCompute est la difficulté du combat, basé sur les variables choisies.
 
      function decision(argument,numberOn){ 
 skillBonus = 0
@@ -21,7 +22,7 @@ enemyNumber = 0
 fightComputeGroup = argument
 
 
-
+     // L'ennemi est pour l'instant a stats de base, puis des stats lui sont attribués en fonction de la valeur de fightCompute
 
 while(fightComputeGroup > 0){
      
@@ -36,7 +37,13 @@ if (buffChooser == 6){stuntBonus2 += 1; fightComputeGroup -= 1; enemyNumber += n
 if (buffChooser == 7){stuntBonus += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
 
 
-}   npcChoiceLoop()}
+} 
+          //_______________________________________________//
+          
+          // Décide en fonction du niveau des joueurs le niveau de Légende du Titanspawn (notamment permet de générer des Titanspawn uniques pour des joueurs tres high level)
+          // Décide aussi le type de fight (2 petits ennemis, un gros boss, etc)
+          
+         npcChoiceLoop()}
 //function to clarify the legendChoice maker    
 function legendDecider(){
 if (playerLevelVar <= 2){legendChoice = "1"}
@@ -100,14 +107,14 @@ if(document.getElementById("Fenrir").value){playerLevelVar == 7; decision(docume
 else{decision(fightCompute/2,0)}
 }     
 
- 
+ // A ce moment-là, le type de combat, et la difficulté du PNJ, est décidée. La répartition Stunts/Skills/etc est décidée
  
     function npcChoiceLoop() {
 
 //____________________________________________________________________________________________________
 
 
-//User Input
+//User Input: L'individu choisi le type de PNJ, origine, role, etc.
 
 
 //____________________________________________________________________________________________________
@@ -245,7 +252,7 @@ var Stunt = function(description,dangerlevel,stuntType,stuntCombat2,type,NPCtype
 //____________________________________________________________________________________________________
 
 //Titanspawn High Concept Chooser ----------------------------------------------------------------
-
+// Celà décide, en fonction des parametre choisis si-dessus, le High Concept du PNJ
 
 //____________________________________________________________________________________________________
 
@@ -543,7 +550,7 @@ woodWarden = new Aspect("Wood Warden","Mythborn","4",["43"],["1","2"],"2","behav
 ]
     
    
-
+// Ceci établi les différents candidats possibles pour le High Concept, laissant l'individu choisir celui qu'il préfere.
 
 var highConceptOptions = [];
 
@@ -589,7 +596,7 @@ var highConceptsBeforeDefaults = highConceptOptions.length
     
     
 // Default Titanspawn  -----------------------------------
-    
+// Si aucune High Concept ne fit tous les critères, plusieurs High Concept sont générés pour donner des options quand meme 
 
 // _______________________________________
 
@@ -765,7 +772,7 @@ if(enemyNumber > 1){rand += " (" + enemyNumber + ")"};
 
 
 //First Aspect Chooser ---------------------------------------------------------------------------
-
+// Génère un Aspect basé sur l'Origine
 
 //____________________________________________________________________________________________________
 
@@ -895,7 +902,7 @@ var rand2 = aspect1Options[0].name[Math.floor(Math.random()*(aspect1Options[0].n
 
 
 //Second Aspect Chooser ---------------------------------------------------------------------------
-
+// Génère un Aspect basé sur la personnalité
 
 //____________________________________________________________________________________________________
 
@@ -951,7 +958,7 @@ var rand3 = aspect2Options[Math.floor(Math.random() * aspect2Options.length)].na
 
 
 //Legendary Abilities  + 3rd Aspect Chooser ------------------------------------------------------------------
-
+// Choisi les Legendaries en fonction de l'origine, puis un Aspect basé sur les Legendaries choisies.
 
 //____________________________________________________________________________________________________
 
@@ -1076,7 +1083,8 @@ MentalismIllusion = new LegendaryAbility(["Mentalism - Illusion","Fleeting","Tri
 
 ]
     
-    
+// Décide de la Legendary Appropriée en fonction du PNJ
+
 for(a=0;a<abilities2.length;a++){
 for(b=0;b<abilities2[a].npcOptions.length;b++){
 
@@ -1092,6 +1100,9 @@ else if((abilities2[a].npcOptions[b][0] === typeChoice)&&
 }
                     }  
 
+         
+  // 
+         
 for(c=0;c<rightOriginArray.length;c++){
 for(d=0;d<rightOriginArray[c].combat1Options.length;d++){
     if(rightOriginArray[c].combat1Options[d][0] === combatChoice1){rightOriginCombat1Array.push(rightOriginArray[c])}                 
@@ -1106,7 +1117,8 @@ for(i=0;i<rightOriginCombatAllArray.length;i++){
     if((rightOriginCombatAllArray[i].intelligenceOptions[0] === intelligenceChoice)||(rightOriginCombatAllArray[i].intelligenceOptions[1] === intelligenceChoice)){fullFinalArray.push(rightOriginCombatAllArray[i])}                 
 }
 
-
+// Choisi au hasard parmis les Aspects adéquats ceux du PNJ final.
+         
 function randCalculator(){
 if(fullFinalArray.length>1){
 randSpawn = Math.floor(Math.random()*fullFinalArray.length)
@@ -1263,6 +1275,7 @@ for(i=-4;i<40;i++){
    pushStunt2(3); 
 // Creates Stutns for 1-3 uses. New function needed for Passives
 
+     // Crée des Stunts a différents niveaux de puissance, permettant plusieurs permutations du meme Stunt en fonction du niveau du combat.
 function pushStuntPassives(){
 for(i=-4;i<40;i++){
   stuntEffect.push(physicalResist = new Stunt("you have +" + Math.ceil(i/3) + " to Defense Rolls against Physical attacks ",i,"Any",[3,4,0,0],"Passive",["Group1","Boss","Solo","Group2"]));
@@ -1295,6 +1308,8 @@ stuntEffectCreator()
 var stuntCost = [ 
  
 // These are the Active Costs.
+// Ceci est ajouté aux Stunts pour leur donner un cout - ainsi un Stunt plus fort peut etre compensé par un coute plus fort. Deux PNJ du meme niveau
+// avec le meme Stunt auront des effets différents grace au cout.
      
        // Lvl 0
 free = new Stunt("At any time, ",0,"Any",[1,2,3,4],"Active",["Group1","Boss","Solo","Group2"]),
@@ -1330,6 +1345,7 @@ recklessAttack4 = new Stunt("You have -1 to all Defense Rolls, ",4,"Any",[1,2,3,
 var stuntEffectOptions = [];
 var stuntCostOptions = [];
 
+   // Prend le niveau du Stunt, le cout, le niveau du combat et les points accordés aux Stunts, et génère des Stunts.   
      
 function stuntChooser (targettedArray,targettedSecondArray){   
      
@@ -1361,7 +1377,7 @@ var rand6 = ("<br><b>\nStunts:</b> <br>\n- " + stuntResultActives)
 
 
 //Stunts Maker 2 ------------------------------------------------------------------
-
+// Pareil pour le deuxieme Stunt
 
 //____________________________________________________________________________________________________
 
@@ -1393,7 +1409,7 @@ var rand7 = ("<br>\n- " + stuntResultActives2)
 
 
 // Stress Maker ------------------------------------------------------------------
-
+// Génère plus ou moins de Stress et Conséquences en fonction du niveau du combat
 
 //____________________________________________________________________________________________________
 
