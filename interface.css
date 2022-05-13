@@ -1,0 +1,6 @@
+  .container { width: 1300px; margin: 0 auto; height: 600px; }
+    .container [class*='box'] { width:400px; height:700px; float: left; margin-right: 30px; }
+    .container .box1 { background-color: #F8F8F8; }
+    .container .box2 { background-color: #F8F8F8; }
+    .container .box3 { background-color: #F8F8F8; margin-right: 0; }
+	
