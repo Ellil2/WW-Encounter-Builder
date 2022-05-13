@@ -1,228 +1,16 @@
 
-function npcChoice(){
-     
-//playerNumberVar = 4
-//playerLevelVar = 7
-//fightTypeVar = 2
-//fightDifficultyVar = 1
 
-fightCompute = Math.floor((((playerLevelVar-0.5)*5)+10)*(playerNumberVar)*(1.5-(fightDifficultyVar/4)))
+function displayTest(){
+	  var x = document.getElementById("mainTab");
+	  var y = document.getElementById("resultTab");
 
-     // fightCompute est la difficulté du combat, basé sur les variables choisies.
-
-     function decision(argument,numberOn){ 
-skillBonus = 0
-stuntBonus = 0
-stuntBonus2 = 0
-legendaryBonus = 0
-legendaryBonus2 = 0
-physicalStressBonus = 0
-mentalStressBonus = 0
-enemyNumber = 0
-fightComputeGroup = argument
-
-
-     // L'ennemi est pour l'instant a stats de base, puis des stats lui sont attribués en fonction de la valeur de fightCompute
-
-while(fightComputeGroup > 0){
-     
-buffChooser = Math.floor(Math.random() * 7+1)    
-     
-if (buffChooser == 1 && skillBonus <= Math.floor(playerLevelVar/2+playerNumberVar/2)+4){skillBonus += 1; fightComputeGroup -= 6+Math.floor(skillBonus/2); enemyNumber += numberOn};
-if (buffChooser == 2 && skillBonus <= Math.floor(playerLevelVar/2+playerNumberVar/2)+4){skillBonus += 1; fightComputeGroup -= 6+Math.floor(skillBonus/2); enemyNumber += numberOn};
-if (buffChooser == 3 && legendaryBonus <= 5){legendaryBonus += 1; fightComputeGroup -= 3; enemyNumber += numberOn };
-if (buffChooser == 4 && legendaryBonus2 <= 5){legendaryBonus2 += 1; fightComputeGroup -= 3; enemyNumber += numberOn };      
-if (buffChooser == 5 && physicalStressBonus <= 5){physicalStressBonus += 1; fightComputeGroup -= 2; enemyNumber += numberOn }; 
-if (buffChooser == 6){stuntBonus2 += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
-if (buffChooser == 7){stuntBonus += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
-
-
-} 
-          //_______________________________________________//
-          
-          // Décide en fonction du niveau des joueurs le niveau de Légende du Titanspawn (notamment permet de générer des Titanspawn uniques pour des joueurs tres high level)
-          // Décide aussi le type de fight (2 petits ennemis, un gros boss, etc)
-          
-         npcChoiceLoop()}
-//function to clarify the legendChoice maker    
-function legendDecider(){
-if (playerLevelVar <= 2){legendChoice = "1"}
-else if (playerLevelVar <= 4){legendChoice = "2"}
-else if (playerLevelVar <= 7){legendChoice = "3"}
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.style.display = "none";  } else {
+    x.style.display = "none";
+    y.style.display = "block";    }
 }
-//Setting up a Boss and his Minions     
-if (fightTypeVar == 1){
-enemyType = "Boss"
-if (playerLevelVar <= 2){legendChoice = "2"}
-else if (playerLevelVar <= 4){legendChoice = "3"}
-else if (playerLevelVar <= 6){legendChoice = "3"}
-else if (playerLevelVar > 6){legendChoice = "4"}
-decision(fightCompute/2,0)
-console.log(legendChoice);
-enemyType = "Group1"
-
-playerLevelVar >= 4 ? groupOrArmy = Math.floor(Math.random()*2) : groupOrArmy = 0
-if(groupOrArmy === 0){
-
-legendDecider()
-decision(fightCompute/2-6 ,1)
-}     
-if(groupOrArmy === 1){
-enemyType = "Group1"
-legendDecider()
-decision(fightCompute/2 ,3)     
-}   
-}
-//Setting up a Crowd of Mobs
-else if (fightTypeVar == 2){
-legendDecider()
-
-enemyType = "Group2"     
-decision(fightCompute/2,1)
-enemyType = "Group2"
-decision(fightCompute/2,1 )
-}     
-
-//Setting up one big enemy
-else if (fightTypeVar == 3){
-if (playerLevelVar <= 2){legendChoice = "2"}
-else if (playerLevelVar <= 4){legendChoice = "3"}
-else if (playerLevelVar <= 6){legendChoice = "3"}
-else if (playerLevelVar > 6){legendChoice = "4"}
-enemyType = "Solo"     
-decision(fightCompute,0)
-//This sets the Difficulty of the One Big Enemy setting. It is set lower because of the Defense Stats.
-}
-else if (fightTypeVar == 4){
-if (playerLevelVar <= 2){legendChoice = "2"}
-else if (playerLevelVar <= 4){legendChoice = "3"}
-else if (playerLevelVar <= 6){legendChoice = "3"}
-else if (playerLevelVar > 6){legendChoice = "4"}
-  
-enemyType = "Group2"   
-if(document.getElementById("Aten").value){playerLevelVar == 7; decision(document.getElementById("Aten").value,0)}
-else{decision(fightCompute/2,0)}
-enemyType = "Group2"
-if(document.getElementById("Fenrir").value){playerLevelVar == 7; decision(document.getElementById("Fenrir").value,0)}
-else{decision(fightCompute/2,0)}
-}     
-
- // A ce moment-là, le type de combat, et la difficulté du PNJ, est décidée. La répartition Stunts/Skills/etc est décidée
- 
-    function npcChoiceLoop() {
-
-//____________________________________________________________________________________________________
-
-
-//User Input: L'individu choisi le type de PNJ, origine, role, etc.
-
-
-//____________________________________________________________________________________________________
-
-typeChoice = "nope"
-
-function typeChoiceFunction (){
-
-typeChoicePrompt = prompt("What type of creature is your NPC ? \n1- Titanspawn \n2- Mythborn");
-if (typeChoicePrompt == "1") {titanspawnTypeChoiceFunction();
-}
-else if (typeChoicePrompt == "2") {mythbornTypeChoiceFunction()}
-else if (typeChoicePrompt !== "1" && typeChoicePrompt !== "2"){typeChoiceFunction()}
-}
-         
-
-function titanspawnTypeChoiceFunction() {
-typeChoice = "Titanspawn";
-
-     originChoice = prompt("Which Titan is your Titanspawn from ? Possibilities: \n1 - Muspelheim \n2 - Nyx \n3 - Soku no Kumi \n4 - Aether \n5 - Amaunet \n6 - Terra \n7 - Nun \n8 - Death ");
-  if (originChoice === "1") {
-       subOriginChoice = prompt("What Avatar of Muspelheim is your Titanspawn linked to ?  \n11 - Vrtra  \n12 - Surtr \n13 - Prometheus \n99 - Any");
-  }
-  else if (originChoice === "2") {
-       subOriginChoice = prompt("What Avatar of Nyx is your Titanspawn linked to ?  \n21 - Nott \n22 - Fenrir \n23 - Apep \n24 - Selene \n99 - Any");
-  }
-  else if (originChoice === "3") {
-       subOriginChoice = prompt("What Avatar of Soku no Kumi is your Titanspawn linked to ? \n31 - Huehueteotl \n32 - Mikaboshi \n33 - Erebus \n99 Any");
-  }
-  else if (originChoice === "4") {
-       subOriginChoice = prompt("What Avatar of Aether is your Titanspawn linked to ? \n41 - Aten\n42 -  Hyperion\n99 -  Any");
-  }
-  else if (originChoice === "5") {
-       subOriginChoice = prompt("What Avatar of Amaunet is your Titanspawn linked to ? \n51 -  Huracan\n52 -  Typhon\n53 -  Ouranos\n99 -  Any");
-  }
-  else if (originChoice === "6") {
-       subOriginChoice = prompt("What Avatar of Terra is your Titanspawn linked to ? Possibilities:\n61 -  Gaia\n62 -  Kur\n63 -  Dis Pater\n64 - Ourea \n65 - Crom Cruach \n99 -  Any");  }
-  else if (originChoice === "7") {
-       subOriginChoice = prompt("What Avatar of Nun is your Titanspawn linked to ? Possibilities: \n71 Yam \n72 -  Tiamat \n73 -  Abzu \n74 -  Cipactli \n99 -  Any");  }
-
-  else if (originChoice === "8") {
-       subOriginChoice = prompt("What Avatar of Death is your Titanspawn linked to ? Possibilities: \n81 - Styx\n82 -  Grim Reaper \n83 -  Camatotz \n99 -  Any");
-  }
- 
-  else {
-    titanspawnTypeChoiceFunction();
-    return;
-}
-}
-         
-function mythbornTypeChoiceFunction(){     
-typeChoice = "Mythborn"; 
-     originChoice = prompt("Which Race is your Mythborn  ? Possibilities: \n1 - Summer Court of Fairie \n2 - Winter Court of Fairie \n3 - Jade Sea \n4 - Dark Forest \n5 - Shambhala \n6 - Atlantis");
-  if (originChoice === "1") {
-       subOriginChoice = prompt("What type of Summer Court Fairie Mythborn is your NPC ?  \n11 - Fey  \n12 - Elf \n13 - Small Folk \n14 - Pixie \n15 - Nymph \n98 - Any");
-  }
-  else if (originChoice === "2") {
-       subOriginChoice = prompt("What type of Winter Court Fairie Mythborn is your NPC ?  \n21 - Fey  \n22 - Elf \n23 - Small Folk \n24 - Pixie \n25 - Nymph \n98 - Any");
-  }
-  else if (originChoice === "3") {
-       subOriginChoice = prompt("What type of Jade Sea Mythborn is your NPC ?  \n31 - Western Dragon  \n32 - Eastern Dragon \n33 - Wyvern \n34 - Coatl \n35 - Naga \n98 - Any");
-  }
-  else if (originChoice === "4") {
-       subOriginChoice = prompt("What type of Dark Forest Mythborn is your NPC ?  \n41 - Ent  \n42 - Small Folk \n43 - Garou \n44 - Witch  \n98 - Any");
-  }
-  else if (originChoice === "5") {
-       subOriginChoice = prompt("What type of Shambhala Mythborn is your NPC ?  \n51 - Raksasha  \n52 - Asura \n53 - Nymph \n54 - Naga \n98 - Any");
-  }
-  else if (originChoice === "6") {
-       subOriginChoice = prompt("What type of Atlantis Mythborn is your NPC ?  \n61 - Triton  \n62 - Nymph \n98 - Any");
-  }        
-}         
-         
-
-
-
-function behaviorChoiceFunction() {
-  behaviorChoice = prompt("What is your NPC's behavior like ? \n 1 - Aggressive \n 2 - Diplomatic");  
-    if (behaviorChoice === "1" || behaviorChoice === "2") {
- intelligenceChoiceFunction();
-}
-
-else {
-    behaviorChoiceFunction();
-    return;
-}
-};
-
-function intelligenceChoiceFunction() {
- intelligenceChoice = prompt("What is your NPC's Intelligence Level ? \n1 - Feral \n2 - Human");
- (intelligenceChoice === "1" || intelligenceChoice === "2") ? combat1ChoiceFunction() : intelligenceChoiceFunction(); return;};
-
-function combat1ChoiceFunction() {
- combatChoice1 = prompt("What is your NPC's combat style' ? \n 1 - Warrior\n 2 - Mage\n 3 - Rogue ");
- (combatChoice1 === "1" || combatChoice1 === "2" || combatChoice1 === "3") ? combat2ChoiceFunction() : combat1ChoiceFunction(); return; };
-
-function combat2ChoiceFunction() {
- combatChoice2 = prompt("What is your NPC's combat speciality' ? \n1 - Support \n2 - Fighter \n3 - Controller \n4 - Tank");
-    if (combatChoice2 === "1" || combatChoice2 === "2" || combatChoice2 === "3" || combatChoice2 === "4") {}
-
-else {
-    combat2ChoiceFunction();
-    return;
-}
- combatChoice2Int = parseInt(combatChoice2);
-};
-typeChoiceFunction ()
-behaviorChoiceFunction();
+var enemyOneDone = 0
 
 
 var Aspect = function(name,type,origin,subOrigin,legend,intelligence,behavior,combat1,combat2) {
@@ -238,6 +26,133 @@ var Aspect = function(name,type,origin,subOrigin,legend,intelligence,behavior,co
    
     
 };
+
+         
+       
+function generatorManager(){
+playerNumberVar = document.getElementById("playerNumber").value
+playerLevelVar = (document.getElementById("playerLevel").value)
+fightTypeVar = document.getElementById("fightType").value
+fightDifficultyVar = document.getElementById("fightDifficulty").value
+document.getElementById("outputText2").innerHTML = ""
+document.getElementById("outputText").innerHTML = ""
+
+
+if(fightTypeVar == 3){
+
+npcChoice(NPC1Final)
+
+}
+else{
+
+npcChoice(NPC1Final)	
+npcChoice(NPC2Final)
+}
+enemyOneDone=0
+}
+
+function alertFightLevel(){
+playerNumberVar = document.getElementById("playerNumber").value
+playerLevelVar = (document.getElementById("playerLevel").value)
+fightTypeVar = document.getElementById("fightType").value
+fightDifficultyVar = document.getElementById("fightDifficulty").value
+alert(Math.floor((((playerLevelVar-0.5)*4)+20)*(playerNumberVar)*(1.5-(fightDifficultyVar/4))))
+	
+}
+
+function enemyOptions(){
+	if(document.getElementById("fightType").value != "3" && numberOfNPCs == 2){
+			
+			document.getElementById("confirmNPC2Button").style="display:block"
+			document.getElementById("NPC2").style="display:block"
+	}
+	else{document.getElementById("confirmNPC2Button").style="display:none"
+			document.getElementById("NPC2").style="display:none"
+	}
+}
+
+function npcChoice(chosenNPC){
+	
+
+
+//playerNumberVar = 4
+//playerLevelVar = 7
+//fightTypeVar = 2
+//fightDifficultyVar = 1
+
+fightCompute = Math.floor((((playerLevelVar-0.5)*5)+10)*(playerNumberVar)*(1.5-(fightDifficultyVar/4)))
+
+
+if(document.getElementById("fightType").value==1){
+decision(fightCompute/2,0)}
+else if(document.getElementById("fightType").value==2){
+decision(fightCompute/2,1)}
+else if(document.getElementById("fightType").value==3){
+decision(fightCompute,0)}
+else if(document.getElementById("fightType").value==4){
+decision(fightCompute/2,1)}
+
+     // fightCompute est la difficulté du combat, basé sur les variables choisies.
+//stuntBonus is put to 1 to avoid endless loops
+     function decision(argument,numberOn){ 
+skillBonus = 0
+stuntBonus = 1
+stuntBonus2 = 1
+legendaryBonus = 0
+legendaryBonus2 = 0
+physicalStressBonus = 0
+mentalStressBonus = 0
+enemyNumber = 0
+sceneBonus = 0
+fightComputeGroup = argument
+
+sceneAspectsActive = false
+
+     // L'ennemi est pour l'instant a stats de base, puis des stats lui sont attribués en fonction de la valeur de fightCompute
+
+while(fightComputeGroup > 0){
+      
+
+if (chosenNPC[3].name === "Tank" ) {buffChooser = Math.ceil(Math.random() * 7)}
+else if (chosenNPC[3].name === "Damage Dealer" ) {buffChooser = Math.ceil(Math.random() * 7)}
+else if (chosenNPC[3].name === "Party Face" ) {buffChooser = Math.ceil(Math.random() * 10)}
+else if (chosenNPC[3].name === "Support-Controller" ) {buffChooser = Math.ceil(Math.random() * 10)}   
+else if (chosenNPC[3].name === "Skill Monkey" ) {buffChooser = Math.ceil(Math.random() * 10)}
+
+if (buffChooser == 1 && skillBonus <= Math.floor(playerLevelVar/2+playerNumberVar/2)+4){skillBonus += 1; fightComputeGroup -= 6+Math.floor(skillBonus/2); enemyNumber += numberOn};
+if (buffChooser == 2 && skillBonus <= Math.floor(playerLevelVar/2+playerNumberVar/2)+4){skillBonus += 1; fightComputeGroup -= 6+Math.floor(skillBonus/2); enemyNumber += numberOn};
+if (buffChooser == 3 && legendaryBonus <= 4)		{legendaryBonus += 1; fightComputeGroup -= 3; enemyNumber += numberOn };
+if (buffChooser == 4 && legendaryBonus2 <= 4)		{legendaryBonus2 += 1; fightComputeGroup -= 3; enemyNumber += numberOn };      
+if (buffChooser == 5 && physicalStressBonus <= 4)	{physicalStressBonus += 1; mentalStressBonus += 1; fightComputeGroup -= 2; enemyNumber += numberOn }; 
+if (buffChooser == 6)								{stuntBonus2 += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
+if (buffChooser == 7)								{stuntBonus += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
+if (buffChooser == 8)								{stuntBonus2 += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
+if (buffChooser == 9)								{stuntBonus += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
+if (buffChooser == 10)								{stuntBonus += 1; fightComputeGroup -= 1; enemyNumber += numberOn }; 
+//1 of fight difficulty = +1 throughout the Combat
+
+} 
+          //_______________________________________________//
+          // Décide en fonction du niveau des joueurs le niveau de Légende du Titanspawn (notamment permet de générer des Titanspawn uniques pour des joueurs tres high level)
+          // Décide aussi le type de fight (2 petits ennemis, un gros boss, etc)
+         npcChoiceLoop()}
+//function to clarify the legendChoice maker    
+
+//Setting up a Boss and his Minions     
+    
+
+ // A ce moment-là, le type de combat, et la difficulté du PNJ, est décidée. La répartition Stunts/Skills/etc est décidée
+ 
+    function npcChoiceLoop() {
+
+//____________________________________________________________________________________________________
+
+
+//User Input: L'individu choisi le type de PNJ, origine, role, etc.
+
+
+//____________________________________________________________________________________________________
+
     
 var Stunt = function(description,dangerlevel,stuntType,stuntCombat2,type,NPCtype) {
   this.description = description;
@@ -249,348 +164,6 @@ var Stunt = function(description,dangerlevel,stuntType,stuntCombat2,type,NPCtype
 };
          
          
-//____________________________________________________________________________________________________
-
-//Titanspawn High Concept Chooser ----------------------------------------------------------------
-// Celà décide, en fonction des parametre choisis si-dessus, le High Concept du PNJ
-
-//____________________________________________________________________________________________________
-
-        //Here, is the link to the image.
-var highConcept = [
-    // Titanspawn
- abbysalPriest = new Aspect("Abyssal Priest","Titanspawn","7",["71"],["2","1"],"2","behavior","2","http://i.imgur.com/fPtcAQe.jpg"),
-abyssalSage = new Aspect("Abyssal Sage","Titanspawn","7",["71"],["2"],"2","behavior","2","http://i.imgur.com/y7zM752.jpg"),
-abyssAncient = new Aspect("Abyss Ancient","Titanspawn","7",["73"],["3"],"1","behavior","2","http://i.imgur.com/FBhUm4Z.png"),
- agentVoid = new Aspect("Agent of the Void","Titanspawn","3",["32"],["2"],"2","behavior","2","http://i.imgur.com/DnRaFjz.jpg"), 
- ancientWitch = new Aspect("Ancient Witch","Titanspawn","6",["65"],["2"],"2","behavior","2","http://i.imgur.com/IIpthjn.jpg"),
- angel = new Aspect("Knight Angel","Titanspawn","4",["41"],["2","1"],"2","behavior","1","http://i.imgur.com/KVbDBKh.jpg"),
- angelPriest = new Aspect("Angel Priest","Titanspawn","4",["41"],["2","1"],"2","behavior","2","http://i.imgur.com/brXas2u.jpg"),  
- arachnidBroodmother = new Aspect("Arachnid Broodmother","Titanspawn","6",["65"],["2"],"2","behavior","3","http://i.imgur.com/2APpNX1m.jpg"), 
-arcaneGolem = new Aspect("Arcane Golem","Titanspawn","6",["63"],["1"],"2","behavior","2","http://i.imgur.com/e5Bkg0d.jpg"),
- archAngel = new Aspect("Archangel", "Titanspawn", "4",[ "41"], ["3"],"2","behavior","1","http://i.imgur.com/S9hj0PO.jpg"),
- armoredWight = new Aspect("Armored Wight","Titanspawn","8",["82"],["2"],"1","behavior","1","http://i.imgur.com/6gW6XJw.jpg"),
- ashGiant = new Aspect("Ash Giant","Titanspawn","1",["11"],["3"],"1","behavior","1","http://i.imgur.com/2chmjUal.jpg"),
- atlanticDevourer = new Aspect("Atlantic Devourer","Titanspawn","7",["74"],["3"],"1","behavior","2","http://i.imgur.com/x8NPgBo.jpg"),
- baddassosaurus = new Aspect("Badassosaurus","Titanspawn","6",["63"],["2"],"1","behavior","2","http://i.imgur.com/OHEyu8l.jpg"),
- barachiel = new Aspect("Barachiel, Wrath of the Heavens","Titanspawn","4",["41"],["4"],"2","behavior","2","http://i.imgur.com/eX9JSFs.jpg"),
- batKing = new Aspect("Bat King","Titanspawn","8",["83"],["3"],"2","behavior","3","http://i.imgur.com/J6qYdeBl.jpg"),
- blindConqueror = new Aspect("Blind Conqueror","Titanspawn","3",["31"],["2","3"],"2","behavior","2","http://i.imgur.com/liB2c0I.jpg"),
- blindJuggernaunt = new Aspect("Blind Juggernaunt","Titanspawn","3",["31","33"],["2","3"],"2","behavior","2","http://i.imgur.com/ihZpYkk.jpg"),
- blightPaladin = new Aspect("Blight Paladin","Titanspawn","6",["65"],["2","3"],"2","behavior","2","http://i.imgur.com/Fe3633g.jpg"),
- blightScarab = new Aspect("Blight Scarab","Titanspawn","6",["65"],["1","2"],"1","behavior","3","http://i.imgur.com/0KFPydk.jpg"),
- blightsteelColossus = new Aspect("Blightsteel Colossus","Titanspawn","6",["65"],["3","2"],"1","behavior","1","http://i.imgur.com/Q69GOwI.jpg"),
- blightWyrm = new Aspect("Blight Wyrm","Titanspawn","6",["65"],["3","2"],"1","behavior","1","http://i.imgur.com/KRreRap.jpg"),
- bringerDepths = new Aspect("Bringer of the Depths","Titanspawn","7",["71"],["3","2"],"2","behavior","2","http://i.imgur.com/x7XYmT2.jpg"),
- bringerEclipse = new Aspect("Bringer of Eclipse","Titanspawn","2",["21"],["3"],"2","behavior","2","http://i.imgur.com/qOxA24a.jpg"), 
-broodofAbzu = new Aspect("Brood of Abzu","Titanspawn","7",["73"],["2","3","1"],"1","behavior","2","http://i.imgur.com/Ooq5rj7.jpg"),
- burntElf = new Aspect("Burnt Elf","Titanspawn","1",["12"],["1","2"],"2","behavior","3","http://i.imgur.com/ScsuifE.jpg"),
-caveCyclops = new Aspect("Cave Cyclops","Titanspawn","3",["33"],["2"],"2","behavior","2","http://i.imgur.com/ywXlwLU.jpg"),
-caveNymph = new Aspect("Cave Nymph","Titanspawn","6",["65"],["2","1"],"2","behavior","2","http://i.imgur.com/MnAYMAM.jpg"),
- chainedSoul = new Aspect("Chained Soul","Titanspawn","8",["81"],["1","2"],"1","behavior","2","http://i.imgur.com/MVbhgr7.png"),
- cherubAngel = new Aspect("Cherub", "Titanspawn", "4", ["41"], ["1"],"2","behavior","2","http://i.imgur.com/NxEFxT5.jpg"),
-childMadness = new Aspect("Child of Madness","Titanspawn","3",["32"],["2"],"1","behavior","2","http://i.imgur.com/ggVX9nd.jpg"),
-childofYam = new Aspect("Child of Yam","Titanspawn","7",["71"],["1","2"],"1","behavior","2","http://i.imgur.com/76Hi052.jpg"),
- chitinousAbomination = new Aspect("Chitinous Abomination","Titanspawn","6",["65"],["2"],"1","behavior","2","http://i.imgur.com/JXEo071.jpg"),
- clockworkGnome = new Aspect("Clockwork Gnome","Titanspawn","6",["63"],["1"],"2","behavior","1","http://i.imgur.com/61HINJL.jpg"),
- clockWorkGnome = new Aspect("Clockwork Gnome","Titanspawn","1",["13"],["1"],"2","behavior","1","http://i.imgur.com/61HINJL.jpg"),
- cloudBreaker = new Aspect("Cloud Breaker","Titanspawn","5",["52"],["3"],"2","behavior","1","http://i.imgur.com/9DKIlZZ.jpg"),
- cloudDjinn = new Aspect("Cloud Djinn","Titanspawn","5",["53"],["2","3"],"2","behavior","1","http://i.imgur.com/TOtMBMR.jpg"),
-cloudKeeper = new Aspect("Cloud Keeper","Titanspawn","5",["53"],["3"],"2","behavior","2","http://i.imgur.com/EDTqH0I.jpg"),
- corpseSpider = new Aspect("Corpse Spider","Titanspawn","8",["83"],["1"],"1","behavior","1","http://i.imgur.com/19vnxLK.jpg"),
-corpseDevourer = new Aspect("Corpse Devourer","Titanspawn","8",["83"],["1","2"],"1","behavior","2","http://i.imgur.com/pod2fOi.jpg"),
- cottus = new Aspect("Cottus the Furious, Second of the Hecatonkheires","Titanspawn","6",["61"],["4"],"2","behavior","2","http://i.imgur.com/660AZAG.jpg"),
-crazedGeist = new Aspect("Crazed Geist","Titanspawn","8",["82"],["1"],"1","behavior","2","http://i.imgur.com/YkXHvVm.jpg"),
-darkPuppeteer = new Aspect("Dark Puppeteer","Titanspawn","3",["32"],["2","3"],"2","behavior","2","http://i.imgur.com/iZzjU5Z.jpg"),
- darkQueen = new Aspect("Dark Queen","Titanspawn","2",["21","23"],["3"],"2","behavior","1","http://i.imgur.com/k5BQY0O.jpg"),
- darkSilencer = new Aspect("Dark Silencer","Titanspawn","3",["31"],["2"],"2","behavior","2","http://i.imgur.com/aHAPoov.jpg"),
-deepDweller = new Aspect("Deep Dweller","Titanspawn","7",["71","73"],["2","3"],"1","behavior","2","http://i.imgur.com/kXE6iDu.jpg"),
- deepOne = new Aspect("Deep One","Titanspawn","7",["73"],["2"],"1","behavior","1","http://i.imgur.com/g65FPvi.jpg"),    
- depthsPriest = new Aspect("Priest of the Depths","Titanspawn","7",["71"],["2"],"2","behavior","2","http://i.imgur.com/beJkyqO.jpg"),
- desertSnake = new Aspect("Desert Snake","Titanspawn","4",["42"],["1"],"1","behavior","1","http://i.imgur.com/NlocRHB.png"), 
-devourer = new Aspect("Devourer","Titanspawn","8",["83"],["2"],"1","behavior","2","http://i.imgur.com/sV6KUdo.jpg"),
- djilluminatus = new Aspect("Djinn Illuminatus","Titanspawn","4",["41"],["2","3"],"2","behavior","2","http://i.imgur.com/adypqZz.jpg"),  
- drownedKeeper = new Aspect("Keeper of the Drowned","Titanspawn","7",["73"],["1"],"2","behavior","1","http://i.imgur.com/IZdInGS.jpg"),    
-dolgrund = new Aspect("Dolgrund, Shadow King of An'leth","Titanspawn","3",["33"],["4"],"2","behavior","2","http://i.imgur.com/HiUWgs5.jpg"),
-dryadAshes = new Aspect("Dryad of Ashes","Titanspawn","1",["12"],["1"],"2","behavior","2","http://i.imgur.com/lcUN7j6.jpg"),
-enchantingSiren = new Aspect("Enchanting Siren","Titanspawn","5",["53"],["1"],"2","behavior","2","http://i.imgur.com/8R7AVGv.jpg"),
-etherealDrake = new Aspect("Ethereal Drake","Titanspawn","8",["81"],["2"],"2","behavior","2","http://i.imgur.com/a0lsfvZ.jpg"),
- facelessLegionnaire = new Aspect("Faceless Legionnaire","Titanspawn","3",["31"],["1"],"2","behavior","1","http://i.imgur.com/uwizIO6.jpg"),
-falseSavior = new Aspect("False Savior","Titanspawn","4",["41"],["2"],"2","behavior","2","http://i.imgur.com/tSr4AZj.jpg"),
- fenrisAlpha = new Aspect("Fenris Alpha", "Titanspawn", "2", ["22"], ["3","2"],"2","behavior","1","http://i.imgur.com/wnyudvk.jpg"),
- fenrisGiant = new Aspect("Fenris Giant","Titanspawn","2",["22"],["3","2"],"1","behavior","1","http://i.imgur.com/tdC6osc.jpg"),
- fenrisWolf = new Aspect("Fenris Wolf","Titanspawn","2",["22"],["1","2"],"1","behavior","3","http://i.imgur.com/Cxl9cvM.jpg"),
- festerhideBoar = new Aspect("Festerhide Boar","Titanspawn","6",["65"],["1","2"],"1","http://i.imgur.com/ee5c2xL.jpg"),
- fireAnt = new Aspect("Fire Ant","Titanspawn","1",["13"],["1"],"1","behavior","3","http://i.imgur.com/s1HeQz8.png"),
- fireBird = new Aspect("Fire Bird","Titanspawn","1",["12"],["1"],"1","behavior","1","http://i.imgur.com/uQCV2Ja.jpg"),
- fireColossus = new Aspect("Fire Colossus","Titanspawn","1",["13"],["3"],"1","behavior","1","http://i.imgur.com/4QvgyCw.jpg"),
- fireGiant = new Aspect("Fire Giant", "Titanspawn", "1", ["12"],["3","2"],"2","behavior","1","http://imgur.com/NOT7aEY.jpg"),
- fireLord = new Aspect("Fire Lord","Titanspawn","1",["12"],["3"],"2","behavior","2","http://i.imgur.com/Zug0tO7.jpg"),
- fireRevenant = new Aspect("Fire Revenant","Titanspawn","1",["12"],["2"],"2","behavior","2","http://i.imgur.com/r5DyVWO.jpg"),    
-firewalker = new Aspect("Firewalker","Titanspawn","1",["12"],["1"],"1","behavior","2","http://i.imgur.com/0tPWTCi.jpg"),
- fireWyrm = new Aspect("Fire Wyrm", "Titanspawn", "1", ["12"],["2","3"],"1","behavior","1","http://i.imgur.com/9UC0iDn.jpg"),
- fomorian = new Aspect("Fomorian","Titanspawn","6",["65"],["1"],"2","behavior","1","http://i.imgur.com/t5jfTfs.jpg"),
- fomorianChieftain = new Aspect("Fomorian Chieftain","Titanspawn","6",["65"],["2"],"2","behavior","1","http://i.imgur.com/cWUrgVF.jpg"),
- fomorianHound = new Aspect("Fomorian Hound","Titanspawn","6",["65"],["1"],"1","behavior","3","http://i.imgur.com/lKa51EE.jpg"),    
- fomorianOgre = new Aspect("Fomorian Ogre","Titanspawn","6",["65"],["3"],"2","behavior","1","http://i.imgur.com/Lpfz0CZ.jpg"),    
- fomorianWarlock = new Aspect("Fomorian Warlock","Titanspawn","6",["65"],["2"],"2","behavior","1","http://i.imgur.com/bzS9Wpf.jpg"),
- forestGiant = new Aspect("Forest Giant","Titanspawn","6",["61"],["3","2"],"2","behavior","1","http://i.imgur.com/wGM3H2q.jpg"),
- forestSoulstealer = new Aspect("Forest Soulstealer","Titanspawn","8",["81"],["2"],"1","behavior","2","http://i.imgur.com/giFh9jh.jpg"),    
-forestWyrm = new Aspect("Forest Wyrm","Titanspawn","6",["61","65","62"],["2","3"],"1","behavior","2","http://i.imgur.com/gEpCEPv.jpg"),
-foundryChampion = new Aspect("Foundry Champion","Titanspawn","1",["13"],["2"],"1","behavior","2","http://i.imgur.com/8FRYxDH.jpg"),
- frogElder = new Aspect("Frog Elder","Titanspawn","6",["61"],["1","2"],"2","behavior","2","http://i.imgur.com/iZ8e1CF.jpg"),
-FungusSpawn = new Aspect("Fungus Spawn","Titanspawn","6",["61"],["1"],"1","behavior","2"),
- garmSpawn = new Aspect("Garm Spawn","Titanspawn","1",["12"],["1"],"1","behavior","1","http://i.imgur.com/zzRa39l.jpg"),    
- gemstoneGolem = new Aspect("Gemstone Golem","Titanspawn","6",["64"],["3","2"],"1","behavior","1","http://i.imgur.com/xZYlvx0.jpg"),
- ghoul = new Aspect("Ghoul","Titanspawn","8",["83"],["1","2"],"1","behavior","1","http://i.imgur.com/GArrLAM.jpg"),    
- giantCentipede = new Aspect("Giant Centipede","Titanspawn","6",["65"],["2"],"1","behavior","1","http://i.imgur.com/ZgPBeOf.jpg"),
- giantRat = new Aspect("Giant Rat","Titanspawn","6",["65"],["1"],"1","behavior","1","http://i.imgur.com/MmWJhbk.jpg"),
-glarvonjar = new Aspect("Glarvonjar, Great Thane of Muspelheim","Titanspawn","1",["12"],["4"],"2","behavior","2","http://i.imgur.com/0PfXXCR.jpg"),
- gloag = new Aspect("Gloag'thul, the Reaper's Might","Titanspawn","8",["82"],["4"],"2","behavior","2","http://i.imgur.com/X7Jq3rS.jpg"),
-goldenKnight = new Aspect("Golden Knight","Titanspawn","4",["42","41"],["2","3"],"2","behavior","2","http://i.imgur.com/SwJHBXJ.jpg"),
-goldenRam = new Aspect("Golden Ram","Titanspawn","6",["63"],["2"],"1","behavior","2","http://i.imgur.com/qaeRW61.jpg"),
- graniteGolem = new Aspect("Granite Golem","Titanspawn","6",["64"],["2","3"],"1","behavior","1","http://i.imgur.com/PuVZbml.jpg"),
-hauntedGuardian = new Aspect("Haunted Guardian","Titanspawn","8",["81","82"],["1","2"],"1","behavior","2","http://i.imgur.com/7vrHfD6.jpg"),
- hopeEater = new Aspect("Hope Eater","Titanspawn","2","21",["2"],"1","behavior","2","http://i.imgur.com/xD3KDRG.jpg"),    
-hydraKing = new Aspect("Hydra King","Titanspawn","6",["61","62"],["3"],"1","behavior","2","http://i.imgur.com/Bje3G9A.jpg"),
-icebergSwallower = new Aspect("Iceberg Swallower","Titanspawn","7",["71"],["2","3"],"1","behavior","2","http://i.imgur.com/Ifcvsae.jpg"),
-janaleth = new Aspect("Janaleth the Defiant, King of the Desert","Titanspawn","4",["42"],["4"],"1","behavior","2","http://i.imgur.com/Njg991N.jpg"),
-jokung = new Aspect("Jo'Kung, Breaker of Dynasties","Titanspawn","8",["82","83"],["3"],"2","behavior","2","http://i.imgur.com/BkjFyh4.jpg"),
- jormungandrSpawn = new Aspect("Spawn of Jormungandr","Titanspawn","7",["72"],["3"],"1","behavior","2","http://i.imgur.com/NiLH0D7.jpg"),
- kraken = new Aspect("Kraken","Titanspawn","7",["74"],["3","2"],"1","behavior","2","http://i.imgur.com/OIXbO4t.jpg"),
-kunLa = new Aspect("Kun La, The Unmaker","Titanspawn","3",["32"],["4"],"2","behavior","2","http://i.imgur.com/SFlupSP.jpg"),
- lampDjinn = new Aspect("Lamp Djinn","Titanspawn","4",["42"],["1"],"2","behavior","2","http://i.imgur.com/tQ3VBYm.png"),
- lavaWyrm = new Aspect("Lava Wyrm","Titanspawn","1",["12","11"],["3","2"],"1","behavior","2","http://i.imgur.com/9UC0iDn.jpg"),
- lavaLegionnaire = new Aspect("Lava Legionnaire","Titanspawn","1",["11"],["1","2"],"1","behavior","1","http://i.imgur.com/zJWcnO7.jpg"),
- lesserPhoenix = new Aspect ("Lesser Phoenix","Titanspawn","4",["41"],["1","2"],"1","behavior","2","http://i.imgur.com/O4FF87t.jpg"),
- lightningCoatl = new Aspect("Lightning Coatl","Titanspawn","5",["51"],["3","2"],"2","behavior","2","http://i.imgur.com/IcSsvbJ.jpg"),
-lightningTroll = new Aspect("Lightning Troll","Titanspawn","5",["51"],["1"],"1","behavior","2","http://i.imgur.com/hIaOPrX.jpg"),
- lightPhoenix = new Aspect("Light Phoenix","Titanspawn","4",["41"],["3"],"1","behavior","2","http://i.imgur.com/i88n5m9.jpg"),
- livingAvalanche = new Aspect("Living Avalanche","Titanspawn","6",["64"],["3"],"1","behavior","2","http://i.imgur.com/0Uss89H.jpg"),
- livingRock = new Aspect("Living Rock","Titanspawn","6",["64"],["1"],"1","behavior","1","http://i.imgur.com/hLkwoXK.jpg"),
- lurkingNightmare = new Aspect("Lurking Nightmare","Titanspawn","2",["22"],["2"],"1","behavior","2","http://i.imgur.com/WXGcGud.jpg"),    
-maskCollector = new Aspect("Mask Collector","Titanspawn","3",["33"],["3"],"2","behavior","2","http://i.imgur.com/8YnFelx.jpg"),
-madnessMaker = new Aspect("Madness Maker","Titanspawn","3",["32"],["3"],"2","behavior","2","http://i.imgur.com/Gxo2XRW.jpg"),
-magmaCaller = new Aspect("Magma Caller","Titanspawn","1",["12"],["2"],"2","behavior","2","http://i.imgur.com/t1hnNQm.jpg"),
- magmaCentaur = new Aspect("Magma Centaur","Titanspawn","1",["13"],["1"],"2","behavior","3","http://i.imgur.com/Ft3kTC1.jpg"),    
-magmaGolem = new Aspect("Magma Golem","Titanspawn","1",["12"],["1","2"],"1","behavior","2","http://i.imgur.com/9qspqS6.jpg"),
- magmaSpewer = new Aspect("Magma Spewer","Titanspawn","1",["12"],["1"],"1","behavior","2","http://i.imgur.com/XDgXXTZ.jpg"),    
- maskMaker = new Aspect("Mask Maker","Titanspawn","4",["41"],["2"],"2","behavior","2","http://i.imgur.com/hpAKfH7.png"),
-midnightHorror = new Aspect("Midnight Horror","Titanspawn","2",["21"],["2","1"],"1","behavior","2","http://i.imgur.com/BQYxMsV.jpg"),
-nagaLeecher = new Aspect("Naga Leecher","Titanspawn","7",["72"],["2"],"2","behavior","2","http://i.imgur.com/WLLdsaT.jpg"),
-nagaMyrmidon = new Aspect("Naga Myrmidon","Titanspawn","7",["72"],["2","1"],"2","behavior","2","http://i.imgur.com/3vmnmcb.jpg"),
-nemeanRaptor = new Aspect("Nemean Raptor","Titanspawn","6",["61"],["1"],"1","behavior","2","http://i.imgur.com/5f1OcpG.jpg"),
- nightbringer = new Aspect("Nightbringer","Titanspawn","2",["21"],["3"],"2","behavior","2","http://i.imgur.com/LXaTRtk.jpg"),    
- nightDragon = new Aspect("Night Dragon","Titanspawn","2",["23"],["2","3"],"2","behavior","2","http://i.imgur.com/DiPKaVJ.jpg"),
- nightGiant = new Aspect("Night Giant","Titanspawn","2",["21"],["3"],"2","behavior","1","http://i.imgur.com/Nw8ms5d.jpg"),
-nightmareMindcrawler = new Aspect("Nightmare Mindcrawler","Titanspawn","2",["22"],["1"],"1","behavior","2","http://i.imgur.com/GhV2E3a.jpg"),
-nightTroll = new Aspect("Night Troll", "Titanspawn", "2", ["21"], ["1","2"],"2","behavior","1","http://i.imgur.com/b2Ak1bC.jpg"),
- nightWyrm = new Aspect("Night Wyrm","Titanspawn","2",["23"],["3","2"],"1","behavior","1","http://i.imgur.com/VeL4N81.jpg"),
-noxiousTyrant = new Aspect("Noxious Tyrant","Titanspawn","6",["65"],["3"],"2","behavior","2","http://i.imgur.com/3x7sIwI.jpg"),
-oceanBehemoth = new Aspect("Ocean Behemoth","Titanspawn","7",["71"],["3"],"1","behavior","2","http://i.imgur.com/MkUTK6P.jpg"),
-ornateGolem = new Aspect("Ornate Golem","Titanspawn","6",["63"],["2"],"1","behavior","2","http://i.imgur.com/nxdHk5r.jpg"),
- orthosSpawn = new Aspect("Orthos Spawn","Titanspawn","6",["61"],["1","2"],"1","behavior","1","http://i.imgur.com/Lj6xNZ6.jpg"),
-paleSeer = new Aspect("Pale Seer","Titanspawn","3",["32"],["2","3"],"2","behavior","2","http://i.imgur.com/vNLrhJa.jpg"),
-plagueDragon = new Aspect("Plague Dragon","Titanspawn","6",["65"],["3"],"2","behavior","2","http://i.imgur.com/SuZ38JA.jpg"),
-pliosaurus = new Aspect("Pliosaurus","Titanspawn","7",["71"],["2"],"1","behavior","2","http://i.imgur.com/17prnrk.jpg"),
-raiju = new Aspect("Raiju, the Living Thunder","Titanspawn","5",["51"],["4"],"1","behavior","2","http://i.imgur.com/INfKDZ5.jpg"),
- rasaj = new Aspect("Rasaj, First Herald of Aten","Titanspawn","4",["41"],["4"],"2","behavior","2","http://i.imgur.com/I7tJJZr.jpg"),
- reacherDepths = new Aspect("Reacher of the Depths","Titanspawn","7",["74"],["2","3"],"1","behavior","2","http://i.imgur.com/x1DfWA5.jpg"),
-reanimatedDragon = new Aspect("Reanimated Dragon","Titanspawn","8",["82"],["3"],"1","behavior","2","http://i.imgur.com/O6tnBD7.jpg"),
- runicGuardian = new Aspect("Runic Guardian","Titanspawn","6",["62"],["2","1"],"2","behavior","1","http://i.imgur.com/qg8pAwX.jpg"),
- sandDjinn = new Aspect("Sand Djinn","Titanspawn","4",["42"],["2","3"], "1","behavior","1","http://i.imgur.com/XVGRtx3.jpg"),
- sandWyrm = new Aspect("Sand Wyrm","Titanspawn","4",["42"],["1","2"],"1","behavior","1","http://i.imgur.com/URi7YQt.jpg"),
-sakhanet = new Aspect("Sakhanet, Echo of the Void","Titanspawn","3",["32"],["4"],"2","behavior","2","http://i.imgur.com/RiJ8vl5.jpg"),
- salamander = new Aspect("Salamander","Titanspawn","1",["11"],["1","2"],"2","behavior","2","http://i.imgur.com/5KPNuzG.jpg"), 
- savageChimera = new Aspect("Savage Chimera","Titanspawn","6",["61"],["2"],"1","behavior","1","http://i.imgur.com/zBe9FIH.jpg"),
- seaDjinn = new Aspect("Sea Djinn","Titanspawn","7",["72"],["2","3"],"2","behavior","1","http://i.imgur.com/ZRZoQ8e.png"),
- seaSerpent = new Aspect("Sea Serpent","Titanspawn","7",["71"],["2","3"],"1","behavior","1","http://i.imgur.com/KqlrRh2.jpg"),    
- seaWitch = new Aspect("Sea Witch","Titanspawn","7",["74"],["2","1"],"1","behavior","1","http://i.imgur.com/e2PmzPe.jpg"),
- seerAngel = new Aspect("Harbinger of Aten", "Titanspawn", "4", ["41"], ["3","2"],"2","behavior","2","http://i.imgur.com/EtjtCdu.jpg"),
-serpentLord = new Aspect("Serpent Lord","Titanspawn","6",["61"],["2"],"2","behavior","2","http://i.imgur.com/MjeVnp3.jpg"),
- shadeWidow = new Aspect("Shade Widow","Titanspawn","3",["32"],["3","2"],"1","behavior","3","http://i.imgur.com/x3wYmvw.jpg"),
-shadowBehemoth = new Aspect("Shadow Behemoth","Titanspawn","3",["31"],["3"],"2","behavior","2","http://i.imgur.com/6JIKtWk.jpg"),
- shadowFiend = new Aspect("Shadow Fiend","Titanspawn","3",["32"],["3","2"],"2","behavior","3","http://i.imgur.com/yvx7qo7.jpg"),    
-shiningKnight = new Aspect("Shining Knight","Titanspawn","4",["41"],["2"],"2","behavior","2","http://i.imgur.com/EnsX8h5.jpg"),
- silencer = new Aspect("Silencer","Titanspawn","3",["31"],["1","2"],"1","behavior","2","http://i.imgur.com/Y8kEtl1.jpg"),
-silentSamurai = new Aspect("Silent Samurai","Titanspawn","3",["32"],["1"],"2","behavior","2","http://i.imgur.com/5JlLzDZ.jpg"),
-skeleton = new Aspect("Skeleton","Titanspawn","8",["82"],["1"],"1","behavior","1","http://i.imgur.com/GndSLar.jpg"),
- skeletonWarlock = new Aspect("Skeleton Warlock","Titanspawn","8",["82"],["1"],"2","behavior","1","http://i.imgur.com/omxMk0d.jpg"),
-skoll = new Aspect("Skoll, Son of Fenrir","Titanspawn","2",["22"],["4"],"1","behavior","2","http://i.imgur.com/4NN8YzH.jpg"),
- spawnAbyss = new Aspect("Spawn of the Abyss","Titanspawn","7",["73"],["2"],"1","behavior","1","http://i.imgur.com/NNDxxLI.jpg"),
-spiritDragon = new Aspect("Spirit Dragon","Titanspawn","8",["81"],["2"],"2","behavior","2","http://i.imgur.com/3ftCymJ.jpg"),
-sonoftheDeep = new Aspect("Son of the Deep","Titanspawn","7",["71"],["1"],"2","behavior","2","http://i.imgur.com/1aJN2cz.jpg"),
-soulCollector = new Aspect("Soul Collector","Titanspawn","8",["81"],["2","3"],"2","behavior","2","http://i.imgur.com/DdNOld4.jpg"),
- soulReaper = new Aspect("Soul Reaper","Titanspawn","8",["82"],["2"],"2","behavior","1","http://i.imgur.com/FqQoOzE.jpg"),
- soulSearer = new Aspect("Soul Searer","Titanspawn","8",["82"],["3","2"],"2","behavior","2","http://i.imgur.com/kxkMaW8.jpg"),
-starChild = new Aspect("Star Child","Titanspawn","2",["24"],["2"],"2","behavior","2","http://i.imgur.com/2ZHAcN0.jpg"),
- steelcladGiant = new Aspect("Steelclad Giant","Titanspawn","6",["63"],["3","2"],"2","behavior","1","http://i.imgur.com/q50wOJu.jpg"),
- steelCoatl = new Aspect("Steel Coatl","Titanspawn","5",["51"],["2"],"2","behavior","1","http://i.imgur.com/wtEnkkm.jpg"),
- steelSerpent = new Aspect("Steel Serpent","Titanspawn","6",["63"],["1","2"],"1","behavior","3","http://i.imgur.com/D6Sd5Mf.jpg"),
-stitchedGladiator = new Aspect("Stitched Gladiator","Titanspawn","8",["83"],["1"],"2","behavior","2","http://i.imgur.com/UYdHCOr.jpg"),
- stitchedHorror = new Aspect("Stitched Horror","Titanspawn","3",["31"],["2"],"1","behavior","1","http://i.imgur.com/TeJEYrH.jpg"),
- stoneColossus = new Aspect("Stone Colossus","Titanspawn","6",["64"],["2"],"","behavior","1","http://i.imgur.com/rMuOrWP.jpg"),    
- stoneDragon = new Aspect("Stone Dragon","Titanspawn","6",["62"],["3","2"],"2","behavior","1","http://i.imgur.com/Ra20tJ6.png"), 
-stormBroodlord = new Aspect("Storm Broodlord","Titanspawn","5",["51"],["3"],"1","behavior","2","http://i.imgur.com/wCGF41m.jpg"),
- stormbornMyrmidon = new Aspect("Stormborn Myrmidon","Titanspawn","5",["52"],["2","3"],"2","behavior","1","http://i.imgur.com/0EVug2Z.jpg"),
-sulTharash = new Aspect("Sul'Tharash, Bane of Atlantis","Titanspawn","7",["71","72"],["4"],"2","behavior","2","http://i.imgur.com/0FM4f6C.jpg"),
-     sunDrake = new Aspect("Sun Drake","Titanspawn","4",["41"],["3","2"],"2","behavior","2","http://i.imgur.com/x6yjUl8.jpg"),
- surtrJuggernaut = new Aspect("Surtr Juggernaut","Titanspawn","1",["12"],["3"],"2","behavior","1","http://i.imgur.com/NOT7aEY.jpg"),
-swampDweller = new Aspect("Swamp Dweller","Titanspawn","7",["74"],["1"],"1","behavior","2","http://i.imgur.com/yTmz7uY.jpg"),
- swampHulk = new Aspect("Swamp Hulk","Titanspawn","6",["61"],["2","3"],"1","behavior","1","http://i.imgur.com/5XFk0gT.jpg"),
-swampSkeleton = new Aspect("Swamp Skeleton","Titanspawn","8",["82"],["1"],"1","behavior","2","http://i.imgur.com/8dtyGE1.jpg"),
-talospromise = new Aspect("Talos Mark VIII, Prometheus' Promise","Titanspawn","1",["13"],["4"],"1","behavior","2","http://i.imgur.com/VMtJxYk.jpg"),
-tazintli = new Aspect("Tatzintlicoatl, Patriarch of the Lightning Serpents","Titanspawn","5",["51"],["4"],"2","behavior","2","http://i.imgur.com/tDCZsms.jpg"),
-templeGolem = new Aspect("Temple Golem","Titanspawn","6",["63"],["2"],"1","behavior","2","http://i.imgur.com/Qk0J5s9.jpg"),
-terastodon = new Aspect("Terastodon","Titanspawn","6",["61"],["2"],"1","behavior","2","http://i.imgur.com/7WM1Bd9.jpg"),
-theBeastBelow = new Aspect("The Beast Below","Titanspawn","7",["74"],["4"],"1","behavior","2","http://i.imgur.com/VHNpxXw.jpg"),
-theBehemoth = new Aspect("The Behemoth","Titanspawn","6",["62"],["4"],"1","behavior","2","http://i.imgur.com/NCd9KiE.jpg"),
-theCountess = new Aspect("The Countess of Blood, First Born of Dracula","Titanspawn","2",["23"],["4"],"2","behavior","2","http://i.imgur.com/qY8wEee.jpg"),
-theFlayer = new Aspect("The Flayer, Terror of the Underworld","Titanspawn","8",["83"],["4"],"1","behavior","2","http://i.imgur.com/IVqwxoy.jpg"),
-thunderDragon = new Aspect("Thunder Dragon","Titanspawn","5",["51"],["3","2"],"2","behavior","1","http://i.imgur.com/rrk7dTl.jpg"),  
- tideSpoutTyrant = new Aspect("Tidespout Tyrant","Titanspawn","7",["71"],["2","3"],"2","http://i.imgur.com/xvhPIhR.jpg"),
-tritonFootman = new Aspect("Triton Footman","Titanspawn","7",["72","73","71"],["1"],"2","behavior","2","http://i.imgur.com/IB4skAc.jpg"),
-trokan = new Aspect("Trokan, The King of Bones","Titanspawn","8",["82"],["4"],"2","behavior","2","http://i.imgur.com/eT6ntWs.jpg"),
-tsunamiDragon = new Aspect("Tsunami Dragon","Titanspawn","7",["73","72","71"],["2","3"],"2","behavior","2","http://i.imgur.com/yYTVHha.jpg"),
-tuskedMastodon = new Aspect("Tusked Mastodon","Titanspawn","6",["62"],["1"],"1","behavior","2","http://i.imgur.com/zwWwT3q.jpg"),
-twistedDryad = new Aspect("Twisted Dryad","Titanspawn","3",["32"],["1","2"],"2","behavior","2","http://i.imgur.com/9gvtr4d.jpg"),
- twistedSoulcursed = new Aspect("Twisted Soulcursed","Titanspawn","8",["82"],["3","2"],"1","behavior","2","http://i.imgur.com/uuMetIe.jpg"), 
- undeadKing = new Aspect("Undead King","Titanspawn","8",["81"],["2","3"],"2","behavior","1","http://i.imgur.com/aYufjEf.jpg"),
-underkingdomHerald = new Aspect("Underkingdom Herald","Titanspawn","3",["33"],["2"],"2","behavior","2","http://i.imgur.com/rI1wHPA.jpg"),
-underworldKnight = new Aspect("Underworld Knight","Titanspawn","3",["33"],["2"],"2","behavior","2","http://i.imgur.com/MgUjbfJ.jpg"),
- valkyrie = new Aspect("Valkyrie","Titanspawn","8",["81"],["2"],"2","behavior","1","http://i.imgur.com/1CvhuV0.jpg"),
-voidMyrmidon = new Aspect("Void Myrmidon","Titanspawn","3",["33"],["1"],"2","behavior","2","http://i.imgur.com/Y0cZi4V.jpg"),
- volcanoCyclops = new Aspect("Volcano Cyclops","Titanspawn","1",["13"],["2","1"],"2","behavior","1","http://i.imgur.com/GKTE8TB.jpg"),
-volcanicTyrant = new Aspect("Volcanic Tyrant","Titanspawn","1",["12"],["3"],"2","behavior","2","http://i.imgur.com/fSgS4GO.jpg"),
-vulsrak = new Aspect("Vulsrak, the Dark Tyrant","Titanspawn","3",["33","32","31"],["4"],"2","behavior","2","http://i.imgur.com/137so4v.jpg"),
-warpedCockRoach = new Aspect("Warped Cockroach","Titanspawn","6",["65"],["1"],"1","behavior","1","http://i.imgur.com/UNNxvNm.jpg"),
-wildScorcher = new Aspect("Wild Scorcher","Titanspawn","2",["22"],["2","3"],"1","behavior","2","http://i.imgur.com/jjuKq9D.jpg"),
-willBreaker = new Aspect("Will Breaker","Titanspawn","4",["41"],["3"],"2","behavior","2","http://i.imgur.com/O9jNhvp.jpg"),
- worldBurner = new Aspect("World Burner","Titanspawn","1",["11"],["3"],"2","behavior","2","http://i.imgur.com/xYxHR10.jpg"),
-zombieGoblin = new Aspect("Zombie Goblin","Titanspawn","8",["82"],["1"],"1","behavior","2","http://i.imgur.com/3yKehKu.jpg"),
-zulMadan = new Aspect("Zul Madan, the Eternal","Titanspawn","3",["31"],["4"],"1","behavior","2","http://i.imgur.com/zJu6p0o.jpg"),
-
-     
- 
-     
-    // Mythborn  
-    
-ancientCoatl = new Aspect("Ancient Coatl","Mythborn","3",["34"],["2"],"2","behavior","2","http://i.imgur.com/OM2DO6S.jpg"),
-ancientDeer = new Aspect("Ancient Deer","Mythborn","4",["43"],["1"],"1","behavior","2","http://i.imgur.com/Ki6qew0.jpg"),
-ancientTurtle = new Aspect("Ancient Turtle","Mythborn","4",["43"],["2"],"1","behavior","2","http://i.imgur.com/N5BPXMy.jpg"),
-armoredMinotaur = new Aspect("Armored Minotaur","Mythborn","4",["43"],["1","2"],"2","behavior","2","http://i.imgur.com/qo5NA08.jpg"),
-assimilatedGuardian = new Aspect("Assimilated Guardian","Mythborn","4",["41"],["1"],"1","behavior","2","http://i.imgur.com/LDSBiza.jpg"),
-asuraDuelist = new Aspect("Asura Duelist","Mythborn","5",["52"],["2"],"2","behavior","2","http://i.imgur.com/yPmGqCl.jpg"),
-aukuang = new Aspect("Au Kuang, Dragon King","Mythborn","3",["32"],["4"],"2","behavior","2","http://i.imgur.com/uo3nDec.jpg"),
-aoShun = new Aspect("Ao Shun, Dragon King of the North Sea","Mythborn","3",["32"],["4"],"2","behavior","2","http://i.imgur.com/U0LA5mO.jpg"),
-blackKnight = new Aspect("Black Knight","Mythborn","2",["22"],["2"],"2"),   
- brimstoneDragon = new Aspect("Brimstone Dragon","Mythborn","3",["31"],["2","3"],"2"),
-burningSwordmaster = new Aspect("Burning Swordmaster","Mythborn","5",["52"],["1","2"],"2","behavior","2","http://i.imgur.com/15aZHGl.jpg"),
-caveNymph = new Aspect("Cave Nymph","Mythborn","4",["44"],["2"],"2","behavior","2","http://i.imgur.com/MnAYMAM.jpg"),
- centaurHunter = new Aspect("Centaur Hunter","Mythborn","4",["43"],["1","2"],"2"), 
-coatlLord = new Aspect("Coatl Lord","Mythborn","3",["34"],["3"],"2","behavior","2","http://i.imgur.com/gFaWYAJ.jpg"),
- darkElfSoldier = new Aspect("Dark Elf Soldier","Mythborn","1",["22"],["1","2"],"2"),
- diamondFairy = new Aspect("Diamond Fairy","Mythborn","2",["21"],["2"],"2"),
-drakonidFighter = new Aspect("Drakonid Fighter","Mythborn","3",["31"],["1"],"2","behavior","2","http://i.imgur.com/NM1DaVf.jpg"),
-drakonidKnight = new Aspect("Drakonid Knight","Mythborn","3",["31"],["2"],"2","behavior","2","http://i.imgur.com/qfliQrG.jpg"),
-drakonidMage = new Aspect("Drakonid Mage","Mythborn","3",["31"],["2"],"2","behavior","2","http://i.imgur.com/VTPu8df.jpg"),
-enchantedCrusher = new Aspect("Enchanted Crusher","Mythborn","4",["43"],["2"],"1","behavior","2","http://i.imgur.com/jTXmPXi.jpg"),
-entBehemoth = new Aspect("Ent Behemoth","Mythborn","4",["41"],["2","3"],"1","behavior","2","http://i.imgur.com/PvPfYFK.jpg"),
-evilEnt = new Aspect("Evil Ent","Mythborn","4",["41"],["1","2"],"1","behavior","2","http://i.imgur.com/8jMpzso.jpg"),
-forestSpirit = new Aspect("Forest Spirit","Mythborn","4",["43"],["1"],"1","behavior","2","http://i.imgur.com/KQmU120.jpg"),
-frogBehemoth = new Aspect("Frog Behemoth","Mythborn","4",["43"],["2","3"],"1","behavior","2","http://i.imgur.com/w2nUzpb.jpg"),
-frostHungerer = new Aspect("Frost Hungerer","Mythborn","2",["22"],["2"],"1","behavior","2","http://i.imgur.com/L7XQnCs.jpg"),
-frozenEradicator = new Aspect("Frozen Eradicator","Mythborn","2",["22"],["2"],"2","behavior","2","http://i.imgur.com/UiCcC7Y.jpg"),
- furnaceWhelp = new Aspect("Whelp","Mythborn","3",["31"],["1","2"],"1"),  
-ganeshiGiant = new Aspect("Ganeshi Giant","Mythborn","4",["43"],["2"],"2","behavior","2","http://i.imgur.com/k9ApgUp.jpg"),
-garudaKing = new Aspect("Garuda King","Mythborn","4",["43"],["4"],"2","behavior","2","http://i.imgur.com/RUC1FT4.jpg"),
-gladeGuardian = new Aspect("Glade Guardian","Mythborn","4",["41"],["1","2"],"1","behavior","2","http://i.imgur.com/1g7udZn.jpg"),
-goblinAmbusher = new Aspect("Goblin Ambusher","Mythborn","1",["12"],["1","2"],"2","behavior","2","http://i.imgur.com/Vf9HDuG.jpg"),
-goldenKnight2 = new Aspect("Golden Knight","Mythborn","1",["12"],["2"],"2","behavior","2","http://i.imgur.com/SwJHBXJ.jpg"),
-hag = new Aspect("Hag","Mythborn","4",["44"],["1","2"],"2","behavior","2","http://i.imgur.com/5yBchyw.jpg"),
-jackalGarouAmbushers = new Aspect("Jackal Garou Ambushers","Mythborn","4",["43"],["1"],"2","behavior","2","http://i.imgur.com/Y2IInBj.jpg"),
- mabChosen = new Aspect("Mab's Chosen","Mythborn","1",["22"],["2","3"],"2"),
- minotaur = new Aspect("Minautor","Mythborn","4",["43"],["2"],"2"),
-minotaurShaman = new Aspect("Minotaur Shaman","Mythborn","4",["43"],["2"],"2","behavior","2","http://i.imgur.com/nrzUFPy.jpg"),
-nagaMyrmidon = new Aspect("Naga Myrmidon","Mythborn","5",["54"],["2","1"],"2","behavior","2","http://i.imgur.com/3vmnmcb.jpg"),
-nagaSchemer = new Aspect("Naga Schemer","Mythborn","3",["35"],["2"],"2","behavior","2","http://i.imgur.com/auttkMX.jpg"),
-nagaSnake = new Aspect("Naga Snake","Mythborn","3",["35"],["1"],"1","behavior","2","http://i.imgur.com/DJzwk4z.jpg"),
-nagaSoulstealer = new Aspect("Naga Soulstealer","Mythborn","3",["35"],["2"],"2","behavior","2","http://i.imgur.com/6zSQIwI.jpg"),
-oakEnt = new Aspect("Oak Ent","Mythborn","4",["41"],["2"],"1","behavior","2","http://i.imgur.com/gEh6JYd.jpg"),
-pixieLord = new Aspect("Pixie Lord","Mythborn","1",["14"],["2"],"2","behavior","2","http://i.imgur.com/oh7q9RG.jpg"),
-raksashaBattleMage = new Aspect("Raksasha Battle Mage","Mythborn","5",["51"],["2"],"2","behavior","2","http://i.imgur.com/MyC1FJk.jpg"),
-raksashaBrute = new Aspect("Raksasha Brute","Mythborn","5",["51"],["2"],"1","behavior","2","http://i.imgur.com/H354Ycn.jpg"),
-raksashaGuardian = new Aspect("Raksasha Guardian","Mythborn","5",["51"],["2"],"2","behavior","2","http://i.imgur.com/Xy5hcSg.jpg"),
-rakshasaJungleDweller = new Aspect("Rakshasa Jungle Dweller","Mythborn","5",["51"],["2"],"2","behavior","2","http://i.imgur.com/H6kuTC4.jpg"),
-rhinoPriest = new Aspect("Rhino-Garou Priest","Mythborn","4",["43"],["2"],"2","behavior","2","http://i.imgur.com/ahR9xod.jpg"),
-savageGoblin = new Aspect("Savage Goblin","Mythborn","1",["12"],["1"],"1","behavior","2","http://i.imgur.com/kxb05TQ.jpg"),
-serpentLord = new Aspect("Serpent Lord","Mythborn","5",["54"],["2"],"2","behavior","2","http://i.imgur.com/MjeVnp3.jpg"),
- shadowUnicorn = new Aspect("Shadow Unicorn","Mythborn","2",["21"],["2"],"1"),
-soulForest = new Aspect("Soul of the Forest","Mythborn","4",["41"],["2","3"],"1","behavior","2","http://i.imgur.com/2eX4m8g.jpg"),
- sprite = new Aspect("Sprite","Mythborn","1",["14"],["1"],"1"),
-summerKnight = new Aspect("Summer Knight","Mythborn","1",["12"],["1","2"],"2","behavior","2","http://i.imgur.com/XT9cwhz.jpg"),
- swampDevil = new Aspect("Swamp Devil","Mythborn","3",["32"],["1"],"1","behavior","2","http://i.imgur.com/MFhu2bb.jpg"),
- swampWitch = new Aspect("Swamp Witch","Mythborn","4",["44"],["2"],"2","behavior","2","http://i.imgur.com/ALGs3uC.jpg"),
- summerCourtNoble = new Aspect("Summer Court Noble","Mythborn","1",["21"],["2","3"],"2"),
-tenguBattlelord = new Aspect("Tengu Battlelord","Mythborn","4",["43"],["3"],"2","behavior","2","http://i.imgur.com/y0SEttX.jpg"),
-tenguCaptain = new Aspect("Tengu Captain","Mythborn","4",["43"],["2"],"2","behavior","2","http://i.imgur.com/nul74vD.jpg"),
- timberWolf = new Aspect("Timber Wolf","Mythborn","4",["43"],["1"],"1"),
- titaniaChosen = new Aspect("Titania's Chosen","Mythborn","2",["12"],["1","2"],"2"),
-tundraGoblin = new Aspect("Tundra Goblin","Mythborn","2",["22"],["1"],"2","behavior","2","http://i.imgur.com/sYVajn0.jpg"),
- twoHeadedDragon = new Aspect("Two-Headed Dragon","Mythborn","3",["33"],["2","3"],"2"),
-wereElephanGuard = new Aspect("Were-Elephant Guard","Mythborn","4",["43"],["1","2"],"2","behavior","2","http://i.imgur.com/j1MnYIy.jpg"),
- willowFairy = new Aspect("Willow Fairy","Mythborn","1",["11"],["1"],"2"),
- winterCourtNoble = new Aspect("Winter Court Noble","Mythborn","1",["21"],["2","3"],"2"),    
-woodlandDryad = new Aspect("Woodland Dryad","Mythborn","1",["15"],["1"],"2","behavior","2","http://i.imgur.com/e1RUQy0.jpg"),
-woodWarden = new Aspect("Wood Warden","Mythborn","4",["43"],["1","2"],"2","behavior","2","http://i.imgur.com/67gpudO.jpg")
-    
-    
-    /* name = new Aspect("name","Mythborn","origin","subOrigin","legend","intelligence","behavior","combat1"),*/
-
-]
-    
-   
-// Ceci établi les différents candidats possibles pour le High Concept, laissant l'individu choisir celui qu'il préfere.
-
-var highConceptOptions = [];
-
-for(i=0; i < highConcept.length; i++) {
-   if(
-    (legendChoice === highConcept[i].legend[0] || legendChoice === highConcept[i].legend[1] || legendChoice === highConcept[i].legend[2]) &&
-     typeChoice === highConcept[i].type &&
-     originChoice === highConcept[i].origin &&
-    (subOriginChoice === highConcept[i].subOrigin[0] || subOriginChoice === highConcept[i].subOrigin[1] || subOriginChoice === highConcept[i].subOrigin[2])  &&
-    intelligenceChoice === highConcept[i].intelligence)
-  {
-      highConceptOptions.push(highConcept[i])
-  }
-     
-     
-    
-  else if (typeChoice === highConcept[i].type && 
-   typeChoice === highConcept[i].type &&
-   originChoice === highConcept[i].origin &&
-   subOriginChoice === "99" && 
-   (legendChoice === highConcept[i].legend[0] || legendChoice === highConcept[i].legend[1] || legendChoice === highConcept[i].legend[2]) &&
-   (intelligenceChoice === highConcept[i].intelligence))
-  {
-   highConceptOptions.push(highConcept[i])
-  }
-};
-
-if ((typeof highConceptOptions[0] === 'undefined')&&(typeChoice === "Titanspawn")) {
-for(i=0; i < highConcept.length; i++) {
-  if (
-    typeChoice === highConcept[i].type && 
-    originChoice === highConcept[i].origin &&
-   (legendChoice === highConcept[i].legend[0] || legendChoice === highConcept[i].legend[1] || legendChoice === highConcept[i].legend[2]) &&
-    intelligenceChoice === highConcept[i].intelligence) 
-  {
-      highConceptOptions.push(highConcept[i])
-  }
-}
-};
-var highConceptsBeforeDefaults = highConceptOptions.length
 
 // _______________________________________
     
@@ -605,164 +178,97 @@ var highConceptsBeforeDefaults = highConceptOptions.length
   
     
     // Titans Options
-if (typeChoice === "Titanspawn" && originChoice === "4") {
-     originDefault = ["Sun", "Sand", "Light","Bright","Shining","Radiant"]
-}
-else if (typeChoice === "Titanspawn" && originChoice === "2") {
-     originDefault = ["Night", "Midnight", "Moonlit", "Nightmare","Dark","Somber","Twilight","Gloomy"]
-}
-else if (typeChoice === "Titanspawn" && originChoice === "8") {
-     originDefault = ["Death", "Soul Eating","Dark","Grief","Grave","Ghost","Oblivion","Ruin"]
-}
-else if (typeChoice === "Titanspawn" && originChoice === "3") {
-     originDefault = ["Darkness", "Faceless", "Silent","Obscure","Slithering"]
-}
-else if (typeChoice === "Titanspawn" && originChoice === "7") {
-     originDefault = ["Drowned", "Naga", "Lizard","Sea","Mist","Ocean","Tentacled","Abyss","Ancient","Amphibian","Froglike","Shark"]
-}
-else if (typeChoice === "Titanspawn" && originChoice === "5") {
-     originDefault = ["Wind", "Cloud", "Lightning","Flying","Mist","Fog","Sky","Heavenly"]
-}
-else if (typeChoice === "Titanspawn" && originChoice === "1") {
-     originDefault = ["Lava", "Fire", "Ash","Blazing","Heat","Charred","Glowing","Devouring","Incandescent","Searing","Flaming","Pyromaniac"]
-}
-else if (typeChoice === "Titanspawn" && originChoice === "6") {
-     originDefault = ["Swamp", "Rock", "Stone","Forest","Jungle","Giant","Mountain"]
-}
+	
+	
+	var firstAspectList = [
+	
+//Titans
+	
+	["Light",["Sun", "Sand", "Light","Bright","Shining","Radiant"],[]],
+	["Night",["Bat","Night","Blind","Midnight", "Moonlit", "Nightmare","Dark","Somber","Twilight","Gloomy"],["Silencer"]],
+	["Death",["Chained","Death", "Soul Eating","Dark","Grief","Grave","Ghost","Oblivion","Ruin"],["Wight","Abomination","Ghoul"]],
+	["Ocean",["Drowned", "Naga", "Lizard","Sea","Mist","Ocean","Tentacled","Abyss","Ancient","Amphibian","Froglike","Shark"],[]],
+	["Sky",["Wind", "Cloud", "Lightning","Flying","Mist","Fog","Sky","Heavenly"]],
+	["Fire",["Lava", "Burnt","Fire", "Ash","Blazing","Heat","Charred","Glowing","Devouring","Incandescent","Searing","Flaming","Pyromaniac","Ash"],[]],
+	["World",["Swamp", "Rock", "Stone","Forest","Jungle","Giant","Mountain"],[]],
+	["Depths",["Ancient", "Chtonic","Abyssal", "Deep","Cavern","Underground","Cavern","Slithering"],[]],
+	["Order",["Faceless","Arcane","Stoic", "Marble", "Glass","Steel","Perfect","Calm","Inscrutable"],["Legionnaire"]],
+	
+//Mythborn
+	
+	["Winter Court",["Enchanting","Dark", "Cold", "Fey","Subtle","Freezing","Winter","Wild"],[]],
+	["Summer Court",["Enchanting","Bright", "Warm", "Fey","Subtle","Burning","Summer","Wild"],[]],
+	["Shambhala",["Ancient", "Meditative", "Arrogant","Righteous","Calm","Insctrutable"],[]],
+	["Dark Forest",["Wild", "Angry", "Unforgiving","Violent","Feral","Hidden","Forest"],[]],
+	["Jade Sea",["Draconic", "Wild", "Mighty","Ancient","Unstoppable","Winged","Slithering"],[]],
 
-// Combat 1 Options
-    if (intelligenceChoice === "2") {
-if (typeChoice === "Titanspawn" && combatChoice1 === "1") {
-     combat1Default = ["Soldier","Legionnaire","Footsoldier","Cultist","Servant","Guard","Defender","Sentinel","Champion","Warrior",]
-}
-else if (typeChoice === "Titanspawn" && combatChoice1 === "2") {
-     combat1Default = ["Sorcerer", "Prophet","Conjurer","Worshipper","Mage","Warlock","Wizard"]
-}
-else if (typeChoice === "Titanspawn" && combatChoice1 === "3") {
-     combat1Default = ["Scout", "Archer", "Assassin","Ranger","Spy","Agent","Lookout","Sentry","Sentinel"]
-}
-    }
-    
-else {
-if (typeChoice === "Titanspawn" && combatChoice1 === "1") {
-     combat1Default = ["Beast","Monster","Creature","Colossus","Fiend"]
-}
-else if (typeChoice === "Titanspawn" && combatChoice1 === "2") {
-     combat1Default = ["Invoker", "Primordial", "Servant"]
-}
-else if (typeChoice === "Titanspawn" && combatChoice1 === "3") {
-     combat1Default = ["Lurker", "Creeper", "Hunter"]    
-}
-     
-     
-     
-}
-//}
-    
-    // Mythborn Options
+	
+	
+//Enlightened
+	
+	["Circle of Merlin",["Druidic","Enlightened","Noble"],["Knight"]],
+	["Order of the Jade Fist",["Disciplined","Determined"],["Martial Artist","Knight"]],
+	["Cabal",["Mysterious","Secretive"],[]],
+	["Illuminati",["Devious"],["Illuminati","Freemason"]],
+	
 
-     
-if (typeChoice === "Mythborn" && originChoice === "2") {
-    if (subOriginChoice === "21") { originDefault = ["Winter Fey","Frozen"]}
-    else if (subOriginChoice === "22") { originDefault = ["Svartalfheim", "Dark Elf","Silver"]}
-    else if (subOriginChoice === "23") { originDefault = ["Leprechaun", "Ice Korrigan", "Korrigan","Gnome"]}
-    else if (subOriginChoice === "24") { originDefault = ["Pixie","Sprite"]}
-    else if (subOriginChoice === "25") { originDefault = ["Stream Nymph", "Pine Dryad", "Frozen Dryad"]}
-    else if (subOriginChoice === "99") { originDefault = ["Svartalfheim", "Dark Elf","Leprechaun", "Ice Korrigan", "Korrigan","Gnome","Pixie","Stream Nymph", "Pine Dryad", "Frozen Dryad"]}
-}
-else if (typeChoice === "Mythborn" && originChoice === "1") {
-    if (subOriginChoice === "11") { originDefault = ["Summer Fey"]}
-    else if (subOriginChoice === "12") { originDefault = ["Alfheim", "Light Elf","El Dorado","Annwn"]}
-    else if (subOriginChoice === "13") { originDefault = ["Leprechaun", "Summer Korrigan", "Korrigan","Gnome"]}
-    else if (subOriginChoice === "14") { originDefault = ["Pixie","Sprite"]}
-    else if (subOriginChoice === "15") { originDefault = ["Vine Nymph", "Jungle Dryad", "Spring Dryad"]}
-    else if (subOriginChoice === "98") { originDefault = ["Alfheim", "Light Elf","Leprechaun", "Summer Korrigan", "Korrigan","Gnome","Pixie","Vine Nymph", "Jungle Dryad", "Spring Dryad"]}
-}
-    
-else if (typeChoice === "Mythborn" && originChoice === "3") {
-    if (subOriginChoice === "31") { originDefault = ["Moutain Dragon","Forest Dragon","Cave Dragon"]}
-    else if (subOriginChoice === "32") { originDefault = ["River Dragon", "Chinese Dragon"]}
-    else if (subOriginChoice === "33") { originDefault = ["Wyvern"]}
-    else if (subOriginChoice === "34") { originDefault = ["Coatl"]}
-    else if (subOriginChoice === "35") { originDefault = ["Naga"]}
-    else if (subOriginChoice === "99") { originDefault = ["Moutain Dragon","Forest Dragon","Cave Dragon","River Dragon", "Chinese Dragon","Wyvern","Coatl"]}
+//Gods
+
+
+
+//Roles
+
+	["Tank",["Armored"],["Soldier","Legionnaire","Footsoldier","Servant","Guard","Defender","Sentinel","Champion"]],
+	["Damage Dealer",[],["Elite","Assassin","Killer","Butcher","Enforcer","Fighter","Gladiator","Sentinel","Champion","Warrior"]],
+	["Party Face",[],["Manipulator","Schemer","Agent","Conspirator","Deceiver","Prophet","Orator","Infiltrator","Diplomat"]],
+	["Support-Controller",[],["Channeler","Mage","Prophet","Conjurer","Enchanter","Magus","Shaman","Thaumaturge","Warlock","Occultist","Priest"]],	
+	["Skill Monkey",[],["Rogue","Trickster","Prophet","Sneak","Engineer","Scoundrel","Problemsolver"]],
+	
+//Type-specific
+
+	["Titan",[],["Golem","Giant","Colossus","Wyrm","Cyclops","Djinn","Ogre","Troll"]],
+	["Mythborn",[],[]],
+	
+
+	
+//SecondOrigin-specific (Titanspawn)
+
+	["Abzu",[],["Kraken"]],
+	["Aten",["Angel"],["Knight","Paladin"]],
+	["Crom Cruach",["Noxious","Blight"],["Fomorian"]],
+	["Dis Pater",["Gemstone","Ornate"],[]],
+	["Fenrir",["Fenris"],["Wolf"]],
+	["Gaia",["Fungus"],["Hydra"]],
+	["Heqet",["Frog"],[]],
+	["Mikaboshi",["Void"],[]],
+	["Prometheus",["Foundry","Clockwork"],["Gnome"]],
+	["Ourea",["Granite","Ourea"],["Living Avalanche"]],
+	["Vrtra",["Desert","Drought"],[]],	
+	["Xiuhtecuhtli",["Exhuberant"],["Fire Dancer"]],
+	[,[],[]],	
+	[,[],[]],
+
+//SecondOrigin-specific (Mythborn)
+
+	["Light Elf",["Golden"],[]],
+	["Dark Elf",["Silver"],[]]
+
+ ]
  
-}
-else if (typeChoice === "Mythborn" && originChoice === "4") {
-    if (subOriginChoice === "41") { originDefault = ["Ent"]}
-    else if (subOriginChoice === "42") { originDefault = ["Leprechaun", "Korrigan","Gnome"]}
-    else if (subOriginChoice === "43") { originDefault = ["Loup-Garou","Were-Boar","Were-Spider","Were-Eagle","Were-Snake","Were-Bear"]}
-    else if (subOriginChoice === "44") { originDefault = ["Hag"]}
-    else if (subOriginChoice === "99") { originDefault = ["Leprechaun", "Korrigan","Gnome","Loup-Garou","Were-Boar","Were-Spider","Were-Eagle","Were-Snake","Were-Bear","Hag"]}
+originDefaultRandom = [] 
+ combat1DefaultRandom = []
  
-}
-else if (typeChoice === "Mythborn" && originChoice === "5") {
-    if (subOriginChoice === "51") { originDefault = ["Raksasha"]}
-    else if (subOriginChoice === "52") { originDefault = ["Asura"]}
-    else if (subOriginChoice === "53") { originDefault = ["Dryad","Nymph"]}
-    else if (subOriginChoice === "54") { originDefault = ["Naga"]}
-    else if (subOriginChoice === "99") { originDefault = ["Naga","Raksasha","Asura","Dryad","Nymph"]}
-}
-else if (typeChoice === "Mythborn" && originChoice === "6") {
-    if (subOriginChoice === "61") { originDefault = ["Triton"]}
-    else if (subOriginChoice === "52") { originDefault = ["Sea Nymph"]}
-    else if (subOriginChoice === "99") { originDefault = ["Naga","Raksasha","Asura","Dryad","Nymph"]}
-}     
-          
-// Combat 1 Options
-    if (intelligenceChoice === "2") {
-if (typeChoice === "Mythborn" && combatChoice1 === "1") {
-     combat1Default = ["Fighter","Guard","Warrior","Brawler"]
-}
-else if (typeChoice === "Mythborn" && combatChoice1 === "2") {
-     combat1Default = ["Sorcerer", "Mage", "Druid"]
-}
-else if (typeChoice === "Mythborn" && combatChoice1 === "3") {
-     combat1Default = ["Scout", "Archer", "Assassin"]
-}
-    }
-    
-else {
-if (typeChoice === "Mythborn" && combatChoice1 === "1") {
-     combat1Default = ["Beast","Monster","Creature"]
-}
-else if (typeChoice === "Mythborn" && combatChoice1 === "2") {
-     combat1Default = ["Wildcaller", "Mythcaller"]
-}
-else if (typeChoice === "Mythborn" && combatChoice1 === "3") {
-     combat1Default = ["Lurker", "Creeper", "Hunter"]    
-}    
-    
+ for(i=0;i<firstAspectList.length;i++){if(chosenNPC[3].name === firstAspectList[i][0] || chosenNPC[0].type === firstAspectList[i][0] || chosenNPC[0].originString === firstAspectList[i][0] || chosenNPC[0].name === firstAspectList[i][0] || chosenNPC[0].secondOrigin === firstAspectList[i][0]){originDefaultRandom = originDefaultRandom.concat(firstAspectList[i][1])}}
+ for(i=0;i<firstAspectList.length;i++){if(chosenNPC[3].name === firstAspectList[i][0] || chosenNPC[0].type === firstAspectList[i][0] || chosenNPC[0].originString === firstAspectList[i][0] || chosenNPC[0].name === firstAspectList[i][0] || chosenNPC[0].secondOrigin === firstAspectList[i][0]){combat1DefaultRandom = combat1DefaultRandom.concat(firstAspectList[i][2])}}
 
-    
-} 
 
-combat1DefaultRandom = ""
-originDefaultRandom = ""
-     function addRandom(){
-combat1DefaultRandom = combat1Default[Math.floor(Math.random() * combat1Default.length)];
-originDefaultRandom = originDefault[Math.floor(Math.random() * originDefault.length)];
-defaultOriginAspect = new Aspect(originDefaultRandom + " " + combat1DefaultRandom,"0","0",["31"],["2","3"],"2"),     
-highConceptOptions.push(defaultOriginAspect)}     
 
-while (typeof highConceptOptions[3] === 'undefined') { 
- addRandom()
-};    
-choosingHighConcept = ""
-for(i=0;i<highConceptOptions.length;i++){
-if(i == highConceptsBeforeDefaults){choosingHighConcept += "  Defaults: \n"+ i + " " + highConceptOptions[i].name + "\n"}
-else{choosingHighConcept+=(i + " " + highConceptOptions[i].name + "\n")}
-}
- 
-//var randHighConcept = Math.floor(Math.random() * highConceptOptions.length)
-//var imageLink = highConceptOptions[randHighConcept].combat2;
-   
-//var rand = highConceptOptions[randHighConcept].name;
-        
-chosenHighConcept = parseInt(prompt(choosingHighConcept))
- 
-var rand = highConceptOptions[chosenHighConcept].name
-var imageLink = highConceptOptions[chosenHighConcept].combat2;
+//combat1DefaultRandom = combat1Default[Math.floor(Math.random() * combat1Default.length)];
+defaultOriginAspect = new Aspect( originDefaultRandom[Math.floor(Math.random()*originDefaultRandom.length)] + " " + combat1DefaultRandom[Math.floor(Math.random()*combat1DefaultRandom.length)],"0","0",["31"],["2","3"],"2")    
+
+
+
+var rand = defaultOriginAspect.name
 
 
 if(enemyNumber > 1){rand += " (" + enemyNumber + ")"};
@@ -788,7 +294,18 @@ var aspect1 = [
      "Fear of the Light",
      "Behind You",
      "Child Snatcher",
-     "He Comes at Night"], "Titanspawn", "2"),
+     "He Comes at Night"], "Titanspawn", "Night"),
+ orderAspects = new Aspect([
+     "Geometry Fanatic",
+     "Obsessed with Perfection",
+     "Hatred of Chaos",
+     "Confirmity Above All",
+     "Made from Marble",
+     "Hunger of Order",
+     "Fear of Chaos",
+     "Unnervingly Direct",
+     "Indoctrinator",
+     "Relentless Advance"], "Titanspawn", "Order"),
  fireAspects = new Aspect([
      "Rage-Filled",
      "Walking Blaze",
@@ -798,9 +315,8 @@ var aspect1 = [
      "I am the Fire in Firearms",
      "Mad Inventor",
      "Hatred of Water",
-     "Walking Volcano"], "Titanspawn", "1"),
+     "Walking Volcano"], "Titanspawn", "Fire"),
  lightAspects = new Aspect([
-     "Divine Whiteness",
      "Light Cannot be Stopped",
      "A Light Into the Darkness",
      "Unworthy of My Sight",
@@ -808,21 +324,21 @@ var aspect1 = [
      "Sear Their Eyes",
      "Fervorous Faith",
      "Light Bringer",
-     "Bright Presence"], "Titanspawn", "4"),
+     "Bright Presence"], "Titanspawn", "Light"),
  waterAspects = new Aspect([
      "Drowning is Sacred",
      "To The Depths",
      "Amphibian",
      "Freezing Heart",
-     "Drown Them All"],"Titanspawn","7"),  
+     "Drown Them All"],"Titanspawn","Ocean"),  
  shadowAspects = new Aspect([
      "Extinguish the Light",
      "Reign Through Fear",
      "Shadow on the Land",
-     "Shadow Affinity"],"Titanspawn","3"),
+     "Shadow Affinity"],"Titanspawn","Depths"),
  skyAspects = new Aspect([
      "The Skies are Mine",
-     "One With the Sky"],"Titanspawn","5"), 
+     "One With the Sky"],"Titanspawn","Sky"), 
  earthAspects = new Aspect([
      "Rotting Presence",
      "Symbiosis",
@@ -835,10 +351,10 @@ var aspect1 = [
      "Underground Native",
      "Walking Factory",
      "We are Legion",
-     "Horrid Stench"],"Titanspawn","6"),
+     "Horrid Stench"],"Titanspawn","World"),
  deathAspects = new Aspect([
      "Cold Embrace",
-     "Feast of Souls"],"Titanspawn","8"),
+     "Feast of Souls"],"Titanspawn","Death"),
  
  fairieSummerAspects = new Aspect([
      "Warm Embrace",
@@ -850,7 +366,7 @@ var aspect1 = [
      "Earthly Beauty",
      "Jungle Child",
      "Child Snatcher",
-     "Walk Under the Sun"], "Mythborn", "1"), 
+     "Walk Under the Sun"], "Mythborn", "Summer Court"), 
   fairieWInterAspects = new Aspect([
      "Cold Embrace",
      "Winter is Coming",
@@ -861,7 +377,7 @@ var aspect1 = [
      "Ethereal Beauty",
      "Snow Lover",
      "Child Snatcher",
-     "He Comes at Night"], "Mythborn", "2"),      
+     "He Comes at Night"], "Mythborn", "Winter Court"),      
  jadeSeaAspects = new Aspect([
      "Fire Breath",
      "Frost Breath",
@@ -871,31 +387,65 @@ var aspect1 = [
      "Tyrant",
      "Arrogant",
      "Wise",
-     "Poison Breath"], "Mythborn", "3"),  
+     "Poison Breath"], "Mythborn", "Jade Sea"),  
  darkForestAspects = new Aspect([
      "Creepy",
      "One with the Earth",
      "Attuned to the Forest",
      "Entling Servants",
      "Care for the Community",
-     "Animal Companions"], "Mythborn", "4"),      
+     "Animal Companions"], "Mythborn", "Dark Forest"),      
  shambhalaAspects = new Aspect([
      "Wise",
      "Karmic Obsession",
      "Well Connected",
      "Enlightened Allies",
      "Cultist Servants",
-     "Respect for the Gods"], "Mythborn", "5"),      
+     "Respect for the Gods"], "Mythborn", "Shambhala"),      
     
+	 merlinAspects = new Aspect([
+     "Wise",
+     "Gallant",
+     "Disciple of Merlin",
+     "Mythborn Allies",
+     "Forest Dweller",
+     "Respect your Oaths"], "Enlightened", "Circle of Merlin"),      
+    
+	 jadefistAspects = new Aspect([
+     "Underground Warrior",
+     "Ancient Wealth",
+     "Well Connected",
+     "Friend to the Weak",
+     "Honor Above All",
+     "Protect Our Own"], "Enlightened", "Order of the Jade Fist"),      
+    
+	 cabalAspects = new Aspect([
+     "Downright Creepy",
+     "Hidden Talents",
+     "Innder Darkness",
+     "Arcane Knowledge",
+     "Clarity of Purpose",
+     "Disciple of the Kaballah"], "Enlightened", "Cabal"),      
+    
+	 illuminatiAspects = new Aspect([
+     "Greed is Good",
+     "Power Hungry",
+     "Me First...What 'Others'?",
+     "Bribery is Magic",
+     "Impeccable Suit",
+     "No Such Thing as Small Profit"], "Enlightened", "Illuminati"),      
+    
+	
+	
 // name = new Aspect("name","type","origin"),
 ]
 
 
 
 var aspect1Options = aspect1.filter(function (el) {
-  return el.type === typeChoice &&
-         el.origin === originChoice 
+  return el.origin === chosenNPC[0].originString
 });
+
 var rand2 = aspect1Options[0].name[Math.floor(Math.random()*(aspect1Options[0].name.length))];
 
 //____________________________________________________________________________________________________
@@ -906,53 +456,9 @@ var rand2 = aspect1Options[0].name[Math.floor(Math.random()*(aspect1Options[0].n
 
 //____________________________________________________________________________________________________
 
-var aspect2 = [
- sadisticGenius = new Aspect("Sadistic Genius","type","origin","subOrigin","legend","2","1"),
- berserkerBrute = new Aspect("Berserker Brute","type","origin","subOrigin","legend","1","1"),
- honorable1 = new Aspect("Honorable Beast","type","origin","subOrigin","legend","2","2"),
- wiseBeast = new Aspect("Wise Beast","type","origin","subOrigin","legend","1","2"),
- sadisticBrute = new Aspect("Sadistic Brute","type","origin","subOrigin","legend","1","1"),
- patientPolitician = new Aspect("Patient Politician","type","origin","subOrigin","legend","2","2"),
- reasonCivilized = new Aspect("No Reason Why We Can't Be Civilized", "type","origin","subOrigin","legend","2","2"),
- subteltyPower = new Aspect("Subtlety Is Its Own Power","type","origin","subOrigin","legend","2","2)"),
- justBusiness = new Aspect("Nothing Personal, It's Just Business","type","origin","subOrigin","legend","2","2"),
- strongRule = new Aspect("Only the Strong Are Fit to Rule","type","origin","subOrigin","legend","2","1"),
- politicsGame = new Aspect("Politics Is My Favorite Game","type","origin","subOrigin","legend","2","Manipulative"),
- speakSoftly = new Aspect("Speak Softly but Carry a Big Stick","type","origin","subOrigin","legend","2","2"),
- upholdLaw = new Aspect("Uphold the Law","type","origin","subOrigin","legend","2","2"),
- mercyCruelty = new Aspect("No Mercy, but No Cruelty","type","origin","subOrigin","legend","2","1"),
- worthyRespected = new Aspect("A Worthy Foe Should Be Respected","type","origin","subOrigin","legend","2","1"),
- theAlpha = new Aspect("The Alpha","type","origin","subOrigin","legend","1","1"),
- theElder = new Aspect("The Elder","type","origin","subOrigin","legend","1","2"),
- longTermPerspective = new Aspect("Long Term Perspective","type","origin","subOrigin","legend","2","2"),
- penBeforeSword = new Aspect("The Pen is Mightier","type","origin","subOrigin","legend","2","2"),
- greatEmpathy = new Aspect("Great Empathy","type","origin","subOrigin","legend","2","2"),
- tyrant = new Aspect("Tyrant","type","origin","subOrigin","legend","2","1"),
- beastTyrant = new Aspect("Beast Tyrant","type","origin","subOrigin","legend","1","1"),
- leaderofMen = new Aspect("Leader of Men","type","origin","subOrigin","legend","2","2"),
- general = new Aspect("General","type","origin","subOrigin","legend","2","1"),
- powerHungry = new Aspect("Power Hungry","type","origin","subOrigin","legend","2","2"),
- gentleBeast = new Aspect("Gentle Beast","type","origin","subOrigin","legend","1","2"),
- bully = new Aspect("Bully","type","origin","subOrigin","legend","2","1"),
- neverSurrender = new Aspect("Never Surrender","type","originChoice","subOriginChoice","legendChoice","2","1"),
- carefuLBeast = new Aspect("Careful Beast","type","origin","subOrigin","legend","1","2"),
- outForMyself = new Aspect("Out for Myself","type","originChoice","subOriginChoice","legendChoice","2","1"),
- bestThereIs = new Aspect("The Best There Is","type","originChoice","subOriginChoice","legendChoice","2","2"),
- alwaysAngry = new Aspect("I'm Always Angry","type","originChoice","subOriginChoice","legendChoice","2","1"),
 
+var rand3 = chosenNPC[1][0][3][0][Math.floor(Math.random()*(chosenNPC[1][0][3][0].length))] + " " + chosenNPC[1][2][3][1][Math.floor(Math.random()*(chosenNPC[1][2][3][1].length))]
 
-  
-// name = new Aspect("name","type","origin","subOrigin","legend","intelligence","behavior")
-
- 
-]
-
-var aspect2Options = aspect2.filter(function (el) {
-  return el.behavior === behaviorChoice &&
-         el.intelligence === intelligenceChoice 
-});
-
-var rand3 = aspect2Options[Math.floor(Math.random() * aspect2Options.length)].name;
 
 //____________________________________________________________________________________________________
 
@@ -963,182 +469,10 @@ var rand3 = aspect2Options[Math.floor(Math.random() * aspect2Options.length)].na
 //____________________________________________________________________________________________________
 
 
-//Setting the Level of the Legendary Abilities
-abilityOne = legendaryBonus
-abilityTwo = legendaryBonus2        
-
-if (legendChoice === "4") {
-     abilityOne += 0//4
-     abilityTwo += 0//3
-     skillAbilityOne =  0//4
-     stuntBonus += 0//4
-
-}
-else if (legendChoice === "3") {
-     abilityOne += 0//3
-     abilityTwo += 0//2
-     skillAbilityOne =  0//3
-     stuntBonus += 0//3
-}
-
-else if (legendChoice === "2") {
-     abilityOne += 0//2
-     abilityTwo += 0//1
-     skillAbilityOne =  0//2
-     stuntBonus += 0//2
-}
-
-else if (legendChoice === "1") {
-     abilityOne += 0 + legendaryBonus2//1 + legendaryBonus2
-     skillAbilityOne =  0//1
-     stuntBonus += 0//1
-}
 
 
-var LegendaryAbility = function(name,npcOptions,combat1Options,combat2Options,intelligenceOptions){
-    this.name = name
-    this.npcOptions = npcOptions
-    this.combat1Options = combat1Options
-    this.combat2Options = combat2Options
-    this.intelligenceOptions = intelligenceOptions
-}
-rightOriginArray = []; rightOriginCombat1Array = []; rightOriginCombatAllArray = []; fullFinalArray = []                    
-fullNameArray = []; name1Array = []; name2Array = []
+var rand5 = (chosenNPC[2][0][2].aspectVariables[0] + " " + chosenNPC[2][1][2].aspectVariables[1] + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;\n" + chosenNPC[2][0][0] + " (" + legendaryBonus + ")<br>&nbsp;&nbsp; \n" + chosenNPC[2][1][0] + " (" + legendaryBonus2 + ")")
 
-var abilities2 = [
-// Wyrdseeing
-wyrdseeingProphecy = new LegendaryAbility(["Wyrdseeing: Prophecy","Prophetic","Prophet"],[["Titanspawn","1","13"],["Titanspawn","2","24"],["Titanspawn","2","21"],["Titanspawn","3","99"],["Titanspawn","4","99"],["Titanspawn","5","53"],["Titanspawn","6","62"],["Titanspawn","6","64"],["Titanspawn","6","61"],["Titanspawn","6","65"],["Titanspawn","7","71"],["Titanspawn","7","72"],["Titanspawn","8","99"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","42"],["Mythborn","4","43"],["Mythborn","4","44"],["Mythborn","5","99"],["Mythborn","6","99"]],["1","2","3"],[,"1","3","2"],["2"]),
-
-// Druidism
-druidismRunes = new LegendaryAbility(["Druidism: Runes","Runic","Runemaster"],[["Titanspawn","3","33"],["Titanspawn","4","42"],["Titanspawn","6","99"],["Titanspawn","7","73"],["Mythborn","1","12"],["Mythborn","1","13"],["Mythborn","2","22"],["Mythborn","2","23"],["Mythborn","3","99"],["Mythborn","4","99"],["Mythborn","5","52"],["Mythborn","5","54"]],["1","2"],[,"1","2","3","4"],["2"]),
-druidismGreen = new LegendaryAbility(["Druidism: Green Druid","Nature-Loving","Druid"],[["Titanspawn","6","61"],["Titanspawn","6","62"],["Titanspawn","6","64"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","4","99"],["Mythborn","3","99"],["Mythborn","5","54"]],["2","1"],[,"1","2","3"],["1","2"]),
-druidismMythcalling = new LegendaryAbility(["Druidism: Mythcalling","Mythcalling","Mythcaller"],[["Titanspawn","6","61"],["Titanspawn","4","99"],["Titanspawn","2","24"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","99"],["Mythborn","5","99"],["Mythborn","6","99"]],["2","1"],[,"1","2","3","4"],["2"]),
-druidismTechnodruid = new LegendaryAbility(["Druidism: Technodruid","Cyborg","Technodruid"],[["Titanspawn","6","99"],["Mythborn","4","99"],["Mythborn","2","21"],["Mythborn","2","22"],["Mythborn","2","23"],["Mythborn","1","11"],["Mythborn","1","12"],["Mythborn","1","13"],["Mythborn","3","99"]],["2","3"],["1","3","2","4"],["2"]),             
-druidismFey = new LegendaryAbility(["Druidism - Fey Sorcery","Mischievous","Sorcerer"],[["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","41"],["Mythborn","4","42"],["Mythborn","5","53"]],["2","3"],[,"1","2","3"],["1","2"]),
-
-
-// Invokation
-fireCreation = new LegendaryAbility(["Invokation: Fire - Creation","Foundry","Blacksmith"],[["Titanspawn","1","99"],["Titanspawn","6","63"],["Mythborn","1","13"],["Mythborn","2","23"],["Mythborn","1","12"],["Mythborn","3","99"],["Mythborn","5","51"],["Mythborn","5","52"],["Mythborn","5","54"]],["1","2","3"],[,"1","2","3","4"],["2"]),
-fireDestruction = new LegendaryAbility(["Invokation: Fire - Destruction","Destructive","Pyromancer"],[["Titanspawn","1","99"],["Mythborn","1","99"],["Mythborn","3","99"],["Mythborn","5","99"]],["1","2"],[,"2","3"],["1","2"]),
-fireDrought = new LegendaryAbility(["Invokation: Fire - Drought","Desert","Scorcher"],[["Titanspawn","1","11"],["Titanspawn","1","12"],["Titanspawn","5","52"],["Mythborn","1","99"],["Mythborn","3","99"],["Mythborn","5","99"]],["1","2"],[,"2","3"],["1","2"]),
-fireLava = new LegendaryAbility(["Invokation: Fire - Lava","Magma","Earthmelter"],[["Titanspawn","1","99"],["Titanspawn","6","62"],["Titanspawn","6","63"],["Titanspawn","6","64"],["Mythborn","1","12"],["Mythborn","1","13"],["Mythborn","3","99"],["Mythborn","5","99"]],["1","2"],[,"1","2","3","4"],["1","2"]),
-fireSummoning = new LegendaryAbility(["Invokation: Fire - Summoning","Flamecalling","Flamebringer"],[["Titanspawn","1","99"],["Mythborn","1","99"],["Mythborn","3","99"],["Mythborn","5","99"]],["1","2"],[,"1","2","3","4"],["1","2"]),
-nightVeil = new LegendaryAbility(["Invokation: Night - Veil","Veiling","Veilmaker"],[["Titanspawn","2","99"],["Titanspawn","3","99"],["Titanspawn","8","81"],["Titanspawn","5","99"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","99"]],["2","3"],[,"1","3","4"],["1","2"]),
-nightFear = new LegendaryAbility(["Invokation: Night - Fear","Horrifying","Fearmonger"],[["Titanspawn","2","21"],["Titanspawn","2","22"],["Titanspawn","2","23"],["Titanspawn","3","31"],["Mythborn","2","21"],["Mythborn","2","23"],["Mythborn","2","24"],["Mythborn","2","25"],["Mythborn","3","32"],["Mythborn","4","99"]],["2","3","1"],[,"1","2","3","4"],["1","2"]),
-nightMoon = new LegendaryAbility(["Invokation: Night - Moonlight","Moonlit","Beholder"],[["Titanspawn","2","24"],["Titanspawn","2","21"],["Titanspawn","4","42"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","99"]],["2","3"],[,"1","2"],["1","2"]),
-darknessSenses = new LegendaryAbility(["Invokation: Darkness - Senses","Blinding","Visionbreaker"],[["Titanspawn","3","99"],["Titanspawn","2","22"],["Titanspawn","7","73"],["Titanspawn","8","99"],["Mythborn","2","99"],["Mythborn","4","99"],["Mythborn","5","51"],["Mythborn","5","52"]],["2","3"],[,"1","3","4"],["1","2"]),
-darknessVoid = new LegendaryAbility(["Invokation: Darkness - Void","Voidwalking","Voidwalker"],[["Titanspawn","2","22"],["Titanspawn","2","23"],["Titanspawn","3","32"],["Titanspawn","3","31"],["Titanspawn","8","99"],["Mythborn","2","21"],["Mythborn","2","22"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","4","42"],["Mythborn","5","51"],["Mythborn","5","52"]],["1","2","3"],[,"2","3"],["1","2"]),
-darknessUnderground = new LegendaryAbility(["Invokation: Darkness - Underground","Underground","Cavern Dweller"],[["Titanspawn","3","99"],["Titanspawn","6","99"],["Titanspawn","6","64"],["Titanspawn","8","99"],["Titanspawn","7","73"],["Titanspawn","7","74"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","43"],["Mythborn","4","44"],["Mythborn","4","42"],["Mythborn","5","51"],["Mythborn","5","52"],["Mythborn","5","54"]],["2","3"],["2","3","4"],["1","2"]),
-lightIllumination = new LegendaryAbility(["Invokation: Light - Illumination","Illuminated","Genius"],[["Titanspawn","4","99"],["Titanspawn","1","13"],["Titanspawn","6","63"],["Mythborn","1","12"],["Mythborn","2","22"],["Mythborn","3","99"],["Mythborn","4","42"],["Mythborn","1","13"],["Mythborn","2","23"],["Mythborn","5","99"]],["2","3"],[,"1","2","3"],["1","2"]),
-lightGlory = new LegendaryAbility(["Invokation: Sun - Glory","Glorious","Lightbringer"],[["Titanspawn","4","99"],["Mythborn","1","12"],["Mythborn","1","14"],["Mythborn","3","99"],["Mythborn","5","99"]],["1","2"],[,"1","2","3","4"],["1","2"]),
-lightSun = new LegendaryAbility(["Invokation: Light - Sun","Sunlit","Sunwalker"],[["Titanspawn","4","99"],["Mythborn","1","99"],["Mythborn","3","99"],["Mythborn","5","51"],["Mythborn","5","52"]],["1","2"],[,"2","3","4"],["1","2"]),
-lightBrightness = new LegendaryAbility(["Invokation: Light - Brightness","Bright","Priest"],[["Titanspawn","4","99"],["Titanspawn","2","24"],["Mythborn","1","99"],["Mythborn","3","99"],["Mythborn","5","99"]],["2","1"],[,"2","3","4"],["1","2"]),
-skyTempest = new LegendaryAbility(["Invokation: Sky - Tempest","Tempest","Skybreaker"],[["Titanspawn","4","41"],["Titanspawn","5","51"],["Titanspawn","5","52"],["Mythborn","1","11"],["Mythborn","1","14"],["Mythborn","2","21"],["Mythborn","2","24"],["Mythborn","3","99"],["Mythborn","5","52"]],["1","2"],[,"2","3","4"],["1","2"]),
-skyDestruction = new LegendaryAbility(["Invokation: Sky - Destruction","Stormborn","Skylord"],[["Titanspawn","5","51"],["Titanspawn","5","52"],["Titanspawn","1","12"],["Mythborn","3","99"],["Mythborn","5","52"]],["1","2"],[,"2","3","4"],["1","2"]),
-skyCalm = new LegendaryAbility(["Invokation: Sky - Calm","Calm","Peacemaker"],[["Titanspawn","4","42"],["Titanspawn","5","53"],["Mythborn","1","99"],["Mythborn","3","99"],["Mythborn","5","54"],["Mythborn","5","53"]],["2","3"],[,"1","3","4"],["1","2"]),
-skyLightning = new LegendaryAbility(["Invokation: Sky - Lightning","Lightning","Thunderer"],[["Titanspawn","1","12"],["Titanspawn","2","24"],["Titanspawn","4","99"],["Titanspawn","5","99"],["Mythborn","1","12"],["Mythborn","2","22"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","99"]],["1","2"],[,"2","3","4"],["1","2"]),
-earthAbundance = new LegendaryAbility(["Invokation: Earth - Abundance","Metalcrafting","Engineer"],[["Titanspawn","1","13"],["Titanspawn","6","99"],["Mythborn","1","99"],["Mythborn","2","21"],["Mythborn","2","22"],["Mythborn","2","23"],["Mythborn","3","99"],["Mythborn","4","42"],["Mythborn","4","43"],["Mythborn","4","44"],["Mythborn","5","51"],["Mythborn","5","54"]],["1","2"],[,"1","2","3","4"],["1","2"]),
-earthCreation = new LegendaryAbility(["Invokation: Earth - Creation","Earthcrafting","Broodlord"],[["Titanspawn","5","53"],["Titanspawn","6","99"],["Titanspawn","7","72"],["Mythborn","1","99"],["Mythborn","2","25"],["Mythborn","2","24"],["Mythborn","3","99"],["Mythborn","4","99"],["Mythborn","5","52"],["Mythborn","5","53"],["Mythborn","5","54"],["Mythborn","6","99"]],["2","1"],[,"1","2","3","4"],["1","2"]),
-earthFertility = new LegendaryAbility(["Invokation: Earth - Fertility","Lustful","Childbearer"],[["Titanspawn","2","21"],["Titanspawn","6","61"],["Titanspawn","6","62"],["Titanspawn","7","72"],["Mythborn","1","99"],["Mythborn","2","25"],["Mythborn","4","41"],["Mythborn","4","44"],["Mythborn","5","52"]],["2","1"],[,"1","4","3"],["1","2"]),
-earthNature = new LegendaryAbility(["Invokation: Earth - Nature","Forest","Jungledweller"],[["Titanspawn","6","99"],["Mythborn","1","99"],["Mythborn","2","23"],["Mythborn","2","24"],["Mythborn","2","25"],["Mythborn","3","99"],["Mythborn","4","99"],["Mythborn","5","53"],["Mythborn","5","54"]],["2","1"],[,"1","2","3","4"],["1","2"]),
-earthDecay = new LegendaryAbility(["Invokation: Earth - Decay","Plague","Blighter"],[["Titanspawn","1","11"],["Titanspawn","3","31"],["Titanspawn","3","33"],["Titanspawn","3","32"],["Titanspawn","6","61"],["Titanspawn","6","62"],["Titanspawn","6","65"],["Titanspawn","7","74"],["Titanspawn","8","99"],["Mythborn","1","11"],["Mythborn","1","14"],["Mythborn","1","15"],["Mythborn","2","21"],["Mythborn","2","22"],["Mythborn","2","99"],["Mythborn","3","32"],["Mythborn","3","34"],["Mythborn","3","35"],["Mythborn","4","99"],["Mythborn","5","54"],["Mythborn","5","53"],["Mythborn","5","52"],["Mythborn","5","51"]],["1","2"],[,"2","3","4"],["1","2"]),
-earthStone = new LegendaryAbility(["Invokation: Earth - Stone","Avalanche","Earthbreaker"],[["Titanspawn","6","99"],["Mythborn","1","12"],["Mythborn","1","13"],["Mythborn","2","22"],["Titanspawn","3","33"],["Mythborn","2","23"],["Mythborn","3","99"],["Mythborn","4","42"],["Mythborn","5","99"]],["1","2"],[,"1","2","3","4"],["1","2"]),
-earthLand = new LegendaryAbility(["Invokation: Earth - Land","Travelling","Wanderer"],[["Titanspawn","2","21"],["Titanspawn","3","33"],["Titanspawn","4","42"],["Titanspawn","5","53"],["Titanspawn","6","99"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","99"],["Mythborn","5","99"]],["2","3"],[,"1","2","4","3"],["1","2"]),
-waterAbyss = new LegendaryAbility(["Invokation: Water - Abyss","Abyssal","Abyss-Caller"],[["Titanspawn","7","99"],["Mythborn","3","99"],["Mythborn","6","99"]],["1","2"],[,"2","3","4"],["1","2"]),
-waterTerror = new LegendaryAbility(["Invokation: Water - Terror","Threatening","Terror"],[["Titanspawn","2","22"],["Titanspawn","5","51"],["Titanspawn","7","99"],["Mythborn","2","21"],["Mythborn","2","24"],["Mythborn","2","25"],["Mythborn","3","32"],["Mythborn","3","34"],["Mythborn","3","35"],["Mythborn","4","44"],["Mythborn","5","52"],["Mythborn","5","53"],["Mythborn","5","54"],["Mythborn","6","00"]],["2","3"],[,"1","3","4","2"],["1","2"]),
-waterLife = new LegendaryAbility(["Invokation: Water - Life","Swarm","Progenitor"],[["Titanspawn","6","61"],["Titanspawn","7","99"],["Mythborn","1","12"],["Mythborn","1","13"],["Mythborn","1","14"],["Mythborn","1","15"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","53"],["Mythborn","5","54"],["Mythborn","6","00"]],["2","1"],[,"1","2","3","4"],["1","2"]),
-waterSummoning = new LegendaryAbility(["Invokation: Water - Summoning","Watercrafting","Watercrafter"],[["Titanspawn","7","99"],["Mythborn","2","25"],["Mythborn","2","24"],["Mythborn","2","22"],["Mythborn","3","99"],["Mythborn","6","99"],["Mythborn","5","53"],["Mythborn","5","54"]],["1","2"],["1","2","3","4"],["1","2"]),
-waterDrown = new LegendaryAbility(["Invokation: Water - Drowning","Flood","Drowned"],[["Titanspawn","7","99"],["Mythborn","2","99"],["Mythborn","1","15"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","53"],["Mythborn","5","54"],["Mythborn","6","99"]],["1","2"],[,"2","3"],["1","2"]),
-waterSea = new LegendaryAbility(["Invokation: Water - Sea","Seafaring","Explorer"],[["Titanspawn","6","62"],["Titanspawn","5","53"],["Titanspawn","7","99"],["Titanspawn","8","81"],["Mythborn","2","99"],["Mythborn","1","99"],["Mythborn","3","99"],["Mythborn","5","99"],["Mythborn","6","99"]],["2","3"],[,"2","3","1"],["1","2"]),
-waterIce = new LegendaryAbility(["Invokation: Water - Ice","Frozen","Iceheart"],[["Titanspawn","3","32"],["Titanspawn","3","33"],["Titanspawn","2","23"],["Titanspawn","5","51"],["Titanspawn","5","52"],["Titanspawn","7","73"],["Titanspawn","7","74"],["Titanspawn","8","82"],["Titanspawn","8","83"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","5","54"],["Mythborn","5","53"],["Mythborn","5","52"],["Mythborn","6","99"]],["1","2"],[,"2","3","4"],["1","2"]),
-waterMist = new LegendaryAbility(["Invokation: Water - Mist","Mistborn","Mistweaver"],[["Titanspawn","2","21"],["Titanspawn","5","52"],["Titanspawn","5","53"],["Titanspawn","7","99"],["Titanspawn","8","81"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","4","42"],["Mythborn","5","54"],["Mythborn","5","53"],["Mythborn","6","99"]],["2","3"],[,"1","3"],["1","2"]),
-deathPsychopomp = new LegendaryAbility(["Invokation: Death - Psychopomp","Soulspeaking","Psychopomp"],[["Titanspawn","8","81"],["Titanspawn","8","82"],["Mythborn","4","44"]],["2","3"],["1","3"],["1","2"]),
-deathDestruction = new LegendaryAbility(["Invokation: Death - Destruction","Murderous","Killer"],[["Titanspawn","3","99"],["Titanspawn","2","22"],["Titanspawn","5","52"],["Titanspawn","7","73"],["Titanspawn","7","74"],["Titanspawn","8","99"],["Mythborn","2","21"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","51"],["Mythborn","5","52"],["Mythborn","5","54"]],["1","2"],[,"2"],["1","2"]),
-deathNecromancer = new LegendaryAbility(["Invokation: Death - Necromancy","Soulstealing","Necromancer"],[["Titanspawn","2","22"],["Titanspawn","2","23"],["Titanspawn","3","31"],["Titanspawn","3","33"],["Titanspawn","7","74"],["Titanspawn","8","99"],["Mythborn","2","21"],["Mythborn","2","22"],["Mythborn","2","25"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","51"],["Mythborn","5","52"]],["1","2"],["1","2","3","4"],["1","2"]),
-deathShamanism = new LegendaryAbility(["Invokation: Death - Shamanism","Shamanistic","Shaman"],[["Titanspawn","8","81"],["Titanspawn","8","82"],["Mythborn","1","13"],["Mythborn","1","15"],["Mythborn","2","25"],["Mythborn","3","99"],["Mythborn","4","99"],["Mythborn","5","99"]],["2","3","1"],[,"1","2","3","4"],["2"]),
-deathHorror = new LegendaryAbility(["Invokation: Death - Horror","Horrifying","Terror"],[["Titanspawn","1","11"],["Titanspawn","1","12"],["Titanspawn","2","99"],["Titanspawn","3","99"],["Titanspawn","5","52"],["Titanspawn","5","51"],["Titanspawn","6","65"],["Titanspawn","7","99"],["Titanspawn","8","82"],["Titanspawn","8","84"],["Titanspawn","8","83"],["Mythborn","2","98"],["Mythborn","3","98"],["Mythborn","4","98"],["Mythborn","5","51"],["Mythborn","5","52"],["Mythborn","5","54"]],["2","3","1"],[,"3","4","1"],[,"1","2"]),
-// Hematurgy
-hematurgyItztli = new LegendaryAbility(["Hematurgy - Itztli","Blood Drinking","Executioner"],[["Titanspawn","2","22"],["Titanspawn","6","65"],["Titanspawn","7","74"],["Titanspawn","8","83"],["Mythborn","1","11"],["Mythborn","2","21"],["Mythborn","2","22"],["Mythborn","4","44"],["Mythborn","4","44"],["Mythborn","5","51"],["Mythborn","5","52"]],["1","2"],[,"1","2","4"],["1","2"]),
-hematurgyYahuar = new LegendaryAbility(["Hematurgy - Yahuar","Self Sacrificial","Bloodsharer"],[["Titanspawn","6","61"],["Mythborn","1","99"],["Mythborn","3","31"],["Mythborn","3","33"],["Mythborn","3","34"],["Mythborn","3","35"],["Mythborn","4","43"],["Mythborn","4","44"],["Mythborn","5","52"],["Mythborn","5","54"]],["1","2"],[,"1"],["2"]),
-
-    
-// Epic Phsyiology
-physiqueStrength = new LegendaryAbility(["Epic Physique - Strength","Mighty","Goliath"],[["Titanspawn","1","99"],["Titanspawn","2","99"],["Titanspawn","3","99"],["Titanspawn","4","99"],["Titanspawn","5","99"],["Titanspawn","6","99"],["Titanspawn","7","99"],["Mythborn","4","99"],["Mythborn","3","99"],["Mythborn","5","99"]],["1"],["1","2","3","4"],["1","2"]),
-physiqueToughness = new LegendaryAbility(["Epic Physique - Toughness","Resilient","Hulk"],[["Titanspawn","1","11"],["Titanspawn","1","12"],["Titanspawn","1","13"],["Titanspawn","2","21"],["Titanspawn","2","23"],["Titanspawn","2","22"],["Titanspawn","3","99"],["Titanspawn","4","42"],["Titanspawn","5","99"],["Titanspawn","6","99"],["Titanspawn","7","99"],["Titanspawn","8","83"],["Mythborn","1","12"],["Mythborn","2","22"],["Mythborn","3","99"],["Mythborn","4","99"],["Mythborn","5","51"],["Mythborn","5","52"],["Mythborn","5","54"],["Mythborn","6","99"]],["1"],[,"2","4"],["1","2"]),
-presenceLeader = new LegendaryAbility(["Epic Presence","Intimidating","Lord"],[["Titanspawn","2","22"],["Titanspawn","1","12"],["Titanspawn","1","11"],["Titanspawn","4","99"],["Titanspawn","5","51"],["Titanspawn","5","53"],["Titanspawn","6","99"],["Titanspawn","7","72"],["Titanspawn","7","73"],["Mythborn","1","12"],["Mythborn","1","11"],["Mythborn","2","22"],["Mythborn","3","99"],["Mythborn","4","43"],["Mythborn","5","99"]],["1","2"],[,"1","2","4"],["2"]),
-appearanceBeauty = new LegendaryAbility(["Epic Appearance - Beauty","Beautiful","Supermodel"],[["Titanspawn","2","21"],["Titanspawn","2","24"],["Titanspawn","3","32"],["Titanspawn","4","99"],["Titanspawn","6","0"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","4","44"],["Mythborn","4","42"],["Mythborn","5","99"],["Mythborn","6","62"]],["2","3"],[,"3"],["2"]),
-sensesDexterity = new LegendaryAbility(["Epic Senses - Dexterity","Agile","Assassin"],[["Titanspawn","1","13"],["Titanspawn","2","99"],["Titanspawn","3","32"],["Titanspawn","4","99"],["Titanspawn","5","51"],["Titanspawn","5","52"],["Titanspawn","6","63"],["Titanspawn","6","65"],["Titanspawn","7","99"],["Titanspawn","8","99"],["Mythborn","1","99"],["Mythborn","2","99"],["Mythborn","3","99"],["Mythborn","4","42"],["Mythborn","4","43"],["Mythborn","5","99"],["Mythborn","6","99"]],["1","3"],[,"2","3","4"],[,"1","2"]),
-
-
-
-// Zoothropy
-zoothropyDragon = new LegendaryAbility(["Zoothropy - Dragon","Dragon","Drakonid"],[["Titanspawn","1","12"],["Titanspawn","1","11"],["Titanspawn","2","23"],["Titanspawn","3","32"],["Titanspawn","4","42"],["Titanspawn","5","51"],["Titanspawn","5","52"],["Titanspawn","6","61"],["Titanspawn","7","73"],["Mythborn","3","99"],["Mythborn","5","54"],["Mythborn","5","51"]],["1","2"],[,"1","2","3","4"],["1","2"]),
-
-// Pantheon-Specific Abilities
-hekuRiot = new LegendaryAbility(["Heku - Riot","Riotous","Crowd Agitator"],[["Titanspawn","1","12"],["Titanspawn","2","22"],["Titanspawn","4","99"],["Titanspawn","5","51"],["Titanspawn","6","65"],["Titanspawn","7","74"],["Titanspawn","8","83"],["Mythborn","1","99"],["Mythborn","2","21"],["Mythborn","3","32"],["Mythborn","3","35"],["Mythborn","4","44"],["Mythborn","5","99"]],["2"],[,"3"],["2"]),
-hekuSoothe = new LegendaryAbility(["Heku - Soothe","Calm","Soother"],[["Titanspawn","2","24"],["Titanspawn","4","99"],["Titanspawn","5","53"],["Titanspawn","8","81"],["Mythborn","1","11"],["Mythborn","1","99"],["Mythborn","2","24"],["Mythborn","3","32"],["Mythborn","3","35"],["Mythborn","5","53"],["Mythborn","5","54"]],["2"],[,"1","3"],["2"]),
-taiyiManipulator = new LegendaryAbility(["Taiyi - Legend-Molding","Legend-Changing","Manipulator"],[["Titanspawn","1","13"],["Titanspawn","2","24"],["Titanspawn","4","42"],["Titanspawn","6","61"],["Titanspawn","6","62"],["Titanspawn","7","71"],["Titanspawn","7","72"],["Mythborn","1","11"],["Mythborn","2","11"],["Mythborn","2","21"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","99"]],["1","2"],[,"3","2","1"],["1","2"]),
-taiyiFlow = new LegendaryAbility(["Taiyi - Flow Manipulation","Disruptive","Disruptor"],[["Titanspawn","1","13"],["Titanspawn","6","63"],["Titanspawn","3","99"],["Titanspawn","2","21"],["Titanspawn","2","23"],["Titanspawn","7","73"],["Titanspawn","8","81"],["Titanspawn","8","82"],["Mythborn","3","99"],["Mythborn","4","44"],["Mythborn","5","51"],["Mythborn","5","52"]],["1","2"],[,"1","3","4"],["1","2"]),
-MentalismIllusion = new LegendaryAbility(["Mentalism - Illusion","Fleeting","Trickster"],[["Titanspawn","2","99"],["Titanspawn","3","99"],["Titanspawn","4","99"],["Titanspawn","5","53"],["Titanspawn","6","62"],["Titanspawn","6","63"],["Titanspawn","7","73"],["Titanspawn","8","81"],["Mythborn","1","98"],["Mythborn","2","98"],["Mythborn","3","98"],["Mythborn","4","98"],["Mythborn","5","98"],["Mythborn","6","98"]],["2","3"],[,"1","3","4"],[,"1","2"]),
-
-]
-    
-// Décide de la Legendary Appropriée en fonction du PNJ
-
-for(a=0;a<abilities2.length;a++){
-for(b=0;b<abilities2[a].npcOptions.length;b++){
-
-if((abilities2[a].npcOptions[b][0] === typeChoice)&&
-    (abilities2[a].npcOptions[b][1] === originChoice)&&
-    (abilities2[a].npcOptions[b][2] === "99")
-  ){rightOriginArray.push(abilities2[a])}    
- 
-else if((abilities2[a].npcOptions[b][0] === typeChoice)&&
-    (abilities2[a].npcOptions[b][1] === originChoice)&&
-    (abilities2[a].npcOptions[b][2] === subOriginChoice)
-  ){rightOriginArray.push(abilities2[a])}                 
-}
-                    }  
-
-         
-  // 
-         
-for(c=0;c<rightOriginArray.length;c++){
-for(d=0;d<rightOriginArray[c].combat1Options.length;d++){
-    if(rightOriginArray[c].combat1Options[d][0] === combatChoice1){rightOriginCombat1Array.push(rightOriginArray[c])}                 
-}}
-   
-for(e=0;e<rightOriginCombat1Array.length;e++){
-for(f=0;f<rightOriginCombat1Array[e].combat1Options.length;f++){
-    if(rightOriginCombat1Array[e].combat1Options[f][0] === combatChoice1){rightOriginCombatAllArray.push(rightOriginCombat1Array[e])}                 
-}}   
-
-for(i=0;i<rightOriginCombatAllArray.length;i++){
-    if((rightOriginCombatAllArray[i].intelligenceOptions[0] === intelligenceChoice)||(rightOriginCombatAllArray[i].intelligenceOptions[1] === intelligenceChoice)){fullFinalArray.push(rightOriginCombatAllArray[i])}                 
-}
-
-// Choisi au hasard parmis les Aspects adéquats ceux du PNJ final.
-         
-function randCalculator(){
-if(fullFinalArray.length>1){
-randSpawn = Math.floor(Math.random()*fullFinalArray.length)
-randSpawn2 = Math.floor(Math.random()*fullFinalArray.length)
-rand5 = (fullFinalArray[randSpawn].name[1] + " " + fullFinalArray[randSpawn2].name[2] + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;\n" + fullFinalArray[randSpawn].name[0] + " (" + abilityOne + ")<br>&nbsp;&nbsp; \n" + fullFinalArray[randSpawn2].name[0]+ " (" + abilityTwo + ")")
-
-}
-else{
-randSpawn = Math.floor(Math.random()*rightOriginCombatAllArray.length)
-randSpawn2 = Math.floor(Math.random()*rightOriginCombatAllArray.length)
-rand5 = (rightOriginCombatAllArray[randSpawn].name[1] + " " + rightOriginCombatAllArray[randSpawn2].name[2] + "<br><b>Legendary Abilities:</b> <br>  &nbsp;&nbsp;\n" + rightOriginCombatAllArray[randSpawn].name[0] + " (" + abilityOne + ")<br>&nbsp;&nbsp; \n" + rightOriginCombatAllArray[randSpawn2].name[0]+ " (" + abilityTwo + ")")
-
-}
-}
-randCalculator()
-while(randSpawn === randSpawn2){randCalculator()}
-
-
-    
-    
 
 
 //____________________________________________________________________________________________________
@@ -1149,46 +483,12 @@ while(randSpawn === randSpawn2){randCalculator()}
 
 //____________________________________________________________________________________________________
 
-var Skill = function(name,level){
-  this.name = name;
-  this.level = level;  
-}   
 
-var skillOptions = [
-fight = new Skill (" Fight: +",1),
-will = new Skill (" Will: +",0),
-rapport = new Skill (" Rapport: +",0),
-physique = new Skill (" Physique: +",0),
-presence = new Skill (" Presence: +",0),
-stealth = new Skill (" Stealth: +",0),
-lore = new Skill (" Lore: +",0),
-notice = new Skill (" Notice: +",0)
-]
-
-if (behaviorChoice === "1"){presence.level += 2}
-else if (behaviorChoice === "2"){rapport.level += 2}
-
-if (intelligenceChoice === "1"){will.level += 2}
-else if (intelligenceChoice === "2"){lore.level += 2}
-
-if (combatChoice1 === "1"){fight.level += 1;physique.level += 2}
-else if (combatChoice1 === "2"){will.level += 1;lore.level += 1}
-else if (combatChoice1 === "3"){stealth.level += 3;fight.level += 2}
-   
-if (combatChoice2 === "1"){will.level += 2;lore.level += 2;notice.level+=1;stealth.level += 1}
-else if (combatChoice2 === "2"){fight.level += 3;stealth.level += 1;physique.level+=1}
-else if (combatChoice2 === "3"){lore.level += 1;will.level += 2;stealth.level += 1;presence.level+=1;rapport.level+=1}
-else if (combatChoice2 === "4"){fight.level += 2;notice.level += 1;physique.level +=3;will.level += 2}
-
-skillOptions.sort(function(a,b) {
-    return b.level-a.level;     });
-         
-var randSkills = (skillOptions.sort()[0].name + (2+skillAbilityOne+skillBonus) +  ","+
-     skillOptions.sort()[1].name + (1+skillAbilityOne+skillBonus) +  ","+
-     skillOptions.sort()[2].name + (1+skillAbilityOne+skillBonus) +  ","+
-     skillOptions.sort()[3].name + (1+skillAbilityOne+skillBonus));
+var randSkills = (chosenNPC[1][0][0] + " +" + (2+skillBonus) +  ","+
+     chosenNPC[1][1][0] + " +"  + (1+skillBonus) +  ","+
+     chosenNPC[1][2][0] + " +"  + (1+skillBonus) +  ","+
+     chosenNPC[1][3][0] + " +"  + (1+skillBonus));
 //Sorts the highest skills, top first, and gives them a game-normal value. Adds skill bonus from numbers/Boss         
-
       
  
 //name = new Aspect("name","type","origin","subOrigin","legend","intelligence","behavior","combat1","combat2"),
@@ -1203,6 +503,9 @@ var randSkills = (skillOptions.sort()[0].name + (2+skillAbilityOne+skillBonus) +
 //____________________________________________________________________________________________________
 // name = new Stunt("description","dangerlevel"),
     //Here only varname, Name, combat1 and combat2 matter, and the Effect part is under "type"
+	
+	
+	/*
 function stuntCalculator(bonusType,costLevelSetter){
  randomEffect2 = Math.floor(Math.random() * costLevelSetter)
  randomEffect = randomEffect2 + 1 + bonusType  
@@ -1350,13 +653,13 @@ var stuntCostOptions = [];
 function stuntChooser (targettedArray,targettedSecondArray){   
      
 for(h=0; h < targettedArray.length; h++) {
-  if ((randomEffect === targettedArray[h].dangerlevel) && (targettedArray[h].stuntCombat2[0] === combatChoice2Int || targettedArray[h].stuntCombat2[1] === combatChoice2Int || targettedArray[h].stuntCombat2[2] === combatChoice2Int || targettedArray[h].stuntCombat2[3] === combatChoice2Int)&&((targettedArray[h].NPCtype[0] === enemyType)||(targettedArray[h].NPCtype[1] === enemyType)||(targettedArray[h].NPCtype[2] === enemyType)||(targettedArray[h].NPCtype[3] === enemyType)))
+  if ((randomEffect === targettedArray[h].dangerlevel))
 { stuntEffectOptions.push(targettedArray[h]) }}
 
  randEffect = stuntEffectOptions[Math.floor(Math.random() * stuntEffectOptions.length)];
     
 for(j=0; j < stuntCost.length; j++) {
-  if ((randomEffect2 ===  Math.floor(stuntCost[j].dangerlevel)) && (stuntCost[j].stuntCombat2[0] === combatChoice2Int || stuntCost[j].stuntCombat2[1] === combatChoice2Int || stuntCost[j].stuntCombat2[2] === combatChoice2Int || stuntCost[j].stuntCombat2[3] === combatChoice2Int)&&((stuntCost[j].NPCtype[0] === enemyType)||(stuntCost[j].NPCtype[1] === enemyType)||(stuntCost[j].NPCtype[2] === enemyType)||(stuntCost[j].NPCtype[3] === enemyType))){
+  if ((randomEffect2 ===  Math.floor(stuntCost[j].dangerlevel))){
   stuntCostOptions.push(stuntCost[j])   
   }} 
      
@@ -1370,40 +673,276 @@ stuntChooser(stuntEffect,stuntEffectOptions);
   
 stuntResultActives = randCost.description + randEffect.description  
 // This is the result of the Stunt making function for Active Stunts
-     
-var rand6 = ("<br><b>\nStunts:</b> <br>\n- " + stuntResultActives)    
-               
-//____________________________________________________________________________________________________
+     */
+	 
+var stuntEffect = function(specificity,effect,costMultiplier,roles) {
+  this.specificity = specificity;
+  this.effect = effect;
+  this.costMultiplier = costMultiplier;
+  this.roles = roles;
+}	 
+	 
+	function stuntDeciderFunction(relevantBonus,relevantRole){
+		
+ 
+//stuntBonus is the core value 
+
+	
+	//Start of Triggers Pack
+
+var triggersModifier = Math.ceil(Math.random()*3)
+
+var triggers = [
+
+onYourTurn = new stuntEffect("N/A","(Uses: " + triggersModifier + ") On your turn, ",1*triggersModifier,"Any"),
+onYourTurn2 = new stuntEffect("N/A","(Uses: " + triggersModifier + ") On your turn, ",1*triggersModifier,"Any"),
+onYourTurn3 = new stuntEffect("N/A","(Uses: " + triggersModifier + ") On your turn, ",1*triggersModifier,"Any"),
+onYourTurn4 = new stuntEffect("N/A","(Uses: " + triggersModifier + ") On your turn, ",1*triggersModifier,"Any"),
+combatStart = new stuntEffect("N/A","At the start of Combat, ",1,"Any"),
+everyTurn = new stuntEffect("N/A","Every turn, ",5,"Any"),
+consequenceTaken = new stuntEffect("N/A","When you take a Consequence, ",1.5,"Any"),
+nextTurn = new stuntEffect("N/A","(Uses: " + triggersModifier + ") Next turn, ",0.8*triggersModifier,"Any"),
+attackAction = new stuntEffect("N/A","Whenever you perform an Attack action, ",2,"Any"),
+attackAction = new stuntEffect("N/A","Whenever you perform a Defend action, ",3,"Any"),
+attackAction = new stuntEffect("N/A","Whenever you perform a Create an Aspect action, ",2,"Any"),
+attackAction = new stuntEffect("N/A","Whenever you perform an Overcome action, ",1,"Any"),
+adjacentAlly = new stuntEffect("N/A","The first " + triggersModifier + " times you are adjacent to an ally, ",1.5*triggersModifier,"Any"),
+adjacentEnemy = new stuntEffect("N/A","The first " + triggersModifier + " times you are adjacent to an enemy, ",1*triggersModifier,"Any"),
+enemyConsequenceTaken = new stuntEffect("N/A","Whenever an enemy takes a Consequence, ",1,"Any"),
+enemyConsequenceTaken2 = new stuntEffect("N/A","Whenever an enemy takes a Consequence, ",1,"Any")
+
+]	 
+
+// This bit finds a random Trigger, then makes sure that relevantBonus is high enough to pay for it, then divides relevantBonus by the Trigger's cost
+		function establishTrigger(){
+	 chosenTrigger = triggers[Math.floor(Math.random()*triggers.length)]
+	 }
+	 establishTrigger()
+	 while(relevantBonus/chosenTrigger.costMultiplier<1){establishTrigger()}
+	 relevantBonus /= chosenTrigger.costMultiplier
+	 
+	 
+	//End of Triggers Pack
+
+	//Start of Duration Pack 1
+var durations1Modifier = Math.ceil(Math.random()*3)
+
+var durations1 = [
+
+limitedTurns = new stuntEffect("N/A","for " + (durations1Modifier+1) + " Round(s), ",1*(durations1Modifier+1),"Any"),
+limitedTurns2 = new stuntEffect("N/A","for " + (durations1Modifier+1) + " Round(s), ",1*(durations1Modifier+1),"Any"),
+wholeFight = new stuntEffect("N/A","every turn for the rest of the Fight, ",5,"Any"),
+instant = new stuntEffect("N/A","for a Round, ",1,"Any"),
+instant2 = new stuntEffect("N/A","for a Round, ",1,"Any"),
+instant3 = new stuntEffect("N/A","for a Round, ",1,"Any"),
+instant4 = new stuntEffect("N/A","for a Round, ",1,"Any"),
+
+createAlly = new stuntEffect("NA","create an 'Ally' Aspect at + "+ (durations1Modifier+playerLevelVar*2+2) +" which has the ability: While active, ",durations1Modifier*2,"Any"),
+]	 
+
+// This bit finds a random Trigger, then makes sure that relevantBonus is high enough to pay for it, then divides relevantBonus by the Trigger's cost
+		function establishDurations1(){
+	 chosenDuration1 = durations1[Math.floor(Math.random()*durations1.length)]
+	 }
+	 establishDurations1()
+	 while(relevantBonus/chosenDuration1.costMultiplier<1){establishDurations1()}
+	 relevantBonus /= chosenDuration1.costMultiplier
 
 
-//Stunts Maker 2 ------------------------------------------------------------------
-// Pareil pour le deuxieme Stunt
 
-//____________________________________________________________________________________________________
+	 //End of Durations Pack 1
+	 
 
-console.log(randomEffect2)
-randomEffect2 = Math.floor(Math.random() * 4);
-randomEffect = randomEffect2 + skillAbilityOne + stuntBonus2 ;
-console.log(randomEffect2)
+	 //Start of Durations Pack 2
+var durations2Modifier = Math.ceil(Math.random()*3)
 
-stuntEffect = []
-stuntCostOptions = []
-stuntEffectOptions = []
+var durations2 = [
 
-console.log(stuntEffect)
-savedCost = randCost                    
+amplifier = new stuntEffect("N/A",", increased by " + durations2Modifier + " every turn ",1+durations2Modifier*1.25,"Any"),
+limitedTurns2 = new stuntEffect("N/A",". The effect is repeated on adjacent targets on your next Turn",1.75,"Any"),
+noDuration21 = new stuntEffect("N/A","",1,"Any"),
+noDuration22 = new stuntEffect("N/A","",1,"Any"),
+noDuration23 = new stuntEffect("N/A","",1,"Any"),
+noDuration24 = new stuntEffect("N/A","",1,"Any"),
+noDuration25 = new stuntEffect("N/A","",1,"Any"),
+noDuration26 = new stuntEffect("N/A","",1,"Any"),
+]	 
 
-stuntEffectCreator()
-var stuntEffectOptions2 = [];
-stuntChooser(stuntEffect,stuntEffectOptions2);
-while((randCost.stuntType === randEffect.stuntType && (randEffect.stuntType !== "Any" || randCost.stuntType !== "Any"))||(randCost === savedCost)|| (randEffect.type !== randCost.type)){stuntChooser(stuntEffect,stuntEffectOptions2)}
-
-stuntResultActives2 = randCost.description + randEffect.description  
-// This is the result of the Stunt making function for Active Stunts
-         
-var rand7 = ("<br>\n- " + stuntResultActives2)  
+// This bit finds a random Trigger, then makes sure that relevantBonus is high enough to pay for it, then divides relevantBonus by the Trigger's cost
+		function establishDurations2(){
+	 chosenDuration2 = durations2[Math.floor(Math.random()*durations2.length)]
+	 }
+	 establishDurations2()
+	 while(relevantBonus/chosenDuration2.costMultiplier<1){establishDurations2()}
+	 relevantBonus /= chosenDuration2.costMultiplier
 
 
+	 //End of Durations Pack 2
+	 
+	 	 //Start of Targets Pack Enemies
+	 		function establishTargets(){
+var targetsModifier = Math.ceil(Math.random()*3)
+	 allyOrEnemy = Math.random()
+
+
+var targets1 = [
+
+aoe = new stuntEffect("N/A","enemies in an area with a radius of "+(targetsModifier+1)+" Hex ",targetsModifier*1.5,"Any"),
+enemyAoe = new stuntEffect("N/A","an enemy and its allies within "+(targetsModifier)+" Hex ",targetsModifier*1.5,"Any"),
+nearbyEnemies = new stuntEffect("N/A","enemies within "+(targetsModifier+1)+" Hex(es) of you ",targetsModifier*1.5,"Any"),
+enemyAttack = new stuntEffect("enemyAction","enemies that perform an Attack Action ",1,"Any"),
+enemyAspect = new stuntEffect("enemyAction","enemies that perform a Create an Aspect Action ",1,"Any"),
+enemyDefend = new stuntEffect("enemyAction","enemies that perform a Defend Action ",1,"Any"),
+enemyOvercome = new stuntEffect("enemyAction","enemies that perform an Overcome Action ",1,"Any"),
+lineEnemy = new stuntEffect("N/A","enemies in a line of "+(targetsModifier+1)+" Hex ",targetsModifier/2,"Any"),
+allEnemies = new stuntEffect("N/A","all enemies ",targetsModifier*playerNumberVar,"Any"),
+multipleEnemies = new stuntEffect("N/A",targetsModifier+1 + " enemies ",targetsModifier+1,"Any"),
+//smallDebuff = new stuntEffect("N/A","has -1 to Physique ",1,"Any")
+
+]	
+
+var targets2 = [
+
+selfTarget = new stuntEffect("N/A","you ",1,"Any"),
+allyTarget = new stuntEffect("N/A","an ally ",1,"Any"),
+allAllies = new stuntEffect("N/A","all allies ",2,"Any"),
+selfTarget2 = new stuntEffect("N/A","you ",1,"Any"),
+allyTarget2 = new stuntEffect("N/A","an ally ",1,"Any"),
+allAllies2 = new stuntEffect("N/A","all allies ",2,"Any"),
+
+
+allyAttack = new stuntEffect("allyAction","allies that perform an Attack Action ",1,"Any"),
+allyAspect = new stuntEffect("allyAction","allies that perform a Create an Aspect Action ",1,"Any"),
+allyDefend = new stuntEffect("allyAction","allies that perform a Defend Action ",1,"Any"),
+allyOvercome = new stuntEffect("allyAction","allies that perform an Overcome Action ",1,"Any"),
+//smallDebuff = new stuntEffect("N/A","has -1 to Physique ",1,"Any")
+
+]	 
+
+// This bit finds a random Trigger, then makes sure that stuntBonus is high enough to pay for it, then divides stuntBonus by the Trigger's cost
+
+	 chosenTargets = targets1[Math.floor(Math.random()*targets1.length)]
+
+	if(allyOrEnemy >0.50){chosenTargets = targets1[Math.floor(Math.random()*targets1.length)]}
+	else{chosenTargets = targets2[Math.floor(Math.random()*targets2.length)]}
+	 }	 
+	 establishTargets()
+
+	 while(relevantBonus/chosenTargets.costMultiplier<1){establishTargets()}
+
+	 relevantBonus /= chosenTargets.costMultiplier
+	 
+	
+
+	 //End of Targets Pack Enemies
+	 
+	 //Start of Effect Pack Enemies
+	 		function establishEffects1(){
+var effects1Modifier = Math.ceil(Math.random()*(playerLevelVar*2+2))
+
+var effects1 = [
+
+attackDebuff = new stuntEffect("enemyAction","gain(s) -"+effects1Modifier+" to their Attack Actions ",effects1Modifier/2,["Support-Controller","Party Face"]),
+defendDebuff = new stuntEffect("enemyAction","gain(s) -"+effects1Modifier+" to their Defend Actions ",effects1Modifier/2,["Support-Controller","Party Face"]),
+attackDebuff2 = new stuntEffect("enemyAction","gain(s) -"+effects1Modifier+" to their Attack Actions ",effects1Modifier/2,["Support-Controller","Party Face"]),
+defendDebuff2 = new stuntEffect("enemyAction","gain(s) -"+effects1Modifier+" to their Defend Actions ",effects1Modifier/2,["Support-Controller","Party Face"]),
+aspectDebuff = new stuntEffect("enemyAction","gain(s) -"+effects1Modifier+" to their Create an Aspect Actions ",effects1Modifier/2,["Support-Controller"]),
+overcomeDebuff = new stuntEffect("enemyAction","gain(s) -"+effects1Modifier+" to their Overcome Actions ",effects1Modifier/3,["Support-Controller"]),
+ALLDebuff = new stuntEffect("enemyAction","gain(s) -"+(effects1Modifier+playerLevelVar*2+2)+" to ALL their Actions ",effects1Modifier,["Support-Controller","Party Face"]),
+loseLegendary = new stuntEffect("NA","lose(s) "+effects1Modifier +" Legendary Ability uses ",effects1Modifier*3,["Support-Controller"]),
+attackSimple = new stuntEffect("NA","take(s) an Attack at +"+(effects1Modifier+playerLevelVar*2),effects1Modifier,["Tank","Damage Dealer"]),
+attackSimple2 = new stuntEffect("NA","take(s) an Attack at +"+(effects1Modifier+playerLevelVar*2),effects1Modifier,["Tank","Damage Dealer"]),
+pullEnemy = new stuntEffect("NA","is/are pulled towards you by "+effects1Modifier+" Hexes ",effects1Modifier/2,["Tank","Party Face"]),
+pushEnemy = new stuntEffect("NA","is/are pushed away from you by "+effects1Modifier+" Hexes ",effects1Modifier/2,["Skill Monkey","Support-Controller"]),
+legendaryBlock = new stuntEffect("AspectCreation","cannot use Legendary Abilities for "+effects1Modifier+" Round(s) ",effects1Modifier,["Support-Controller","Tank"]),
+incapacitated = new stuntEffect("AspectCreation","gain(s) the 'Incapacitated' Aspect created at +"+(effects1Modifier+playerLevelVar*2),effects1Modifier*1.5,"Support-Controller"),
+cantMove = new stuntEffect("AspectCreation","gain(s) the 'Unable to Move' Aspect created at +"+(effects1Modifier+playerLevelVar*2),effects1Modifier,["Support-Controller"]),
+mindControl = new stuntEffect("AspectCreation","gain(s) the 'Mind Control' Aspect created at +"+(effects1Modifier+playerLevelVar*2),effects1Modifier*2,["Support-Controller","Party Face"]),
+//smallDebuff = new stuntEffect("N/A","has -1 to Physique ",1,"Any")
+
+]
+
+var effects2 = [
+
+attackBuff = new stuntEffect("allyAction","gain(s) +"+effects1Modifier+" to Attack Actions ",effects1Modifier/2,["Damage Dealer","Party Face","Support-Controller","Skill Monkey"]),
+defendBuff = new stuntEffect("allyAction","gain(s) +"+effects1Modifier+" to Defend Actions ",effects1Modifier/2,["Tank","Support-Controller","Skill Monkey"]),
+attackBuff2 = new stuntEffect("allyAction","gain(s) +"+effects1Modifier+" to Attack Actions ",effects1Modifier/2,["Damage Dealer","Party Face","Support-Controller","Skill Monkey"]),
+defendBuff2 = new stuntEffect("allyAction","gain(s) +"+effects1Modifier+" to Defend Actions ",effects1Modifier/2,["Tank","Support-Controller","Skill Monkey"]),
+//aspectBuff = new stuntEffect("allyAction","gain(s) +"+effects1Modifier+" to Create an Aspect Actions ",effects1Modifier/2,["Party Face","Support-Controller","Skill Monkey"]),
+overcomeBuff = new stuntEffect("allyAction","gain(s) +"+effects1Modifier+" to Overcome  and Create and Aspect Actions ",effects1Modifier/1.5,["Party Face","Support-Controller","Skill Monkey"]),
+ALLBuff = new stuntEffect("allyAction","gain(s) +"+effects1Modifier+" to ALL Actions ",effects1Modifier,["Party Face","Support-Controller","Skill Monkey"]),
+buffLegendary = new stuntEffect("NA","gain(s) "+effects1Modifier +" Legendary Ability uses ",effects1Modifier*3,["Support-Controller","Skill Monkey","Damage Dealer"]),
+buffMove = new stuntEffect("NA","move(s) "+effects1Modifier +" Hexes ",effects1Modifier/4,["Support-Controller","Skill Monkey","Damage Dealer","Tank","Party Face"]),
+
+shieldAlly = new stuntEffect("NA","gain(s) a 'Shield' Aspect that prevents damage, created at + "+ (effects1Modifier+playerLevelVar*2+2),effects1Modifier,["Tank"]),
+hideAlly = new stuntEffect("NA","become(s) near-impossible to target ('Flight', 'Invisibility', etc)",effects1Modifier*2,["Skill Monkey","Tank","Damage Dealer"]),
+
+
+
+
+]	 
+
+if(relevantRole.name !== "Select Role"){
+	effects1 = effects1.filter(function (el) {
+  return (el.roles.indexOf(relevantRole.name) != -1)
+})
+
+	
+	effects2 = effects2.filter(function (ol) {
+  return (ol.roles.indexOf(relevantRole.name) != -1)
+	})}
+
+
+
+// This bit finds a random Trigger, then makes sure that stuntBonus is high enough to pay for it, then divides stuntBonus by the Trigger's cost
+	if(allyOrEnemy >0.50){chosenEffects1 = effects1[Math.floor(Math.random()*effects1.length)]; }
+	else{chosenEffects1 = effects2[Math.floor(Math.random()*effects2.length)]}
+	 
+	 }
+	 establishEffects1()
+	 
+	while(relevantBonus/chosenEffects1.costMultiplier<1 || chosenEffects1.specificity === chosenTargets.specificity ){establishEffects1()} 
+
+	//chosenEffects1.roles.indexOf(document.getElementById("mainRole").value || chosenEffects1.specificity === chosenTargets.specificity
+
+
+	 relevantBonus /= chosenEffects1.costMultiplier
+	 
+	 totalFinalVarRight = relevantBonus
+
+
+
+	 //End of Effect Pack Enemies
+	// console.log(relevantBonus + " | " +  chosenTrigger.effect + chosenDuration1.effect + "an enemy " + chosenEffects1.effect + chosenDuration2.effect)
+
+endText =  chosenTrigger.effect + chosenDuration1.effect + chosenTargets.effect + chosenEffects1.effect + chosenDuration2.effect
+	 //console.log(endText)
+	 }
+totalFinalVarRight = 0
+	 for(i=0;i<100;i++){
+		
+		 if(totalFinalVarRight>=1.1 || totalFinalVarRight<=0.9 ){stuntDeciderFunction(stuntBonus,chosenNPC[3])}
+	 else{break}
+	 
+	 }
+
+var rand6 = endText
+	 
+
+//stuntDeciderFunction(modifiedStuntBonus2)	 
+//var rand7 = endText
+totalFinalVarRight = 0
+
+	 for(i=0;i<100;i++){
+		
+		 if(totalFinalVarRight>=1.1 || totalFinalVarRight<=0.9 ){stuntDeciderFunction(stuntBonus2,chosenNPC[4])}
+	 else{break}
+	 }
+	var rand7 = "<br>\n- " + endText 
+
+	//console.log(rand6 + rand7) 
+	
+//"Select Role"
 
 //____________________________________________________________________________________________________
 
@@ -1428,39 +967,1534 @@ if(damageType === 5){stringType[0] += "-1 "; stringType[3] += "Mild "; stringTyp
 
 damageMaker(physicalStressBonus,physicalStress)
 damageMaker(mentalStressBonus,mentalStress)
-
 randPhysical = physicalStress[0] + physicalStress[1] + physicalStress[2] + physicalStress[3] + physicalStress[4]
 randMental = mentalStress[0] + mentalStress[1] + mentalStress[2] + mentalStress[3] + mentalStress[4]
 
 
+
+
+
+
 //____________________________________________________________________________________________________
 
 
-// New Window Maker ------------------------------------------------------------------
+// NPC Text Maker ------------------------------------------------------------------
 
 
 //____________________________________________________________________________________________________
 
 
-if (typeof imageLink === 'undefined') {     
-var myWindow = window.open("", "_blank","width=400, height=400");
-myWindow.document.write("<TITLE>"+rand+"</TITLE>")
-myWindow.document.write("<BODY BGCOLOR='#297ACC'>")
-myWindow.document.write("<p style='font-family:arial'><b>Aspects: </b><br>&nbsp;&nbsp;" + rand  + "<br>&nbsp;&nbsp;" + rand2 + "<br>&nbsp;&nbsp;" + rand3 + "<br>\n&nbsp;&nbsp;"   + rand5 + "<br>\n<b>Skills:</b> " + randSkills + rand6 + rand7 + randPhysical + randMental + " </p>");   
-myWindow.document.write("</BODY>")
-myWindow.document.write("</HTML>")}
 
+
+if(enemyOneDone != 1){
+document.getElementById("outputText").innerHTML="<b> Aspects: </b><br>&nbsp;&nbsp;" + rand  + "<br>&nbsp;&nbsp;" + rand2 + "<br>&nbsp;&nbsp;" + rand3 + "<br>\n&nbsp;&nbsp;"    + rand5 + "<br>\n<b> Skills:</b> " + randSkills + "<br><b>\nStunts:</b> <br>\n- " + rand6 + rand7 + randPhysical + randMental + " </p>"; 
+}
 else{
-var myWindow = window.open("", "_blank","width=500, height=800");
-myWindow.document.write("<TITLE>" + rand +"</TITLE>")
-myWindow.document.write("<BODY BGCOLOR='#297ACC'>")
-myWindow.document.write("<p style='font-family:arial'><b>Aspects: </b><br>&nbsp;&nbsp;" + rand  + "<br>&nbsp;&nbsp;" + rand2 + "<br>&nbsp;&nbsp;" + rand3 + "<br>\n&nbsp;&nbsp;"   + rand5 + "<br>\n<b>Skills:</b> " + randSkills + rand6 + rand7 + randPhysical + randMental + " </p>");   
-myWindow.document.write('<img src=' + imageLink + '" alt="Image" width=100% height=auto >')
-myWindow.document.write("</BODY>")
-myWindow.document.write("</HTML>")
+document.getElementById("outputText2").innerHTML="<b> Aspects: </b><br>&nbsp;&nbsp;" + rand  + "<br>&nbsp;&nbsp;" + rand2 + "<br>&nbsp;&nbsp;" + rand3 + "<br>\n&nbsp;&nbsp;"  + rand5  + "<br>\n<b> Skills:</b> " + randSkills + "<br><b>\nStunts:</b> <br>\n- " +  rand6 + rand7 + randPhysical + randMental + " </p>"; 
+	}
+
+enemyOneDone += 1   
 
 
-}     
+ 
 
+	}}
+//npcChoice()
+
+
+//____________________________________________________________________________________________________
+
+
+// Scene Mechanics Maker ------------------------------------------------------------------
+
+
+//____________________________________________________________________________________________________
+
+
+
+
+var Scene = function(name,description) {
+  this.name = name;
+  this.description = description;
+};
+
+var setSceneType = function(){
+
+var sceneAspects = [
+breakout = new Scene("Breakout","The party is surrounded ('Groups of Enemies' + Challenging Difficulty) and have to make their escape. Enemies will prioritise creating Aspects that block the way to the exit and Incapacitate the party."),
+escort = new Scene("Escort","The party is escorting a character. Enemies will prioritise killing the escorted character, so the Party has to keep enemies away and create defensive Aspects. The goal is to escape the Scene."),
+channeling = new Scene("Channeling","The party is channeling a ritual, and needs to survive a number of turns. Set Difficulty at 'Challenging' for a 5-6-round Channel, or 'Brutal' for a 3-4 round Channel "),
+interrupt = new Scene("Interrupt","The party is attempting to stop a Channeling. One of the Enemies is the Channeler, and stopping the Channeling forces the enemy to Concede the Conflict. Killing the Channneler, or Overcoming the Ritual at a Difficulty of (Number of Players X Level of Players X 4) will stop the Channel"),
+KingoftheHill = new Scene("King of the Hill","The party is attempting to gain control over an important position. All party members have to be on or adjacent to the Objective Hex. The Objective Hex and adjacent Hexes is protected by a defensive Aspect at a Difficulty of (Number of Players X Level of Players X 2). Enemies will work to block the party and hold their defensive position"),
+CapturetheFlag = new Scene("Capture the Flag","The party is attempting to gain control over an important position while protecting their own. A party member has to pick up the Objective and get back to the party's Objective. The Enemy Objective Hex and adjacent Hexes is protected by a defensive Aspect at a Difficulty of (Number of Players X Level of Players). Enemies will work to block the party and hold their defensive position"),
+SpaceInvaders = new Scene("Space Invaders","The party is holding back a tide of enemies trying to get past them (Difficulty: Challenging or Brutal). Every turn, an Enemy takes a Consequence. Enemies will try to Incapacitate the party or get them out of the way. You may add a Defensive Aspect that holds enemies back temporarily. If so, set Difficulty to Challenging"),
+SolvethePuzzle = new Scene("Solve the Puzzle","The party is trying to find the key to a spell, mystery, or piece of technology. If they unlock it, they can immediately end the Combat."),
+escort = new Scene("Escort","The party is trying to defend an item or position of value, and must keep the enemy away from it at all costs. Enemies will focus on disabling or displacing the Party to get to the Objective."),
+
+
+]
+
+var randomSceneAspect = Math.floor(Math.random()*sceneAspects.length)
+
+document.getElementById("SceneAspects1").innerHTML = sceneAspects[randomSceneAspect].name 
+document.getElementById("SceneAspects2").innerHTML = sceneAspects[randomSceneAspect].description
+
+
+document.getElementById("SceneAspects3").innerHTML = sceneAspects[randomSceneAspect].name 
+document.getElementById("SceneAspects4").innerHTML = sceneAspects[randomSceneAspect].description}
+
+var setSceneTerrain = function(){
+
+var terrainAspects = [
+TightQuarters = new Scene("Tight Quarters","The fight takes place over a two-Hex-thick line or canyon."),
+Minefield = new Scene("Minefield","When moving more than a Hex in one Turn, roll 4DF. on a natural -1 or less result, characters take 1 un-defendable Damage."),
+TheRaid = new Scene("The Raid","The fight takes place over multiple levels, linked by a one-Hex staircase or ramp."),
+Abyss = new Scene("Abyss","An abyss splits the room in two. One or two one-Hex bridges allow the room to be crossed. Bridges can be created - or destroyed."),
+FloorisLava = new Scene("Floor is Lava","Every turn, multiple Hexes become unpassable. A character forced into one of those Hexes automatically takes a Consequence."),
+DifficultTerrain  = new Scene("Difficult Terrain","Players and NPCs don't get their free move on their turns"),
+Cluttered = new Scene("Cluttered","About half the Hexes are filled with destructible terrain. Base difficulty to destroy terrain is equal to the Players' Level"),
+TheHighGround = new Scene("The High Ground","There are ledges or platforms around the Battlefield with the Aspect 'High Ground', which can be freely invoked at will for relevant Actions."),
+]
+
+var randomSceneTerrain = Math.floor(Math.random()*terrainAspects.length)
+
+document.getElementById("SceneTerrain1").innerHTML = terrainAspects[randomSceneTerrain].name
+document.getElementById("SceneTerrain2").innerHTML = terrainAspects[randomSceneTerrain].description
+
+document.getElementById("SceneTerrain3").innerHTML = terrainAspects[randomSceneTerrain].name
+document.getElementById("SceneTerrain4").innerHTML = terrainAspects[randomSceneTerrain].description
+
+
+}
+
+var setSceneBonus = function(){
+
+var bonusAspects = [
+Prisoner = new Scene("Prisoner","Have the enemy Concede the Conflict whilst at least one has a Serious Consequence Aspect or a similarly-disabling one."),
+NoSurvivors = new Scene("No Survivors","Destroy all enemies before they can escape."),
+InformationExtraction = new Scene("Information Extraction","Choose 3 Hexes around the battlemap to contain Information, requiring a relevant expertise Roll (Lore, Notice, etc). These are lost once Conflict ends."),
+Loot = new Scene("Loot","Choose 3 Hexes around the battlemap to contain Loot, requiring relevant rolls to pick up and carry away. These are lost once Conflict ends."),
+ProveyourWorth = new Scene("Prove your Worth","Players can use Successes with Style and Legendary Successes to impress whoever is judging the party, instead of using them to directly help in the Combat."),
+]
+
+var randomSceneBonus = Math.floor(Math.random()*bonusAspects.length)
+
+document.getElementById("SceneBonusObjectives1").innerHTML = bonusAspects[randomSceneBonus].name
+document.getElementById("SceneBonusObjectives2").innerHTML = bonusAspects[randomSceneBonus].description
+
+document.getElementById("SceneBonusObjectives3").innerHTML = bonusAspects[randomSceneBonus].name
+document.getElementById("SceneBonusObjectives4").innerHTML = bonusAspects[randomSceneBonus].description
+
+
+}
+
+
+
+//____________________________________________________________________________________________________
+
+
+// Godborn Maker Input ------------------------------------------------------------------
+//This is gonna go very wrong
+
+//____________________________________________________________________________________________________
+
+
+//Objects definition
+var LegendaryAbility = function(name,description,values,legendaries,aspectVariables) {
+  this.name = name;
+  this.description = description;
+  this.values = values;
+  this.legendaries = legendaries;
+  this.aspectVariables = aspectVariables;
+};
+
+var Role = function(name,legendaries,skills) {
+  this.name = name;
+  this.legendaries = legendaries;
+  this.skills = skills;
+
+};
+var secondOrigin = function(name,type,description,originString,originVar,approaches,domains,personalities,totalValues) {
+  this.name = name;
+  this.type = type;
+  this.description = description;
+  this.originString = originString;
+  this.originVar = originVar;
+  this.approaches = approaches;
+  this.domains = domains;
+  this.personalities = personalities;
+  this.totalValues = totalValues;
+};
+var parameterCalculator = function(name,type,values,legendaries,skills) {
+  this.name = name;
+  this.type = type;
+  this.values = values;
+  this.legendaries = legendaries;
+  this.skills = skills;
+
+};
+var adjective = function(name,values) {
+  this.name = name;
+  this.values = values;
+
+};
+
+var radios=["logos1","logqos2","logos3","logos4","kosmos1","kosmos2","kosmos3","kosmos4","eros1","eros2","eros3","eros4"]
+var displayArray = []
+
+
+var rolesChoiceArray = [
+Default = new Role("Select Role",[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]),
+MeatShield = new Role("Tank",[2,4,3,1,3,2,3,1,1,3,3,2,-1,-1,3,-2,1,-2,-1,0,2,3,0,2,-1,3,1,-1,2,2,4,3,-1,1,2,2,-2,-1,3,2,-3,-2,0,-2,-1,4,3,4,2,-1,1,-1,0,-2,3,1,-1,2,-2,-1,-2,3,2,1,-2,3],[3,-2,-1,2,1,4,3,3,4,3,-1,-2,1,0,4]),
+DamageDealer = new Role("Damage Dealer",[2,0,0,1,2,3,2,4,2,4,3,-2,-3,-1,-2,4,1,-1,0,3,1,3,4,-1,3,2,1,0,-1,4,2,-1,3,1,2,2,3,1,3,3,-4,4,1,1,4,1,4,2,-1,-2,4,-2,-2,-1,1,2,3,4,2,1,2,1,4,4,-2,3],[3,-1,-2,3,-2,4,4,1,1,0,-1,-2,4,4,3]),
+PartyFace = new Role("Party Face",[1,1,0,3,1,4,2,-3,-3,-4,-3,1,4,3,3,1,1,2,4,2,4,1,-2,4,-1,-1,-1,-2,-1,-3,-3,-2,3,4,-1,-1,1,0,-3,-2,1,-3,-3,3,-2,-1,-4,-4,4,4,-4,4,4,-2,-3,3,-2,2,2,1,2,3,1,4,1,-2],[1,0,4,2,1,-2,2,2,-1,4,4,4,-2,-1,0]),
+SkillMonkey = new Role("Skill Monkey",[4,4,3,4,4,4,4,-2,-3,-2,-1,4,2,2,2,-1,-1,4,3,2,2,0,-2,-1,-1,3,2,1,2,-1,-1,1,-1,-2,1,2,-2,3,1,3,3,0,1,4,2,1,-2,-3,-1,-2,-1,0,-1,3,2,1,2,2,4,-2,3,3,1,2,4,1],[3,4,1,4,2,1,4,4,1,0,1,4,1,4,3]),
+SupportController = new Role("Support-Controller",[4,4,3,3,4,4,4,1,3,3,4,4,4,2,4,1,3,4,4,3,4,4,1,4,-1,3,3,4,3,2,3,3,4,3,2,3,3,0,3,3,-1,-2,3,2,2,4,-1,-1,4,4,0,4,4,2,4,2,1,2,0,1,1,-1,-3,-1,4,4],[2,-1,4,4,4,2,4,1,2,3,4,-1,-2,1,4]),
+
+
+]
+
+var parametersArray = [
+// Approaches
+Careful = new parameterCalculator("Careful","Approach",[0,15,0],[],[]),
+Clever = new parameterCalculator("Clever","Approach",[20,0,0],[],[]),
+Flashy = new parameterCalculator("Flashy","Approach",[5,10,10],[],[]),
+Forceful = new parameterCalculator("Forceful","Approach",[0,15,15],[],[]),
+Quick = new parameterCalculator("Quick","Approach",[10,0,10],[],[]),
+Sneaky = new parameterCalculator("Sneaky","Approach",[15,0,15],[],[]),
+
+// Domains
+
+War = new parameterCalculator("War Deity","Domain",[0,10,15],[],[]),
+Wisdom = new parameterCalculator("Wisdom Deity","Domain",[20,20,0],[],[]),
+Leader = new parameterCalculator("Leader of the Gods","Domain",[10,20,5],[],[]),
+Father = new parameterCalculator("Progenitor of the Gods","Domain",[10,15,10],[],[]),
+Fertility = new parameterCalculator("Fertility Deity","Domain",[0,5,15],[],[]),
+Love = new parameterCalculator("Love Deity","Domain",[0,0,20],[],[]),
+Travel = new parameterCalculator("Travel Deity","Domain",[5,0,5],[],[]),
+Water = new parameterCalculator("Water Deity","Domain",[5,10,10],[],[]),
+Sky = new parameterCalculator("Sky Deity","Domain",[15,15,0],[],[]),
+Wit = new parameterCalculator("Wit Deity","Domain",[15,0,10],[],[]),
+Death = new parameterCalculator("Death Deity","Domain",[0,10,10],[],[]),
+Fire = new parameterCalculator("Fire Deity","Domain",[5,5,10],[],[]),
+Earth = new parameterCalculator("Earth Deity","Domain",[0,15,20],[],[]),
+Justice = new parameterCalculator("Justice Deity","Domain",[15,20,0],[],[]),
+Moon = new parameterCalculator("Moon Deity","Domain",[0,15,15],[],[]),
+Sun = new parameterCalculator("Sun Deity","Domain",[15,15,10],[],[]),
+Knowledge = new parameterCalculator("Knowledge Deity","Domain",[20,0,0],[],[]),
+Darkness = new parameterCalculator("Darkness Deity","Domain",[5,10,15],[],[]),
+Crafting = new parameterCalculator("Crafting Deity","Domain",[15,5,5],[],[]),
+Nature = new parameterCalculator("Nature Deity","Domain",[0,10,15],[],[]),
+Order = new parameterCalculator("Order Deity","Domain",[5,20,0],[],[]),
+
+// Roles
+
+General = new parameterCalculator("General","Personality",[8,16,4],[],[]),
+Politician = new parameterCalculator("Politician","Personality",[12,16,8],[],[]),
+FreeSpirit = new parameterCalculator("Free Spirit","Personality",[12,0,12],[],[]),
+King = new parameterCalculator("King","Personality",[8,16,12],[],[]),
+Mother = new parameterCalculator("Mother","Personality",[0,8,16],[],[]),
+Thinker = new parameterCalculator("Thinker","Personality",[20,0,0],[],[]),
+Harmonizer = new parameterCalculator("Harmonizer","Personality",[4,8,16],[],[]),
+Prince = new parameterCalculator("Prince","Personality",[12,8,12],[],[]),
+Enforcer = new parameterCalculator("Enforcer","Personality",[4,16,8],[],[]),
+Manipulator = new parameterCalculator("Manipulator","Personality",[12,4,12],[],[]),
+Trickster = new parameterCalculator("Trickster","Personality",[8,0,12],[],[]),
+Diplomat = new parameterCalculator("Diplomat","Personality",[12,12,8],[],[]),
+Protector = new parameterCalculator("Protector","Personality",[4,16,4],[],[]),
+Hunter = new parameterCalculator("Hunter","Personality",[4,8,16],[],[]),
+
+// Pantheons
+
+Greek = new parameterCalculator("Greek","God",[16,8,12],[],[]),
+Chinese = new parameterCalculator("Chinese","God",[8,16,4],[],[]),
+African = new parameterCalculator("African","God",[4,8,12],[],[]),
+Egyptian = new parameterCalculator("Egyptian","God",[8,20,4],[],[]),
+Norse = new parameterCalculator("Norse","God",[8,8,16],[],[]),
+Maori = new parameterCalculator("Maori","God",[4,8,16],[],[]),
+Japanese = new parameterCalculator("Japanese","God",[4,16,16],[],[]),
+Aztec = new parameterCalculator("Aztec","God",[4,12,12],[],[]),
+Indian = new parameterCalculator("Indian","God",[12,16,12],[],[]),
+Celtic = new parameterCalculator("Celtic","God",[4,8,16],[],[]),
+Inca = new parameterCalculator("Inca","God",[8,12,8],[],[]),
+BogiMuzhchin = new parameterCalculator("Slavic","God",[8,12,8],[],[]),
+
+// Titans
+
+Light = new parameterCalculator("Light","Titan",[12,18,0],[],[]),
+Ocean = new parameterCalculator("Ocean","Titan",[2,10,10],[],[]),
+OrderTitan = new parameterCalculator("Order","Titan",[10,20,0],[],[]),
+World = new parameterCalculator("World","Titan",[2,10,10],[],[]),
+FireTitan = new parameterCalculator("Fire","Titan",[6,12,16],[],[]),
+Patala = new parameterCalculator("Depths","Titan",[0,10,10],[],[]),
+SkyTitan = new parameterCalculator("Sky","Titan",[12,8,4],[],[]),
+Night = new parameterCalculator("Night","Titan",[5,10,15],[],[]),
+DeathTitan = new parameterCalculator("Death","Titan",[0,10,10],[],[]),
+
+
+// Mythborn
+
+SummerCourt = new parameterCalculator("Summer Court","Otherworld",[5,5,12],[],[]),
+WinterCourt = new parameterCalculator("Winter Court","Otherworld",[0,5,12],[],[]),
+DarkForest = new parameterCalculator("Dark Forest","Otherworld",[0,10,16],[],[]),
+Shambhala = new parameterCalculator("Shambhala","Otherworld",[4,8,16],[],[]),
+JadeSea = new parameterCalculator("Jade Sea","Otherworld",[5,10,10],[],[]),
+//Utopia = new parameterCalculator("Utopia","Otherworld",[15,5,15],[],[]),
+
+// Enlightened
+
+Illuminati = new parameterCalculator("Illuminati","Enlightened",[12,4,0],[],[]),
+OrderoftheJadeFist = new parameterCalculator("Order of the Jade Fist","Enlightened",[12,16,6],[],[]),
+Cabal = new parameterCalculator("Cabal","Enlightened",[16,4,4],[],[]),
+CircleofMerlin = new parameterCalculator("Circle of Merlin","Enlightened",[4,14,4],[],[]),
+
+
+// Party Roles
+
+
+Face = new parameterCalculator("Face","Role",[0,0,0],[],[]),
+Tank = new parameterCalculator("Tank","Role",[0,0,0],[],[]),
+DamageDealer = new parameterCalculator("Damage Dealer","Role",[0,0,0],[],[]),
+SkillMonkey = new parameterCalculator("Skill Monkey","Role",[0,0,0],[],[]),
+SupportController = new parameterCalculator("Support-Controller","Role",[0,0,0],[],[])
+
+
+]
+
+
+var secondOriginArray = [
+ Tūmatauenga= new secondOrigin("Tūmatauenga","God","God of War and Subdueing ",Maori.name,Maori,[Forceful,Flashy,Clever],[War,Leader],[King,General]), 
+ TaneMahuta= new secondOrigin("Tane Mahuta","God","God of Nature",Maori.name,Maori,[Clever,Forceful,Careful],[Nature,Wisdom],[Harmonizer,Thinker]), 
+ Tangaroa= new secondOrigin("Tangaroa","God","God of the Sea",Maori.name,Maori,[Careful,Forceful,Sneaky],[Water],[FreeSpirit,Harmonizer]), 
+ Tawhirimatea= new secondOrigin("Tawhirimatea","God","Renegade God of Weather, Lightning and Clouds",Maori.name,Maori,[Forceful,Flashy,Sneaky],[Sky],[FreeSpirit,General]), 
+ Rehua= new secondOrigin("Rehua","God","God of Stars",Maori.name,Maori,[Careful,Clever,Sneaky],[Sky,Wisdom],[Thinker,FreeSpirit]), 
+ HineNuiTePo= new secondOrigin("Hine-nui-te-po","God","Goddess of Night and Death",Maori.name,Maori,[Clever,Sneaky,Careful],[Death,Moon],[Thinker,Politician]), 
+ Ruaumoko= new secondOrigin("Ruaumoko","God","God of Warmth, Earthquakes and Volcanoes",Maori.name,Maori,[Careful,Clever,Forceful],[Earth,Fire],[Harmonizer]), 
+ Rongo= new secondOrigin("Rongo","God","God of Peace and Culture",Maori.name,Maori,[Clever,Sneaky,Careful],[Fertility,Wisdom],[Politician,Thinker]),
+ HaumiaTiketike= new secondOrigin("Haumia-Tiketike","God","God of Wild Food",Maori.name,Maori,[Sneaky,Forceful,Careful],[Wit,Nature],[Hunter]),
+ Mahuika= new secondOrigin("Mahuika","God","Goddess of Fire ",Maori.name,Maori,[Forceful,Flashy,Quick],[Fire],[FreeSpirit]),
+
+ Anubis= new secondOrigin("Anubis","God","God of Death and Judge of the Underworld ",Egyptian.name,Egyptian,[Clever,Careful,Forceful],[Death,Justice],[Enforcer]),
+ Horus= new secondOrigin("Horus","God","God of Justice",Egyptian.name,Egyptian,[Clever,Forceful,Quick],[Justice,Leader],[Prince,Politician]),
+ Hathor= new secondOrigin("Hathor","God","Goddess of Love, Fertility and Motherhood",Egyptian.name,Egyptian,[Careful,Flashy,Clever],[Fertility ,Sun],[Mother,Diplomat]),
+ Isis= new secondOrigin("Isis","God","Goddess of Magic, Inventor of Heku",Egyptian.name,Egyptian,[Clever,Sneaky,Careful],[Wisdom,Wit],[Politician,Thinker]),
+ Osiris= new secondOrigin("Osiris","God","Lord of the Underworld",Egyptian.name,Egyptian,[Clever,Flashy,Sneaky],[Death],[King]),
+ AtumRe= new secondOrigin("Atum Re","God","God of the Sun",Egyptian.name,Egyptian,[Clever,Flashy,Forceful],[Father,Sun],[King]),
+ Set= new secondOrigin("Set","God","God of Sky and Guardian of the Desert",Egyptian.name,Egyptian,[Clever,Sneaky,Forceful],[Sky],[Manipulator,Protector]),
+ Sekhmet= new secondOrigin("Sekhmet","God","Goddess of War",Egyptian.name,Egyptian,[Forceful,Quick,Flashy],[War],[General,Hunter]),
+ Bastet= new secondOrigin("Bastet","God","Keeper of Secrets",Egyptian.name,Egyptian,[Clever,Sneaky,Quick],[Wisdom],[Thinker,Protector]),
+ Hapi= new secondOrigin("Hapi","God","God of Healing and Self-Sacrifice",Egyptian.name,Egyptian,[Flashy,Careful,Clever],[Fertility,Love],[Harmonizer,Protector]), 
+ Khepri= new secondOrigin("Khepri","God","Goddess of Leadership",Egyptian.name,Egyptian,[Forceful,Clever,Sneaky],[War,Wit],[General,Enforcer]),
+ Ptah= new secondOrigin("Ptah","God","God of Artistry",Egyptian.name,Egyptian,[Clever,Quick,Flashy],[Crafting],[Thinker,FreeSpirit]),
+ Rain= new secondOrigin("Rain","God","Goddess of the Veil",Egyptian.name,Egyptian,[Careful,Clever,Forceful],[Death,Travel],[FreeSpirit,Protector]),
+ Sobek= new secondOrigin("Sobek","God","God of Water and Retribution",Egyptian.name,Egyptian,[Careful,Forceful,Sneaky],[Water],[FreeSpirit,Hunter]),
+ Thoth= new secondOrigin("Thoth","God","God of Knowledge",Egyptian.name,Egyptian,[Clever,Sneaky,Quick],[Wisdom],[Thinker]),
+ Geb= new secondOrigin("Geb","God","God of the Earth",Egyptian.name,Egyptian,[Careful,Flashy,Clever],[Earth],[Protector]),
+
+ Agni= new secondOrigin("Agni","God","God of FIre and Sacrifice",Indian.name,Indian,[Clever,Flashy,Careful],[Fire],[FreeSpirit]),
+ Brahma= new secondOrigin("Brahma","God","The Creator",Indian.name,Indian,[Clever,Careful,Sneaky],[Knowledge,Father],[Thinker]),
+ Ganesha= new secondOrigin("Ganesha","God","God of good luck and Wisdom",Indian.name,Indian,[Clever,Forceful,Sneaky],[Travel,Wisdom],[Harmonizer,Protector]),
+ Indra= new secondOrigin("Indra","God","God of war and weather",Indian.name,Indian,[Forceful,Clever,Flashy],[Sky,Leader],[King]),
+ Kali= new secondOrigin("Kali","God","Goddess of annihilation",Indian.name,Indian,[Forceful,Flashy,Quick],[War,Darkness],[Enforcer]),
+ Lakshmi= new secondOrigin("Lakshmi","God","Goddess of fortune",Indian.name,Indian,[Clever,Careful,Sneaky],[Wit],[FreeSpirit,Manipulator]),
+ Parvati= new secondOrigin("Parvati","God","Goddess of feminity",Indian.name,Indian,[Clever,Sneaky,Careful],[Love,Fertility],[Diplomat,Mother]),
+ Sarasvati= new secondOrigin("Sarasvati","God","Goddess of artists",Indian.name,Indian,[Flashy,Careful,Sneaky],[Crafting],[FreeSpirit]),
+ Shiva= new secondOrigin("Shiva","God","The Destroyer",Indian.name,Indian,[Clever,Flashy,Forceful],[Order,Father],[FreeSpirit,Thinker]),
+ Surya= new secondOrigin("Surya","God","God of the sun",Indian.name,Indian,[Flashy,Forceful,Quick],[Sun],[FreeSpirit]),
+ Vishnu= new secondOrigin("Vishnu","God","The Preserver",Indian.name,Indian,[Careful,Forceful,Clever],[Wisdom,Order],[Protector,Harmonizer]),
+ Yama= new secondOrigin("Yama","God","Lord of the Dead",Indian.name,Indian,[Sneaky,Careful,Clever],[Death],[Enforcer,Thinker]),
+ Murugan= new secondOrigin("Murugan","God","General of the Divine Armies",Indian.name,Indian,[Forceful,Flashy,Quick],[War],[General]),
+ 
+ Aphrodite= new secondOrigin("Aphrodite","God","Goddess of love and beauty",Greek.name,Greek,[Flashy,Forceful,Careful],[Love],[Manipulator]),
+ Apollo= new secondOrigin("Apollo","God","God of prophecy, the sun, and art",Greek.name,Greek,[Flashy,Careful,Clever],[Sun,Crafting],[Politician]),
+ Archimedes= new secondOrigin("Archimedes","God","God of Logic",Greek.name,Greek,[Clever,Careful,Forceful],[Crafting,Knowledge],[Thinker]),
+ Ares= new secondOrigin("Ares","God","God of War",Greek.name,Greek,[Forceful,Flashy,Careful],[War],[General]),
+ Artemis= new secondOrigin("Artemis","God","Goddess of chastity, the moon, and hunting",Greek.name,Greek,[Careful,Sneaky,Quick],[Moon,War],[FreeSpirit]),
+ Athena= new secondOrigin("Athena","God","Goddess of strategy and wisdom",Greek.name,Greek,[Clever,Careful,Forceful],[War,Wisdom],[General]),
+ Demeter= new secondOrigin("Demeter","God","Goddess of Nature and Agriculture",Greek.name,Greek,[Flashy,Forceful,Clever],[Fertility],[Mother]),
+ Dionysus= new secondOrigin("Dionysus","God","God of Wine, Friendship and Liberty",Greek.name,Greek,[Flashy,Careful,Clever],[Wit],[FreeSpirit,Harmonizer]),
+ Gerald= new secondOrigin("Gerald","God","God of Rock 'n' Roll",Greek.name,Greek,[Flashy,Forceful,Quick],[Fire,War],[Enforcer]),
+ Hades= new secondOrigin("Hades","God","Ruler of the Underworld",Greek.name,Greek,[Careful,Sneaky,Clever],[Death],[Politician,King]),
+ Hephaestus= new secondOrigin("Hephaestus","God","God of the Forge and Invention",Greek.name,Greek,[Clever,Careful,Forceful],[Crafting,Fire],[Thinker]),
+ Hera= new secondOrigin("Hera","God","Goddess of marriage and politics",Greek.name,Greek,[Forceful,Sneaky,Clever],[Leader,Fertility],[]),
+ Herakles= new secondOrigin("Herakles","God","God of Strength",Greek.name,Greek,[Forceful,Flashy,Quick],[War],[Prince,Enforcer]),
+ Hermes= new secondOrigin("Hermes","God","God of thieves, merchants, and tricksters",Greek.name,Greek,[Quick,Clever,Sneaky],[Travel,Wit],[FreeSpirit]),
+ Lyra= new secondOrigin("Lyra","God","Goddess of Freedom",Greek.name,Greek,[Clever,Quick,Sneaky],[Sky,Wit],[FreeSpirit]),
+ Poseidon= new secondOrigin("Poseidon","God","God of the sea",Greek.name,Greek,[Flashy,Forceful,Careful],[Water],[King,FreeSpirit]),
+ Zeus= new secondOrigin("Zeus","God","God of Leadership, Thunder, Sky, and Power",Greek.name,Greek,[Flashy,Forceful,Clever],[Leader,Sky],[King,Politician]),
+
+ Aganju= new secondOrigin("Aganju","God","God of War",African.name,African,[Forceful,Flashy,Quick],[War,Nature],[Enforcer]),
+ Anansi= new secondOrigin("Anansi","God","Spider God of Tricks and Knowledge",African.name,African,[Clever,Flashy,Quick],[Knowledge,Wisdom],[Trickster,Harmonizer]),
+Ayao= new secondOrigin("Ayao","God","Goddess of Air",African.name,African,[Clever,Forceful,Sneaky],[Sky,Wit],[Hunter,General]),
+Azaka= new secondOrigin("Azaka","God","Goddess of Lightning",African.name,African,[Flashy,Clever,Quick],[Sky,Fire],[FreeSpirit]),
+BaronSamedi= new secondOrigin("Baron Samedi","God","God of Death, Keeper of Guinee",African.name,African,[Flashy,Clever,Sneaky],[Death],[FreeSpirit,Harmonizer]),
+Damballa= new secondOrigin("Damballa","God","God of the Sky",African.name,African,[Careful,Clever,Sneaky],[Sky],[Prince,Thinker]),
+DeAllende= new secondOrigin("De-Allende","God","The Dreamweaver",African.name,African,[Clever,Quick,Flashy],[Moon,Knowledge],[Thinker,Trickster]),
+Eledumare= new secondOrigin("Eledumare","God","Primordial Trinity, Father of the Gods",African.name,African,[Careful,Flashy,Forceful],[Father],[General]),
+Erzulie= new secondOrigin("Erzulie","God","Goddess of Love and Flowers",African.name,African,[Flashy,Clever,Sneaky],[Love,Wit],[Harmonizer,Protector]),
+Kalfu= new secondOrigin("Kalfu","God","God of Darkness",African.name,African,[Clever,Sneaky,Quick],[Darkness,Travel],[Manipulator,Trickster]),
+Legba= new secondOrigin("Legba","God","God of Crossroads, Psychopomp",African.name,African,[Careful,Clever,Quick],[Wisdom,Travel],[Protector,Thinker]),
+MamanBrigitte= new secondOrigin("Maman Brigitte","God","Goddess of Death",African.name,African,[Flashy,Careful,Quick],[Death],[FreeSpirit,Harmonizer]),
+Olorun= new secondOrigin("Olorun","God","Primordial Trinity, and Ruler of Ikole Orun",African.name,African,[Careful,Clever,Forceful],[Leader,Sun],[King,Protector]),
+Ogoun= new secondOrigin("Ogoun","God","God of Iron and Crafting",African.name,African,[Careful,Clever,Sneaky],[Crafting],[FreeSpirit]),
+Shapona= new secondOrigin("Shapona","God","God of Earth, Disease and Healing",African.name,African,[Sneaky,Clever,Careful],[Earth,Death],[FreeSpirit,Thinker]),
+Simbi= new secondOrigin("Simbi","God","God of Rain and Magic",African.name,African,[Sneaky,Clever,Careful],[Nature,Fertility],[Enforcer,Thinker]),
+Yemoja= new secondOrigin("Yemoja","God","Goddess of Fertility and Women",African.name,African,[Careful,Clever,Quick],[Fertility],[Mother,Diplomat]),
+
+Change= new secondOrigin("Chang'e","God","Goddess of the Moon",Chinese.name,Chinese,[Clever,Quick,Sneaky],[Moon],[Diplomat,Harmonizer]),
+Chiyou= new secondOrigin("Chiyou","God","God of War",Chinese.name,Chinese,[Clever,Forceful,Quick],[War],[General,Thinker]),
+Erlang= new secondOrigin("Erlang","God","God of Truth",Chinese.name,Chinese,[Clever,Careful,Quick],[Leader,Justice],[General,Enforcer]),
+Fuxi= new secondOrigin("Fuxi","God","Creator Goddess and Muse of mankind",Chinese.name,Chinese,[Careful,Quick,Clever],[Father,Knowledge],[FreeSpirit,Thinker]),
+GaoYao= new secondOrigin("Gao Yao","God","God of Law",Chinese.name,Chinese,[Forceful,Clever,Careful],[Knowledge,Justice],[Enforcer,Thinker]),
+GuanYu= new secondOrigin("Guan Yu","God","18th Jade Emperor, God of Martial Power and Brotherhoods",Chinese.name,Chinese,[Forceful,Clever,Flashy],[Justice,War],[General,Enforcer]),
+Houyi= new secondOrigin("Houyi","God","God of the Sun and Archery",Chinese.name,Chinese,[Forceful,Flashy,Clever],[Sun],[Diplomat,Politician]),
+LeiGong= new secondOrigin("Lei Gong","God","God of Thunder",Chinese.name,Chinese,[Flashy,Forceful,Clever],[Sky,Fire],[Enforcer,Protector]),
+Nezha= new secondOrigin("Nezha","God","God of Honor and Youth",Chinese.name,Chinese,[Flashy,Quick,Clever],[Justice,Wit],[Protector,FreeSpirit]),
+Nuwa= new secondOrigin("Nuwa","God","Creator Goddess and Muse of mankind",Chinese.name,Chinese,[Careful,Quick,Clever],[Father,Knowledge],[FreeSpirit,Thinker]),
+Shangdi= new secondOrigin("Shangdi","God","Yellow Emperor, Overseer of Tiàn",Chinese.name,Chinese,[Forceful,Clever,Careful],[Leader,Order],[King,Enforcer]),
+Shennong= new secondOrigin("Shennong","God","God of Agriculture and Medicine",Chinese.name,Chinese,[Clever,Careful,Quick],[Knowledge,Nature],[Thinker,Harmonizer]),
+SunWukong= new secondOrigin("Sun Wukong","God","Monkey King, God of Trickery and Strength",Chinese.name,Chinese,[Flashy,Quick,Clever],[Wit],[FreeSpirit,Trickster]),
+Xiwangmu= new secondOrigin("Xiwangmu","God","Queen-Mother of the West and Keeper of the Golden Orchard",Chinese.name,Chinese,[Careful,Quick,Clever],[Wisdom,Nature],[Mother,Harmonizer]),
+Yanluo= new secondOrigin("Yanluo","God","Overseer of the Dead and Keeper of Di Yu",Chinese.name,Chinese,[Clever,Forceful,Sneaky],[Death],[Thinker,Enforcer]),
+Zhuanxu= new secondOrigin("Zhuanxu","God","Chinese",Chinese.name,Chinese,[Forceful,Clever,Quick],[Sky],[Enforcer,General]),
+
+Aengus= new secondOrigin("Aengus","God","God of Love and Youth",Celtic.name,Celtic,[Flashy,Quick,Forceful],[Love,Wit],[Harmonizer,Protector]),
+Aine= new secondOrigin("Aine","God","Goddess of Summer, Agriculture and Wealth",Celtic.name,Celtic,[Careful,Quick,Sneaky],[Nature,Fertility],[Diplomat,Protector]),
+Brigid= new secondOrigin("Brigid","God","Goddess of Spring, Fertility and Dawn",Celtic.name,Celtic,[Clever,Careful,Quick],[Fertility,Sky],[Diplomat,Thinker]),
+Cernunnos= new secondOrigin("Cernunnos","God","God of Druidism and Nature",Celtic.name,Celtic,[Clever,Careful,Sneaky],[Nature],[Harmonizer,FreeSpirit]),
+Dagda= new secondOrigin("Dagda","God","God of Masculinity and Magic, High King of Ireland",Celtic.name,Celtic,[Flashy,Forceful,Quick],[War,Nature],[General,King]),
+DianCécht= new secondOrigin("Dian Cécht","God","God of Crafting and Healing",Celtic.name,Celtic,[Careful,Clever,Forceful],[Nature,Knowledge],[Thinker,Protector]),
+Fand= new secondOrigin("Fand","God","Goddess of Mist",Celtic.name,Celtic,[Sneaky,Clever,Careful],[Water,Sky],[FreeSpirit]),
+Lugh= new secondOrigin("Lugh","God","God of Sky and Oaths",Celtic.name,Celtic,[Clever,Forceful,Quick],[Sky,Justice],[Enforcer,General]),
+ManannanmacLir= new secondOrigin("Manannan mac Lir","God","God of the Sea and Psychopomp",Celtic.name,Celtic,[Careful,Clever,Sneaky],[Water,Travel],[FreeSpirit,Protector]),
+Morrigan= new secondOrigin("The Morrigan","God","Goddess of War and Prophecy",Celtic.name,Celtic,[Forceful,Clever,Quick],[War,Death],[Thinker,Hunter]),
+Niamh= new secondOrigin("Niamh","God","Queen of Tir na nÓg",Celtic.name,Celtic,[Clever,Careful,Quick],[Travel,Leader],[King,Harmonizer]),
+NiemhMairbh= new secondOrigin("Niemh Mairbh","God","God of Retribution",Celtic.name,Celtic,[Sneaky,Clever,Forceful],[Death,Darkness],[Manipulator,Enforcer]),
+Ogma= new secondOrigin("Ogma","God","God of Strength and Eloquence",Celtic.name,Celtic,[Clever,Forceful,Careful],[War,Knowledge],[Thinker,General]),
+Zerris= new secondOrigin("Zerris","God","Machine-God of Technology",Celtic.name,Celtic,[Clever,Careful,Forceful],[Crafting,Fire],[Thinker]),
+
+Chasqua= new secondOrigin("Chasqua","God","Goddess of Love, Happiness and Health",Inca.name,Inca,[Clever,Careful,Flashy],[Love, Nature],[Harmonizer,FreeSpirit]),
+Cochamama= new secondOrigin("Cochamama","God","Goddess of the Sea",Inca.name,Inca,[Careful,Clever,Forceful],[Water, Wisdom],[Mother,Harmonizer]),
+Illapa= new secondOrigin("Illapa","God","God of War and Weather",Inca.name,Inca,[Clever,Sneaky,Forceful],[War, Sky],[Protector,Enforcer]),
+Inti= new secondOrigin("Inti","God","God of the Sun",Inca.name,Inca,[Flashy,Forceful,Quick],[Leader, Sun],[King,Enforcer]),
+Kilyamama= new secondOrigin("Kilyamama","God","Goddess of the Moon",Inca.name,Inca,[Clever,Careful,Flashy],[Moon, Knowledge],[Politician,Thinker]),
+Supay= new secondOrigin("Supay","God","God of the Underworld",Inca.name,Inca,[Clever,Sneaky,Quick],[Death, Earth],[Manipulator,Enforcer]),
+Urcaguary= new secondOrigin("Urcaguary","God","God of Metal and Greed",Inca.name,Inca,[Flashy,Quick,Forceful],[Earth, Crafting],[FreeSpirit,Manipulator]),
+Viracocha= new secondOrigin("Viracocha","God","God of Creation and the Sky",Inca.name,Inca,[Clever,Careful,Forceful],[Father, Order],[Thinker]),
+
+Rod= new secondOrigin("Rod","God","Great Creator, God of Birth",BogiMuzhchin.name,BogiMuzhchin,[Careful,Sneaky,Clever],[Father],[FreeSpirit]),
+ Lada= new secondOrigin("Lada","God","Goddess of Summer, Love, Marriage and Beauty",BogiMuzhchin.name,BogiMuzhchin,[Clever,Careful,Flashy],[Love ,Sun],[Mother,Diplomat]),
+ Perun= new secondOrigin("Perun","God","God of Sky, Thunder and Lightning",BogiMuzhchin.name,BogiMuzhchin,[Forceful,Flashy,Clever],[Sky],[King,Protector]),
+ Dodola= new secondOrigin("Dodola","God","Goddess of Rain",BogiMuzhchin.name,BogiMuzhchin,[Careful,Sneaky,Clever],[Water ,Nature],[Mother,Protector]),
+ Svarog= new secondOrigin("Svarog","God","God of Fire and Smithing",BogiMuzhchin.name,BogiMuzhchin,[Clever,Careful,Sneaky],[Fire ,Crafting],[FreeSpirit,Thinker]),
+ Dazbog= new secondOrigin("Dazbog","God","God of Sun and Wealth",BogiMuzhchin.name,BogiMuzhchin,[Flashy,Quick,Forceful],[Sun],[Harmonizer,FreeSpirit]),
+ Svetovid= new secondOrigin("Svetovid","God","God of Fertility and Abundance",BogiMuzhchin.name,BogiMuzhchin,[Clever,Sneaky,Careful],[Fertility ,Nature],[FreeSpirit,Harmonizer]),
+ Veles= new secondOrigin("Veles","God","God of Earth, Underworld and Trickery",BogiMuzhchin.name,BogiMuzhchin,[Clever,Sneaky,Quick],[Earth ,Death],[Trickster,FreeSpirit]),
+ Dziewona= new secondOrigin("Dziewona","God","Goddess of Hunt and the Moon",BogiMuzhchin.name,BogiMuzhchin,[Clever,Quick,Careful],[Wisdom,Moon],[Mother,Harmonizer]),
+ Belobog= new secondOrigin("Belobog","God","God of Good Fortune",BogiMuzhchin.name,BogiMuzhchin,[Forceful,Quick,Flashy],[Order ,Sun],[Enforcer,Harmonizer]),
+ Chernobog= new secondOrigin("Chernobog","God","God of Misfortune",BogiMuzhchin.name,BogiMuzhchin,[Clever,Sneaky,Careful],[Order ,Darkness],[Thinker,Enforcer]),
+ Hors= new secondOrigin("Hors","God","God of Medicine and Arts",BogiMuzhchin.name,BogiMuzhchin,[Careful,Clever,Flashy],[Nature ,Knowledge],[Harmonizer,Protector]),
+ Jarilo= new secondOrigin("Jarilo","God","God of War and Spring",BogiMuzhchin.name,BogiMuzhchin,[Careful,Quick,Forceful],[War,Sun],[Protector,Prince]),
+ Morana= new secondOrigin("Morana","God","Goddess of Harvest, Winter and Death",BogiMuzhchin.name,BogiMuzhchin,[Careful,Forceful,Quick],[Death,Water],[Enforcer,Harmonizer]),
+
+ Baldur= new secondOrigin("Baldur","God","God of Light, Beauty, Love and Happiness.",Norse.name,Norse,[Flashy,Careful,Quick],[Love,Fertility],[FreeSpirit,Prince]), 
+ Freya= new secondOrigin("Freya","God","Goddess of the Gold, and War.",Norse.name,Norse,[Clever,Forceful,Flashy],[War,Crafting],[Diplomat,Manipulator]), 
+ Freyr= new secondOrigin("Freyr","God","God of Farming, Weather and Fertility.",Norse.name,Norse,[Careful,Clever,Sneaky],[Fertility],[Harmonizer]), 
+ Frigg= new secondOrigin("Frigg","God","Queen of the Gods.",Norse.name,Norse,[Clever,Sneaky,Careful],[Leader],[Politician,King]), 
+ Heimdall= new secondOrigin("Heimdall","God","Protector of Asgard",Norse.name,Norse,[Sneaky,Careful,Clever],[Justice],[Protector,Manipulator]), 
+ Hel= new secondOrigin("Hel","God","Goddess of the Dead, Overseer of Helheim",Norse.name,Norse,[Clever,Forceful,Sneaky],[Death],[Enforcer]), 
+ Odin= new secondOrigin("Odin","God","King of Asgard, God of Magic, Wisdom, and Prophecy",Norse.name,Norse,[Clever,Sneaky,Forceful],[Leader,Father],[King,Manipulator]), 
+ Sif= new secondOrigin("Sif","God","Goddess of Marriage",Norse.name,Norse,[Careful,Clever,Forceful],[Love,Fertility],[Harmonizer]), 
+ Thor= new secondOrigin("Thor","God","God of Thunder and War",Norse.name,Norse,[Forceful,Flashy,Quick],[War,Sky],[FreeSpirit,Protector]), 
+ Tyr= new secondOrigin("Tyr","God","God of Victory",Norse.name,Norse,[Forceful,Clever,Quick],[Justice,War],[Enforcer,General]), 
+ Vidar= new secondOrigin("Vidar","God","God of Vengeance",Norse.name,Norse,[Forceful,Clever,Sneaky],[Justice,Darkness],[Enforcer,Protector]), 
+ Loki= new secondOrigin("Loki","God","Trickster God",Norse.name,Norse,[Clever,Sneaky,Quick],[Wit],[Manipulator,Trickster]), 
+ Bragi= new secondOrigin("Bragi","God","God of Poets",Norse.name,Norse,[Clever,Flashy,Careful],[Wit,Light],[FreeSpirit]), 
+ Vali= new secondOrigin("Vali","God","God of Debate and Duel",Norse.name,Norse,[Flashy,Quick,Forceful],[Justice],[Enforcer]), 
+ Ullr= new secondOrigin("Ullr","God","God of Survival",Norse.name,Norse,[Careful,Clever,Forceful],[Nature,Travel],[Hunter,Protector]), 
+ 
+ Amaterasu= new secondOrigin("Amaterasu","God","Goddess of the Sun",Japanese.name,Japanese,[Clever,Flashy,Careful],[Sun,Leader],[Politician,Mother]), 
+ Hachiman= new secondOrigin("Hachiman","God","God of Swordfighting, Archery and Change",Japanese.name,Japanese,[Clever,Forceful,Quick],[War,Wisdom],[Thinker,Leader]), 
+ Izanagi= new secondOrigin("Izanagi","God","Lord of the Sky",Japanese.name,Japanese,[Careful,Quick,Sneaky],[Father,Sky],[FreeSpirit,Thinker]), 
+ Raiden= new secondOrigin("Raiden","God","Lord of Thunder and Lightning",Japanese.name,Japanese,[Flashy,Forceful,Quick],[Sky],[FreeSpirit]), 
+ Izanami= new secondOrigin("Izanami","God","Queen of the Underworld",Japanese.name,Japanese,[Clever,Careful,Sneaky],[Death,Earth],[Enforcer,Manipulator]), 
+ Ryujin= new secondOrigin("Ryujin","God","Dragon God of the Ocean Depths",Japanese.name,Japanese,[Forceful,Sneaky,Careful],[Water,Wit],[Thinker,King]), 
+ Susanoo= new secondOrigin("Susano-o","God","Lord of Sea and Storms",Japanese.name,Japanese,[Flashy,Forceful,Clever],[Water,Travel],[FreeSpirit,Harmonizer]), 
+ TsukiYomi= new secondOrigin("Tsuki-Yomi","God","God of the Moon",Japanese.name,Japanese,[Clever,Sneaky,Careful],[Moon],[Diplomat]), 
+ Inari= new secondOrigin("Inari","God","Androgynous God/Goddess of Foxes and Prosperity",Japanese.name,Japanese,[Clever,Careful,Sneaky],[Wit,Fertility],[Trickster,Harmonizer]), 
+ AmenoUzume= new secondOrigin("Ame no Uzume","God","Goddess of Dawn, Mirth and Revelry",Japanese.name,Japanese,[Clever,Flashy,Sneaky],[Love,Wit,Sun],[Harmonizer,Diplomat]), 
+ Sarutahiko= new secondOrigin("Sarutahiko","God","God of Strength and Guidance",Japanese.name,Japanese,[Careful,Forceful,Clever],[War,Wisdom],[Protector]),
+
+ Ellykha= new secondOrigin("Ellykha","God","Goddess of Spilt Blood",Aztec.name,Aztec,[Forceful,Flashy,Quick],[War],[Enforcer]), 
+ Huitzilopochtli= new secondOrigin("Huitzilopochtli","God","God of Blood, War and the Sun, Cardinal God of the South",Aztec.name,Aztec,[Forceful,Flashy,Clever],[War,Sun,Leader],[General]), 
+ Miclántecuhtli= new secondOrigin("Miclántecuhtli","God","God of the Dead and Spirits",Aztec.name,Aztec,[Careful,Clever,Sneaky],[Death],[Thinker]), 
+ Quetzalcoátl= new secondOrigin("Quetzalcoátl","God","God of Light, Civilization and Creation, Cardinal God of the West",Aztec.name,Aztec,[Clever,Careful,Flashy],[Leader,Wisdom],[Harmonizer,Politician]), 
+ Tezcatlipoca= new secondOrigin("Tezcatlipoca","God","God of Change, Night and Destruction, Cardinal God of the North",Aztec.name,Aztec,[Clever,Sneaky,Forceful],[Moon,Darkness],[King]), 
+ Tlazoltéotl= new secondOrigin("Tlazoltéotl","God","Goddess of Filth",Aztec.name,Aztec,[Flashy,Careful,Clever],[Fertility,Love],[Harmonizer,Manipulator]), 
+ XipeTotec= new secondOrigin("Xipe Totec","God","God of Maize and Growth, Cardinal God of the East",Aztec.name,Aztec,[Clever,Sneaky,Forceful],[Fertility,Darkness],[Trickster]), 
+ Xochipilli= new secondOrigin("Xochipilli","God","God of Art, Dance and Flowers",Aztec.name,Aztec,[Flashy,Clever,Forceful],[Crafting,Nature],[FreeSpirit,Protector]), 
+ Xochiquetzal= new secondOrigin("Xochiquetzal","God","Goddess of Fertility and Female Power",Aztec.name,Aztec,[Clever,Forceful,Sneaky],[Fertility,Love],[Mother,Protector]), 
+ Xolotl= new secondOrigin("Xolotl","God","God of Lightning, Death and Psychopomp",Aztec.name,Aztec,[Forceful,Clever,Careful],[Death,Sky],[Protector,Enforcer]), 
+
+ Huracán= new secondOrigin("Huracán","Titan","Sky as Tempest",SkyTitan.name,SkyTitan,[Forceful,Quick,Clever],[Sky],[Enforcer,Hunter]), 
+ Ouranos= new secondOrigin("Ouranos","Titan","SkyTitan as Calm",SkyTitan.name,SkyTitan,[Clever,Careful,Forceful],[Sky,Father],[Thinker,Protector]), 
+ Shu= new secondOrigin("Shu","Titan","Sky as Stillness",SkyTitan.name,SkyTitan,[Quick,Clever,Sneaky],[Sky,Order],[Enforcer,Manipulator]), 
+ Typhon= new secondOrigin("Typhon","Titan","Sky as Destruction",SkyTitan.name,SkyTitan,[Forceful,Clever,Quick],[Sky,War],[Enforcer,Hunter]),
+ Tlaloc= new secondOrigin("Tlaloc","Titan","Titan of Rain",SkyTitan.name,SkyTitan,[Clever,Flashy,Quick],[Sky,Water],[FreeSpirit]),
+
+ Atlas= new secondOrigin("Atlas","Titan","Titan of Gravity",OrderTitan.name,OrderTitan,[Careful,Forceful,Flashy],[Order,Earth],[FreeSpirit,Protector]),
+ Coeus= new secondOrigin("Coeus","Titan","Titan of Knowledge",OrderTitan.name,OrderTitan,[Clever,Sneaky,Careful],[Order,Knowledge],[Thinker,Manipulator]),
+ Kronus= new secondOrigin("Kronus","Titan","Titan of Control",OrderTitan.name,OrderTitan,[Forceful,Clever,Careful],[Leader,Order],[King,General]),
+ Themis= new secondOrigin("Themis","Titan","Titan of Law",OrderTitan.name,OrderTitan,[Careful,Clever,Forceful],[Order,Justice],[Thinker,Diplomat]),
+ Chronos= new secondOrigin("Chronos","Titan","Titan of Time",OrderTitan.name,OrderTitan,[Careful,Clever,Forceful],[Order],[FreeSpirit,Thinker]),
+
+ Aten= new secondOrigin("Aten","Titan","Titan of Brightness",Light.name,Light,[Forceful,Flashy,Clever],[Sun],[King]),
+ Helios= new secondOrigin("Helios","Titan","Titan of the Sun",Light.name,Light,[Clever,Flashy,Quick],[Sun],[FreeSpirit]),
+ Hemera= new secondOrigin("Hemera","Titan","Titan of Day",Light.name,Light,[Careful,Flashy,Clever],[Sun,Fertility],[Harmonizer,Mother]),
+ Hyperion= new secondOrigin("Hyperion","Titan","Titan of Glory",Light.name,Light,[Flashy,Forceful,Careful],[Leader,Sun],[General,King]),
+ Zhulong= new secondOrigin("Zhulong","Titan","Titan of Illumination",Light.name,Light,[Clever,Careful,Flashy],[Wisdom,Sun],[Thinker]),
+
+ Sedna= new secondOrigin("Sedna","Titan","Titan of the Providing Sea",Ocean.name,Ocean,[Clever,Careful,Sneaky],[Water,Fertility],[Harmonizer]),
+ Charybdis= new secondOrigin("Charybdis","Titan","Titan of Drowning",Ocean.name,Ocean,[Forceful,Flashy,Sneaky],[Water,Death],[Hunter,Manipulator]),
+ Yam= new secondOrigin("Yam","Titan","Titan of the Raging Sea",Ocean.name,Ocean,[Forceful,Flashy,Clever],[Leader,Water],[King,Manipulator]),
+
+ Heget= new secondOrigin("Heget","Titan","Titan of Fertility",Ocean.name,Ocean,[Forceful,Clever,Sneaky],[Water,Fertility],[Protector]),
+ Gaia= new secondOrigin("Gaia","Titan","Titan of Life",World.name,World,[Forceful,Careful,Flashy],[Fertility,Nature],[Mother]),
+ GreenMan= new secondOrigin("The Green Man","Titan","Titan of Nature",World.name,World,[Sneaky,Careful,Flashy],[Nature],[Harmonizer,FreeSpirit]),
+ Ourea= new secondOrigin("Ourea","Titan","Titan of Mountains",World.name,World,[Careful,Clever,Forceful],[Earth],[Thinker]),
+ Kur= new secondOrigin("Kur","Titan","Titan of Expanse",World.name,World,[Forceful,Careful,Clever],[Earth,Travel],[FreeSpirit]),
+
+ Surtr= new secondOrigin("Surtr","Titan","Titan of Destruction",FireTitan.name,FireTitan,[Forceful,Flashy,Quick],[Fire],[General,King]),
+ Prometheus= new secondOrigin("Prometheus","Titan","Titan of Invention",FireTitan.name,FireTitan,[Clever,Quick,Flashy],[Fire,Crafting],[Thinker,FreeSpirit]),
+ Kagutsuchi= new secondOrigin("Kagutsuchi","Titan","Titan of Lava",FireTitan.name,FireTitan,[Flashy,Forceful,Quick],[Fire,Earth],[Protector]),
+ Nemesis= new secondOrigin("Nemesis","Titan","Titan of Divine Retribution",FireTitan.name,FireTitan,[Forceful,Careful,Flashy],[Fire,Justice],[Enforcer]),
+ Vrtra= new secondOrigin("Vrtra","Titan","Titan of Drought",FireTitan.name,FireTitan,[Flashy,Careful,Clever],[Fire,Death],[Manipulator]),
+ Xiuhtecuhtli= new secondOrigin("Xiuhtecuhtli","Titan","Titan of Life",FireTitan.name,FireTitan,[Flashy,Quick,Clever],[Fire,Fertility],[Harmonizer]),
+ Auahituroa= new secondOrigin("Auahituroa","Titan","Titan of Stellar Fire",FireTitan.name,FireTitan,[Flashy,Forceful,Quick],[Fire,Sky],[FreeSpirit]),
+
+Abzu= new secondOrigin("Abzu","Titan","Titan of The Abyss",Patala.name,Patala,[Careful,Sneaky,Forceful],[Water,Darkness],[Manipulator]),
+CromCruach= new secondOrigin("Crom Cruach","Titan","Titan of Decay",Patala.name,Patala,[Forceful,Sneaky,Quick],[Earth,Death],[General,Enforcer]),
+DisPater= new secondOrigin("Dis Pater","Titan","Titan of Riches",Patala.name,Patala,[Clever,Flashy,Careful],[Earth,Crafting],[Harmonizer]),
+Erebus= new secondOrigin("Erebus","Titan","Titan of Darkness",Patala.name,Patala,[Careful,Sneaky,Clever],[Earth,Darkness],[Diplomat,Thinker]),
+Erlik= new secondOrigin("Erlik","Titan","Titan of Underground",Patala.name,Patala,[Forceful,Flashy,Sneaky],[Earth,Death],[King,Manipulator]),
+Tiamat= new secondOrigin("Tiamat","Titan","Titan of Water as Life",Ocean.name,Ocean,[Clever,Careful,Sneaky],[Water,Fertility],[Mother]),
+
+Apep= new secondOrigin("Apep","Titan","Titan of Darkness",Night.name,Night,[Clever,Forceful,Sneaky],[Darkness],[Hunter,Manipulator]),
+Mikaboshi= new secondOrigin("Mikaboshi","Titan","Titan of Void",Night.name,Night,[Clever,Forceful,Sneaky],[Darkness,Death],[Manipulator,Enforcer]),
+Nut= new secondOrigin("Nut","Titan","Titan of Stars",Night.name,Night,[Careful,Sneaky,Clever],[Darkness,Sky],[Thinker,Protector]),
+Nott= new secondOrigin("Nott","Titan","Titan of the Veil",Night.name,Night,[Careful,Clever,Forceful],[Darkness,Sky],[Thinker,Enforcer]),
+Fenrir= new secondOrigin("Fenrir","Titan","Titan of Fear",Night.name,Night,[Forceful,Clever,Quick],[Darkness,Death],[Hunter]),
+Dracula= new secondOrigin("Dracula","Titan","Titan of Nightmares",Night.name,Night,[Clever,Forceful,Flashy],[Death,Darkness],[Hunter,Manipulator]),
+Selene= new secondOrigin("Selene","Titan","Titan of Moon",Night.name,Night,[Clever,Careful,Quick],[Darkness,Moon],[Enforcer,Diplomat]),
+Hypnos= new secondOrigin("Hypnos","Titan","Titan of Sleep",Night.name,Night,[Clever,Sneaky,Quick],[Darkness,Order],[Harmonizer,Thinker]),
+
+
+Camazotz= new secondOrigin("Camazotz","Titan","Titan of Devouring",DeathTitan.name,DeathTitan,[Forceful,Flashy,Quick],[Death],[Hunter]),
+GrimReaper= new secondOrigin("Grim Reaper","Titan","Titan of the Great Equalizer",DeathTitan.name,DeathTitan,[Forceful,Flashy,Clever],[Death],[King]),
+Styx= new secondOrigin("Styx","Titan","Titan of the Journey",DeathTitan.name,DeathTitan,[Careful,Clever,Quick],[Death,Travel],[Harmonizer]),
+Nirrti= new secondOrigin("Nirrti","Titan","Titan of Horror",DeathTitan.name,DeathTitan,[Flashy,Forceful,Sneaky],[Death],[Manipulator]),
+
+
+Sōhei= new secondOrigin("Sōhei","Enlightened","Japanese Warrior Monks",OrderoftheJadeFist.name,OrderoftheJadeFist,[Forceful,Clever,Quick],[War,Wisdom],[General,Diplomat]),
+Yamabushi= new secondOrigin("Yamabushi","Enlightened","Japanese Hermit Monks",OrderoftheJadeFist.name,OrderoftheJadeFist,[Careful,Clever,Forceful],[Wisdom,Nature],[Thinker,FreeSpirit]),
+Shaolin= new secondOrigin("Shaolin","Enlightened","Chinese Warrior Monks",OrderoftheJadeFist.name,OrderoftheJadeFist,[Forceful,Flashy,Careful],[War,Knowledge],[Enforcer,FreeSpirit]),
+Cuauhtlocelotl= new secondOrigin("Cuauhtlocelotl","Enlightened","Aztec Animal Warriors",OrderoftheJadeFist.name,OrderoftheJadeFist,[Sneaky,Clever,Careful],[War,Nature],[Hunter]),
+TeutonicKnights= new secondOrigin("Teutonic Knights","Enlightened","Secretive European Monks",OrderoftheJadeFist.name,OrderoftheJadeFist,[Sneaky,Clever,Careful],[Darkness,Crafting],[Hunter,Politician]),
+TheSevenTriads= new secondOrigin("The Seven Triads","Enlightened","Chinese Criminal Gangs",OrderoftheJadeFist.name,OrderoftheJadeFist,[Sneaky,Forceful,Clever],[Darkness,Wit],[Enforcer,Politician]),
+Yakuza= new secondOrigin("Yakuza","Enlightened","Japanese Criminal Gangs",OrderoftheJadeFist.name,OrderoftheJadeFist,[Forceful,Sneaky,Quick],[Order,War],[Enforcer,Manipulator]),
+DzheydBratstvo= new secondOrigin("Dzheyd Bratstvo","Enlightened","Russian Criminal Gang",OrderoftheJadeFist.name,OrderoftheJadeFist,[Forceful,Flashy,Quick],[Darkness,Sky],[Enforcer]),
+SicilianMafia= new secondOrigin("Sicilian Mafia","Enlightened","Italian Criminal Gang",OrderoftheJadeFist.name,OrderoftheJadeFist,[Flashy,Careful,Forceful],[Water,Travel],[Prince,Diplomat]),
+TheTecuani= new secondOrigin("The Tecuani","Enlightened","Latin American Criminal Gang",OrderoftheJadeFist.name,OrderoftheJadeFist,[Careful,Sneaky,Forceful],[Nature,Darkness],[Hunter]),
+
+Keter= new secondOrigin("Keter","Enlightened","Prophets and Scholars",Cabal.name,Cabal,[Clever,Careful,Forceful],[Wisdom],[Thinker]),
+Binah= new secondOrigin("Binah","Enlightened","Analysts and Wizards",Cabal.name,Cabal,[Careful,Clever,Flashy],[Fertility,Wit],[Mother,Thinker]),
+Chokhmah= new secondOrigin("Chokhmah","Enlightened","Creative Geniuses",Cabal.name,Cabal,[Clever,Flashy,Quick],[Father,Crafting],[Thinker,Prince]),
+Daat= new secondOrigin("Da'at","Enlightened","Secretive Leaders of the Cabal",Cabal.name,Cabal,[Careful,Clever,Sneaky],[Leader],[King,General]),
+Gevurah= new secondOrigin("Gevurah","Enlightened","Righteous Enforcers",Cabal.name,Cabal,[Flashy,Forceful,Quick],[Fire,Justice],[Enforcer]),
+Chesed= new secondOrigin("Chesed","Enlightened","Healers and Diplomats",Cabal.name,Cabal,[Careful,Clever,Sneaky],[Love,Water],[Harmonizer]),
+Tipheret= new secondOrigin("Tipheret","Enlightened","Ensurers of Balance",Cabal.name,Cabal,[Clever,Flashy,Careful],[Order,Travel],[Diplomat,Harmonizer]),
+Hod= new secondOrigin("Hod","Enlightened","Problem-Solvers",Cabal.name,Cabal,[Clever,Forceful,Sneaky],[Wit,Sky],[Enforcer,Thinker]),
+Netzach= new secondOrigin("Netzach","Enlightened","Generals and Businessmen",Cabal.name,Cabal,[Forceful,Flashy,Quick],[War,Leader],[General,Manipulator]),
+Yesod= new secondOrigin("Yesod","Enlightened","Link between the Spiritual and Physical",Cabal.name,Cabal,[Careful,Forceful,Sneaky],[Nature,Travel],[Enforcer,FreeSpirit]),
+Malkuth= new secondOrigin("Malkuth","Enlightened","Ground Operatives",Cabal.name,Cabal,[Sneaky,Careful,Clever],[Nature],[Enforcer]),
+
+CopperLodge= new secondOrigin("Copper Lodge","Enlightened","Biochemists",Illuminati.name,Illuminati,[Clever,Careful,Flashy],[Nature,Crafting],[Thinker]),
+BronzeLodge= new secondOrigin("Bronze Lodge","Enlightened","Artists",Illuminati.name,Illuminati,[Flashy,Quick,Clever],[Sun,Wit],[FreeSpirit]),
+SilverLodge= new secondOrigin("Silver Lodge","Enlightened","Engineers and Inventors",Illuminati.name,Illuminati,[Clever,Flashy,Quick],[Crafting],[Thinker]),
+GoldLodge= new secondOrigin("Gold Lodge","Enlightened","Bankers",Illuminati.name,Illuminati,[Careful,Clever,Sneaky],[Order,Knowledge],[Thinker,Manipulator]),
+OrichalcumLodge= new secondOrigin("Orichalcum Lodge","Enlightened","Specialists of the Occult Arts",Illuminati.name,Illuminati,[Clever,Forceful,Careful],[Knowledge,Darkness],[Thinker]),
+IronLodge= new secondOrigin("Iron Lodge","Enlightened","Believers in Self-Improvement",Illuminati.name,Illuminati,[Forceful,Flashy,Quick],[War,Father],[Enforcer,Thinker]),
+LeadLodge= new secondOrigin("Lead Lodge","Enlightened","Criminals and Ne'er-do-wells",Illuminati.name,Illuminati,[Sneaky,Careful,Quick],[Darkness,Earth],[Manipulator,Enforcer]),
+SteelLodge= new secondOrigin("Steel Lodge","Enlightened","Warriors of the Illuminati",Illuminati.name,Illuminati,[Forceful,Flashy,Quick],[War],[Enforcer]),
+MercuryLodge= new secondOrigin("Mercury Lodge","Enlightened","Scientists and Philosophers",Illuminati.name,Illuminati,[Clever,Careful,Flashy],[Knowledge],[Thinker]),
+GalahadsCastle= new secondOrigin("Galahad\'s Castle","Enlightened","Destroyers of Evil and Wickedness",CircleofMerlin.name,CircleofMerlin,[Flashy,Forceful,Quick],[Sun,War],[Enforcer]),
+PercivalsCastle= new secondOrigin("Percival\'s Castle","Enlightened","Protectors of Relics and Lands",CircleofMerlin.name,CircleofMerlin,[Careful,Quick,Clever],[Knowledge,War],[Protector]),
+GawainsCastle= new secondOrigin("Gawain's Castle","Enlightened","Duelists and Assassins",CircleofMerlin.name,CircleofMerlin,[Flashy,Careful,Quick],[War,Death],[Enforcer]),
+LamorakCastle= new secondOrigin("Lamorak\'s Castle","Enlightened","Brawlers and Street Fighters",CircleofMerlin.name,CircleofMerlin,[Forceful,Flashy,Quick],[Earth,Darkness],[Enforcer]),
+BorsCastle= new secondOrigin("Bors\' Castle","Enlightened","Wanderers and Storytellers",CircleofMerlin.name,CircleofMerlin,[Careful,Clever,Sneaky],[Travel],[FreeSpirit]),
+
+Templars= new secondOrigin("Templars","Enlightened","Amibitious European Oligarchs",OrderoftheJadeFist.name,OrderoftheJadeFist,[Clever,Sneaky,Forceful],[Justice,Earth],[Politician,Protector]), 
+TristansCastle= new secondOrigin("Tristan's Castle","Enlightened","Diplomats",CircleofMerlin.name,CircleofMerlin,[Careful,Flashy,Clever],[Sun,Nature],[Harmonizer]), 
+GeraintsCastle= new secondOrigin("Geraint's Castle","Enlightened","Druidic Experts",CircleofMerlin.name,CircleofMerlin,[Clever,Careful,Quick],[Nature],[FreeSpirit]), 
+GarethsCastle= new secondOrigin("Gareth's Castle","Enlightened","Infiltrators and Information Gatherers",CircleofMerlin.name,CircleofMerlin,[Sneaky,Careful,Quick],[Darkness,Knowledge],[Trickster]), 
+BediveresCastle= new secondOrigin("Bedivere's Castle","Enlightened","Craftsmen",CircleofMerlin.name,CircleofMerlin,[Clever,Flashy,Quick],[Crafting],[Protector]), 
+KaysCastle= new secondOrigin("Kay's Castle","Enlightened","Brutish Enforcers",CircleofMerlin.name,CircleofMerlin,[Forceful,Flashy,Quick],[War],[Enforcer]), 
+GaherisCastle= new secondOrigin("Gaheri's Castle","Enlightened","Internal Police",CircleofMerlin.name,CircleofMerlin,[Sneaky,Flashy,Careful],[Darkness,Order],[Protector,Manipulator]), 
+ArthursCastle= new secondOrigin("Arthur's Castle","Enlightened","Leaders of the Knights",CircleofMerlin.name,CircleofMerlin,[Flashy,Careful,Clever],[Leader],[King,General]), 
+Lancelot= new secondOrigin("Lancelot","Enlightened","Secret Order",CircleofMerlin.name,CircleofMerlin,[Sneaky,Careful,Clever],[Darkness],[Enforcer,Manipulator]),
+
+SummerNymph= new secondOrigin("Summer Nymph","Mythborn","Spirits of Springs and Flowers",SummerCourt.name,SummerCourt,[Flashy,Quick,Clever],[Sun,Fertility],[FreeSpirit,Harmonizer]),
+SummerDryad= new secondOrigin("Summer Dryad","Mythborn","Spirits of Trees and Mountains",SummerCourt.name,SummerCourt,[Careful,Flashy,Forceful],[Nature,Sun],[FreeSpirit,Trickster]),
+LightElf= new secondOrigin("Light Elf","Mythborn","Organized, Martial Spirits of Fields and Plains",SummerCourt.name,SummerCourt,[Forceful,Careful,Flashy],[Sun,Nature],[General,Diplomat]),
+SummerFey= new secondOrigin("Summer Fey","Mythborn","Spirits of Forests and Meadows",SummerCourt.name,SummerCourt,[Sneaky,Clever,Careful],[Wit,Sun],[Trickster,Diplomat]),
+SummerNaiad= new secondOrigin("Summer Naiad","Mythborn","Spirits of the Sea",SummerCourt.name,SummerCourt,[Careful,Sneaky,Forceful],[Water,Nature],[Trickster,Harmonizer]),
+Korrigans= new secondOrigin("Summer Korrigans","Mythborn","Spirits of the Roots and Soil",SummerCourt.name,SummerCourt,[Clever,Sneaky,Quick],[Nature],[FreeSpirit]),
+Gnomes= new secondOrigin("Summer Gnomes","Mythborn","Spirits of Technology and Creativity",SummerCourt.name,SummerCourt,[Clever,Flashy,Quick],[Nature,Crafting],[Thinker]),
+Leprechauns= new secondOrigin("Summer Leprechauns","Mythborn","Spirits of Wealth and Fertility",SummerCourt.name,SummerCourt,[Sneaky,Quick,Clever],[Nature,Fertility],[Trickster,FreeSpirit]),
+
+WinterNymph= new secondOrigin("Winter Nymph","Mythborn","Spirits of Springs and Ice",WinterCourt.name,WinterCourt,[Flashy,Quick,Clever],[Moon,Nature],[FreeSpirit,Trickster]),
+WinterDryad= new secondOrigin("Winter Dryad","Mythborn","Spirits of Trees and Mountains",WinterCourt.name,WinterCourt,[Careful,Flashy,Forceful],[Nature,Darkness],[FreeSpirit,Trickster]),
+DarkElf= new secondOrigin("Dark Elf","Mythborn","Organized, Martial Spirits of Caves and Fjords",WinterCourt.name,WinterCourt,[Forceful,Careful,Flashy],[Darkness,Earth],[General,Enforcer]),
+WinterFey= new secondOrigin("Winter Fey","Mythborn","Spirits of Forests and Swamps",WinterCourt.name,WinterCourt,[Sneaky,Clever,Careful],[Wit,Darkness],[Manipulator]),
+WinterNaiad= new secondOrigin("Winter Naiad","Mythborn","Spirits of the Sea",WinterCourt.name,WinterCourt,[Careful,Sneaky,Forceful],[Water,Darkness],[Trickster]),
+WinterKorrigans= new secondOrigin("Winter Korrigans","Mythborn","Spirits of the Roots and Soil",WinterCourt.name,WinterCourt,[Clever,Sneaky,Quick],[Nature],[FreeSpirit]),
+WinterGnomes= new secondOrigin("Winter Gnomes","Mythborn","Spirits of Technology and Creativity",WinterCourt.name,WinterCourt,[Clever,Flashy,Quick],[Darkness,Crafting],[Thinker]),
+WinterLeprechauns= new secondOrigin("Winter Leprechauns","Mythborn","Spirits of Wealth and Caves",WinterCourt.name,WinterCourt,[Sneaky,Quick,Clever],[Nature,Death],[Manipulator,FreeSpirit]),
+
+EasternDragon= new secondOrigin("Eastern Dragon","Mythborn","Wise Dragons of Asia",JadeSea.name,JadeSea,[Clever,Careful,Flashy],[Water,Nature],[Thinker,Diplomat]), 
+WesternDragon= new secondOrigin("Western Dragon","Mythborn","Mighty and Proud Dragons of Northern Europe",JadeSea.name,JadeSea,[Forceful,Flashy,Clever],[Sky,Nature],[King,Manipulator]), 
+Coatl= new secondOrigin("Coatl","Mythborn","Free and Wild Dragons of South America",JadeSea.name,JadeSea,[Flashy,Clever,Sneaky],[Sky],[FreeSpirit]), 
+Naga= new secondOrigin("Naga","Mythborn","Organized and Ruthless Dragons of South Asia",JadeSea.name,JadeSea,[Forceful,Quick,Clever],[Water,Order],[Enforcer,Politician]), 
+Wyvern= new secondOrigin("Wyvern","Mythborn","Poisonous and Wicked Dragons of Western Europe",JadeSea.name,JadeSea,[Quick,Forceful,Flashy],[Death,Earth],[Enforcer,Manipulator]),
+
+Wereboar = new secondOrigin("Were-boar","Mythborn","Industrious and Brash Were-Boars",DarkForest.name,DarkForest,[Forceful,Clever,Flashy],[Crafting,Nature],[Enforcer,Thinker]), 
+LoupGarou= new secondOrigin("Loup-Garou","Mythborn","Proud and Wily Werewolves",DarkForest.name,DarkForest,[Sneaky,Clever,Quick],[Moon,Nature],[Politician,Enforcer]), 
+Hag= new secondOrigin("Hag","Mythborn","Wicked Witches",DarkForest.name,DarkForest,[Clever,Sneaky,Careful],[Death,Darkness],[FreeSpirit,Trickster]), 
+Ent= new secondOrigin("Ent","Mythborn","Walking Trees",DarkForest.name,DarkForest,[Forceful,Careful,Flashy],[Nature],[FreeSpirit]), 
+Minotaur= new secondOrigin("Minotaur","Mythborn","Half-Bull Hulking Giants",DarkForest.name,DarkForest,[Forceful,Flashy,Quick],[War],[Enforcer]), 
+Centaur = new secondOrigin("Centaur","Mythborn","Genius but Impulsive Half-Horses",DarkForest.name,DarkForest,[Clever,Careful,Quick],[Knowledge,War],[Thinker]), 
+Satyr= new secondOrigin("Satyr","Mythborn","Eccentric Half-Goat",DarkForest.name,DarkForest,[Quick,Sneaky,Flashy],[Fertility],[Trickster]), 
+Rakshasa= new secondOrigin("Rakshasa","Mythborn","Evil Demons",Shambhala.name,Shambhala,[Forceful,Flashy,Clever],[War,Darkness],[Enforcer,Manipulator]), 
+Asura= new secondOrigin("Asura","Mythborn","Ancient Enemies of the Gods",Shambhala.name,Shambhala,[Flashy,Clever,Careful],[Fire,Order],[Politician]), 
+
+
+Vanara= new secondOrigin("Vanara","Mythborn","Militaristic Half-Monkeys",Shambhala.name,Shambhala,[Flashy,Clever,Sneaky],[Nature,War],[Enforcer,Diplomat])
+]
+
+function compare(a,b) {
+  if (a.name < b.name)
+    return -1;
+  if (a.name > b.name)
+    return 1;
+  return 0;
+}
+
+function godPlacer(){
+	//Creates a Score for each God and places them in the Triangle.
+	//Ends with a Logos/Kosmos/Eros Score
+	for(e=0;e<secondOriginArray.length;e++){
+		totalScore = [0,0,0]
+		
+		approachesScore = [0,0,0]
+		for(g=0;g<secondOriginArray[e].approaches.length;g++){
+			approachesScore[0] += secondOriginArray[e].approaches[g].values[0]/(g+1)
+			approachesScore[1] += secondOriginArray[e].approaches[g].values[1]/(g+1)
+			approachesScore[2] += secondOriginArray[e].approaches[g].values[2]/(g+1)
+		}
+		domainsScore = [0,0,0]
+		for(g=0;g<secondOriginArray[e].domains.length;g++){
+			domainsScore[0] += secondOriginArray[e].domains[g].values[0]
+			domainsScore[1] += secondOriginArray[e].domains[g].values[1]
+			domainsScore[2] += secondOriginArray[e].domains[g].values[2]
+		}
+		for(p=0;p<domainsScore.length;p++){domainsScore[p]/=g}
+
+		personalitiesScore = [0,0,0]
+		for(g=0;g<secondOriginArray[e].personalities.length;g++){
+			personalitiesScore[0] += secondOriginArray[e].personalities[g].values[0]
+			personalitiesScore[1] += secondOriginArray[e].personalities[g].values[1]
+			personalitiesScore[2] += secondOriginArray[e].personalities[g].values[2]
+		}
+		for(p=0;p<personalitiesScore.length;p++){personalitiesScore[p]/=g}
+
+		originVarScore = [0,0,0]
+			originVarScore[0] += secondOriginArray[e].originVar.values[0]
+			originVarScore[1] += secondOriginArray[e].originVar.values[1]
+			originVarScore[2] += secondOriginArray[e].originVar.values[2]	
+		
+			
+		for(p=0;p<originVarScore.length;p++){originVarScore[p]/=g}
+		if(secondOriginArray[e].type === "Titan"){for(g=0;g<totalScore.length;g++){totalScore[g] = Math.round((approachesScore[g]*0.10 + domainsScore[g]*0.25 + personalitiesScore[g]*0.25 + originVarScore[g]*0.40)*10)/10}}
+		else{for(g=0;g<totalScore.length;g++){totalScore[g] = Math.round((approachesScore[g]*0.15 + domainsScore[g]*0.35 + personalitiesScore[g]*0.35 + originVarScore[g]*0.15)*10)/10}}
+
+		secondOriginArray[e].totalValues = totalScore
+	
+		//for(g=0;g<totalScore.length;g++){if(secondOriginArray[e].totalValues[g] <10){secondOriginArray[e].totalValues[g]/=4} else{secondOriginArray[e].totalValues[g] += (20-secondOriginArray[e].totalValues[g])/4}}
+	/*	
+	logosScore = secondOriginArray[e].totalValues[0]
+	kosmosScore = secondOriginArray[e].totalValues[1];
+	erosScore = secondOriginArray[e].totalValues[2];
+	
+	
+	logosScore = 10
+	kosmosScore = 10
+	erosScore = 20
+	*/
+//	displayArray.push(secondOriginArray[e].name + ": " + (Math.round((logosScore)*10)/10) + "," + (Math.round((kosmosScore)*10)/10) + "," + (Math.round((erosScore)*10)/10) + "\n")
+//	addPoint()
+		}
+//alert(displayArray)
+
+}
+
+godPlacer()
+
+function drawTriangle(){
+var ax=300;
+var ay=300;
+var bx=0;
+var by=300;
+var cx=150;
+var cy=300-Math.sqrt(3)*150;
+
+
+var canvas = document.getElementById('myCanvas');
+var ctx = canvas.getContext('2d');
+
+ctx.beginPath();  
+ctx.moveTo(ax,ay);  
+ctx.lineTo(bx,by);  
+ctx.lineTo(cx,cy);  
+ ctx.fillStyle = "lightgrey";
+ctx.fill(); 
+}
+
+
+//This adds a point to the canvas.
+function addPoint(){
+
+	//	calculateScore2()
+
+// calculateScore();
+/*
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.beginPath();
+ctx.arc(150,200,4,0,2*Math.PI);
+ctx.stroke();
+ ctx.fillStyle = "black";
+ctx.fill()
+*/
+
+// Dragon to Logos is 300;300 to 75;300-Math.sqrt(3)*75 (or 170)
+// Kaos to Kosmos is 0;300 to 225 / 300-Math.sqrt(3)*75 (or 170)
+// Ananke to Eros is 150;300-Math.sqrt(3) *150 (or 40) to 150;300
+
+
+var logosPoint = [300,300,75,170,225,130]
+var kosmosPoint = [0,300,225,170,-225,130]
+var erosPoint = [150,40,150,300,0,-260]
+
+var finalLogosPoint = [logosPoint[0]-logosPoint[4]*(logosScore/20),logosPoint[1]-logosPoint[5]*(logosScore/20)]
+var finalKosmosPoint = [kosmosPoint[0]-kosmosPoint[4]*(kosmosScore/20),kosmosPoint[1]-kosmosPoint[5]*(kosmosScore/20)]
+var finalErosPoint = [erosPoint[0]-erosPoint[4]*(erosScore/20),erosPoint[1]-erosPoint[5]*(erosScore/20)]
+var finalPoint = [(finalLogosPoint[0]+finalKosmosPoint[0]+finalErosPoint[0])/3,(finalLogosPoint[1]+finalKosmosPoint[1]+finalErosPoint[1])/3]
+
+//finalPoint[0] is the length of the journey divided by the Logos Score. finalPoint[1] is the same for the height. This makes them coordinates.
+
+
+// Forbidden Places
+// 300/300 -> 150/40
+// point is at 168,180
+// Middle is at 150,213
+// Difference is 18, -33
+// 1.7333
+	var basePoint = [finalPoint[0],finalPoint[1]]
+	//basePoint is the final point, before exaggeration
+/*	
+	var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.beginPath();
+ctx.arc(finalPoint[0],finalPoint[1],4,0,2*Math.PI);
+ctx.stroke();
+ctx.fillStyle = "black";
+ctx.fill()
+*/
+
+for(i=0;i<100;i++){
+	var difference = [finalPoint[0]-150,finalPoint[1]-213]
+	//Difference is the final point coordinates minus the coordinates of the exact middle of the Triangle
+	while((basePoint[0]-150)*1.7333 < (basePoint[1]-40) && ((basePoint[0]-150)*1.7333 > -(basePoint[1]-40)) && basePoint[1]<300)
+	//as long as the length of the finalpoint has not reached an edge, it can be modified. basepoint becomes an exaggeration of finalpoint until either coordinate becomes out of bounds
+		{
+	basePoint[0]+= difference[0]/20
+	basePoint[1]+= difference[1]/20
+	//exaggerates the distance between basePoint and the center of the graph until one of the coordinates goes out of bounds
+	}
+
+}
+middleDistance = [basePoint[0]-150,basePoint[1]-213]
+	// distance between the edge and the center
+	//now we have the distance between basePoint and the center, and finalPoint and the center
+
+	// Difference is the distance between finalPoint and the center
+	//MiddleDistance is the distance between basePoint and the center 
+basicRatio = (basePoint[1]-213)/(difference[1]+0.1)
+	//the lower the ratio the closest to the extreme the point is
+finalToBasic = [basePoint[0]-finalPoint[0],basePoint[1]-finalPoint[1]]	
+
+	//finalToBasic is the distance between the finalPoint and the basicPoint
+	// now we set uberFinalPoint based on the ratio: the smaller the ratio, the more basePoint is heavy
+//	var uberFinalPoint = [((finalPoint[0]*(basicRatio+5))+(basePoint[0]*(15-basicRatio)))/20,((finalPoint[1]*(basicRatio+5))+(basePoint[1]*(15-basicRatio)))/20]
+	var uberFinalPoint = [finalPoint[0]+(finalToBasic[0]/(basicRatio/2+0.5)),finalPoint[1]+(finalToBasic[1]/(basicRatio/2)+0.5)]
+	//the basicRatio can be used to set how the exagerration is made.
+
+//	alert(Math.round(finalPoint[0]) + "," + Math.round(finalPoint[1]) + "   " + Math.round(uberFinalPoint[0]) + "," + Math.round(uberFinalPoint[1]) + "  " + secondOriginArray[e].name)
+var c=document.getElementById("myCanvas");
+var ctz=c.getContext("2d");
+ctz.beginPath();
+//ctz.arc(uberFinalPoint[0],uberFinalPoint[1],4,0,2*Math.PI);
+ctz.arc(uberFinalPoint[0],uberFinalPoint[1],4,0,2*Math.PI);
+
+ctz.stroke();
+ctz.fillStyle = "black"
+//console.log(colorChoice2[crt])
+//console.log("rgb(" + [colorChoice1[b],colorChoice2[crt],255].join(',') + ')')
+ctz.fill()
+
+
+
+}
+
+function calculateScore(){
+
+	matchArray = []
+
+for(p=0;p<secondOriginArray.length;p++){
+	matchArray.push([Math.abs(secondOriginArray[p].totalValues[0]-logosScore)+Math.abs(secondOriginArray[p].totalValues[1]-kosmosScore)+Math.abs(secondOriginArray[p].totalValues[2]-erosScore),secondOriginArray[p]])
+
+	}
+ matchArray.sort(function(a, b){return a[0] - b[0]}); 
+addPoint()
+		switchDivs("myCanvas")
+	switchDivs("questionsDiv")
+alert("The God you are closest to is " + matchArray[0][1].name + ", " +  matchArray[0][1].originString + " " + matchArray[0][1].description + "\nWiki Link: \nhttp://wyrduk.wikidot.com/" + matchArray[0][1].name) 	
+	personalityMatcher()
+}
+
+
+function calculateScore2(){
+	logosScore = 0;
+	kosmosScore = 0;
+	erosScore = 0;
+
+	
+	for(n=0;n<radios.length;n++){
+		
+var rates = document.getElementsByName(radios[n]);
+var rate_value;
+for(var v = 0; v < rates.length; v++){
+    if(rates[v].checked){
+        rate_value = rates[v].value;
+    }
+}
+	if(n<4){logosScore+=parseInt(rate_value)}
+	else if(n<8){kosmosScore+=parseInt(rate_value)}
+	else {erosScore+=parseInt(rate_value)} 
+	}
+
+
+calculateScore()
+addPoint()
+//		switchDivs("myCanvas")
+//	switchDivs("questionsDiv")	
+	}
+	
+	
+function switchDivs(selectedDiv) {
+  var x = document.getElementById(selectedDiv);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+
+//27 similar results, 37 unique ones
+//37 final results (removing middle): 6 basic, 6 more advanced versions, then 6 mixes of those, then 6 final advanced and 6 mixes on each sides
+/*How this will work: 
+1 all neutral (4 neutral)
+IF all numbers are the same
+---
+6 with neutral words except a mild version of the side (3 neutrals, one normal)
+IF Two sides are the same and one is one level of difference
+---
+6 with neutral words except a strong version of the side (2 neutals, two normal)
+IF Two sides are the same and one is two levels of difference
+6 with mixes (2 neutrals, one strong from each common side)
+IF There is one at 2.5, one at 7.5, one at 12.5
+---
+6 with very strong words (2 neutrals, two strong)
+IF Two sides are the same and one is three levels of difference
+12 with strong words and mixes (1 neutral, two strong, one strong of the relevant side)
+*/
+
+function personalityMatcher(){	
+
+//while(logosScore > 0 && kosmosScore > 0 && erosScore > 0){logosScore -= 1;kosmosScore -=1;erosScore -=1}
+
+	matchArrayAdjectives = []
+
+for(p=0;p<adjectiveArray.length;p++){
+	matchArrayAdjectives.push([Math.abs(adjectiveArray[p].values[0]-logosScore)+Math.abs(adjectiveArray[p].values[1]-kosmosScore)+Math.abs(adjectiveArray[p].values[2]-erosScore),adjectiveArray[p]])
+	}
+ matchArrayAdjectives.sort(function(a, b){return a[0] - b[0]}); 
+//console.log(matchArrayAdjectives)
+addPoint()
+alert("You are: \n-" + matchArrayAdjectives[0][1].name + "\n-" +  matchArrayAdjectives[1][1].name + "\n-" +  matchArrayAdjectives[2][1].name + "\n-" +  matchArrayAdjectives[3][1].name
++ "\n \nYou are not: \n-"  + matchArrayAdjectives[matchArrayAdjectives.length-1][1].name + "\n-" +  matchArrayAdjectives[matchArrayAdjectives.length-2][1].name) 	
+
+}
+
+//
+
+
+adjectiveArray = [
+
+
+// 2.5 Logos 
+
+//Balanced = new adjective("Balanced",[2.5,2.5,2.5]),
+//	Balanced = new adjective("Balanced",[7.5,2.5,2.5]),
+//	Balanced = new adjective("Balanced",[12.5,12.5,12.5]),
+//	Balanced = new adjective("Balanced",[17.5,17.5,17.5]),
+Enthusiastic = new adjective("Enthusiastic",[2.5,2.5,7.5]),
+//	Enthusiastic = new adjective("Enthusiastic",[7.5,7.5,12.5]),
+//	Enthusiastic = new adjective("Enthusiastic",[12.5,12.5,17.5]),
+Emotional = new adjective("Emotional",[2.5,2.5,12.5]),
+//	Emotional = new adjective("Emotional",[7.5,7.5,17.5]),
+Passionate = new adjective("Passionate",[2.5,2.5,17.5]),
+
+Stable = new adjective("Stable",[2.5,7.5,2.5]),
+//	Stable = new adjective("Stable",[7.5,12.5,7.5]),
+//	Stable = new adjective("Stable",[12.5,17.5,12.5]),
+Intuitive = new adjective("Intuitive",[2.5,7.5,7.5]),
+//	Intuitive = new adjective("Intuitive",[7.5,12.5,12.5]),
+//	Intuitive = new adjective("Intuitive",[12.5,17.5,17.5]),
+Friendly = new adjective("Friendly",[2.5,7.5,12.5]),
+//	Friendly = new adjective("Friendly",[7.5,12.5,17.5]),
+Empathetic = new adjective("Empathetic",[2.5,7.5,17.5]),
+
+Conservative = new adjective("Conservative",[2.5,12.5,2.5]),
+//	Conservative = new adjective("Conservative",[7.5,17.5,7.5]),
+DownToEarth = new adjective("Down-to-earth",[2.5,12.5,7.5]),
+//	DownToEarth = new adjective("Down-to-earth",[7.5,17.5,12.5]),
+Impulsive = new adjective("Impulsive",[2.5,12.5,12.5]),
+//	Impulsive = new adjective("Impulsive",[7.5,17.5,17.5]),
+Nurturing = new adjective("Nurturing",[2.5,12.5,17.5]),
+
+Traditionalist = new adjective("Very Traditionalist",[2.5,17.5,2.5]),
+Pragmatic = new adjective("Pragmatic",[2.5,17.5,7.5]),
+Protective = new adjective("Protective",[2.5,17.5,12.5]),
+Wild = new adjective("Wild",[2.5,17.5,17.5]),
+
+// 7.5 Logos 
+
+Patient = new adjective("Patient",[7.5,2.5,2.5]),
+//	Patient = new adjective("Patient",[12.5,7.5,7.5]),
+//	Patient = new adjective("Patient",[17.5,12.5,12.5]),
+Disorganised = new adjective("Disorganised",[7.5,2.5,7.5]),
+//	Disorganised = new adjective("Disorganised",[12.5,7.5,12.5]),
+//	Disorganised = new adjective("Disorganised",[17.5,12.5,17.5]),
+Spontaneous = new adjective("Spontaneous",[7.5,2.5,12.5]),
+//	Spontaneous = new adjective("Spontaneous",[12.5,7.5,17.5]),
+Instinctive = new adjective("Instinctive",[7.5,2.5,17.5]),
+
+Realistic = new adjective("Realistic",[7.5,7.5,2.5]),
+//	Realistic = new adjective("Realistic",[12.5,12.5,7.5]),
+//	Realistic = new adjective("Realistic",[17.5,17.5,12.5]),
+
+Practical = new adjective("Practical",[7.5,12.5,2.5]),
+//	Practical = new adjective("Practical",[12.5,17.5,7.5]),
+
+Sensible = new adjective("Sensible",[7.5,17.5,2.5]),
+
+// 12.5 Logos 
+
+Calm = new adjective("Calm",[12.5,2.5,2.5]),
+//	Calm = new adjective("Calm",[17.5,7.5,7.5]),
+Cynical = new adjective("Cynical",[12.5,2.5,7.5]),
+//	Cynical = new adjective("Cynical",[17.5,7.5,12.5]),
+Rebellious = new adjective("Rebellious",[12.5,2.5,12.5]),
+//	Rebellious = new adjective("Rebellious",[17.5,7.5,17.5]),
+Idealistic = new adjective("Idealistic",[12.5,2.5,17.5]),
+
+Studious = new adjective("Studious",[12.5,7.5,2.5]),
+//	Studious = new adjective("Studious",[17.5,12.5,7.5]),
+
+Devoted = new adjective("Devoted",[12.5,12.5,2.5]),
+//	Devoted = new adjective("Devoted",[17.5,17.5,7.5]),
+
+Formal = new adjective("Formal",[12.5,17.5,2.5]),
+
+// 17.5 Logos 
+
+Analytical = new adjective("Analytical",[17.5,2.5,2.5]),
+Inquisitive = new adjective("Inquisitive",[17.5,2.5,7.5]),
+Individualistic = new adjective("Individualistic",[17.5,2.5,12.5]),
+Chaotic = new adjective("Chaotic",[17.5,2.5,17.5]),
+
+Ambitious = new adjective("Ambitious",[17.5,7.5,2.5]),
+
+PurposeDriven = new adjective("Purpose-Driven",[17.5,12.5,2.5]),
+
+Spiritual = new adjective("Spiritual",[17.5,17.5,2.5])
+]
+
+
+function godRecommender(){
+	
+//Ceci est l'explorateur - tout simple, filter a travers les keywords et rien de plus.
+
+secondOriginArray = secondOriginArray.sort(compare)
+
+if(
+document.getElementById("origins").options[document.getElementById("origins").selectedIndex].value != "noPreference" ||
+document.getElementById("approaches").options[document.getElementById("approaches").selectedIndex].value != "noPreference" ||
+document.getElementById("domains").options[document.getElementById("domains").selectedIndex].value != "noPreference" ||
+document.getElementById("personality").options[document.getElementById("personality").selectedIndex].value != "noPreference"){
+
+// Filters the Origins
+
+var newSecondOriginArray = secondOriginArray
+
+
+if(document.getElementById("origins").options[document.getElementById("origins").selectedIndex].value != "noPreference"){
+if(document.getElementById("origins").options[document.getElementById("origins").selectedIndex].value === "Gods"){newSecondOriginArray = newSecondOriginArray.filter(function (entry) { return entry.originVar.type ===  "God"})}
+else if(document.getElementById("origins").options[document.getElementById("origins").selectedIndex].value === "Titans"){newSecondOriginArray = newSecondOriginArray.filter(function (entry) { return entry.originVar.type ===  "Titan"})}
+else if(document.getElementById("origins").options[document.getElementById("origins").selectedIndex].value === "Otherworlds"){newSecondOriginArray = newSecondOriginArray.filter(function (entry) { return entry.originVar.type === "Otherworld"})}
+else if(document.getElementById("origins").options[document.getElementById("origins").selectedIndex].value === "SecretSocieties"){newSecondOriginArray = newSecondOriginArray.filter(function (entry) { return entry.originVar.type === "Enlightened" })}
+else{newSecondOriginArray = newSecondOriginArray.filter(function (entry) { return entry.originVar.name === document.getElementById("origins").options[document.getElementById("origins").selectedIndex].value; })}
+}
+
+/*
+// Filter the Approaches
+if(document.getElementById("approaches").options[document.getElementById("approaches").selectedIndex].value != "noPreference"){newSecondOriginArray = newSecondOriginArray.filter(function (entry) {
+return entry.approaches[0].name === document.getElementById("approaches").options[document.getElementById("approaches").selectedIndex].value || entry.approaches[1].name === document.getElementById("approaches").options[document.getElementById("approaches").selectedIndex].value || entry.approaches[2].name === document.getElementById("approaches").options[document.getElementById("approaches").selectedIndex].value
+})}
+
+// Filters the Domains
+if(document.getElementById("domains").options[document.getElementById("domains").selectedIndex].value != "noPreference"){newSecondOriginArray = newSecondOriginArray.filter(function (entry) {
+if(entry.domains.length === 1){return entry.domains[0].name === document.getElementById("domains").options[document.getElementById("domains").selectedIndex].value; }
+if(entry.domains.length === 2){return entry.domains[0].name === document.getElementById("domains").options[document.getElementById("domains").selectedIndex].value || entry.domains[1].name === document.getElementById("domains").options[document.getElementById("domains").selectedIndex].value; }
+})}*/
+
+// Filter the Personalities
+if(document.getElementById("personality").options[document.getElementById("personality").selectedIndex].value != "noPreference"){newSecondOriginArray = newSecondOriginArray.filter(function (entry) {
+if(entry.personalities.length === 1){return entry.personalities[0].name === document.getElementById("personality").options[document.getElementById("personality").selectedIndex].value; }
+if(entry.personalities.length === 2){return entry.personalities[0].name === document.getElementById("personality").options[document.getElementById("personality").selectedIndex].value || entry.personalities[1].name === document.getElementById("personality").options[document.getElementById("personality").selectedIndex].value; }
+})}
+
+godCounter = 0
+if(newSecondOriginArray.length === 0){document.getElementById("noMatch").innerHTML = "No Match Found !"}
+if(newSecondOriginArray.length != 0){document.getElementById("noMatch").innerHTML = " Click an Origin to check the recommended Attributes"}
+document.getElementById("hoverer").innerHTML = "(Hover over an Origin for extra information)"
+
+
+if(newSecondOriginArray.length % 3 === 1){newSecondOriginArray.push( Default= new secondOrigin(""))}
+else if(newSecondOriginArray.length % 3 === 2){newSecondOriginArray.push( Default= new secondOrigin(""));newSecondOriginArray.push( Default= new secondOrigin(""))}
+
+var table = document.getElementById("Table");
+	table.innerHTML = "";
+	 
+	 for(i=2;i<newSecondOriginArray.length+3;i+=3){
+godCounter+=1
+ if(godCounter <= 3){
+
+var row = table.insertRow(-1);
+
+var cell1 = row.insertCell(0);
+var cell2 = row.insertCell(1);
+var cell3 = row.insertCell(2);
+var cell4 = row.insertCell(3);
+var cell5 = row.insertCell(4);
+var cell6 = row.insertCell(5);
+
+
+cell1.id = i.toString()
+cell3.id = i.toString()
+cell5.id = i.toString()
+
+if(newSecondOriginArray[i-2]){cell1.innerHTML = newSecondOriginArray[i-2].name;cell1.title = newSecondOriginArray[i-2].originString + " " + newSecondOriginArray[i-2].description}
+if(newSecondOriginArray[i-2] && newSecondOriginArray[i-2].name.length !=0){
+if(parametersArray.indexOf(newSecondOriginArray[i-2].originVar) < 63){cell2.innerHTML = '<a href="http://wyrduk.wikidot.com/' + newSecondOriginArray[i-2].name + '"  target="_blank">Link</a>'}
+else{cell2.innerHTML = '<a href="http://wyrduk.wikidot.com/' + newSecondOriginArray[i-2].originString + '"  target="_blank">Link</a>'}}
+if(newSecondOriginArray[i-1]){cell3.innerHTML = newSecondOriginArray[i-1].name;cell3.title = newSecondOriginArray[i-1].originString + " " + newSecondOriginArray[i-1].description}
+if(newSecondOriginArray[i-1] && newSecondOriginArray[i-1].name.length !=0){
+if(parametersArray.indexOf(newSecondOriginArray[i-1].originVar) < 63){cell4.innerHTML = '<a href="http://wyrduk.wikidot.com/' + newSecondOriginArray[i-1].name + '"  target="_blank">Link</a>'}
+else{cell4.innerHTML = '<a href="http://wyrduk.wikidot.com/' + newSecondOriginArray[i-1].originString + '"  target="_blank">Link</a>'}}
+if(newSecondOriginArray[i]){cell5.innerHTML = newSecondOriginArray[i].name;cell5.title = newSecondOriginArray[i].originString + " " + newSecondOriginArray[i].description}
+if(newSecondOriginArray[i] && newSecondOriginArray[i].name.length !=0){
+if(parametersArray.indexOf(newSecondOriginArray[i].originVar) < 63){cell6.innerHTML = '<a href="http://wyrduk.wikidot.com/' + newSecondOriginArray[i].name + '"  target="_blank">Link</a>'}
+else{cell6.innerHTML = '<a href="http://wyrduk.wikidot.com/' + newSecondOriginArray[i].originString + '"  target="_blank">Link</a>'}}
+
+cell1.onclick = function() { for(i=2;i<document.getElementById("Table").rows.length*3;i+=3){
+if(this.id === i.toString()){ChosenGod = newSecondOriginArray[i-2].name}}LegendaryMakerTotal()}
+cell3.onclick = function() { for(i=2;i<document.getElementById("Table").rows.length*3;i+=3){
+if(this.id === i.toString()){ChosenGod = newSecondOriginArray[i-1].name}}LegendaryMakerTotal()}
+cell5.onclick = function() { for(i=2;i<document.getElementById("Table").rows.length*3;i+=3){
+if(this.id === i.toString()){ChosenGod = newSecondOriginArray[i].name}}LegendaryMakerTotal()}
+
+
+	 }
 }}
-npcChoice()
+}
+
+function exampleLegendaryMaker(){
+
+Total = new parameterCalculator("Total","Select Role",[0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+
+  counter = 0
+  for(i=0;i<newAbilitiesArray.length;i++){
+
+	//Adds the Domains
+	if(godFound.domains.length === 1){Total.legendaries[i] += godFound.domains[0].legendaries[i]/2}
+	if(godFound.domains.length === 2){Total.legendaries[i] += (godFound.domains[0].legendaries[i] + godFound.domains[1].legendaries[i])/4}
+
+	//Adds the chosen Roles (Face, Tank, etc)
+	Total.legendaries[i]+=Math.floor((roleFound.legendaries[i]/20*6+roleFound2.legendaries[i]/20*4)) 
+} 	 
+
+
+  for(i=0;i<skillsArray.length;i++){
+	//Adds the Origin 
+	Total.skills[i] += godFound.originVar.skills[i]/2 
+	//Adds the Domains
+	if(godFound.domains.length === 1){Total.skills[i] += godFound.domains[0].skills[i]/2}
+	if(godFound.domains.length === 2){Total.skills[i] += (godFound.domains[0].skills[i] + godFound.domains[1].skills[i])/4}
+	//Adds Personalities
+	if(godFound.personalities.length === 1){Total.skills[i] += godFound.personalities[0].skills[i]/2}
+	if(godFound.personalities.length === 2){Total.skills[i] += (godFound.personalities[0].skills[i] + godFound.personalities[1].skills[i])/4}
+	//Adds Roles
+	Total.skills[i]+=Math.floor((roleFound.skills[i]/20*6+roleFound2.skills[i]/20*4)) 
+
+	//Adds the LKE Scores 
+	logosScore = godFound.totalValues[0]
+	kosmosScore = godFound.totalValues[1]
+	erosScore = godFound.totalValues[2]
+} 	
+
+
+
+function adder(value){
+	
+//the adder function looks through all Legendaries, if any are on a relevant score. If so they are added to the Total array.
+
+{for(i=0;i<newAbilitiesArray.length;i++){if(Math.round(Total.legendaries[i])==value){ legendariesFound.push([newAbilitiesArray[i].name,newAbilitiesArray[i].description,value,newAbilitiesArray[i]]);}
+}}
+{for(i=0;i<skillsArray.length;i++){if(Math.round(Total.skills[i])==value){ skillsFound.push([skillsArray[i].name,skillsArray[i].description,value,skillsArray[i].aspectVariables]);}
+}}
+}
+
+for(o=10;o>-10;o--){adder(o)}
+
+//At this point, legendariesFound is a full Array with all the Legendaries and their score based on Domain/Roles
+//Next, the following function creates a sister array, matchArrayLegendaries, which does the same based on LKE Scores
+
+LegendaryAbilityMatcher()
+
+//Finally, both Arrays, sorted with their own Score, are compared and added to a third array.
+
+finalLegendariesArray = []
+for(e=0;e<legendariesFound.length;e++){
+	for(f=0;f<matchArrayLegendaries.length;f++){
+		if(legendariesFound[e][0] == matchArrayLegendaries[f][1].name){finalLegendariesArray.push([legendariesFound[e][0],e+f,legendariesFound[e][3]])}
+	}
+}
+ finalLegendariesArray.sort(function(a, b){return a[1] - b[1]}); 
+
+for(i=0;i<2;i++){document.getElementById("LegendaryFound" + (i+1)).innerHTML = finalLegendariesArray[i][0]}
+for(i=0;i<2;i++){document.getElementById("LegendaryFound" + (i+1)).title = finalLegendariesArray[i][2].description}
+
+for(i=0;i<4;i++){document.getElementById("SkillFound" + (i+1)).innerHTML = skillsFound[i][0]}
+for(i=0;i<4;i++){document.getElementById("SkillFound" + (i+1)).title = skillsFound[i][1]}
+
+
+}
+
+function LegendaryAbilityMatcher(){	
+
+//This looks at the Logos/Kosmos/Eros Scores and matches the nearest Legendary Abilities. The first Array Element of matchArrayLegendaries elements is how close that Legendary Ability is with a score.
+
+//while(logosScore > 0 && kosmosScore > 0 && erosScore > 0){logosScore -= 1;kosmosScore -=1;erosScore -=1}
+
+
+	matchArrayLegendaries = []
+
+for(p=0;p<newAbilitiesArray.length;p++){
+	matchArrayLegendaries.push([Math.abs(newAbilitiesArray[p].values[0]-logosScore)+Math.abs(newAbilitiesArray[p].values[1]-kosmosScore)+Math.abs(newAbilitiesArray[p].values[2]-erosScore),newAbilitiesArray[p]])
+	}
+ matchArrayLegendaries.sort(function(a, b){return a[0] - b[0]}); 
+
+//	 for(p=0;p<matchArrayLegendaries.length;p++){console.log(matchArrayLegendaries[p][1].name + " " + matchArrayLegendaries[p][0])	 }
+
+
+
+}
+
+function LegendaryMakerTotal(){
+// This changes the function code based on whether LegendaryMakerTotal is used for the Godborn Maker or the NPC Maker
+
+document.getElementById("confirmNPC1Button").style="display:block"
+
+	
+	legendariesFound = []
+	skillsFound = []
+	  godFound = secondOriginArray.filter(function (entry) { return entry.name === ChosenGod; })[0]
+  roleFound2 = rolesChoiceArray.filter(function (entry) { return entry.name === ChosenSecondRole; })[0]	
+  roleFound = rolesChoiceArray.filter(function (entry) { return entry.name === ChosenFirstRole; })[0]
+
+exampleLegendaryMaker()  
+
+
+document.getElementById("hoverer2").innerHTML = "(Hover for more information)"
+}
+
+
+function addOption(selectChoice) {
+ 	if(document.getElementById("continent").value === "God"){newOriginArray = parametersArray.filter(function (entry) { return entry.type === "God" })}
+	if(document.getElementById("continent").value === "Otherworld"){newOriginArray = parametersArray.filter(function (entry) { return entry.type === "Otherworld" })}
+	if(document.getElementById("continent").value === "Titan"){newOriginArray = parametersArray.filter(function (entry) { return entry.type === "Titan" })}
+	if(document.getElementById("continent").value === "Enlightened"){newOriginArray = parametersArray.filter(function (entry) { return entry.type === "Enlightened" })}
+
+
+for (j = 0; j < 100; j++) {
+  selectChoice.options[0] = null;
+}	
+for (i = 0; i < newOriginArray.length; i++) {
+    var x = selectChoice;
+    var option = document.createElement("option");
+    option.text = newOriginArray[i].name;
+    option.value = newOriginArray[i].name;
+
+   x.add(option);
+}
+}
+/*
+function addOriginOption(selectChoice) {
+
+for (j = 0; j < 100; j++) {
+  selectChoice.options[0] = null;
+}	 
+for (i = 0; i < secondOriginArray.length; i++) {
+if(document.getElementById("OriginSelect").value === secondOriginArray[i].originString){	
+    var x = selectChoice;
+    var option = document.createElement("option");
+    option.text = secondOriginArray[i].name;
+    option.value = secondOriginArray[i].name;
+   x.add(option);
+}}
+}
+*/
+
+
+function lengthChecker(){
+	length = ""
+for(i=0;i<secondOriginArray.length;i++){
+length+= secondOriginArray[i].name + ": " + secondOriginArray[i].legendaries.length + "\n"
+}
+	alert(length)
+}
+function addAnAbilityMaker(){
+abilityName = prompt("What is the Name of this Ability ?")
+variableName = abilityName.replace(/\s/g, '');
+newLegendary =	[]
+for(i=0;i<parametersArray.length;i++){
+newLegendary.push(prompt(parametersArray[i].name + " - " + abilityName))
+}
+alert(variableName + " = new LegendaryAbility(\"" + abilityName + "\",[" + newLegendary + "])")
+}
+
+
+function addAnAbility(){
+	newAbilitiesArray = [
+DruidismGreenDruid = new LegendaryAbility("Green Druid","- Summon an Ent to aid you in battle\n- Entangle enemies with roots.",[8,8,12],[-1,2,-1,0,2,-2,-2,1,0,1,-2,-2,2,-1,0,1,2,1,1,4,02,2,-1,3,3],["Nature-Loving","Druid"]),
+Mythcalling = new LegendaryAbility("Mythcalling","- Summon a swarm of bees,\n- Empower your animal companion.",[8,10,12],[2,2,2,3,3,3,2,1,1,2,-1,0,1,-2,2,2,2,0,3,3,1,-2,1,0,2,3],["Mythcalling","Mythcaller"]),
+DruidismFeySorcerySummer = new LegendaryAbility("Fey Sorcery - Summer","- Send a scorching ray of heat\n- Make yourself irresistibly attractive.",[12,6,8],[-2,-1,-1,0,3,1,-1,0,1,0,-4,3,2,-2,-4,4,0,-3,1,3,-1,4,2,2,3,2],["Mischievous","Sorcerer"]),
+DruidismFeySorceryWinter = new LegendaryAbility("Fey Sorcery - Winter","- Raise a blizzard.\n- Create an illusion of yourself.",[11,5,12],[-1,2,0,-3,-4,-2,2,2,1,2,2,-3,-1,-2,2,-4,1,3,1,2,0,4,2,3,3,1],["Devious","Warlock"]),
+DruidismTechnodruidism = new LegendaryAbility("Technodruidism","- Manipulate electrical currents.\n- Take remote control of a computer system.",[15,5,6],[-2,1,-2,-3,1,-2,-1,-2,-3,3,-1,1,2,0,0,-1,2,-1,4,2,-2,-1,2,2,4,1],["Cyborg","Technodruid"]),
+//HematurgyYahuar = new LegendaryAbility("Yahuar","- Raise a Bone Shield to protect your allies.\n- Heal your allies.",[6,14,10],[2,0,0,0,1,1,-2,1,-1,-2,0,1,-1,1,-1,1,-1,-1,-2,-3,2,-3,2,-1,-2,2],["Self Sacrificial","Bloodsharer"]),
+//HematurgyItztli = new LegendaryAbility("Itztli","- Desecrate a sacred location.\n- Sacrifice an enemy for more power.",[8,16,10],[1,0,0,-1,0,0,-1,-1,0,-1,1,1,0,0,-1,2,-1,-1,-2,-1,0,-3,0,2,0,-1],["Blood Drinking","Executioner"]),
+InvokationDeathNecromancy = new LegendaryAbility("Spiritwalking - Necromancy","- Raise the dead.\n- Consume Souls to gain power.",[6,12,10],[1,1,0,-2,-3,-3,2,1,0,1,3,-1,1,-1,0,-1,0,1,0,-2,-1,1,-2,1,2,1,1],["Soulstealing","Necromancer"]),
+InvokationDeathShamanism = new LegendaryAbility("Spiritwalking - Shamanism","- Gain the advice of an ancient wise spirit.\n- Tap into the power of a sanctified place.",[8,8,7],[-1,3,0,-1,-2,-2,4,3,1,1,4,1,2,2,2,0,1,2,-2,-2,1,2,1,0,4,3],["Shamanistic","Shaman"]),
+InvokationDeathDestruction = new LegendaryAbility("Death - Destruction","- Send beams of pure Death\n- Crumble a wall to dust.",[0,10,13],[2,0,0,-2,-3,-2,2,2,1,-1,3,1,1,-1,1,-2,0,3,-1,-2,0,-3,0,4,1,-2],["Murderous","Killer"]),
+InvokationDeathHorror = new LegendaryAbility("Death - Horror","- Terrify enemies.\n- Turn ghosts into insane wraiths.",[4,9,12],[0,0,1,-2,-3,-1,1,1,1,-1,1,1,1,-1,1,-3,-1,1,0,-1,-2,2,1,-1,0,2],["Horrifying","Terror"]),
+ChwalRider = new LegendaryAbility("Chwal - Rider","- See through the eyes on an unsuspecting individual.\n- Mark and find individuals.",[11,9,3],[-1,0,0,1,0,-1,2,2,1,3,1,-1,0,2,3,0,2,1,0,-1,0,1,-2,-3,4,2],["Watchful","Spy"]),
+ChwalPuppeteer = new LegendaryAbility("Chwal - Puppeteer","- Control an individual’s actions.\n- Stop an enemy mid-strike.",[6,7,12],[-2,0,2,0,0,1,2,2,0,2,3,0,1,0,3,-1,2,2,0,-1,1,1,-2,-3,2,4],["Manipulative","Puppetmaster"]),
+WyrdseeingMystery = new LegendaryAbility("Mystery","- Reveal information hidden in the tangles of Fate.\n- Detect Fatebindings between two targets.",[16,16,4],[-1,4,2,-1,-2,1,1,3,2,2,0,2,-1,3,4,2,4,1,0,1,2,-1,-1,-2,4,2],["Wise","Master"]),
+WyrdseeingProphecy = new LegendaryAbility("Prophecy","- Sense an attack or ambush coming.\n- Decipher the future of an individual.",[18,18,4],[-2,4,2,2,1,2,1,1,1,2,1,1,0,2,3,2,4,1,1,1,2,-2,2,-3,4,3],["Prophetic","Prophet"]),
+EpicPhysiologyEpicStrength = new LegendaryAbility("Epic Strength","- Lift a car.\n- Rip a man in half.",[5,11,13],[4,-3,1,-1,-2,-3,-4,-2,1,-3,-2,2,3,2,-3,1,-3,-2,0,-1,-1,-2,2,4,1,-1],["Mighty","Goliath"]),
+EpicPhysiologyEpicToughness = new LegendaryAbility("Epic Toughness","- Shrug off a fireball\n- Run without stopping for days.",[5,8,14],[4,-2,1,2,2,-2,-3,-1,0,-2,1,0,3,4,-2,1,-2,-2,-1,0,3,-2,4,1,-1,0],["Resilient","Hulk"]),
+EpicPhysiologyEpicSenses = new LegendaryAbility("Epic Senses","- Gain amazing hearing\n- See from miles away.",[5,10,15],[1,2,0,1,1,3,2,0,2,3,-2,2,1,3,4,1,2,3,-1,0,-1,0,3,1,3,-1],["Perceptive","Hunter"]),
+EpicPhysiologyBeauty = new LegendaryAbility("Epic Beauty","- Charm others.\n- Pacify others with awe.",[8,6,16],[-3,-2,2,2,3,4,0,1,1,2,-2,2,1,-1,3,3,0,-1,-2,1,-2,4,-1,-2,-2,-1],["Beautiful","Supermodel"]),
+FireDestruction = new LegendaryAbility("Fire - Destruction","- Burn a forest down\n- Throw a fireball.",[5,10,10],[2,-2,-2,-2,-1,0,-3,-4,1,-3,1,6,0,0,-2,4,-3,-3,1,0,-3,-1,-2,-2,-2,4,1,-1],["Destructive","Pyromancer"]),
+FireLife = new LegendaryAbility("Fire - Life","- Ressurect mortals\n- Heal allies.",[6,9,15],[-2,2,2,3,2,2,-2,-3,-2,-3,-4,5,1,-1,-3,6,-2,-3,2,1,-2,1,3,-1,1,4],["Bright","Lifebinder"]),
+FireInvention = new LegendaryAbility("Fire - Invention","- Create an impossibly large gun.- Hack a computer.",[12,4,8],[1,2,0,-2,-3,-2,-3,-4,1,2,-3,5,2,0,-3,2,1,-3,6,-3,1,-2,2,2,4,1],["Genius","Inventor"]),
+FireMagma = new LegendaryAbility("Fire - Magma","- Create and control flows of magma\n- Rupture volcanoes from the ground.",[5,13,13],[1,-2,-1,-2,0,-1,-3,-4,1,-3,1,4,3,-1,-3,1,-3,-4,1,0,-2,-3,3,3,-1,1],["Magma","Earthmelter"]),
+FireDrought = new LegendaryAbility("Fire - Drought","- Dry up water and blood.\n- Turn enemies to ash.",[6,9,13],[1,-3,-2,-3,-4,-3,-4,-6,2,-3,2,4,0,-2,-4,1,-3,1,0,-2,-3,-2,1,2,-1,4],["Droughtbringing","Lifeeater"]),
+FireStrife = new LegendaryAbility("Fire - Strife","- Turn friends against each other.\n- Start a bar fight.",[6,15,12],[4,-1,0,-3,-3,3,-1,0,1,1,0,4,-2,-4,1,3,-1,-3,-2,-3,-2,4,2,1,2,4],["Rabble-Rousing","Anarchist"]),
+WaWorldgingSea = new LegendaryAbility("Water - Raging Sea","- Create anger.\n- Raise a tidal wave.",[6,10,9],[1,-1,-2,-3,0,-3,1,5,3,-1,0,-4,-1,-2,2,-2,-1,1,-3,-2,-3,-2,1,2,2,3],["Raging","Leviathan"]),
+WaterAbyss = new LegendaryAbility("Depths - Abyss","- Summon creatures from the dark Abyss.- Drown your enemies.",[5,9,12],[-2,1,1,3,2,-3,1,4,-3,-2,2,-4,-1,-3,-2,-4,1,3,-2,-4,-3,2,4,2,0,1],["Abyssal","Crusher"]),
+WaterLife = new LegendaryAbility("Water - Life","- Spring forth impossible animals.\n- Fortify your allies.",[4,12,10],[-4,2,1,3,2,1,1,4,1,2,-4,-4,1,0,2,-3,0,-3,-2,2,0,1,3,-2,-2,4],["Seafaring","Lifebringer"]),
+LightBrightness = new LegendaryAbility("Light - Brightness","- Blind your enemies\n- Dazzle an audience.",[12,18,8],[1,-2,3,-1,-2,3,0,-2,1,1,-3,2,-1,0,-4,3,-2,-4,-3,-2,1,4,2,-1,-2,3],["Bright","Lightbringer"]),
+LightIllumination = new LegendaryAbility("Light - Illumination","- Engage in intense concentration to reveal mysteries\n- Inspire others to create and learn.",[16,12,1],[-2,3,2,-3,-2,2,2,-1,-1,2,-3,2,-1,-2,3,4,3,-4,2,0,1,1,-2,-3,4,2],["Illuminated","Genius"]),
+LightSun = new LegendaryAbility("Light - Sun","- Send rays of heat.\n- Travel on a sunbeam.",[14,12,6],[-1,-2,2,-1,-2,0,-1,-3,2,-2,-4,3,1,-1,-4,6,-1,-4,0,1,0,2,2,3,0,2],["Sunlit","Sunwalker"]),
+SkyDestruction = new LegendaryAbility("Sky - Destruction","- Crush enemies with storms.\n- Summon tornadoes.",[6,9,7],[2,-2,0,-2,-3,-2,-1,0,4,-2,2,2,1,1,-1,1,-2,0,-2,-2,-1,-2,-1,4,-2,-1],["Stormborn","Skybreaker"]),
+SkyTempest = new LegendaryAbility("Sky - Tempest","- Create Storms.\n- Fly.",[8,10,6],[3,-2,1,-2,-1,-2,1,2,4,-1,1,0,2,1,0,-2,-3,1,-2,-1,-1,-2,2,3,1,2],["Tempest","Skylord"]),
+SkyPeace = new LegendaryAbility("Sky - Peace","- Pacify Enemies\n- Stop a bullet in its tracks.",[10,8,4],[-4,2,1,1,1,2,2,2,4,0,-3,-3,2,2,3,1,2,-2,0,1,3,3,3,-2,1,2],["Calm","Peacemaker"]),
+SkyRain = new LegendaryAbility("Sky - Rain","- Create a soothing rain\n- Summon a raging monsoon.",[13,7,7],[-2,2,1,2,3,1,2,4,4,1,-2,-4,-1,-2,0,-3,1,-2,-3,1,-1,0,-1,-2,2,3],["Soothing","Rainbinder"]),
+DarknessVoid = new LegendaryAbility("Night - Void","- Remove the sense of sight or hearing from your foes.\n- Erase an enemy from existence.",[6,8,10],[2,-2,-1,-3,-4,-3,0,-2,-2,-3,3,-1,1,-2,1,-3,-2,4,-2,-3,-2,2,-2,4,-3,-4],["Voidwalking","Voidwalker"]),
+DarknessShadows = new LegendaryAbility("Depths - Shadows","- Hide in shadows\n- Remove light.",[6,8,8],[-2,0,-2,-3,-2,1,2,0,-1,3,2,-2,-1,-3,3,-3,-1,4,0,1,-1,1,2,-2,4,3],["Blinding","Visionbreaker"]),
+DarknessUnderground = new LegendaryAbility("Depths - Underground","- See in the dark.\n- Have the Earth swallow enemies.",[3,10,12],[-1,-1,-2,1,2,-2,2,-2,-4,0,3,-2,3,1,-4,-4,1,4,2,2,1,-2,2,-2,-1,4],["Underground","Cavern Dweller"]),
+WorldAbundance = new LegendaryAbility("Depths - Abundance","- Summon riches.\n- Summon weapons for a whole army.",[5,10,12],[-2,1,2,1,3,1,2,2,2,-1,-3,0,3,0,-1,2,1,-2,4,2,2,1,0,-1,4,3],["Metalcrafting","Engineer"]),
+WorldLife = new LegendaryAbility("World - Life","- Summon plants and animals.\n- Heal a forest.",[1,10,14],[-3,2,1,4,4,2,0,2,-1,-2,-4,1,4,-1,0,3,1,-2,1,3,-1,-2,2,2,3,4],["Creating","Progenitor"]),
+WorldStone = new LegendaryAbility("World - Stone","- Crush enemies with a boulder.\n- Turn your fist into stone.",[7,10,10],[3,1,1,-2,-2,-2,-1,0,-1,-2,0,1,4,2,-2,-2,0,1,2,2,3,-2,5,3,1,3],["Avalanche","Earthbreaker"]),
+WorldDecay = new LegendaryAbility("World - Decay","- Rot an enemy from the inside.\n- Summon an army of worms.",[2,11,10],[3,-3,-2,-2,1,-2,-1,-2,-4,-3,4,1,4,-3,-2,-3,-3,3,0,2,-2,-3,1,4,2,3],["Plague","Blighter"]),
+WorldExpanse = new LegendaryAbility("World - Expanse","- Travel quickly.\n- Plague your foes with exotic diseases.",[5,8,12],[-1,1,1,0,2,-1,3,2,3,-1,-2,-1,4,0,0,1,2,-2,0,3,-2,-1,2,0,4,3],["Travelling","Wanderer"]),
+OrderGravity = new LegendaryAbility("Order - Gravity","- Slam an enemy into the floor.\n- Float into the air.",[5,13,6],[1,2,2,-1,-2,1,3,1,0,1,1,2,2,3,2,1,3,0,1,1,4,-2,3,2,2,4],["Titanic","Goliath"]),
+OrderControl = new LegendaryAbility("Order - Control","- Compel someone to obey your orders.\n- Take control of an ongoing spell.",[7,15,0],[2,2,3,-2,-2,2,1,1,2,-2,-1,2,3,4,2,2,1,1,1,1,4,2,3,0,-1,3],["Tyrannical","Ruler"]),
+KannagaranoMichi = new LegendaryAbility("Kannagara no Michi","- Bond yourself to a Kami or Mythborn.\n- Separate a Legendary being from its power source.",[7,8,11],[2,4,2,2,3,2,2,2,0,1,-4,0,3,0,2,2,-2,-2,1,5,-2,4,3,3,4,2],["Nature-bound","Kami-Friend"]),
+//TheMiddleWay = new LegendaryAbility("The Middle Way","- Distance yourself from Reality to resist uses of Legendary Abilities.\n- Project yourself to your ideal Self to increase your mental abilities.",[14,6,6],[-3,4,0,0,0,1,0,0,1,2,-2,0,-2,0,0,0,2,-2,-2,0,0,0,2,-2,0,1],["Enlightened","Wise One"]),
+Isfet = new LegendaryAbility("Isfet","- Gain the Isfet Aspect “Compulsive Liar”.\n- Gain the Isfet Aspect “Greed is Good”.",[10,4,16],[2,-1,3,-2,2,3,1,2,2,3,2,3,1,-4,3,3,2,4,-1,2,-4,3,3,1,3,4,3],["Sinful","Sinner"]),
+Nihilism = new LegendaryAbility("Nihilism","- Deny the existence of Legend to harm Legendary beings.\n- Rely on Reason to defend against Legendary attacks.",[14,4,14],[1,4,2,-2,0,1,1,2,1,3,0,1,1,2,1,1,4,2,-2,1,2,0,4,4,3,3],["Nihilistic","Nihilist"]),
+OrderKnowledge = new LegendaryAbility("Order - Knowledge","- Learn ancient mysteries.\n- Have an incredible memory.",[12,8,2],[-2,3,-1,-2,-1,1,0,2,0,2,-1,1,2,2,1,0,4,-2,2,0,4,-2,-1,-1,4,2],["Wise","Sage"]),
+NightMoon = new LegendaryAbility("Night - Moon","- Turn someone insane.\n- Soothe a pained friend.",[6,10,9],[-1,1,-1,0,2,1,2,2,2,3,2,-4,-1,-2,6,-4,1,-3,-1,1,-2,4,1,-1,3,4],["Sorrowful","Lunatic"]),
+NightDarkness = new LegendaryAbility("Night - Obscurity","- Blind an enemy.\n- Hide in the shadows.",[8,6,10],[1,-1,1,-2,-2,-3,-2,2,2,1,2,-3,1,-4,-3,-4,1,5,-2,-1,-4,0,3,1,4,3],["Dark","Skulker"]),
+NightVeil = new LegendaryAbility("Night - Veil","- Turn invisible.\n- Defend yourself from magic.",[8,8,6],[-2,1,-1,-2,-2,1,2,2,2,2,2,-4,1,1,3,-4,1,4,0,0,1,0,2,1,3,4],["Veiled","Veiler"]),
+NightStars = new LegendaryAbility("Night - Stars","- Divine the future.\n- Call down the fire of the Stars.",[8,8,6],[-2,4,2,1,-1,2,2,1,3,2,-2,1,-1,1,3,1,4,-2,0,0,1,1,-1,-2,4,3],["Star-blessed","Stargazer"]),
+NightFear = new LegendaryAbility("Night - Fear","- Terrify enemies.\n- Lurk hidden in the shadows.",[5,10,15],[1,-1,0,-2,-3,1,-1,1,2,0,2,-4,1,0,1,-4,-2,4,0,-1,-2,4,2,0,1,3],["Predatory","Terror"]),
+TaiYiNature = new LegendaryAbility("Tai Yi - Nature","- Change an enemy into a servant.\n- Reshape a Titanspawn.",[7,17,7],[0,1,2,1,0,0,0,0,1,-2,-1,0,1,3,1,1,1,2,1,-1,4,-3,-2,-3,2,1],["Legend-Shaping","Legend-Shaper"]),
+TaiYiFlow = new LegendaryAbility("Tai Yi - Flow","- Redirect a Spell.\n- Manipulate flows of Legend.",[10,14,4],[-1,2,0,1,2,2,2,2,1,1,1,1,-2,1,2,2,0,-1,0,2,3,-3,1,-1,3,2],["Masterful","Flowbinder"]),
+FleshShaping = new LegendaryAbility("Flesh-Shaping","- Grow Wings.\n- Regrow an Arm.",[4,14,14],[2,-2,-1,1,1,-1,-2,-2,-3,-3,2,0,1,-1,-2,-2,-3,0,-3,-2,-3,-3,3,3,-2,-3],["Monstrous","Abomination"]),
+EpicPresence = new LegendaryAbility("Epic Presence","- Give rousing speeches.\n- Intimidate an individual.",[11,15,8],[4,1,4,0,-2,2,-1,0,2,-1,2,3,1,3,-1,3,-2,1,-1,-2,2,4,2,-1,1,2],["Commanding","Commander"])
+
+/*
+Night - Nightmares
+Death - Journey
+Order - Law
+*/
+	]
+
+	skillsArray = [
+
+AthleticsSkill = new LegendaryAbility("Athletics","- Jump over a wall.\n- Run a sprint.",[0,0,0],[0,-1,2,1,4,2,2,-1,1,0,1,1,1,1,2,-2,-1,1,2,0,-1,2,-2,1,-1,1,0,1,-2,2,2,2,-2,0,3,0,-1,0,-2,2,4,1,-1,1,0,2,2,-1,0,-1,1,2,-1,0,2,1,0,2,2,1,3,2,0,2,1,1,2,2,2,-2,2,-1,1,-3,3,-1,4,0],[["Acrobatic","Delicate","Agile"],["Sprinter","Challenger","Leaper"]]),
+Rapport = new LegendaryAbility("Rapport","- Make friends at a bar.\n- Mediate a negotiation.",[0,0,0],[2,1,1,-1,1,0,-3,2,2,3,3,4,3,2,1,1,1,1,2,-1,1,2,-2,-3,-1,1,-1,-3,2,1,2,4,-1,6,-1,-3,0,1,4,2,-3,-1,-1,1,-1,1,1,1,-1,1,1,2,0,3,-4,1,0,2,1,-3,2,2,-1,4,0,-1,3,-1,4,4,3,2,3,5,-1,-2,0,2],[["Amicable","Cordial","Calm"],["Mediator","Emissary","Agent"]]),
+Technology = new LegendaryAbility("Technology","- Hack a computer\n- Build a grenade.",[0,0,0],[1,4,3,0,3,1,-1,1,0,-1,-1,0,1,0,1,2,1,3,3,1,1,2,2,-1,6,1,2,-1,1,2,0,-1,2,0,2,1,2,3,0,1,2,1,1,0,-1,-1,-2,-2,1,-1,-1,1,-2,2,-4,1,2,3,3,-2,1,2,-2,3,3,-2,2,-1,6,4,2,1,0,-2,2,1,5,3],[["Clever","Smart","Intelligent"],["Engineer","Tinkerer","Technophile"]]),
+FirstAid = new LegendaryAbility("First Aid","- Patch a wound.\n- Find the antidote to a poison.",[0,0,0],[3,3,0,-1,1,0,1,1,-1,1,3,3,1,3,2,-1,2,2,3,1,0,2,1,-2,1,2,2,0,-2,1,-1,2,0,1,-2,-3,-2,-3,1,3,-2,0,1,1,1,0,1,1,-1,0,0,1,1,2,1,2,1,3,3,-2,1,1,1,4,1,0,2,-1,2,-1,3,2,4,2,3,-2,3,3],[["Helpful","Kind","Friendly"],["Healer","Savior","Medic"]]),
+Fight = new LegendaryAbility("Fight","- Swing a sword.\n- Throw a punch.",[0,0,0],[-1,-2,2,4,2,-2,4,-2,1,-2,-2,-3,-2,1,2,-2,2,3,3,3,0,2,-1,1,0,1,1,4,0,-1,3,-1,-2,-2,3,4,0,-2,0,4,4,2,0,1,0,2,2,-1,1,-1,1,2,-1,2,3,3,2,3,4,-1,3,1,2,3,2,3,2,1,1,-2,4,0,2,-3,1,4,0,1],[["Brawling","Belligerent","Mighty"],["Fighter","Warrior","Elite"]]),
+Lore = new LegendaryAbility("Lore","- Know a magical incantation.\n- Know ancient history.",[0,0,0],[2,4,0,-1,1,-1,-2,4,1,0,1,-1,2,2,1,3,2,1,2,2,3,3,4,1,2,3,2,-2,1,2,1,2,4,2,-2,-3,1,-1,2,1,-2,0,1,-1,2,-2,-2,1,-1,1,-2,-1,1,2,0,1,2,2,1,2,2,3,2,3,2,2,4,4,3,3,1,4,3,-2,1,2,4,3],[["Wise","Ancient","Learned"],["Erudite","Scholar","Teacher"]]),
+Notice = new LegendaryAbility("Notice","- Get the drop on an enemy.\n- Find clues.",[0,0,0],[4,2,0,-1,2,2,3,1,2,0,-1,3,2,2,3,4,1,2,-1,4,3,4,1,2,0,1,-1,3,2,0,1,-1,1,2,-2,3,1,2,2,4,4,0,-1,1,-1,1,2,0,1,-1,1,0,-1,2,3,1,0,2,3,4,3,3,1,3,2,0,0,1,3,3,4,2,1,0,3,2,4,1],[["Perceptive","Attentive","Keen-Eyed"],["Scout","Lookout","Hunter"]]),
+Physique = new LegendaryAbility("Physique","- Run a marathon.\n- Withstand physical trauma.",[0,0,0],[-1,-2,2,2,0,-1,4,-2,2,3,3,1,-1,2,2,-1,2,3,4,2,0,3,-2,1,2,2,1,3,-1,-2,2,3,-1,-2,1,4,-2,-3,-2,4,3,1,-1,1,0,1,1,-1,0,-1,1,2,-1,-2,4,2,1,5,3,0,3,-1,2,3,1,3,2,2,1,-2,3,-1,1,-2,5,1,2,1],[["Tough","Thick-Skinned","Unbreakable"],["Giant","Bruiser","Tank"]]),
+Presence = new LegendaryAbility("Presence","- Order soldiers.\n- Interrogate a suspect.",[0,0,0],[1,2,4,3,0,-2,4,-1,4,0,-1,1,-1,1,3,-2,3,3,2,4,-1,4,-2,2,-1,-1,1,4,2,-2,4,1,0,1,2,3,1,-2,2,3,1,1,1,1,2,1,1,0,0,-1,0,1,0,4,3,2,2,3,3,4,2,1,4,4,2,3,2,4,1,2,4,3,2,4,2,-1,-2,2],[["Authoritative","Commanding","Loud"],["Commander","Leader","Chief"]]),
+Manipulation = new LegendaryAbility("Manipulation","- Trick an enemy.\n- Talk your way past an annoying bouncer.",[0,0,0],[4,3,1,2,0,2,-2,0,2,-1,-2,4,0,2,0,3,1,-2,-2,-1,4,-3,1,4,0,-1,2,0,4,-1,3,0,0,-1,1,-2,6,4,2,-2,-1,0,1,1,0,-1,-1,1,1,-2,0,0,-1,4,1,1,3,0,-2,4,1,4,3,4,4,2,-1,2,3,5,0,3,1,5,1,-1,0,2],[["Manipulative","Deceiving","Cheating"],["Trickster","Betrayer","Liar"]]),
+Resources = new LegendaryAbility("Resources","- Buy a car.\n- Hire mercenaries.",[0,0,0],[1,0,4,1,2,0,-2,-1,1,0,2,3,1,1,2,-1,1,2,4,0,1,2,1,2,2,3,2,0,3,-3,4,2,-2,1,4,-1,2,-1,1,0,-2,1,1,1,2,0,-2,1,1,1,-1,-1,0,3,-3,2,2,3,3,1,2,-1,2,4,2,-1,4,4,4,4,1,2,3,2,-2,-3,4,0],[["Rich","Wealthy","Important"],["Noble","Aristocrat","Merchant"]]),
+Marksmanship = new LegendaryAbility("Marksmanship","- Shoot a bow.\n- Throw a fireball with accuracy.",[0,0,0],[3,1,2,2,4,2,4,-1,1,-1,-2,2,1,2,3,-1,1,3,1,2,2,4,-2,2,2,1,1,3,-1,0,1,-2,-3,-1,3,3,1,0,-1,4,5,1,0,1,0,0,1,1,0,1,1,0,-1,3,2,2,2,1,3,2,4,3,2,3,3,2,1,2,4,1,3,0,2,-2,-3,5,2,2],[["Trained","Patient","Ruthless"],["Marskman","Sniper","Deadshot"]]),
+Stealth = new LegendaryAbility("Stealth","- Pickpocket a target.\n- Skulk unnoticed.",[0,0,0],[2,2,-2,-1,3,5,1,1,-2,-1,-2,2,3,2,-1,3,3,-3,2,-1,4,-4,-1,4,0,1,-1,1,0,2,-1,-2,1,0,1,2,3,4,-1,-2,4,0,0,1,-1,0,1,-1,1,-1,1,0,-1,-3,3,1,-1,0,-3,5,3,4,2,2,4,4,0,-1,3,2,1,4,1,-2,2,1,4,1],[["Sneaky","Nasty","Devious"],["Informant","Betrayer","Assassin"]]),
+Will = new LegendaryAbility("Will","- Resist mental attacks.\n- Control magical powers by sheer will.",[0,0,0],[2,4,1,2,1,-1,2,3,4,3,2,3,2,2,3,4,3,3,4,4,4,3,1,3,2,3,4,3,4,4,4,3,3,2,1,3,3,1,2,4,4,1,1,2,1,1,1,0,0,1,1,2,0,3,4,2,0,4,3,2,3,4,3,3,3,4,3,4,2,3,4,3,2,0,3,-2,2,2],[["Willful","Headstrong","Determined"],["Veteran","Professional","Old-Timer"]]),
+
+]	
+	//Gives each Parameter the relevant Legendaries 
+for(i=0;i<newAbilitiesArray.length;i++){
+	FilteredParametersArray = parametersArray.filter(function (entry) { return entry.type === "Domain" || entry.type === "Role"; })
+for(j=0;j<FilteredParametersArray.length;j++){
+	FilteredParametersArray[j].legendaries.push(newAbilitiesArray[i].legendaries[j])
+}}
+	//console.log(parametersArray)
+
+	//Gives each Parameter the relevant Skills (unchanged)
+for(i=0;i<skillsArray.length;i++){
+for(j=0;j<parametersArray.length;j++){
+	parametersArray[j].skills.push(skillsArray[i].legendaries[j])
+}}
+
+}
+addAnAbility()
+
+	for(i=0;i<newAbilitiesArray.length;i++){
+			displayArrayTest = []
+	for(p=21;p<newAbilitiesArray[i].legendaries.length-5;p++){
+	displayArrayTest.push(newAbilitiesArray[i].legendaries[p])}
+		//(newAbilitiesArray[i].name + " - " + displayArrayTest )
+	}
+
+//addAnAbilityMaker()
+
+// Test the length of Legendaries
+//lengthChecker()
+// Test the Legendaries
+//exampleLegendaryMaker(legendaryAbilitiesArray,godFound.legendaries,roleFound.legendaries,roleFound2.legendaries,9,wyrdbornFound.legendaries)
+// Test the Skills
+//exampleLegendaryMaker(skillsArray,godFound.skills,roleFound.skills,roleFound2.skills,7,wyrdbornFound.skills)
+// Create an Ability
+//addAnAbilityMaker()
+// Test the Legendaries AND Skills. Adds the extra Abilities
+//LegendaryMakerTotal()
+
+// This function handles the tabs
+function openNW(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = [
+	document.getElementById("Display1"),
+	document.getElementById("Display2"),
+	document.getElementById("Display3")]    
+	
+	for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = [
+	document.getElementById("Display1Tab"),
+	document.getElementById("Display2Tab"),
+	document.getElementById("Display3Tab")]
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+	
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+ChosenFirstRole = "Select Role"
+ChosenSecondRole = "Select Role"
+ChosenGod = "Woop"	
+
+function setChosenPantheon(selectedBox){
+//curatedName = selectedBox.options[selectedBox.selectedIndex].value.substr(0,selectedBox.options[selectedBox.selectedIndex].value.indexOf(":"))
+curatedName = selectedBox.options[selectedBox.selectedIndex].value
+	
+
+document.getElementById ("PantheonLink").href = "http://wyrduk.wikidot.com/"+ curatedName;
+document.getElementById ("PantheonLink").innerHTML = "Wiki Link: "+ curatedName;
+
+document.getElementById('OriginLink').style.display = 'none'
+
+}
+function setChosenGod(selectedBox){
+document.getElementById ("OriginLink").href = "http://wyrduk.wikidot.com/"+ selectedBox.options[selectedBox.selectedIndex].value;
+document.getElementById ("OriginLink").innerHTML = "Wiki Link: "+ selectedBox.options[selectedBox.selectedIndex].value;
+	ChosenGod = selectedBox.options[selectedBox.selectedIndex].value;
+document.getElementById('OriginLink').style.display = 'block'
+}
+function setFirstRole(selectedBox){
+ChosenFirstRole = selectedBox.options[selectedBox.selectedIndex].value}
+	
+function setSecondRole(selectedBox){
+	ChosenSecondRole = selectedBox.options[selectedBox.selectedIndex].value;}
+
+	
+	//__________________________________________________
+	// Roles
+	
+	var rolesLists = new Array(5) 
+	rolesLists["empty"] = ["Select a Main Role"]; 
+	rolesLists["Tank"] = ["Select Role","Damage Dealer", "Party Face", "Skill Monkey", "Support-Controller"]; 
+	rolesLists["Damage Dealer"] = ["Select Role","Tank", "Party Face", "Skill Monkey", "Support-Controller"]; 
+	rolesLists["Party Face"] = ["Select Role","Tank", "Damage Dealer", "Skill Monkey", "Support-Controller"]; 
+	rolesLists["Skill Monkey"] = ["Select Role","Tank", "Damage Dealer", "Party Face", "Support-Controller"]; 
+	rolesLists["Support-Controller"] = ["Select Role","Tank", "Damage Dealer", "Party Face", "Skill Monkey"]; 
+
+function rolesChange(selectObj2) { 
+	var idx = selectObj2.selectedIndex; 
+	var which = selectObj2.options[idx].value; 
+	cList2 = rolesLists[which]; 
+	var cSelect = document.getElementById("secondRole"); 
+	var len=cSelect.options.length; 
+	while (cSelect.options.length > 0) { cSelect.remove(0); } 
+	var newOption; 
+	for (var i=0; i<cList2.length; i++) { 
+	newOption = document.createElement("option"); 
+	newOption.value = cList2[i]; // assumes option string and value are the same 
+	newOption.text=cList2[i]; 
+	try { 
+	cSelect.add(newOption); // this will fail in DOM browsers but is needed for IE 
+	} 
+	catch (e) { 
+	cSelect.appendChild(newOption); 
+	} 
+	} 
+	} 
+
+value = 0
+function clearContents(element) {
+if(value == 0){
+  element.value = '';}
+value+=1
+}
+
+function characterSheetSpawn() {
+
+
+
+document.getElementById('inputTextToSave').value = "Aspects:     " +"\n" + document.getElementById('highConcept').value + "\n " + document.getElementById('trouble').value + "\n " + document.getElementById('aspect1').value + "\n " + document.getElementById('aspect2').value +"\n " + document.getElementById('aspect3').value + "\n     \n" + "Skills: \n+3: " + document.getElementById('31').value + "\n+2: " + document.getElementById('21').value + ", " + document.getElementById('22').value + "\n+1: " + document.getElementById('11').value +", " + document.getElementById('12').value +", " + document.getElementById('13').value + "\n     \n" + "Stunts: " + "\n" + document.getElementById('stunt1').value + "\n " + document.getElementById('stunt2').value + "\n " + document.getElementById('stunt3').value + "\n     \n" + "Legendary Abilities: " + "\n " + document.getElementById('legend1').value + "\n " + document.getElementById('legend2').value + "\n " + document.getElementById('legend3').value + "\n\n "
+}	
+	
+//__________________________________________________
+//__________________________________________________
+//__________________________________________________
+//__________________________________________________
+//__________________________________________________
+//__________________________________________________
+//__________________________________________________
+
+//NPC MAKER
+
+//__________________________________________________
+//__________________________________________________
+//__________________________________________________
+//__________________________________________________
+//__________________________________________________
+//__________________________________________________
+//__________________________________________________
+
+numberOfNPCs = 1
+function confirmChoice1(){
+
+	NPC1Final = [godFound,skillsFound,finalLegendariesArray,roleFound,roleFound2]
+	
+	document.getElementById("NPC1").innerHTML = finalLegendariesArray[0][0] + "<br>" + finalLegendariesArray[1][0] + "<br><br>" + skillsFound[0][0] + "<br>" + skillsFound[1][0] + "<br>" + skillsFound[2][0] + "<br>" + skillsFound[3][0] + "<br>"
+	document.getElementById("finalGeneratorButton").style="font-size : 32px; display:block; horizontal: 50%;"
+	document.getElementById("generatorTooltip").style="display:block;"
+	
+		if(document.getElementById("fightType").value != "3"){
+			numberOfNPCs = 2
+			document.getElementById("confirmNPC2Button").style="display:block"
+			document.getElementById("NPC2").style="display:block"
+	}
+	else{
+		document.getElementById("confirmNPC2Button").style="display:none"
+		document.getElementById("NPC2").style="display:none"
+		}
+	
+
+}
+
+function confirmChoice2(){
+	
+
+	numberOfNPCs = 1
+	NPC2Final = [godFound,skillsFound,finalLegendariesArray,roleFound,roleFound2]
+
+	document.getElementById("NPC2").innerHTML = finalLegendariesArray[0][0] + "<br>" + finalLegendariesArray[1][0] + "<br><br>" + skillsFound[0][0] + "<br>" + skillsFound[1][0] + "<br>" + skillsFound[2][0] + "<br>" + skillsFound[3][0] + "<br>"
+
+}
+ 
+
+
+
+
+
